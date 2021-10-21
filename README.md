@@ -7,3 +7,5 @@
    Ctrl + Shift + x
    click ...
    click install from VSIX
+4. Add tomcat server
+5. Right click on war file in target, click run in tomcat 
