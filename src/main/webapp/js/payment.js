@@ -4,7 +4,7 @@ function createPaypalBtn() {
 
         // Call your server to set up the transaction
         createOrder: function (data, actions) {
-            return fetch('/demo/checkout/api/paypal/order/create/', {
+            return fetch('api/order/create', {
                 method: 'post',
                 mode: 'cors',
                 cache: 'no-cache',
@@ -90,7 +90,7 @@ function getCartData() {
             ]
         }]
     };
-    return data;
+    return JSON.stringify(data);
 }
 
 window.addEventListener('DOMContentLoaded', createPaypalBtn);

@@ -15,7 +15,7 @@ public class PaymentController extends HttpServlet {
         super();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/payment.jsp";
 
 		// get current action
@@ -36,8 +36,9 @@ public class PaymentController extends HttpServlet {
 		
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 
+	
 }
