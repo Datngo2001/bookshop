@@ -71,9 +71,9 @@
               <li class="navbar-item">
                  <a href="" class="navbar-item-link"><i class="navbar_list-icon fas fa-question-circle"></i> Help?</a>
               </li>
-              <li class="navbar-item">Sign up</li>
+              <li class="navbar-item"><a class="navbar-item-link" href="${pageContext.request.contextPath}/register">Sign up</a></li>
               <li class="navbar-item">|</li>
-              <li class="navbar-item">Log in</li>
+              <li class="navbar-item"><a class="navbar-item-link" href="${pageContext.request.contextPath}/login">Log in</a></li>
             </ul>
           </nav>
           <div class="navbar-search">
@@ -103,7 +103,7 @@
 		          	<div class="wishlist-product"></div>
 		           	<span class="wishlist-title"> Wishlist</span>
 	            </a>
-				<a href="" class="cart-link">
+				<a href="${pageContext.request.contextPath}/payment" class="cart-link">
 					<div class="cart-product"></div>
 					<span class="cart-title"> Cart</span>
 				</a>

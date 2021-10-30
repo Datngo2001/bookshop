@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.paypal.http.HttpResponse;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+//import com.braintreepayments.http.HttpResponse;
+import com.paypal.http.*;
 import com.paypal.PayPalClient;
 import com.paypal.orders.AddressPortable;
 import com.paypal.orders.AmountBreakdown;
@@ -22,9 +21,6 @@ import com.paypal.orders.OrdersCreateRequest;
 import com.paypal.orders.PurchaseUnitRequest;
 import com.paypal.orders.ShippingDetail;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 /*
 *
 *1. Import the PayPal SDK client that was created in `Set up Server-Side SDK`.
@@ -32,19 +28,19 @@ import org.json.JSONObject;
 */
 public class CreateOrder extends PayPalClient {
 
-  // 2. Set up your server to receive a call from the client
+  //2. Set up your server to receive a call from the client
   /**
-   * Method to create order
+   *Method to create order
    *
-   * @param debug true = print response data
-   * @return HttpResponse<Order> response received from API
-   * @throws IOException Exceptions from API if any
+   *@param debug true = print response data
+   *@return HttpResponse<Order> response received from API
+   *@throws IOException Exceptions from API if any
    */
-  public String createOrder(boolean debug, JSONObject json) throws IOException {
+  public HttpResponse<Order> createOrder(boolean debug) throws IOException {
     OrdersCreateRequest request = new OrdersCreateRequest();
-    request.requestBody(buildRequestBody(json));
-    // 3. Call PayPal to set up a transaction
     request.prefer("return=representation");
+    request.requestBody(buildRequestBody());
+    //3. Call PayPal to set up a transaction
     HttpResponse<Order> response = client().execute(request);
     if (debug) {
       if (response.statusCode() == 201) {
@@ -56,40 +52,66 @@ public class CreateOrder extends PayPalClient {
         for (LinkDescription link : response.result().links()) {
           System.out.println("\t" + link.rel() + ": " + link.href() + "\tCall Type: " + link.method());
         }
-        System.out
-            .println("Total Amount: " + response.result().purchaseUnits().get(0).amountWithBreakdown().currencyCode()
-                + " " + response.result().purchaseUnits().get(0).amountWithBreakdown().value());
+        System.out.println("Total Amount: " + response.result().purchaseUnits().get(0).amountWithBreakdown().currencyCode()
+            + " " + response.result().purchaseUnits().get(0).amountWithBreakdown().value());
       }
     }
-    return response.result().id();
+    return response;
   }
 
   /**
-   * Method to generate sample create order body with CAPTURE intent
+   *Method to generate sample create order body with CAPTURE intent
    *
-   * @return OrderRequest with created order request
+   *@return OrderRequest with created order request
    */
-  private OrderRequest buildRequestBody(JSONObject json) {
+  private OrderRequest buildRequestBody() {
     OrderRequest orderRequest = new OrderRequest();
-    // checkoutPaymentIntent not intent
     orderRequest.checkoutPaymentIntent("CAPTURE");
 
-    ApplicationContext applicationContext = new ApplicationContext().brandName("BookShop INC").landingPage("BILLING")
+    ApplicationContext applicationContext = new ApplicationContext().brandName("EXAMPLE INC").landingPage("BILLING")
         .shippingPreference("SET_PROVIDED_ADDRESS");
     orderRequest.applicationContext(applicationContext);
 
-    
-    //Problem 
-    // không thể convert sang java objec
     List<PurchaseUnitRequest> purchaseUnitRequests = new ArrayList<PurchaseUnitRequest>();
-    JSONArray purchase_units = json.getJSONArray("purchase_units");
-    for (int i = 0; i < purchase_units.length(); i++) {
-      PurchaseUnitRequest purchaseUnitRequest = new PurchaseUnitRequest();
-      purchaseUnitRequest.amountWithBreakdown(new AmountWithBreakdown().value("100").currencyCode("USD"));
-      //tui thử cách này nhưng các feild của purchaseUnitRequest đều bi null
-      purchaseUnitRequests.add(purchaseUnitRequest);
-    }
+    PurchaseUnitRequest purchaseUnitRequest = new PurchaseUnitRequest().referenceId("PUHF")
+        .description("Sporting Goods").customId("CUST-HighFashions").softDescriptor("HighFashions")
+        .amountWithBreakdown(new AmountWithBreakdown().currencyCode("USD").value("230.00")
+            .amountBreakdown(new AmountBreakdown().itemTotal(new Money().currencyCode("USD").value("180.00"))
+                .shipping(new Money().currencyCode("USD").value("30.00"))
+                .handling(new Money().currencyCode("USD").value("10.00"))
+                .taxTotal(new Money().currencyCode("USD").value("20.00"))
+                .shippingDiscount(new Money().currencyCode("USD").value("10.00"))))
+        .items(new ArrayList<Item>() {
+          {
+            add(new Item().name("T-shirt").description("Green XL").sku("sku01")
+                .unitAmount(new Money().currencyCode("USD").value("90.00"))
+                .tax(new Money().currencyCode("USD").value("10.00")).quantity("1")
+                .category("PHYSICAL_GOODS"));
+            add(new Item().name("Shoes").description("Running, Size 10.5").sku("sku02")
+                .unitAmount(new Money().currencyCode("USD").value("45.00"))
+                .tax(new Money().currencyCode("USD").value("5.00")).quantity("2")
+                .category("PHYSICAL_GOODS"));
+          }
+        })
+        .shippingDetail(new ShippingDetail().name(new Name().fullName("John Doe"))
+            .addressPortable(new AddressPortable().addressLine1("123 Townsend St").addressLine2("Floor 6")
+                .adminArea2("San Francisco").adminArea1("CA").postalCode("94107").countryCode("US")));
+    purchaseUnitRequests.add(purchaseUnitRequest);
     orderRequest.purchaseUnits(purchaseUnitRequests);
     return orderRequest;
+  }
+
+  /**
+   *This driver function invokes the createOrder function to create
+   *a sample order.
+   */
+  public static void main(String args[]) {
+    try {
+      new CreateOrder().createOrder(true);
+    } catch (com.paypal.http.exceptions.HttpException e) {
+      System.out.println(e.getLocalizedMessage());
+    } catch (Exception e) {
+      e.printStackTrace();
+    }
   }
 }

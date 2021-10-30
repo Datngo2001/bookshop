@@ -2,7 +2,7 @@
 	pageEncoding="ISO-8859-1" errorPage="error.jsp" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html>
+<!DOCTYPE html
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -92,10 +92,10 @@
             <div class="home-product">
               <div class="grid_row">
               	<c:forEach var="product" items="${list_product}">
-        			<c:url var="link" value="home">
-        				<c:param name="command" value="LOAD"/>
-        				<c:param name="productID" value="${product.id}" />
-        			</c:url>
+        			    <c:url var="link" value="home">
+        				    <c:param name="command" value="LOAD"/>
+        				    <c:param name="productID" value="${product.id}" />
+        			    </c:url>
 	                <div class="grid_column-2-5">
 	                <a class="card-link-product" href="${link}">
 	                  <div class="product-item">
