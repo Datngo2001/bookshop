@@ -22,7 +22,10 @@ img {
 		padding: 0 3rem;
 	}
 }
-
+.payment-block {
+	display: block;
+	width: 100%;
+}
 /* Hero */
 .btn {
 	display: inline-block;
@@ -38,6 +41,7 @@ img {
 .title {
 	margin: 4rem 0 6rem 0;
 	text-align: center;
+	
 }
 
 /* Cart Items */

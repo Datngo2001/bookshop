@@ -364,6 +364,19 @@ img.img-item {
 .carousel-card-title {
   color: black;
 }
+.adver-item {
+	margin: auto;
+	justify-content: center;
+	align-items: center;
+	width: 70%;
+}
+.owl-dots {
+	display: none;
+}
+.owl-nav {
+	display: none;
+}
+/*
 .owl-dots{
   text-align: center;
   margin-top: 10px;
@@ -382,6 +395,7 @@ img.img-item {
 .owl-dot:hover{
   background: #0072bc!important;
 }
+*/
 
 
 /*Trending book*/

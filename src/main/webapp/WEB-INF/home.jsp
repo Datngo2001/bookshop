@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" errorPage="error.jsp" isELIgnored="false"%>
+	pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-<!DOCTYPE html
+<!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Global -->
   <c:import url="sharedView/global.html"/>
   <!-- Carousel -->
@@ -17,6 +16,7 @@
 </head>
 <body>
 	<c:import url="sharedView/header.jsp"></c:import>
+	<br>
 	<div class="adver-demo">
       <div class="owl-carousel owl-theme">
         <div class="adver-item">
@@ -92,10 +92,10 @@
             <div class="home-product">
               <div class="grid_row">
               	<c:forEach var="product" items="${list_product}">
-        			    <c:url var="link" value="home">
-        				    <c:param name="command" value="LOAD"/>
-        				    <c:param name="productID" value="${product.id}" />
-        			    </c:url>
+        			<c:url var="link" value="home">
+        				<c:param name="command" value="LOAD"/>
+        				<c:param name="productID" value="${product.id}" />
+        			</c:url>
 	                <div class="grid_column-2-5">
 	                <a class="card-link-product" href="${link}">
 	                  <div class="product-item">
@@ -119,10 +119,7 @@
 	                      </div>
 	                      <span class="product-item-sold">Sold 1k</span>
 	                    </div>
-	                    <div class="product-item-origin">
-	                      <span class="product-item-brand">HP</span>
-	                      <span class="product-item-bname">Korea</span>
-	                    </div>
+
 	                    <div class="product-item-favourite">
 	                      <i class="fas fa-check"></i> Interesting 
 	                    </div>
@@ -188,8 +185,8 @@
             <div class="card-trending">
               <div class="product-item border-card">
                 <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/adff408e-a299-4d6c-a5fa-81aa587ce849/140/215/60/False/first-girl-to-die.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <p class="trending-item-name">It Ends with Us: A Novel</p>
+                <p class="trending-item-author">Colleen Hoover</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -204,8 +201,8 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> 105.000d</span>
+                  <span class="price-current mr-up">95.000d</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
@@ -221,8 +218,8 @@
             <div class="card-trending">
               <div class="product-item border-card">
                 <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/5a8b06eb-73cc-4d3e-9414-23c788c9312d/140/215/60/False/their-eyes-were-watching-god-1.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <p class="trending-item-name">I Will Teach You to Rich</p>
+                <p class="trending-item-author">Ramit Sethi</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -237,8 +234,8 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> 80.000d</span>
+                  <span class="price-current mr-up">70.000d</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
@@ -254,8 +251,8 @@
             <div class="card-trending">
               <div class="product-item border-card">
                 <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/d2b694e5-ab0e-483b-937d-003950e93943/140/215/60/False/temptation-after-dark-1.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <p class="trending-item-name">The Thirty Names</p>
+                <p class="trending-item-author">Zeyn Joukhadar</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -270,8 +267,8 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> 70.190d</span>
+                  <span class="price-current mr-up">62.790d</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
@@ -287,8 +284,8 @@
             <div class="card-trending">
               <div class="product-item border-card">
                 <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/6b9a1dcd-5ab2-4c3e-9cae-a1dd3fbab89c/140/215/60/False/the-girl-on-the-platform-2.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <p class="trending-item-name">News of the World:</p>
+                <p class="trending-item-author">Paulette Jiles</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -303,8 +300,8 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> 120.000d</span>
+                  <span class="price-current mr-up">105.900d</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
@@ -320,8 +317,8 @@
             <div class="card-trending">
               <div class="product-item border-card">
                 <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <p class="trending-item-name">Last Thing He Told Me</p>
+                <p class="trending-item-author">Laura Dave</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -336,8 +333,8 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> 88.000d</span>
+                  <span class="price-current mr-up">80.00d</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>

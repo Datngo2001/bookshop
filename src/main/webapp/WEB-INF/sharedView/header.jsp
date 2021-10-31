@@ -71,9 +71,9 @@
               <li class="navbar-item">
                  <a href="" class="navbar-item-link"><i class="navbar_list-icon fas fa-question-circle"></i> Help?</a>
               </li>
-              <li class="navbar-item"><a class="navbar-item-link" href="${pageContext.request.contextPath}/register">Sign up</a></li>
+              <li class="navbar-item">Sign up</li>
               <li class="navbar-item">|</li>
-              <li class="navbar-item"><a class="navbar-item-link" href="${pageContext.request.contextPath}/login">Log in</a></li>
+              <li class="navbar-item">Log in</li>
             </ul>
           </nav>
           <div class="navbar-search">
@@ -89,10 +89,10 @@
 	                <h4 class="history-heading">History Search</h4>
 	                <ul class="history-list">
 	                  <li class="history-item">
-	                    <a href="" class="history-link">Iphone 13</a>
+	                    <a href="" class="history-link"> Hello Python</a>
 	                  </li>
 	                  <li class="history-item">
-	                    <a href="" class="history-link">Acer Gaming</a>
+	                    <a href="" class="history-link">AI && Remaining Thing</a>
 	                  </li>
 	                </ul>
 	              </div>
@@ -103,7 +103,7 @@
 		          	<div class="wishlist-product"></div>
 		           	<span class="wishlist-title"> Wishlist</span>
 	            </a>
-				<a href="${pageContext.request.contextPath}/payment" class="cart-link">
+				<a href="./payment" class="cart-link">
 					<div class="cart-product"></div>
 					<span class="cart-title"> Cart</span>
 				</a>
