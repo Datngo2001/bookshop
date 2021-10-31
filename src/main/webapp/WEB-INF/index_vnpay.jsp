@@ -19,7 +19,7 @@
         <link href="./css/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->
         <link href="./css/jumbotron-narrow.css" rel="stylesheet">      
-        <script src="./css/jquery-1.11.3.min.js"></script>
+        <script src="./js/jquery-1.11.3.min.js"></script>
     </head>
 
     <body>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="form-group">
                         <label for="amount">Số tiền</label>
-                        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="amount" type="number" value="165000" />
+                        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." id="amount" max="100000000" min="1" name="amount" type="number" value="165000" readonly="readonly"/>
                     </div>
                     <div class="form-group">
                         <label for="OrderDescription">Nội dung thanh toán</label>

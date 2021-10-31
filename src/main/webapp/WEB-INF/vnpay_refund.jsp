@@ -14,7 +14,7 @@
         <!-- Bootstrap core CSS -->
         <link href="./css/bootstrap.min.css" rel="stylesheet"/>
         <!-- Custom styles for this template -->   
-        <script src="./css/jquery-1.11.3.min.js"></script>
+        <script src="./js/jquery-1.11.3.min.js"></script>
     </head>
 
     <body>

@@ -39,7 +39,7 @@ public class ajaxServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        String vnp_Version = "2.1.0";
+       String vnp_Version = "2.1.0";
        String vnp_Command = "pay";
        //String vnp_Command = "genqr";
        String vnp_OrderInfo = req.getParameter("vnp_OrderInfo");
