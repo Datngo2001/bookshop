@@ -99,14 +99,29 @@
 	            </div>
 			</div>
 			<div class="grid_column-4 search-right">
-				<a href="#" class="wishlist-link">
-		          	<div class="wishlist-product"></div>
-		           	<span class="wishlist-title"> Wishlist</span>
-	            </a>
-				<a href="./payment" class="cart-link">
-					<div class="cart-product"></div>
-					<span class="cart-title"> Cart</span>
-				</a>
+				<ul class="search-right-list">
+					<li class="search-right-item">
+						<a href="#" class="wishlist-link">
+		          			<div class="wishlist-product"></div>
+		           			<span class="wishlist-title"> Wishlist</span>
+	            		</a>
+					</li>
+				</ul>
+				<ul class="search-right-list">
+					<li class="search-right-item">
+						<a href="./payment" class="cart-link">
+							<div class="cart-product"></div>
+							<span class="cart-title"> Cart </span>
+						</a>
+							<div class="cart-products">
+			                  <div class="cart-product-list cart-product-list_nocart">
+			                    <img src="./assets/img/no-cart.png" alt="" class="cart-product-nocart">
+			                    <span class="cart-product-list--noproduct">Do not product in cart</span>
+			                  </div>
+							</div>
+					</li>
+				</ul>
+
 			</div>
           </div>
               
