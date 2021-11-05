@@ -50,6 +50,7 @@
             String signValue = Config.hashAllFields(fields);
 
         %>
+        <c:import url="sharedView/header.jsp"></c:import>
         <!--Begin display -->
         <div class="container">
             <div class="header clearfix">
@@ -109,8 +110,10 @@
                 &nbsp;
             </p>
             <footer class="footer">
-                <p>&copy; VNPAY 2015</p>
+                <p>&copy; VNPAY 2021</p>
             </footer>
+            
         </div>  
+        	<c:import url="sharedView/footer.jsp"></c:import>
     </body>
 </html>

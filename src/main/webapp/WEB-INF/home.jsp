@@ -97,38 +97,41 @@
         				<c:param name="productID" value="${product.id}" />
         			</c:url>
 	                <div class="grid_column-2-5">
-	                <a class="card-link-product" href="${link}">
-	                  <div class="product-item">
-	                    <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/ed414218-4c84-4447-a8b9-0e169f0edef7/140/215/60/False/one-left-alive.jpg);"></div>
-	                    <h4 class="product-item-name">${product.description}</h4>
-	                    <div class="product-item-price">
-	                      <span class="price-old"> ${product.price}d</span>
-	                      <span class="price-current">${product.discount}</span>
-	                    </div>
-	                    <div class="product-action">
-	                      <span class="product-action-heart product-action-liked"> 
-	                        <i class="like-icon far fa-heart"></i>
-	                        <i class="liked-icon fas fa-heart"></i>
-	                      </span>
-	                      <div class="product-action-star">
-	                        <i class="star-gold fas fa-star"></i>
-	                        <i class="star-gold fas fa-star"></i>
-	                        <i class="star-gold fas fa-star"></i>
-	                        <i class="star-gold fas fa-star"></i>
-	                        <i class="star-gold far fa-star"></i>
-	                      </div>
-	                      <span class="product-item-sold">Sold 1k</span>
-	                    </div>
 
-	                    <div class="product-item-favourite">
-	                      <i class="fas fa-check"></i> Interesting 
-	                    </div>
-	                    <div class="product-item-sale">
-	                      <span class="product-item-label">Discount</span>
-	                      <span class="product-item-percent">23%</span>
-	                    </div>
-	                  </div>
-	                </a>
+						<div class="card-trending">
+			              <div class="product-item border-card">
+			              	<a class="card-link-product" href="${link}">
+			                	<div class="product-item-img" style="background-image: url(${product.pictureUrl});"></div>
+			                </a>
+			                <p class="trending-item-name">${product.description}</p>
+			                <p class="trending-item-author">${product.nameAuthor}</p>
+			                <div class="product-action">
+			                  <span class="product-action-heart product-action-liked">
+			                    <i class="like-icon far fa-heart"></i>
+			                    <i class="liked-icon fas fa-heart"></i>
+			                  </span>
+			                  <div class="product-action-star">
+			                    <i class="star-gold fas fa-star"></i>
+			                    <i class="star-gold fas fa-star"></i>
+			                    <i class="star-gold fas fa-star"></i>
+			                    <i class="star-gold fas fa-star"></i>
+			                    <i class="star-gold far fa-star"></i>
+			                  </div>
+			                </div>
+			                <div class="trending-item-price">
+			                  <span class="price-old mr-up">${product.price}</span>
+			                  <span class="price-current mr-up">17.790d</span>
+			                </div>
+			                <button class="btn_add-to-cart">Add to cart</button>
+			                <div class="product-item-favourite">
+			                  <i class="fas fa-check"></i> Interesting
+			                </div>
+			                <div class="product-item-sale">
+			                  <span class="product-item-label">Discount</span>
+			                  <span class="product-item-percent">23%</span>
+			                </div>
+			              </div>
+			            </div>
 	                </div>
                 </c:forEach>
               </div>

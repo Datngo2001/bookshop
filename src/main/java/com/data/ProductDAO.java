@@ -7,8 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
+import org.hibernate.ejb.*;
+import org.jboss.jandex.TypeTarget.Usage;
+import org.hibernate.*;
 import com.model.Product;
+
 
 public class ProductDAO {
 	
@@ -19,34 +22,88 @@ public class ProductDAO {
 	public ProductDAO() {
 		db = new Database();
 	}
-	
+    @SuppressWarnings("unchecked")
 	public List<Product> getProducts() throws Exception {
-		List<Product> products = new ArrayList<>();
-		Connection myCon = null;
-		Statement mySta = null;
-		ResultSet myRes = null;
 		try {
-			myCon = db.getConnection();
-			mySta = myCon.createStatement();
-			
-			myRes = mySta.executeQuery(getProductQuery);
-			while(myRes.next()) {
-				int id = myRes.getInt("id");
-				String name = myRes.getString("name");
-				String des = myRes.getString("description");
-				int price = myRes.getInt("price");
-				double discount = price * 0.08;
-				Product tempProduct = new Product(id, name, des, price, discount);
-				products.add(tempProduct);
-			}
-			return products;
+			return hibernateDb.getSessionFactory().openSession().createQuery("From Product").getResultList();
 		}
-		finally {
-			db.closeConnection(myCon, mySta, myRes);
+		catch (Exception e) {
+			e.printStackTrace();
 		}
+		return null;
 		
 	}
-
+    
+	public void addProducts(Product product) {
+		Transaction transaction = null;
+		try (Session session = hibernateDb.getSessionFactory().openSession()) {
+		
+			transaction = session.beginTransaction();
+			session.save(product);
+			transaction.commit();
+		}
+		catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	public void updateProducts(Product product) {
+		Transaction transaction = null;
+		try (Session session = hibernateDb.getSessionFactory().openSession()) {
+		
+			transaction = session.beginTransaction();
+			session.update(product);
+			transaction.commit();
+		}
+		catch (Exception e) {
+			if(transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+	public Product deleteProduct(int id) {
+		Transaction transaction = null;
+		Product product = null;
+        try (Session session = hibernateDb.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            product = session.get(Product.class, id);
+            if (product != null) {
+            	session.delete(product);
+            }
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return product;
+	}
+	public Product getProduct(String id) {
+		Transaction transaction = null;
+		int ids = Integer.parseInt(id);
+		Product product = null;
+        try (Session session = hibernateDb.getSessionFactory().openSession()) {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // get an user object
+            product = session.get(Product.class, ids);
+            // commit transaction
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        return product;
+	}
 	public void addProduct(Product theProduct) throws ClassNotFoundException, SQLException {
 		Connection myCon = null;
 		PreparedStatement myPreS = null;
@@ -55,7 +112,7 @@ public class ProductDAO {
 			myCon = db.getConnection();
 			String insertProductQuery = "insert into product (name, description, price) values (?, ?, ?)";
 			myPreS = myCon.prepareStatement(insertProductQuery);
-			myPreS.setString(1, theProduct.getName());
+			myPreS.setString(1, theProduct.getNameAuthor());
 			myPreS.setString(2, theProduct.getDescription());
 			myPreS.setInt(3, theProduct.getPrice());
 			myPreS.execute();
@@ -64,7 +121,7 @@ public class ProductDAO {
 			db.closeConnection(myCon, myPreS, null);
 		}
 	}
-
+	/*
 	public Product getProducts(String theProductId) throws Exception {
 		Product theProduct = null;
 		Connection myCon = null;
@@ -79,11 +136,11 @@ public class ProductDAO {
 			myPres.setInt(1, productId);
 			myRes = myPres.executeQuery();
 			if(myRes.next()) {
-				String name = myRes.getString("name");
+				String name = myRes.getString("nameAuthor");
 				String des = myRes.getString("description");
 				int price = myRes.getInt("price");
 				//double discount = price * 0.08;
-				theProduct = new Product(name, des, price); 
+				theProduct = new Product(name, des, price, ""); 
 			}
 			else {
 				throw new Exception("Could not fount the product id: " + productId);
@@ -95,11 +152,12 @@ public class ProductDAO {
 		}
 		
 	}
-
+	*/
 	public void updateProduct(Product theProduct) {
 		
 		
 	}
+
 	
 	
 }

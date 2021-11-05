@@ -35,12 +35,12 @@
 									src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg">
 								<div>
 									<p>It Ends with Us: A Novel</p>
-									<span>Price: 95.000</span> <p>vnd</p> <br /> <a href="#">remove</a>
+									<span>Price: 150.000</span> <p>vnd</p> <br /> <a href="#">remove</a>
 								</div>
 							</div>
 						</td>
 						<td><input type="number" value="1" min="1"></td>
-						<td>95.000 vnd</td>
+						<td>150.000 vnd</td>
 					</tr>
 					<tr>
 						<td>
@@ -62,7 +62,7 @@
 					<table>
 						<tr>
 							<td>Total</td>
-							<td>165.000 vnd</td>
+							<td>220.000 vnd</td>
 						</tr>
 					</table>
 					<form action="./confirm">

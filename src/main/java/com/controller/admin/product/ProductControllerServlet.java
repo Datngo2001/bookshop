@@ -62,14 +62,14 @@ public class ProductControllerServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		int price = Integer.parseInt(request.getParameter("price"));
-		Product theProduct = new Product(name, description, price);
+		Product theProduct = new Product(name, description, price, "");
 		productDAO.updateProduct(theProduct);
 		listProduct(request, response);
 		
 	}
 	private void loadProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String theProductId = request.getParameter("ProductId");
-		Product theProduct = productDAO.getProducts(theProductId);
+		Product theProduct = productDAO.getProduct(theProductId);
 		request.setAttribute("The_product", theProduct);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/update-product.jsp");
 		dispatcher.forward(request, response);
@@ -78,7 +78,7 @@ public class ProductControllerServlet extends HttpServlet {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		int price = Integer.parseInt(request.getParameter("price"));
-		Product theProduct = new Product(name, description, price);
+		Product theProduct = new Product(name, description, price, "");
 		productDAO.addProduct(theProduct);
 		listProduct(request, response);
 	}

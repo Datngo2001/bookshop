@@ -40,6 +40,8 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
+				//addProducts(request, response);
+				//removeProduct(request, response);
 				goHomePage(request, response);
 				break;
 			case "LOAD":
@@ -51,7 +53,24 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
 
+	private void removeProduct(HttpServletRequest request, HttpServletResponse response) {
+		productDao.deleteProduct(60);
+	}
+
+	private void addProducts(HttpServletRequest request, HttpServletResponse response) {
+		
+		Product product = new Product("Thien Nguyen", "Have a nice day", 2000, "Classic");
+		Product product1 = new Product("Dat Ngo", "Go to the moon", 3000, "Romance");
+		Product product2 = new Product("Duong le", "Meme", 2000, "Comedy");
+		Product product3 = new Product("Dat Tran", "Good job", 2500, "Buisiness");
+		Product product4 = new Product("Thuy Nguyen", "Go to the moon", 3500, "Romance");
+		productDao.addProducts(product);
+		productDao.addProducts(product1);
+		productDao.addProducts(product2);
+		productDao.addProducts(product3);
+		productDao.addProducts(product4);
 	}
 
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -59,7 +78,7 @@ public class HomeController extends HttpServlet {
 		Product product = null;
 		try {
 			productId = request.getParameter("productID");
-			product = productDao.getProducts(productId);
+			product = productDao.getProduct(productId);
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
@@ -70,6 +89,7 @@ public class HomeController extends HttpServlet {
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> product = null;
 		try {
+			String id = "";
 			product = productDao.getProducts();
 		} catch (Exception e) {
 			log("productDao error", e);
