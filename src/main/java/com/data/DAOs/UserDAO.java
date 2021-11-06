@@ -1,10 +1,11 @@
-package com.data;
+package com.data.DAOs;
 
 import java.util.List;
 
 import javax.persistence.criteria.*;
 
 import com.DTOs.BusinessDtos.LoginDTO;
+import com.data.DbUtil;
 import com.model.User;
 
 import org.hibernate.*;

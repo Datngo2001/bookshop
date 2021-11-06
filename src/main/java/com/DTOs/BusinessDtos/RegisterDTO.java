@@ -5,9 +5,16 @@ public class RegisterDTO {
 	String password;
 	String reEnter;
 	String errorMessage;
+	String role;
 	
 	public String getUsersname() {
 		return usersname;
+	}
+	public String getRole() {
+		return role;
+	}
+	public void setRole(String role) {
+		this.role = role;
 	}
 	public void setUsersname(String usersname) {
 		this.usersname = usersname;

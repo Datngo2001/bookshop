@@ -1,7 +1,9 @@
-package com.data;
+package com.data.DAOs;
 
 import java.util.List;
 import org.hibernate.*;
+
+import com.data.DbUtil;
 import com.model.Product;
 
 public class ProductDAO {
@@ -22,7 +24,6 @@ public class ProductDAO {
 	public void addProducts(Product product) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
-
 			transaction = session.beginTransaction();
 			session.save(product);
 			transaction.commit();

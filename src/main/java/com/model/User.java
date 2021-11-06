@@ -9,7 +9,8 @@ import javax.persistence.*;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
-import com.data.UserDAO;
+import com.data.DAOs.RoleDAO;
+import com.data.DAOs.UserDAO;
 import com.services.HashService;
 
 @Entity
@@ -37,8 +38,21 @@ public class User implements Serializable {
 	public User() {
 	}
 
-	public User(String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname, String lname,
-			String gender) {
+	public User(String username) {
+		this.username = username;
+	}
+
+	public User(String username, byte[] passwordHash, byte[] passwordSalt) {
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.passwordSalt = passwordSalt;
+	}
+
+	public User(List<Order> orders, List<Role> roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
+			Date bdate, String fname, String lname, String gender) {
+		this.orders = orders;
+		this.roles = roles;
+		this.id = id;
 		this.username = username;
 		this.passwordHash = passwordHash;
 		this.passwordSalt = passwordSalt;
@@ -54,7 +68,7 @@ public class User implements Serializable {
 
 		userDAO.getPasswordHashAndSalt(loginDTO);
 
-		if (loginDTO.getPasswordHash().length == 0)
+		if (loginDTO.getPasswordHash() == null)
 			return false;
 
 		// compute hash
@@ -93,6 +107,13 @@ public class User implements Serializable {
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
 
+		// Add role
+		if (registerDTO.getRole().equals("")) {
+			registerDTO.setRole("Customer");
+		}
+		List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+		user.setRoles(roles);
+
 		// Save new user to database
 		userDAO.addUser(user);
 
@@ -100,10 +121,6 @@ public class User implements Serializable {
 	}
 
 	// INPUT OUTPUT LOGIC ----------------------------------------------------
-	public void addRole(Role role) {
-		this.roles.add(role);
-	}
-
 	public List<Role> getRoles() {
 		return roles;
 	}

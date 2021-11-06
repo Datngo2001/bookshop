@@ -1,8 +1,6 @@
 package com.model;
 
 import java.io.Serializable;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +19,15 @@ public class Role implements Serializable {
     @Column(name = "id")
     public int id;
     public String name;
+
+    public Role() {
+
+    }
+
+    public Role(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Role(String name) {
         this.name = name;

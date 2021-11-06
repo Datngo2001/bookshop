@@ -9,7 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.data.ProductDAO;
+import com.data.Seed;
+import com.data.DAOs.ProductDAO;
 import com.model.Product;
 
 @WebServlet("/home")
@@ -40,8 +41,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				//addProducts(request, response);
-				//removeProduct(request, response);
+				new Seed().doSeed();
 				goHomePage(request, response);
 				break;
 			case "LOAD":
@@ -54,24 +54,6 @@ public class HomeController extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-
-	// private void removeProduct(HttpServletRequest request, HttpServletResponse response) {
-	// 	productDao.deleteProduct(60);
-	// }
-
-	// private void addProducts(HttpServletRequest request, HttpServletResponse response) {
-		
-	// 	Product product = new Product("Thien Nguyen", "Have a nice day", 2000, "Classic");
-	// 	Product product1 = new Product("Dat Ngo", "Go to the moon", 3000, "Romance");
-	// 	Product product2 = new Product("Duong le", "Meme", 2000, "Comedy");
-	// 	Product product3 = new Product("Dat Tran", "Good job", 2500, "Buisiness");
-	// 	Product product4 = new Product("Thuy Nguyen", "Go to the moon", 3500, "Romance");
-	// 	productDao.addProducts(product);
-	// 	productDao.addProducts(product1);
-	// 	productDao.addProducts(product2);
-	// 	productDao.addProducts(product3);
-	// 	productDao.addProducts(product4);
-	// }
 
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String productId = null;

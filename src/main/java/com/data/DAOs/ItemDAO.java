@@ -1,6 +1,6 @@
-package com.data;
+package com.data.DAOs;
 
-public class OrderDAO {
+public class ItemDAO {
     // SELECT ----------------------------------------------------
     // INSERT ----------------------------------------------------
     // UPDATE ----------------------------------------------------

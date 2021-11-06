@@ -23,6 +23,17 @@ public class Order implements Serializable {
     public int id;
     public Timestamp createDate;
 
+    public Order() {
+
+    }
+
+    public Order(User user, List<Item> items, int id, Timestamp createDate) {
+        this.user = user;
+        this.items = items;
+        this.id = id;
+        this.createDate = createDate;
+    }
+
     public User getUser() {
         return user;
     }

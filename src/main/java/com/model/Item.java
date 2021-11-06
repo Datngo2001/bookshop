@@ -22,7 +22,18 @@ public class Item implements Serializable {
     public int id;
     public int amount;
 
+    public Item() {
+
+    }
+
     public Item(int amount) {
+        this.amount = amount;
+    }
+
+    public Item(Order order, Product product, int id, int amount) {
+        this.order = order;
+        this.product = product;
+        this.id = id;
         this.amount = amount;
     }
 

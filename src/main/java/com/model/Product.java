@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.persistence.*;
 
-
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -35,6 +34,19 @@ public class Product implements Serializable {
 		this.Sku = sku;
 	}
 
+	public Product(List<Category> categorys, int id, String codeProduct, String nameAuthor, String description,
+			int price, String pictureUrl, String sku, String typeBook) {
+		this.categorys = categorys;
+		this.id = id;
+		this.codeProduct = codeProduct;
+		this.nameAuthor = nameAuthor;
+		this.description = description;
+		this.price = price;
+		this.pictureUrl = pictureUrl;
+		Sku = sku;
+		this.typeBook = typeBook;
+	}
+
 	public Product() {
 
 	}
@@ -45,10 +57,6 @@ public class Product implements Serializable {
 		this.description = description;
 		this.price = price;
 		this.typeBook = type;
-	}
-
-	public void addCategory(Category category){
-		this.categorys.add(category);
 	}
 
 	public List<Category> getCategorys() {
