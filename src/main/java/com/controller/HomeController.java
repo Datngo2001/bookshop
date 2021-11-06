@@ -55,23 +55,23 @@ public class HomeController extends HttpServlet {
 		}
 	}
 
-	private void removeProduct(HttpServletRequest request, HttpServletResponse response) {
-		productDao.deleteProduct(60);
-	}
+	// private void removeProduct(HttpServletRequest request, HttpServletResponse response) {
+	// 	productDao.deleteProduct(60);
+	// }
 
-	private void addProducts(HttpServletRequest request, HttpServletResponse response) {
+	// private void addProducts(HttpServletRequest request, HttpServletResponse response) {
 		
-		Product product = new Product("Thien Nguyen", "Have a nice day", 2000, "Classic");
-		Product product1 = new Product("Dat Ngo", "Go to the moon", 3000, "Romance");
-		Product product2 = new Product("Duong le", "Meme", 2000, "Comedy");
-		Product product3 = new Product("Dat Tran", "Good job", 2500, "Buisiness");
-		Product product4 = new Product("Thuy Nguyen", "Go to the moon", 3500, "Romance");
-		productDao.addProducts(product);
-		productDao.addProducts(product1);
-		productDao.addProducts(product2);
-		productDao.addProducts(product3);
-		productDao.addProducts(product4);
-	}
+	// 	Product product = new Product("Thien Nguyen", "Have a nice day", 2000, "Classic");
+	// 	Product product1 = new Product("Dat Ngo", "Go to the moon", 3000, "Romance");
+	// 	Product product2 = new Product("Duong le", "Meme", 2000, "Comedy");
+	// 	Product product3 = new Product("Dat Tran", "Good job", 2500, "Buisiness");
+	// 	Product product4 = new Product("Thuy Nguyen", "Go to the moon", 3500, "Romance");
+	// 	productDao.addProducts(product);
+	// 	productDao.addProducts(product1);
+	// 	productDao.addProducts(product2);
+	// 	productDao.addProducts(product3);
+	// 	productDao.addProducts(product4);
+	// }
 
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String productId = null;
@@ -89,7 +89,6 @@ public class HomeController extends HttpServlet {
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> product = null;
 		try {
-			String id = "";
 			product = productDao.getProducts();
 		} catch (Exception e) {
 			log("productDao error", e);

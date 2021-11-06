@@ -63,7 +63,7 @@ public class ProductControllerServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		int price = Integer.parseInt(request.getParameter("price"));
 		Product theProduct = new Product(name, description, price, "");
-		productDAO.updateProduct(theProduct);
+		productDAO.updateProducts(theProduct);
 		listProduct(request, response);
 		
 	}
@@ -79,7 +79,7 @@ public class ProductControllerServlet extends HttpServlet {
 		String description = request.getParameter("description");
 		int price = Integer.parseInt(request.getParameter("price"));
 		Product theProduct = new Product(name, description, price, "");
-		productDAO.addProduct(theProduct);
+		productDAO.addProducts(theProduct);
 		listProduct(request, response);
 	}
 	private void listProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
