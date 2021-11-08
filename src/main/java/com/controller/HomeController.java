@@ -41,6 +41,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
+				//new Seed().doSeed();
 				goHomePage(request, response);
 				break;
 			case "LOAD":
@@ -59,7 +60,7 @@ public class HomeController extends HttpServlet {
 		Product product = null;
 		try {
 			productId = request.getParameter("productID");
-			product = productDao.getProduct(productId);
+			product = productDao.getProduct(Integer.parseInt(productId));
 		} catch (Exception e) {
 			log("productDao error", e);
 		}

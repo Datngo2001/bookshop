@@ -2,7 +2,6 @@ package com.data.DAOs;
 
 import java.util.List;
 import org.hibernate.*;
-
 import com.data.DbUtil;
 import com.model.Product;
 
@@ -72,15 +71,15 @@ public class ProductDAO {
 		return product;
 	}
 
-	public Product getProduct(String id) {
+	public Product getProduct(int id) {
 		Transaction transaction = null;
-		int ids = Integer.parseInt(id);
+
 		Product product = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
-			product = session.get(Product.class, ids);
+			product = session.get(Product.class, id);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {

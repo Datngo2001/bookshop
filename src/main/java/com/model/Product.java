@@ -20,18 +20,18 @@ public class Product implements Serializable {
 	public String codeProduct;
 	public String nameAuthor;
 	public String description;
+
 	public int price;
 	public String pictureUrl;
 	public String Sku;
 	public String typeBook;
-
-	public Product(String nameAuthor, String description, int price, String pictureUrl, String sku) {
+	public Product(String codeProduct, String nameAuthor, String description, int price, String typeBook) {
 		super();
+		this.codeProduct = codeProduct;
 		this.nameAuthor = nameAuthor;
 		this.description = description;
 		this.price = price;
-		this.pictureUrl = pictureUrl;
-		this.Sku = sku;
+		this.typeBook = typeBook;
 	}
 
 	public Product(List<Category> categorys, int id, String codeProduct, String nameAuthor, String description,
@@ -57,7 +57,9 @@ public class Product implements Serializable {
 		this.description = description;
 		this.price = price;
 		this.typeBook = type;
+
 	}
+
 
 	public List<Category> getCategorys() {
 		return categorys;
