@@ -8,6 +8,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.model.CardList;
 import com.model.Category;
 import com.model.Item;
 import com.model.Order;
@@ -26,16 +27,16 @@ public class DbUtil {
         // Hibernate settings equivalent to hibernate.cfg.xml's properties
         Properties settings = new Properties();
         settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-        settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_shop?useSSL=false");
+        settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
         settings.put(Environment.USER, "root");
-        settings.put(Environment.PASS, "sesame");
+        settings.put(Environment.PASS, "ngocthien2306.com");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
         settings.put(Environment.SHOW_SQL, "true");
 
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-        settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+        //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(Category.class);
@@ -44,6 +45,7 @@ public class DbUtil {
         configuration.addAnnotatedClass(Order.class);
         configuration.addAnnotatedClass(Role.class);
         configuration.addAnnotatedClass(Item.class);
+        configuration.addAnnotatedClass(CardList.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             .applySettings(configuration.getProperties()).build();

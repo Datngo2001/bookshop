@@ -1,6 +1,8 @@
 package com.controller.vnpay;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,10 +18,11 @@ public class confirmController extends HttpServlet {
         super();
  
     }
-
+    private static final DecimalFormat df = new DecimalFormat("0");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/index_vnpay.jsp";
-
+		double price = Double.parseDouble(request.getParameter("priceItem"));
+		
 		// get current action
 		String action = request.getParameter("action");
 
@@ -30,7 +33,7 @@ public class confirmController extends HttpServlet {
 		if (action.equals("SOMETHING")) {
 			example();
 		}
-		
+		request.setAttribute("priceTotal", df.format(price));
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 

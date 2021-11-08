@@ -70,7 +70,7 @@ public class ProductControllerServlet extends HttpServlet {
 	}
 	private void loadProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String theProductId = request.getParameter("ProductId");
-		Product theProduct = productDAO.getProduct(theProductId);
+		Product theProduct = productDAO.getProduct(Integer.parseInt(theProductId));
 		request.setAttribute("The_product", theProduct);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/update-product.jsp");
 		dispatcher.forward(request, response);

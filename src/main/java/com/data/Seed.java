@@ -34,15 +34,15 @@ public class Seed {
 
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
-        Product product = new Product("Thien Nguyen", "Have a nice day", 2000, "Classic");
-        Product product1 = new Product("Dat Ngo", "Go to the moon", 3000, "Romance");
-        Product product2 = new Product("Duong le", "Meme", 2000, "Comedy");
-        Product product3 = new Product("Dat Tran", "Good job", 2500, "Buisiness");
-        Product product4 = new Product("Thuy Nguyen", "Go to the moon", 3500, "Romance");
+        Product product = new Product("B1","Thien Nguyen", "Have a nice day", 2000, "Classic");
+        Product product1 = new Product("B2","Dat Ngo", "Go to the moon", 3000, "Romance");
+        Product product2 = new Product("B3","Duong le", "Meme", 2000, "Comedy");
+        Product product3 = new Product("B4","Dat Tran", "Good job", 2500, "Buisiness");
+        Product product4 = new Product("B5","Thuy Nguyen", "Go to the moon", 3500, "Romance");
         productDAO.addProducts(product);
         productDAO.addProducts(product1);
         productDAO.addProducts(product2);
         productDAO.addProducts(product3);
-        productDAO.addProducts(product4);
+        productDAO.addProducts(product4); 
     }
 }

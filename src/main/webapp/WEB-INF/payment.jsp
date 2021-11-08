@@ -15,58 +15,55 @@
 
 <body>
 	<c:import url="sharedView/header.jsp"></c:import>
+	<br/>
+
 	<div class="grid">
 		<div class="grid_row">
-			<div class="payment-block">
-				<div class="title">
-					<h1 class="font-title">Shopping Cart</h1>
-				</div>
-				<div class="container-md cart">
-				<table>
-					<tr>
-						<th>Product</th>
-						<th>Quantity</th>
-						<th>Subtotal</th>
-					</tr>
-					<tr>
-						<td>
-							<div class="cart-info">
-								<img
-									src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg">
-								<div>
-									<p>It Ends with Us: A Novel</p>
-									<span>Price: 150.000</span> <p>vnd</p> <br /> <a href="#">remove</a>
-								</div>
-							</div>
-						</td>
-						<td><input type="number" value="1" min="1"></td>
-						<td>150.000 vnd</td>
-					</tr>
-					<tr>
-						<td>
-							<div class="cart-info">
-								<img
-									src="https://kbimages1-a.akamaihd.net/adff408e-a299-4d6c-a5fa-81aa587ce849/140/215/60/False/first-girl-to-die.jpg">
-								<div>
-									<p>I Will Teach You to Rich<p>
-									<span>Price: 70.000</span> <p> vnd </p> <br /> <a href="#">remove</a>
-								</div>
-							</div>
-						</td>
-						<td><input type="number" value="1" min="1"></td>
-						<td>70.000 vnd</td>
-					</tr>
-				</table>
-		
+			<div class="grid_column-9">
+				<section class="container-cart content-section">
+	            <h2 class="section-header">Cart list</h2>
+	            <div class="cart-row">
+	                <span class="cart-item cart-header cart-column">ITEM</span>
+	                <span class="cart-price cart-header cart-column">PRICE</span>
+	                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+
+	            </div>
+	            <c:forEach var="item" items="${cart_item}">
+		            <div class="cart-items">
+				        <div class="cart-item cart-column">
+				            <img class="cart-item-image" src="https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg" width="100" height="100">
+				            <div class="cart-title">
+				        		<p class="name-book"><c:out value="${item.name}"/></p>
+		              			<p class="name-author"><c:out value="${item.author}"/></p>
+				        	</div>
+				        </div>
+				        <span class="cart-price cart-column"><c:out value="${item.price}"/></span>
+				        <div class="cart-quantity cart-column">
+				            <input class="cart-quantity-input" type="number" name="quantity" value="<c:out value="${item.amount}"/>">
+				            <form action="./payment" method="get">
+								<input type="hidden" name="cId" value='<c:out value="${item.id}"/>'/>
+								<input type="hidden" name="price" value="total"/>
+								<input type="hidden" name="uId" value="1"/>
+								<input type="submit" class="btn btn-danger" name="action" value="REMOVE" />
+							</form>
+				        </div>
+
+		            </div>
+		            
+	            </c:forEach>
+	            
+	            <div class="cart-total">
+	                <strong class="cart-total-title">Total</strong>
+	                <span class="cart-total-price"> <input type="hidden" name="price" value="total"/> ${total} </span>
+	            </div>
+	        </section>
+			</div>
+			<div class="grid_column-3">
+				
 				<div class="total-price">
-					<table>
-						<tr>
-							<td>Total</td>
-							<td>220.000 vnd</td>
-						</tr>
-					</table>
 					<form action="./confirm">
-						<button type="submit" value="" class="btn" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">VN Pay</button>
+						<input type="hidden" name="priceItem" value=" ${total}">
+						<button type="submit" class="btn btn-primary" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">VN Pay</button>
 					</form>
 		
 					
@@ -77,16 +74,16 @@
 					</div>
 				</div>
 			</div>
-			
-		
-		  <div id="smart-button-container">
-		      <div style="text-align: center;">
-		        <div id="paypal-button-container"></div>
-		      </div>
-		    </div>
-			</div>
 		</div>
+		<form action="." method="get">
+			<input type="hidden" name="action" value="shop">
+			<input type="submit" class="btn btn-primary" value="Continue Shopping" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">
+		</form>
 	</div>
+	<br/>
+	<c:import url="sharedView/footer.jsp"></c:import>
+	
+	
   <script src="https://www.paypal.com/sdk/js?client-id=AQ5g8nn9aROkHblV7Ljd5PJKV5Tr_cmh4WE6HrGy0GRCUyHOQKuQ7lOqMCdX9D31pAVSVcryYpROoTGY&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
   <script>
     function initPayPalButton() {
@@ -128,6 +125,6 @@
     }
     initPayPalButton();
   </script>
-		<c:import url="sharedView/footer.jsp"></c:import>
+		
 </body>
 </html>
