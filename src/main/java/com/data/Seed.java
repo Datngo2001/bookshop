@@ -1,13 +1,17 @@
 package com.data;
 
+import java.util.List;
+
 import com.DTOs.BusinessDtos.RegisterDTO;
 import com.data.DAOs.CategoryDAO;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.RoleDAO;
+import com.data.DAOs.UserDAO;
 import com.model.Category;
 import com.model.Product;
 import com.model.Role;
 import com.model.User;
+import com.services.HashService;
 
 public class Seed {
     public void doSeed() {
@@ -23,8 +27,7 @@ public class Seed {
         registerDTO.setPassword("522001");
         registerDTO.setReEnter("522001");
         registerDTO.setRole("Admin");
-        User user = new User();
-        user.register(registerDTO);
+        CreateAccount(registerDTO);
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -44,5 +47,30 @@ public class Seed {
         productDAO.addProducts(product2);
         productDAO.addProducts(product3);
         productDAO.addProducts(product4);
+    }
+
+    private void CreateAccount(RegisterDTO registerDTO) {
+        // Compute hash
+        HashService hashService = new HashService();
+        byte[] salt = hashService.generateSalt();
+        byte[] hash = null;
+        hash = hashService.doHash(registerDTO.getPassword().getBytes(), salt);
+
+        // Add role
+        if (registerDTO.getRole().equals("")) {
+            registerDTO.setRole("Customer");
+        }
+        List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+
+        // Creat user entity
+        User user = new User();
+        user.setPasswordHash(hash);
+        user.setPasswordSalt(salt);
+        user.setUsername(registerDTO.getUsername());
+        user.setRoles(roles);
+
+        // Save new user to database
+        UserDAO userDAO = new UserDAO();
+        userDAO.addUser(user);
     }
 }

@@ -5,12 +5,15 @@ import java.sql.Date;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.mail.MessagingException;
 import javax.persistence.*;
+import javax.servlet.ServletContext;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
+import com.services.EmailService;
 import com.services.HashService;
 
 @Entity
@@ -34,12 +37,18 @@ public class User implements Serializable {
 	public Date bdate;
 	public String fname;
 	public String lname;
+	public String email;
 
 	public User() {
 	}
 
 	public User(String username) {
 		this.username = username;
+	}
+
+	public User(String username, String email) {
+		this.username = username;
+		this.email = email;
 	}
 
 	public User(String username, byte[] passwordHash, byte[] passwordSalt) {
@@ -49,7 +58,7 @@ public class User implements Serializable {
 	}
 
 	public User(List<Order> orders, List<Role> roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
-			Date bdate, String fname, String lname, String gender) {
+			Date bdate, String fname, String lname, String email, String gender) {
 		this.orders = orders;
 		this.roles = roles;
 		this.id = id;
@@ -59,6 +68,7 @@ public class User implements Serializable {
 		this.bdate = bdate;
 		this.fname = fname;
 		this.lname = lname;
+		this.email = email;
 		this.gender = gender;
 	}
 
@@ -79,7 +89,7 @@ public class User implements Serializable {
 		return Arrays.equals(hashedInputPass, loginDTO.getPasswordHash());
 	}
 
-	public Boolean register(RegisterDTO registerDTO) {
+	public Boolean register(RegisterDTO registerDTO, ServletContext context) {
 		UserDAO userDAO = new UserDAO();
 
 		// Check not match password
@@ -94,27 +104,59 @@ public class User implements Serializable {
 			return false;
 		}
 
-		HashService hashService = new HashService();
+		// Check existed email
+		if (userDAO.isEmailExisted(registerDTO.getUsername())) {
+			registerDTO.setErrorMessage("This email alreadly used");
+			return false;
+		}
 
-		byte[] salt = hashService.generateSalt();
-		byte[] hash = null;
+		if (registerDTO.getRole() == null || registerDTO.getRole().equals("")) {
+			registerDTO.setRole("Customer");
+		}
+
+		// Seed verify mail
+		try {
+			registerDTO.setCode(EmailService.getRandom());
+			String host = context.getInitParameter("host");
+			String port = context.getInitParameter("port");
+			String seeder = context.getInitParameter("username");
+			String pass = context.getInitParameter("pass");
+			EmailService.sendEmail(host, port, seeder, pass, registerDTO.getEmail(), "Email Verification",
+					"Registered successfully.Please verify your account using this code: " + registerDTO.getCode());
+		} catch (MessagingException e) {
+			e.printStackTrace();
+			registerDTO.setErrorMessage("Unable to seed mail!");
+			return false;
+		}
+
+		return true;
+	}
+
+	public Boolean verify(RegisterDTO registerDTO, String code) {
+
+		if (!registerDTO.getCode().equals(code)) {
+			registerDTO.setErrorMessage("Verify code incorrect!");
+			return false;
+		}
 
 		// Compute hash
+		HashService hashService = new HashService();
+		byte[] salt = hashService.generateSalt();
+		byte[] hash = null;
 		hash = hashService.doHash(registerDTO.getPassword().getBytes(), salt);
 
+		// Add role
+		List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+
+		// Creat user entity
 		User user = new User();
 		user.setPasswordHash(hash);
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
-
-		// Add role
-		if (registerDTO.getRole().equals("")) {
-			registerDTO.setRole("Customer");
-		}
-		List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
 		user.setRoles(roles);
 
 		// Save new user to database
+		UserDAO userDAO = new UserDAO();
 		userDAO.addUser(user);
 
 		return true;
@@ -201,5 +243,13 @@ public class User implements Serializable {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

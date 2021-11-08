@@ -5,22 +5,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/global.css">
+<title>Create New Account</title>
+<!-- Global -->
+<c:import url="sharedView/global.html"/>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/register.css">
 </head>
 <body>
 	<div class="container d-flex justify-content-center align-content-center">
 		<form action="register" class="" method="POST">
-			<h2 class="">Signin</h2>
+			<h2 class="">Create New Account</h2>
 			<input type="hidden" name="action" value="REGISTER"> 
 			<div class="mb-3">
 				<label for="usernameInput" class="form-label">Username</label> <input
 					id="usernameInput" type="text" class="form-control" name="username">
+			</div>
+			<div class="mb-3">
+				<label for="emailInput" class="form-label">Email</label> <input
+					id="emailInput" type="text" class="form-control" name="email">
 			</div>
 			<div class="mb-3">
 				<label for="passwordInput" class="form-label">Password</label> <input
