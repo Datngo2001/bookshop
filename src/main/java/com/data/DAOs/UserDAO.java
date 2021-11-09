@@ -82,6 +82,33 @@ public class UserDAO {
 		}
 	}
 
+	public Boolean isEmailExisted(String email) {
+		Transaction transaction = null;
+		List<User> rsList = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			CriteriaBuilder cb = session.getCriteriaBuilder();
+			CriteriaQuery<User> cr = cb.createQuery(User.class);
+			Root<User> root = cr.from(User.class);
+			cr.multiselect(root.get("username"), root.get("email"));
+			cr.where(cb.equal(root.get("email"), email));
+
+			rsList = session.createQuery(cr).getResultList();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		if (rsList.size() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 	// INSERT ----------------------------------------------------
 	public void addUser(User user) {
 		Transaction transaction = null;

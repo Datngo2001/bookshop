@@ -5,11 +5,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Insert title here</title>
-<link rel="stylesheet" href="css/reset.css">
-<link rel="stylesheet" href="css/global.css">
+<title>Login</title>
+<!-- Global -->
+<c:import url="sharedView/global.html"/>
 <link rel="stylesheet" href="css/bootstrap.css">
 <link rel="stylesheet" href="css/login.css">
 </head>

@@ -36,11 +36,11 @@ public class RegisterController extends HttpServlet {
 			registerDTO.setUsername(request.getParameter("username"));
 			registerDTO.setPassword(request.getParameter("password"));
 			registerDTO.setReEnter(request.getParameter("reEnter"));
+			registerDTO.setEmail(request.getParameter("email"));
 
-			if (new User().register(registerDTO)) {
-				request.getSession().setAttribute("username", registerDTO.getUsername());
-				response.sendRedirect("home");
-				return;
+			if (new User().register(registerDTO, getServletContext())) {
+				request.getSession().setAttribute("registerDTO", registerDTO);
+				nextUrl = "verify";
 			} else {
 				request.setAttribute("registerMessage", registerDTO.getErrorMessage());
 				nextUrl = "WEB-INF/register.jsp";
