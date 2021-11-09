@@ -166,6 +166,7 @@ body {
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
+  margin-top: 5px;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -214,11 +215,16 @@ h3.title-add-product {
   width: 140px;
 
 }
-
+label.label-control {
+	margin: 8px 0;
+}
 
 /*Sort product and search*/
 .add-form-group {
   margin: 10px 8px;
+}
+.form-group {
+	margin: 12px 0;
 }
 h3.title-right-side {
   margin: auto;
@@ -303,7 +309,7 @@ tr.body-list:nth-child(even) {
 }
 
 .container {
-	width: 1024px;
+	width: 1200px;
 	padding: 2em;
 }
 

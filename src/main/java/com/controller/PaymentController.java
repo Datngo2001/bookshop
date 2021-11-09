@@ -73,6 +73,8 @@ public class PaymentController extends HttpServlet {
 	private void removeProductInCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("cId"));
         cartDao.removeProduct(productId);
+        double price = Double.parseDouble(request.getParameter("price"));
+        request.setAttribute("total", price);
         goPayment(request, response);
 		
 	}
@@ -89,10 +91,10 @@ public class PaymentController extends HttpServlet {
             CardList cart = new CardList(uid, product.getDescription(), 
             		product.getNameAuthor(), Integer.parseInt(quantityString), product.getPrice());
             cartDao.addToCart(cart);
-            total = cart.totalPrice();
+            total +=cart.getPrice();
         }
-        double priceTotal = price + total;
-        request.setAttribute("total", priceTotal);
+
+        request.setAttribute("total", total);
         goPayment(request, response);
 	}
 

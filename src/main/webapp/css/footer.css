@@ -4,7 +4,12 @@
 	max-width: 1200px;
 	margin: auto;
 }
-
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto
+}
 .row-header {
 	display: flex;
 	flex-wrap: wrap;
@@ -15,7 +20,7 @@ ul {
 }
 
 .footer {
-	background-color: #24262b;
+	background-color: #F8F9F9;
 	padding: 70px 0;
 }
 
@@ -26,7 +31,7 @@ ul {
 
 .footer-col h4 {
 	font-size: 18px;
-	color: #ffffff;
+	color: #333;
 	margin-bottom: 35px;
 	font-weight: 500;
 	position: relative;
@@ -37,7 +42,7 @@ ul {
 	position: absolute;
 	left: 0;
 	bottom: -10px;
-	background-color: #e91e63;
+	background-color: #5DADE2;
 	height: 2px;
 	box-sizing: border-box;
 	width: 50px;
@@ -49,10 +54,10 @@ ul {
 
 .footer-col ul li a {
 	font-size: 16px;
-	color: #ffffff;
+	color: #2C3E50;
 	text-decoration: none;
 	font-weight: 300;
-	color: #bbbbbb;
+	color: #34495E;
 	display: block;
 	transition: all 0.3s ease;
 }
@@ -61,31 +66,31 @@ ul {
 	display: inline-block;
 	height: 40px;
 	width: 40px;
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 1);
 	margin: 0 10px 10px 0;
 	text-align: center;
 	line-height: 40px;
 	border-radius: 50%;
-	color: #ffffff;
+	color: #5D6D7E;
 	transition: all 0.5s ease;
 }
 
 .footer-col .social-links a:hover {
 	color: #24262b;
-	background-color: #ffffff;
+	background-color: #5D6D7E;
 }
 
 .footer-col ul li p.message-footer {
 	font-size: 16px;
-	color: #ffffff;
+	color: #2C3E50;
 	text-decoration: none;
 	font-weight: 300;
-	color: #bbbbbb;
+	color: #34495E;
 	transition: all 0.3s ease;
 }
 
 .footer-col ul li a:hover {
-	color: #ffffff;
+	color: #2C3E50;
 	padding-left: 8px;
 }
 

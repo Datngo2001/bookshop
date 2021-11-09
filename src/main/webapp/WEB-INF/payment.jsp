@@ -39,10 +39,10 @@
 				        </div>
 				        <span class="cart-price cart-column"><c:out value="${item.price}"/></span>
 				        <div class="cart-quantity cart-column">
-				            <input class="cart-quantity-input" type="number" name="quantity" value="<c:out value="${item.amount}"/>">
+				            <input class="cart-quantity-input" readonly="readonly" type="number" name="quantity" value="<c:out value="${item.amount}"/>">
 				            <form action="./payment" method="get">
 								<input type="hidden" name="cId" value='<c:out value="${item.id}"/>'/>
-								<input type="hidden" name="price" value="total"/>
+								<input type="hidden" name="price" value="${total}"/>
 								<input type="hidden" name="uId" value="1"/>
 								<input type="submit" class="btn btn-danger" name="action" value="REMOVE" />
 							</form>
@@ -54,7 +54,7 @@
 	            
 	            <div class="cart-total">
 	                <strong class="cart-total-title">Total</strong>
-	                <span class="cart-total-price"> <input type="hidden" name="price" value="total"/> ${total} </span>
+	                <span class="cart-total-price"> <input type="hidden" name="price" value="${total}"/> ${total} </span>
 	            </div>
 	        </section>
 			</div>

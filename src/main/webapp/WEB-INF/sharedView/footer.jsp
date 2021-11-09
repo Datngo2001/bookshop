@@ -3,7 +3,7 @@
 		<div class="container-footer">
 			<div class="row-header">
 				<div class="footer-col">
-					<h4>Company</h4>
+					<h4 class="footer-title">Company</h4>
 					<ul>
 						<li><a href="#">Branch 1 Address: No1 Road ABC City</a></li>
 						<li><a href="#">Branch 1 Address: No1 Road ABC City</a></li>
@@ -11,7 +11,7 @@
 					</ul>
 				</div>
 				<div class="footer-col">
-					<h4>Detail Information</h4>
+					<h4 class="footer-title">Detail Information</h4>
 					<ul>
 						<li><a href="#">Mr Dat: Email: 1911xxx</a></li>
 						<li><a href="#">Mr Duong: Email:1911xxxx</a></li>
@@ -25,7 +25,7 @@
 					</ul>
 				</div>
 				<div class="footer-col">
-					<h4>Contact</h4>
+					<h4 class="footer-title">Contact</h4>
 					<ul>
 						<li>
 							<p class="message-footer">Lien he vo chung toi qua dia chi

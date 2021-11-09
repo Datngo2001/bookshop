@@ -109,33 +109,31 @@
           </ul>
           <ul class="search-right-list">
             <li class="search-right-item">
-              <a href="./payment" class="cart-link">
+            <form action="payment" method="get">
+              	<input type="hidden" name="uId" value="1"> 
+              	<a class="cart-link">
                 <div class="cart-product"> </div>
-                <span class="cart-title"> Cart </span>
-              </a>
+                </a>
+                <span class="cart-title"> Cart</span>
+
+             </form>
               <div class="cart-products">
                 <div class="cart-product-list cart-product-list_nocart">
                   
-                        <img src="./assets/img/no-cart.png" alt="" class="cart-product-nocart">
-                        <span class="cart-product-list--noproduct">Do not product in cart</span>
+                    <img src="./assets/img/no-cart.png" alt="" class="cart-product-nocart">
+                    <span class="cart-product-list--noproduct">Do not product in cart</span>
                     <div class="add-tocart"></div>
 					<div class="item-in-cart">
-   
+					
 					</div>
 
-						<button class="btn-gocart">Go to cart</button>
-
-
+					<button class="btn-gocart">Go to cart</button>
                 </div>
               </div>
-
             </li>
           </ul>
-
         </div>
       </div>
-
     </div>
-
   </header>
 </div>
