@@ -22,7 +22,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextUrl = "WEB-INF/login.jsp";
+		String nextUrl = "admin/login.jsp";
 
 		// get current action
 		String action = request.getParameter("action");
