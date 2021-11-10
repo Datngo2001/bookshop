@@ -23,11 +23,17 @@ public class Seed {
 
         // Add admin account
         RegisterDTO registerDTO = new RegisterDTO();
+        RegisterDTO registerDTO1 = new RegisterDTO();
         registerDTO.setUsername("admin");
         registerDTO.setPassword("522001");
         registerDTO.setReEnter("522001");
         registerDTO.setRole("Admin");
+        registerDTO1.setUsername("ngocthien");
+        registerDTO1.setPassword("230601");
+        registerDTO1.setReEnter("230601");
+        registerDTO1.setRole("Customer");
         CreateAccount(registerDTO);
+        CreateAccount(registerDTO1);
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -37,11 +43,11 @@ public class Seed {
 
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
-        Product product = new Product("B1","Thien Nguyen", "Have a nice day", 2000, "Classic");
-        Product product1 = new Product("B2","Dat Ngo", "Go to the moon", 3000, "Romance");
-        Product product2 = new Product("B3","Duong le", "Meme", 2000, "Comedy");
-        Product product3 = new Product("B4","Dat Tran", "Good job", 2500, "Buisiness");
-        Product product4 = new Product("B5","Thuy Nguyen", "Go to the moon", 3500, "Romance");
+        Product product = new Product("B1","Thien Nguyen", "Have a nice day", 20000, "Classic");
+        Product product1 = new Product("B2","Dat Ngo", "Go to the moon", 30000, "Romance");
+        Product product2 = new Product("B3","Duong le", "Meme", 25000, "Comedy");
+        Product product3 = new Product("B4","Dat Tran", "Good job", 25000, "Buisiness");
+        Product product4 = new Product("B5","Thuy Nguyen", "Go to the moon", 35000, "Romance");
         productDAO.addProducts(product);
         productDAO.addProducts(product1);
         productDAO.addProducts(product2);

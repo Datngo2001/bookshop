@@ -16,9 +16,9 @@ public class CartDao {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCartList(int id) {
+	public List<CardList> getCartList(String uname) {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.uid = " + id).getResultList();
+			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'").getResultList();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -49,17 +49,17 @@ public class CartDao {
 			e.printStackTrace();
 		}
 	}
-	public boolean checkNameExist(String name, int id) {
-		List a = getCheck(name, id);
+	public boolean checkNameExist(String name, String uname) {
+		List a = getCheck(name, uname);
 		
 		if(a.size() == 1) 
 			return true;
 		return false;
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCheck(String name, int id) {
+	public List<CardList> getCheck(String name, String uname) {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.uid = " + id + " and C.name =" + "'" +name + "'").getResultList();
+			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'" + " and C.name =" + "'" + name + "'").getResultList();
 			
 		}
 		catch (Exception e) {

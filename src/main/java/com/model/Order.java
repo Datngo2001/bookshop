@@ -10,12 +10,7 @@ import javax.persistence.*;
 @Table(name = "order")
 public class Order implements Serializable {
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "userId", referencedColumnName = "id")
-    private User user;
 
-    @OneToMany(mappedBy = "order")
-    private List<Item> items;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,29 +20,6 @@ public class Order implements Serializable {
 
     public Order() {
 
-    }
-
-    public Order(User user, List<Item> items, int id, Timestamp createDate) {
-        this.user = user;
-        this.items = items;
-        this.id = id;
-        this.createDate = createDate;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Item> getItems() {
-        return items;
-    }
-
-    public void setItems(List<Item> items) {
-        this.items = items;
     }
 
     public int getId() {

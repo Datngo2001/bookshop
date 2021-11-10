@@ -24,7 +24,7 @@
 	            <h2 class="section-header">Cart list</h2>
 	            <div class="cart-row">
 	                <span class="cart-item cart-header cart-column">ITEM</span>
-	                <span class="cart-price cart-header cart-column">PRICE</span>
+	                <span class="cart-price cart-header cart-column">PRICE </span>
 	                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
 
 	            </div>
@@ -37,13 +37,15 @@
 		              			<p class="name-author"><c:out value="${item.author}"/></p>
 				        	</div>
 				        </div>
-				        <span class="cart-price cart-column"><c:out value="${item.price}"/></span>
+				        <div class="cart cart-price cart-column" style="display: flex;">
+				        	<p><c:out value="${item.price}"/> </p> 
+				        </div>
+
 				        <div class="cart-quantity cart-column">
 				            <input class="cart-quantity-input" readonly="readonly" type="number" name="quantity" value="<c:out value="${item.amount}"/>">
 				            <form action="./payment" method="get">
 								<input type="hidden" name="cId" value='<c:out value="${item.id}"/>'/>
-								<input type="hidden" name="price" value="${total}"/>
-								<input type="hidden" name="uId" value="1"/>
+								<input type="hidden" name="username" value="${username}"/>
 								<input type="submit" class="btn btn-danger" name="action" value="REMOVE" />
 							</form>
 				        </div>
@@ -54,7 +56,8 @@
 	            
 	            <div class="cart-total">
 	                <strong class="cart-total-title">Total</strong>
-	                <span class="cart-total-price"> <input type="hidden" name="price" value="${total}"/> ${total} </span>
+	                <span class="cart-total-price"></span>
+	               
 	            </div>
 	        </section>
 			</div>
@@ -62,7 +65,7 @@
 				
 				<div class="total-price">
 					<form action="./confirm">
-						<input type="hidden" name="priceItem" value=" ${total}">
+						 <input id="hide" type="hidden" name="price" value=""/>
 						<button type="submit" class="btn btn-primary" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">VN Pay</button>
 					</form>
 		
@@ -86,6 +89,17 @@
 	
   <script src="https://www.paypal.com/sdk/js?client-id=AQ5g8nn9aROkHblV7Ljd5PJKV5Tr_cmh4WE6HrGy0GRCUyHOQKuQ7lOqMCdX9D31pAVSVcryYpROoTGY&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
   <script>
+
+  var price = document.getElementsByClassName("cart cart-price cart-column");
+  var total = document.getElementsByClassName("cart-total-price");
+
+  var priceTotal = 0;
+  for(let i = 0; i < price.length; i++) {
+	  price[i].textContent = parseFloat(price[i].textContent);
+	  priceTotal += parseFloat(price[i].textContent);
+  }
+  total[0].textContent = priceTotal;
+  document.getElementById("hide").value = priceTotal.toString();
     function initPayPalButton() {
       paypal.Buttons({
         style: {

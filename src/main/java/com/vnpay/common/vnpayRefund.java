@@ -45,7 +45,7 @@ public class vnpayRefund extends HttpServlet {
         String vnp_TxnRef = req.getParameter("order_id");
         String vnp_TransDate = req.getParameter("trans_date");
         String email = req.getParameter("email");
-        int amount = Integer.parseInt(req.getParameter("amount"))*100;
+        int amount = Integer.parseInt(req.getParameter("amount"));
         String trantype = req.getParameter("trantype");
         String vnp_TmnCode = Config.vnp_TmnCode;
         String vnp_IpAddr = Config.getIpAddress(req);

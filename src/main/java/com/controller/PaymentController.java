@@ -34,8 +34,8 @@ public class PaymentController extends HttpServlet {
 
 	private void goPayment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/payment.jsp";
-		int uid = Integer.parseInt(request.getParameter("uId"));
-		List<CardList> cart = cartDao.getCartList(uid);
+		String uname = request.getParameter("username");
+		List<CardList> cart = cartDao.getCartList(uname);
 		request.setAttribute("cart_item", cart);
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 
@@ -73,28 +73,22 @@ public class PaymentController extends HttpServlet {
 	private void removeProductInCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int productId = Integer.parseInt(request.getParameter("cId"));
         cartDao.removeProduct(productId);
-        double price = Double.parseDouble(request.getParameter("price"));
-        request.setAttribute("total", price);
         goPayment(request, response);
 		
 	}
-
 	private void addProductToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int uid = Integer.parseInt(request.getParameter("uId"));
-		double price = Double.parseDouble(request.getParameter("price"));
+		String uname = request.getParameter("username");
         String productId = request.getParameter("pId");
         String quantityString = request.getParameter("quantity");
-        double total = 0;
         Product product = null;
         product = productDao.getProduct(Integer.parseInt(productId));
-        if(!cartDao.checkNameExist(product.getDescription(), uid)) {
-            CardList cart = new CardList(uid, product.getDescription(), 
+        if(!cartDao.checkNameExist(product.getDescription(), uname)) {
+            CardList cart = new CardList(uname, product.getDescription(), 
             		product.getNameAuthor(), Integer.parseInt(quantityString), product.getPrice());
             cartDao.addToCart(cart);
-            total +=cart.getPrice();
-        }
 
-        request.setAttribute("total", total);
+        }
+        
         goPayment(request, response);
 	}
 

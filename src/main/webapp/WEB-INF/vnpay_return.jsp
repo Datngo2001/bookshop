@@ -1,9 +1,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
 <%@page import="com.vnpay.common.Config"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -11,6 +9,7 @@
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,9 +22,9 @@
         <meta name="author" content="">
         <title>VNPAY RESPONSE</title>
         <!-- Bootstrap core CSS -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+
         <!-- Custom styles for this template -->
-        <link href="./css/jumbotron-narrow.css" rel="stylesheet"> 
+		<c:import url="sharedView/global.html"></c:import>
         <script src="./js/jquery-1.11.3.min.js"></script>
     </head>
     <body>
@@ -109,9 +108,7 @@
             <p>
                 &nbsp;
             </p>
-            <footer class="footer">
-                <p>&copy; VNPAY 2021</p>
-            </footer>
+
             
         </div>  
         	<c:import url="sharedView/footer.jsp"></c:import>
