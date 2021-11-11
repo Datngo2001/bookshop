@@ -18,16 +18,11 @@ import com.services.EmailService;
 import com.services.HashService;
 
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User implements Serializable {
 
-	//@OneToMany(mappedBy = "user")
-	//private List<Order> orders;
-
-
-	@ManyToMany
-	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
-	private List<Role> roles;
+	@OneToOne
+	private Role roles;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -59,7 +54,7 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public User(List<Role> roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
+	public User(Role roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
 			Date bdate, String fname, String lname, String email, String gender) {
 		//this.orders = orders;
 		this.roles = roles;
@@ -76,6 +71,7 @@ public class User implements Serializable {
 	}
 
 	// BUSINESS LOGIC ----------------------------------------------------
+
 	public Boolean login(LoginDTO loginDTO) {
 		UserDAO userDAO = new UserDAO();
 
@@ -149,7 +145,7 @@ public class User implements Serializable {
 		hash = hashService.doHash(registerDTO.getPassword().getBytes(), salt);
 
 		// Add role
-		List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+		Role roles = new RoleDAO().getRoleByName(registerDTO.getRole());
 
 		// Creat user entity
 		User user = new User();
@@ -166,11 +162,11 @@ public class User implements Serializable {
 	}
 
 	// INPUT OUTPUT LOGIC ----------------------------------------------------
-	public List<Role> getRoles() {
+	public Role getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Role roles) {
 		this.roles = roles;
 	}
 

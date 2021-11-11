@@ -72,7 +72,7 @@
                             <hr>
                             <span style="color: red"><c:out value="${registerMessage}" /></span>
                             <div class="text-center">
-                                <a class="small" href="forgot-password.jsp">Forgot Password?</a>
+                                <a class="small" href="forgot-password">Forgot Password?</a>
                             </div>
                             <div class="text-center">
                                 <a class="small" href="login">Already have an account? Login!</a>

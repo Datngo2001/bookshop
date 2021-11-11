@@ -2,11 +2,14 @@ package com.data.DAOs;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.*;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
 import com.model.CardList;
+import com.model.Role;
 import com.model.User;
 
 import org.hibernate.*;
@@ -29,7 +32,12 @@ public class UserDAO {
 		}
 		return user;
 	}
-
+	public Role getRole(int id) {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		String Sql = "Select r From Role r ";
+		return null;
+	}
 	public void getPasswordHashAndSalt(LoginDTO loginDTO) {
 		Transaction transaction = null;
 		List<User> rsList = null;

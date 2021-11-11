@@ -16,6 +16,7 @@ import com.services.HashService;
 public class Seed {
     public void doSeed() {
         // Add role
+    	User user = new User();
         RoleDAO roleDAO = new RoleDAO();
         roleDAO.addRole(new Role("Admin"));
         roleDAO.addRole(new Role("Staff"));
@@ -34,6 +35,7 @@ public class Seed {
         registerDTO1.setRole("Customer");
         CreateAccount(registerDTO);
         CreateAccount(registerDTO1);
+        
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -66,7 +68,7 @@ public class Seed {
         if (registerDTO.getRole().equals("")) {
             registerDTO.setRole("Customer");
         }
-        List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+        Role roles = new RoleDAO().getRoleByName(registerDTO.getRole());
 
         // Creat user entity
         User user = new User();

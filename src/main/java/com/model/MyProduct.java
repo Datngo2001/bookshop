@@ -20,7 +20,7 @@ public class MyProduct implements Serializable{
 	public String username;
 	public String author;
 	
-	
+	public MyProduct() {}
 	public MyProduct(String username, String author) {
 		super();
 		this.username = username;

@@ -82,10 +82,10 @@
                                     <hr>
                                     <span style="color: red"><c:out value="${loginMessage}" /></span>
                                     <div class="text-center">
-                                        <a class="small" href="forgot-password.jsp">Forgot Password?</a>
+                                        <a class="small" href="forgot-password">Forgot Password?</a>
                                     </div>
                                     <div class="text-center">
-                                        <a class="small" href="register.jsp">Create an Account!</a>
+                                        <a class="small" href="register">Create an Account!</a>
                                     </div>
                                 </div>
                             </div>
