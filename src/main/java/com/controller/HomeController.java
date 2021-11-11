@@ -41,7 +41,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				//new Seed().doSeed();
+				// new Seed().doSeed();
 				goHomePage(request, response);
 				break;
 			case "LOAD":

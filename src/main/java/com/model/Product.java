@@ -20,14 +20,18 @@ public class Product implements Serializable {
 	public String codeProduct;
 	public String nameAuthor;
 	public String description;
+	public String name;
 
 	public int price;
 	public String pictureUrl;
 	public String Sku;
 	public String typeBook;
-	public Product(String codeProduct, String nameAuthor, String description, int price, String typeBook) {
+
+	public Product(String codeProduct, String productName, String nameAuthor, String description, int price,
+			String typeBook) {
 		super();
 		this.codeProduct = codeProduct;
+		this.name = productName;
 		this.nameAuthor = nameAuthor;
 		this.description = description;
 		this.price = price;
@@ -39,6 +43,18 @@ public class Product implements Serializable {
 		this.categorys = categorys;
 		this.id = id;
 		this.codeProduct = codeProduct;
+		this.nameAuthor = nameAuthor;
+		this.description = description;
+		this.price = price;
+		this.pictureUrl = pictureUrl;
+		Sku = sku;
+		this.typeBook = typeBook;
+	}
+
+	public Product(String codeProduct, String productName, String nameAuthor, String description, int price,
+			String pictureUrl, String sku, String typeBook) {
+		this.codeProduct = codeProduct;
+		this.name = productName;
 		this.nameAuthor = nameAuthor;
 		this.description = description;
 		this.price = price;
@@ -59,7 +75,6 @@ public class Product implements Serializable {
 		this.typeBook = type;
 
 	}
-
 
 	public List<Category> getCategorys() {
 		return categorys;
@@ -131,5 +146,13 @@ public class Product implements Serializable {
 
 	public void setTypeBook(String typeBook) {
 		this.typeBook = typeBook;
+	}
+
+	public void setProductName(String productName) {
+		this.name = productName;
+	}
+
+	public String getProductName() {
+		return this.name;
 	}
 }
