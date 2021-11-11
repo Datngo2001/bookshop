@@ -43,7 +43,7 @@
             <h3 class="category-heading"> <i class="category-heading-icon fas fa-list"></i>Content</h3>
             <ul class="category-list">
               <li class="category-item category--active">
-                <a href="" class="category-link">Romance</a>
+                <a href="" class="category-link">Romance <%= request.getParameter("named") %></a>
               </li>
               <li class="category-item">
                 <a href="" class="category-link">Science Fiction & Fantasy</a>
@@ -150,6 +150,11 @@
       </div>
     </div>
   </div>
+  <c:forEach var="item" items="${list}">
+  	<p>${item.author}</p>
+  	<p>${item.name}</p>
+  </c:forEach>
+  
 <br>
 	<div class="grid">
       <div class="grid_row">

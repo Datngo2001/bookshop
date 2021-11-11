@@ -3,19 +3,17 @@ package com.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+
 
 import com.data.DAOs.CartDao;
 import com.data.DAOs.ProductDAO;
-import com.model.CardList;
+import com.model.*;
 
-import com.model.Product;
 
 @WebServlet("/payment")
 public class PaymentController extends HttpServlet {
@@ -26,7 +24,12 @@ public class PaymentController extends HttpServlet {
     	productDao = new ProductDAO();
     	cartDao = new CartDao();
     }
-
+    /*Text payment
+     * So the: 9704198526191432198
+     * Ngay phat hanh: 07/15
+     * Ten: NGUYEN VAN A
+     * OTP: 123456
+     * */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 
@@ -81,10 +84,12 @@ public class PaymentController extends HttpServlet {
         String productId = request.getParameter("pId");
         String quantityString = request.getParameter("quantity");
         Product product = null;
+
         product = productDao.getProduct(Integer.parseInt(productId));
         if(!cartDao.checkNameExist(product.getDescription(), uname)) {
             CardList cart = new CardList(uname, product.getDescription(), 
             		product.getNameAuthor(), Integer.parseInt(quantityString), product.getPrice());
+
             cartDao.addToCart(cart);
 
         }

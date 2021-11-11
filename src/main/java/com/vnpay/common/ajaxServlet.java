@@ -49,7 +49,7 @@ public class ajaxServlet extends HttpServlet {
        int amountmc = Integer.parseInt(req.getParameter("amount"));
        String vnp_IpAddr = Config.getIpAddress(req);
        String vnp_TmnCode = Config.vnp_TmnCode;
-       int amount = Integer.parseInt(req.getParameter("amount")) * 100;
+       int amount = Integer.parseInt(req.getParameter("amount"))*100;
        Map<String, String> vnp_Params = new HashMap<>();
        vnp_Params.put("vnp_Version", vnp_Version);
        vnp_Params.put("vnp_Command", vnp_Command);
@@ -113,7 +113,7 @@ public class ajaxServlet extends HttpServlet {
        //String vnp_SecureHash = Config.Sha256(Config.vnp_HashSecret + hashData.toString());
        String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
        queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
-       String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
+       String paymentUrl = Config.vnp_apiUrl + "?" + queryUrl;
        com.google.gson.JsonObject job = new JsonObject();
        job.addProperty("code", "00");
        job.addProperty("message", "success");

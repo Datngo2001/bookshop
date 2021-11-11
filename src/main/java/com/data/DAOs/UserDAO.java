@@ -6,6 +6,7 @@ import javax.persistence.criteria.*;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
+import com.model.CardList;
 import com.model.User;
 
 import org.hibernate.*;

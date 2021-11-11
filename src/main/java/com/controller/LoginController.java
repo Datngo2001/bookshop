@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +24,6 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextUrl = "admin/login.jsp";
-
 		// get current action
 		String action = request.getParameter("action");
 
@@ -37,7 +37,11 @@ public class LoginController extends HttpServlet {
 			loginDTO.setPassword(request.getParameter("password"));
 
 			if (new User().login(loginDTO)) {
+				int uid = loginDTO.getId();
 				request.getSession().setAttribute("username", loginDTO.getUsername());
+				Cookie username = new Cookie("named", loginDTO.getUsername());
+				username.setMaxAge(60*60*24);
+				response.addCookie(username);
 				response.sendRedirect("home");
 				return;
 			} else {

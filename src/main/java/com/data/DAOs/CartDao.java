@@ -2,7 +2,9 @@ package com.data.DAOs;
 
 import java.util.List;
 
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.hibernate.*;
 
@@ -87,6 +89,23 @@ public class CartDao {
 			e.printStackTrace();
 		}
 		return cart;
-		
+	}
+	public void removeAllProduct(String name) {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		String sql = "DELETE from CardList c where c.username =:uname";
+		Query q = em.createQuery(sql);
+		q.setParameter("uname", name);
+		int count = 0;
+		try {
+			trans.begin();
+			count = q.executeUpdate();
+			trans.commit();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
 	}
 }

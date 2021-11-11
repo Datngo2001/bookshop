@@ -28,27 +28,7 @@
         <script src="./js/jquery-1.11.3.min.js"></script>
     </head>
     <body>
-        <%
-            //Begin process return from VNPAY
-            Map fields = new HashMap();
-            for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
-                String fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
-                String fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
-                if ((fieldValue != null) && (fieldValue.length() > 0)) {
-                    fields.put(fieldName, fieldValue);
-                }
-            }
 
-            String vnp_SecureHash = request.getParameter("vnp_SecureHash");
-            if (fields.containsKey("vnp_SecureHashType")) {
-                fields.remove("vnp_SecureHashType");
-            }
-            if (fields.containsKey("vnp_SecureHash")) {
-                fields.remove("vnp_SecureHash");
-            }
-            String signValue = Config.hashAllFields(fields);
-
-        %>
         <c:import url="sharedView/header.jsp"></c:import>
         <!--Begin display -->
         <div class="container">
@@ -86,19 +66,7 @@
                 </div> 
                 <div class="form-group">
                     <label >Payment Status:</label>
-                    <label>
-                        <%
-                            if (signValue.equals(vnp_SecureHash)) {
-                                if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
-                                    out.print("Success");
-                                } else {
-                                    out.print("Failed");
-                                }
-
-                            } else {
-                                out.print("invalid signature");
-                            }
-                        %></label>
+                    <label>${status}</label>
                 </div> 
                   <div class="form-group">
                     <label><a href="home">Return Homepage</a></label>

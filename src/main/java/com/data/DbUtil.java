@@ -10,8 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.model.CardList;
 import com.model.Category;
-import com.model.Item;
-import com.model.Order;
+import com.model.MyProduct;
 import com.model.Product;
 import com.model.Role;
 import com.model.User;
@@ -36,16 +35,16 @@ public class DbUtil {
 
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-        settings.put(Environment.HBM2DDL_AUTO, "update");
+        //settings.put(Environment.HBM2DDL_AUTO, "update");
         //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(Category.class);
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(User.class);
-        configuration.addAnnotatedClass(Order.class);
+        configuration.addAnnotatedClass(MyProduct.class);
         configuration.addAnnotatedClass(Role.class);
-        configuration.addAnnotatedClass(Item.class);
+        //configuration.addAnnotatedClass(Item.class);
         configuration.addAnnotatedClass(CardList.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()

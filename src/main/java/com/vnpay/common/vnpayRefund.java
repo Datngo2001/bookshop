@@ -31,21 +31,17 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/vnpayRefund")
 public class vnpayRefund extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
     public vnpayRefund() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
         //vnp_Command = refund
         String vnp_TxnRef = req.getParameter("order_id");
         String vnp_TransDate = req.getParameter("trans_date");
         String email = req.getParameter("email");
-        int amount = Integer.parseInt(req.getParameter("amount"));
+        int amount = Integer.parseInt(req.getParameter("amount"))*100;
         String trantype = req.getParameter("trantype");
         String vnp_TmnCode = Config.vnp_TmnCode;
         String vnp_IpAddr = Config.getIpAddress(req);

@@ -2,6 +2,7 @@ package com.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,8 +21,9 @@ import com.services.HashService;
 @Table(name = "user")
 public class User implements Serializable {
 
-	@OneToMany(mappedBy = "user")
-	private List<Order> orders;
+	//@OneToMany(mappedBy = "user")
+	//private List<Order> orders;
+
 
 	@ManyToMany
 	@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "userId", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "roleId", referencedColumnName = "id"))
@@ -57,10 +59,11 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public User(List<Order> orders, List<Role> roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
+	public User(List<Role> roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
 			Date bdate, String fname, String lname, String email, String gender) {
-		this.orders = orders;
+		//this.orders = orders;
 		this.roles = roles;
+
 		this.id = id;
 		this.username = username;
 		this.passwordHash = passwordHash;
@@ -237,13 +240,14 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public List<Order> getOrders() {
+	/*public List<Order> getOrders() {
 		return orders;
 	}
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
 	}
+	*/
 
 	public String getEmail() {
 		return email;
