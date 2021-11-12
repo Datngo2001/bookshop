@@ -15,7 +15,7 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
+	@Column(name = "id", length = Integer.MAX_VALUE)
 	public int id;
 	public String codeProduct;
 	public String nameAuthor;

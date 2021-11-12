@@ -133,6 +133,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               Top 100 sản phẩm Manga Khác bán chạy của tháng
             </div>
           </div>
+          <div>${product.description}</div>
         </div>
       </section>
     </main>

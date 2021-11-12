@@ -64,7 +64,7 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
-		request.setAttribute("theProduct", product);
+		request.setAttribute("product", product);
 		request.getRequestDispatcher("WEB-INF/productItem.jsp").forward(request, response);
 	}
 

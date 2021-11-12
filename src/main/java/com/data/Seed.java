@@ -35,6 +35,8 @@ public class Seed {
         categoryDAO.addCategory(new Category("Detective"));
         categoryDAO.addCategory(new Category("Mystery"));
 
+        String description = "Còn 1 tiếng đến khi trời sáng, trận khổ chiến với Muzan càng lúc càng cam go. Tất cả các Trụ cột còn lại đều dồn hết sức chiến đấu, nhưng liệu lưỡi gươm của họ có chạm được đến hắn!? Và Tanjiro đã trúng một đòn của Muzan sẽ ra sao…?";
+
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
         Product product = new Product("B1", "Ramma 1/2", "Thien Nguyen", "Have a nice day", 2000, "Classic");
@@ -45,7 +47,7 @@ public class Seed {
                 "Romance");
         Product product5 = new Product("KMSNYB22",
                 "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 22: Vòng Xoay Vận Mệnh - Bản Đặc Biệt - Tặng Kèm Bộ Huy Hiệu + Phụ Lục Độc Quyền: Báo Cáo Đặc Biệt Của Đội Diệt Quỷ",
-                "Koyoharu Gotouge", "description", 111000,
+                "Koyoharu Gotouge", description, 111000,
                 "https://cdn0.fahasa.com/media/catalog/product/t/g/tgdq_v22_mockup_03.png", "8935244855395",
                 "Adventure, Action, Shounen, Fantasy, Drama, Historical, Supernatural");
 
