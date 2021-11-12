@@ -43,14 +43,14 @@ public class HomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-		
+
 			String theCommand = request.getParameter("command");
 			if (theCommand == null) {
 				theCommand = "HOME";
 			}
 			switch (theCommand) {
 			case "HOME":
-				//new Seed().doSeed();
+				// new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				goHomePage(request, response);
 				break;

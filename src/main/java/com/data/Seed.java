@@ -1,5 +1,6 @@
 package com.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.DTOs.BusinessDtos.RegisterDTO;
@@ -16,7 +17,7 @@ import com.services.HashService;
 public class Seed {
     public void doSeed() {
         // Add role
-    	User user = new User();
+        User user = new User();
         RoleDAO roleDAO = new RoleDAO();
         roleDAO.addRole(new Role("Admin"));
         roleDAO.addRole(new Role("Staff"));
@@ -35,7 +36,6 @@ public class Seed {
         registerDTO1.setRole("Customer");
         CreateAccount(registerDTO);
         CreateAccount(registerDTO1);
-        
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -46,24 +46,11 @@ public class Seed {
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
 
-        Product product = new Product("B1", "Ramma 1/2", "Thien Nguyen", "Have a nice day", 20000, "Classic");
-        Product product1 = new Product("B2", "Inuyasha chap 1", "Dat Ngo", "Go to the moon", 30000, "Romance");
-        Product product2 = new Product("B3", "Josee, The Tiger and the Fish", "Duong le", "Meme", 22000, "Comedy");
-        Product product3 = new Product("B4", "Cậu Ma Nhà Xí Hanako - Tập 1", "Dat Tran", "Good job", 25000, "Buisiness");
-        Product product4 = new Product("B5", "Saiki Kusuo Kẻ Siêu Năng Khốn Kho", "Thuy Nguyen", "Go to the moon", 35000,
-                "Romance");
-        Product product5 = new Product("KMSNYB22",
-                "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 22: Vòng Xoay Vận Mệnh - Bản Đặc Biệt - Tặng Kèm Bộ Huy Hiệu + Phụ Lục Độc Quyền: Báo Cáo Đặc Biệt Của Đội Diệt Quỷ",
-                "Koyoharu Gotouge", "description", 40000,
-                "https://cdn0.fahasa.com/media/catalog/product/t/g/tgdq_v22_mockup_03.png", "8935244855395",
-                "Adventure, Action, Shounen, Fantasy, Drama, Historical, Supernatural");
+        ArrayList<Product> products = DataUtil.getCrawlData();
 
-        productDAO.addProducts(product);
-        productDAO.addProducts(product1);
-        productDAO.addProducts(product2);
-        productDAO.addProducts(product3);
-        productDAO.addProducts(product4);
-        productDAO.addProducts(product5);
+        for (Product product : products) {
+            productDAO.addProducts(product);
+        }
     }
 
     private void CreateAccount(RegisterDTO registerDTO) {
