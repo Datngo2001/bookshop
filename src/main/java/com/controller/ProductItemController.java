@@ -36,11 +36,38 @@ public class ProductItemController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
 		// get current action
-		String action = request.getParameter("action");
-		int id = Integer.parseInt(request.getParameter("id"));
+		try {
+			String action = request.getParameter("command");
+
+			System.out.println("Command: " + action);
+
+			if (action == null) {
+				action = "Go to productList.jsp";
+			}
+
+			switch (action) {
+			case "LOAD":
+				loadProductItem(request, response);
+				break;
+			default:
+				loadProductItem(request, response);
+			}
+
+			request.getRequestDispatcher(nextUrl).forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void loadProductItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		int id = 0;
+		Product product = null;
 
 		try {
-			Product product = productDAO.getProduct(id);
+			id = Integer.parseInt(request.getParameter("productID"));
+			System.out.println("Product Id: " + id);
+			product = productDAO.getProduct(id);
+
 			if (product == null) {
 				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 				return;
@@ -50,21 +77,6 @@ public class ProductItemController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-		if (action == null) {
-			action = "Go to productList.jsp";
-		}
-
-		if (action.equals("SOMETHING")) {
-			example();
-		}
-
-		request.getRequestDispatcher(nextUrl).forward(request, response);
-	}
-
-	private void example() {
-		// TODO Auto-generated method stub
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

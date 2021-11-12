@@ -9,7 +9,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Global -->
     <c:import url="sharedView/global.html" />
-    <link rel="stylesheet" href="./css/bootstrap.css" />
+    <!-- <link rel="stylesheet" href="./css/bootstrap.css" /> -->
 
     <!-- Local -->
     <link rel="stylesheet" href="./css/productItem.css" />
@@ -80,59 +80,22 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="product-content-detail">${product.getSku()}</div>
           </div>
           <div class="product-details-content">
-            <div class="product-content-label">Độ Tuổi</div>
-            <div class="product-content-detail">15 - 18</div>
-          </div>
-          <div class="product-details-content">
             <div class="product-content-label">Tên Nhà Cung Cấp</div>
-            <div class="product-content-detail">Nhà Xuất Bản Kim Đồng</div>
+            <div class="product-content-detail">${product.supplier}</div>
           </div>
           <div class="product-details-content">
             <div class="product-content-label">Tác giả</div>
-            <div class="product-content-detail">Tatsuya Endo</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Người Dịch</div>
-            <div class="product-content-detail">Phương Nga</div>
+            <div class="product-content-detail">${product.nameAuthor}</div>
           </div>
           <div class="product-details-content">
             <div class="product-content-label">NXB</div>
-            <div class="product-content-detail">NXB Kim Đồng</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Năm XB</div>
-            <div class="product-content-detail">2021</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Ngôn Ngữ</div>
-            <div class="product-content-detail">Tiếng Việt</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Trọng lượng (gr)</div>
-            <div class="product-content-detail">200</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Kích Thước Bao Bì</div>
-            <div class="product-content-detail">17.6 x 11.3 cm</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Số trang</div>
-            <div class="product-content-detail">192</div>
-          </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Hình thức</div>
-            <div class="product-content-detail">Bìa Mềm</div>
+            <div class="product-content-detail">${product.NXB}</div>
           </div>
           <div class="product-details-content">
             <div class="product-content-label">Genres</div>
             <div class="product-content-detail">${product.typeBook}</div>
           </div>
-          <div class="product-details-content">
-            <div class="product-content-label">Sản phẩm bán chạy nhất</div>
-            <div class="product-content-detail">
-              Top 100 sản phẩm Manga Khác bán chạy của tháng
-            </div>
-          </div>
+          <div>${product.description}</div>
         </div>
       </section>
     </main>
