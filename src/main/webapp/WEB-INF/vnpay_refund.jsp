@@ -22,11 +22,11 @@
         <div class="container">
             <div class="header clearfix">
 
-                <h3 class="text-muted">VNPAY DEMO</h3>
+                <h3 class="text-muted">VNPAY</h3>
             </div>
             <h3>Refund</h3>
             <div class="table-responsive">
-                <form action="/vnpay_jsp/vnpayrefund" id="frmrefund" method="Get">
+                <form action="vnpayRefund" id="frmrefund" method="Get">
                     <div class="form-group">
                         <label for="order_id">Mã hóa đơn</label>
                         <input class="form-control" id="order_id"
@@ -57,12 +57,6 @@
                         <button type="submit" class="btn btn-primary">Refund</button>
                     </div>
                 </form>   
-                <p>
-                    &nbsp;
-                </p>
-                <footer class="footer">
-                    <p>&copy; VNPAY 2017</p>
-                </footer>
             </div> 
         </div>
     </body>

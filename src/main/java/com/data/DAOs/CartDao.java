@@ -2,7 +2,9 @@ package com.data.DAOs;
 
 import java.util.List;
 
-
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import org.hibernate.*;
 
@@ -16,9 +18,9 @@ public class CartDao {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCartList(int id) {
+	public List<CardList> getCartList(String uname) {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.uid = " + id).getResultList();
+			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'").getResultList();
 		}
 		catch (Exception e) {
 			e.printStackTrace();
@@ -49,17 +51,17 @@ public class CartDao {
 			e.printStackTrace();
 		}
 	}
-	public boolean checkNameExist(String name, int id) {
-		List a = getCheck(name, id);
+	public boolean checkNameExist(String name, String uname) {
+		List a = getCheck(name, uname);
 		
 		if(a.size() == 1) 
 			return true;
 		return false;
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCheck(String name, int id) {
+	public List<CardList> getCheck(String name, String uname) {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.uid = " + id + " and C.name =" + "'" +name + "'").getResultList();
+			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'" + " and C.name =" + "'" + name + "'").getResultList();
 			
 		}
 		catch (Exception e) {
@@ -87,6 +89,23 @@ public class CartDao {
 			e.printStackTrace();
 		}
 		return cart;
-		
+	}
+	public void removeAllProduct(String name) {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		String sql = "DELETE from CardList c where c.username =:uname";
+		Query q = em.createQuery(sql);
+		q.setParameter("uname", name);
+		int count = 0;
+		try {
+			trans.begin();
+			count = q.executeUpdate();
+			trans.commit();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
 	}
 }
