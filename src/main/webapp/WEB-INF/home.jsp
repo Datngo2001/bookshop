@@ -61,7 +61,7 @@
 
           <div class="home-filter">
             <span class="home-label">Sorting by</span>
-            <button class="btn-product home-filter-btn">Popular</button>
+            <button class="btn-product home-filter-btn">${role} ${username}</button>
             <button class="btn-product btn-primary home-filter-btn">Newest</button>
             <button class="btn-product home-filter-btn">Selling</button>
             <div class="select-input">

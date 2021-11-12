@@ -38,12 +38,11 @@ public class LoginController extends HttpServlet {
 			LoginDTO loginDTO = new LoginDTO();
 			loginDTO.setUsername(request.getParameter("username"));
 			loginDTO.setPassword(request.getParameter("password"));
-			User user = null;
 			if (new User().login(loginDTO)) {
 				request.getSession().setAttribute("username", loginDTO.getUsername());
-				//Object name = request.getSession().getAttribute("username");
-				//user = userDao.getUserByUserName(name.toString());
-				
+				Object name = request.getSession().getAttribute("username");
+				int id = userDao.getUserByUserName(name.toString());
+				request.getSession().setAttribute("role", id);
 				Cookie username = new Cookie("named", loginDTO.getUsername());
 				username.setMaxAge(60*60*24);
 				response.addCookie(username);
