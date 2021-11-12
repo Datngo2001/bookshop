@@ -46,15 +46,15 @@ public class Seed {
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
 
-        Product product = new Product("B1", "Ramma 1/2", "Thien Nguyen", "Have a nice day", 2000, "Classic");
-        Product product1 = new Product("B2", "Inuyasha chap 1", "Dat Ngo", "Go to the moon", 3000, "Romance");
-        Product product2 = new Product("B3", "Josee, The Tiger and the Fish", "Duong le", "Meme", 2000, "Comedy");
-        Product product3 = new Product("B4", "Cậu Ma Nhà Xí Hanako - Tập 1", "Dat Tran", "Good job", 2500, "Buisiness");
-        Product product4 = new Product("B5", "Saiki Kusuo Kẻ Siêu Năng Khốn Kho", "Thuy Nguyen", "Go to the moon", 3500,
+        Product product = new Product("B1", "Ramma 1/2", "Thien Nguyen", "Have a nice day", 20000, "Classic");
+        Product product1 = new Product("B2", "Inuyasha chap 1", "Dat Ngo", "Go to the moon", 30000, "Romance");
+        Product product2 = new Product("B3", "Josee, The Tiger and the Fish", "Duong le", "Meme", 22000, "Comedy");
+        Product product3 = new Product("B4", "Cậu Ma Nhà Xí Hanako - Tập 1", "Dat Tran", "Good job", 25000, "Buisiness");
+        Product product4 = new Product("B5", "Saiki Kusuo Kẻ Siêu Năng Khốn Kho", "Thuy Nguyen", "Go to the moon", 35000,
                 "Romance");
         Product product5 = new Product("KMSNYB22",
                 "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 22: Vòng Xoay Vận Mệnh - Bản Đặc Biệt - Tặng Kèm Bộ Huy Hiệu + Phụ Lục Độc Quyền: Báo Cáo Đặc Biệt Của Đội Diệt Quỷ",
-                "Koyoharu Gotouge", "description", 111000,
+                "Koyoharu Gotouge", "description", 40000,
                 "https://cdn0.fahasa.com/media/catalog/product/t/g/tgdq_v22_mockup_03.png", "8935244855395",
                 "Adventure, Action, Shounen, Fantasy, Drama, Historical, Supernatural");
 

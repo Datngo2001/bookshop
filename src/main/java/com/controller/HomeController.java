@@ -51,9 +51,7 @@ public class HomeController extends HttpServlet {
 			switch (theCommand) {
 			case "HOME":
 				//new Seed().doSeed();
-			
 				request.setAttribute("username", request.getSession().getAttribute("username"));
-
 				goHomePage(request, response);
 				break;
 			case "LOAD":
@@ -76,7 +74,7 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
-		request.setAttribute("theProduct", product);
+		request.setAttribute("product", product);
 		request.getRequestDispatcher("WEB-INF/productItem.jsp").forward(request, response);
 	}
 

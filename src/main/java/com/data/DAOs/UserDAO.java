@@ -32,6 +32,22 @@ public class UserDAO {
 		}
 		return user;
 	}
+	public User getUserByUserName(String username) {
+		Transaction transaction = null;
+		User user = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			user = session.get(User.class, username);
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return user;
+	}
+	
 	public Role getRole(int id) {
 		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
 		EntityTransaction trans = em.getTransaction();

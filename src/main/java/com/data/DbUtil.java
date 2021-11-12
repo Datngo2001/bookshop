@@ -10,6 +10,7 @@ import org.hibernate.service.ServiceRegistry;
 
 import com.model.CardList;
 import com.model.Category;
+import com.model.History;
 import com.model.MyProduct;
 import com.model.Product;
 import com.model.Role;
@@ -18,7 +19,7 @@ import com.model.User;
 public class DbUtil {
   private static SessionFactory sessionFactory;
 
-  public static SessionFactory getSessionFactorys() {
+  public static SessionFactory getSessionFactory() {
     if (sessionFactory == null) {
       try {
         Configuration configuration = new Configuration();
@@ -28,14 +29,14 @@ public class DbUtil {
         settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
         settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
         settings.put(Environment.USER, "root");
-        settings.put(Environment.PASS, "password");
+        settings.put(Environment.PASS, "ngocthien2306.com");
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
         settings.put(Environment.SHOW_SQL, "true");
 
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-        //settings.put(Environment.HBM2DDL_AUTO, "update");
+        settings.put(Environment.HBM2DDL_AUTO, "update");
         //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
         configuration.setProperties(settings);
@@ -44,6 +45,7 @@ public class DbUtil {
         configuration.addAnnotatedClass(Product.class);
         configuration.addAnnotatedClass(MyProduct.class);
         configuration.addAnnotatedClass(Role.class);
+        configuration.addAnnotatedClass(History.class);
         //configuration.addAnnotatedClass(Item.class);
         configuration.addAnnotatedClass(CardList.class);
 
@@ -59,7 +61,7 @@ public class DbUtil {
     }
     return sessionFactory;
   }
-  public static SessionFactory getSessionFactory() {
+  public static SessionFactory getSessionFactors() {
 	    if (sessionFactory == null) {
 	      try {
 	        Configuration configuration = new Configuration();
