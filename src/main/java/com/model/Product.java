@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -15,17 +17,34 @@ public class Product implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id", length = Integer.MAX_VALUE)
+	@Column(name = "id")
 	public int id;
 	public String codeProduct;
 	public String nameAuthor;
+	@Type(type = "text")
 	public String description;
 	public String name;
 
+	public String NXB;
+	public String supplier;
 	public int price;
 	public String pictureUrl;
 	public String Sku;
 	public String typeBook;
+
+	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
+			String pictureUrl, String sku, String typeBook, int price) {
+		this.codeProduct = codeProduct;
+		this.nameAuthor = nameAuthor;
+		this.name = name;
+		this.description = des;
+		this.NXB = nxb;
+		this.supplier = supplier;
+		this.pictureUrl = pictureUrl;
+		this.Sku = sku;
+		this.typeBook = typeBook;
+		this.price = price;
+	}
 
 	public Product(String codeProduct, String productName, String nameAuthor, String description, int price,
 			String typeBook) {
@@ -154,5 +173,21 @@ public class Product implements Serializable {
 
 	public String getProductName() {
 		return this.name;
+	}
+
+	public String getNXB() {
+		return this.NXB;
+	}
+
+	public void setNXB(String nxb) {
+		this.NXB = nxb;
+	}
+
+	public String getSupplier() {
+		return this.supplier;
+	}
+
+	public void setSupplier(String supplier) {
+		this.supplier = supplier;
 	}
 }

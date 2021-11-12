@@ -10,14 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.DTOs.BusinessDtos.LoginDTO;
+import com.data.DAOs.UserDAO;
 import com.model.User;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	UserDAO userDao = null;
+	
 	public LoginController() {
 		super();
+		userDao = new UserDAO();
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,13 +38,16 @@ public class LoginController extends HttpServlet {
 			LoginDTO loginDTO = new LoginDTO();
 			loginDTO.setUsername(request.getParameter("username"));
 			loginDTO.setPassword(request.getParameter("password"));
-
+			User user = null;
 			if (new User().login(loginDTO)) {
-				int uid = loginDTO.getId();
 				request.getSession().setAttribute("username", loginDTO.getUsername());
+				//Object name = request.getSession().getAttribute("username");
+				//user = userDao.getUserByUserName(name.toString());
+				
 				Cookie username = new Cookie("named", loginDTO.getUsername());
 				username.setMaxAge(60*60*24);
 				response.addCookie(username);
+
 				response.sendRedirect("home");
 				return;
 			} else {
