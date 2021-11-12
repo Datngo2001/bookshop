@@ -16,6 +16,7 @@ import com.services.HashService;
 public class Seed {
     public void doSeed() {
         // Add role
+    	User user = new User();
         RoleDAO roleDAO = new RoleDAO();
         roleDAO.addRole(new Role("Admin"));
         roleDAO.addRole(new Role("Staff"));
@@ -23,11 +24,18 @@ public class Seed {
 
         // Add admin account
         RegisterDTO registerDTO = new RegisterDTO();
+        RegisterDTO registerDTO1 = new RegisterDTO();
         registerDTO.setUsername("admin");
         registerDTO.setPassword("522001");
         registerDTO.setReEnter("522001");
         registerDTO.setRole("Admin");
+        registerDTO1.setUsername("ngocthien");
+        registerDTO1.setPassword("230601");
+        registerDTO1.setReEnter("230601");
+        registerDTO1.setRole("Customer");
         CreateAccount(registerDTO);
+        CreateAccount(registerDTO1);
+        
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -39,6 +47,7 @@ public class Seed {
 
         // Add product and add category for product
         ProductDAO productDAO = new ProductDAO();
+
         Product product = new Product("B1", "Ramma 1/2", "Thien Nguyen", "Have a nice day", 2000, "Classic");
         Product product1 = new Product("B2", "Inuyasha chap 1", "Dat Ngo", "Go to the moon", 3000, "Romance");
         Product product2 = new Product("B3", "Josee, The Tiger and the Fish", "Duong le", "Meme", 2000, "Comedy");
@@ -70,7 +79,7 @@ public class Seed {
         if (registerDTO.getRole().equals("")) {
             registerDTO.setRole("Customer");
         }
-        List<Role> roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+        Role roles = new RoleDAO().getRoleByName(registerDTO.getRole());
 
         // Creat user entity
         User user = new User();

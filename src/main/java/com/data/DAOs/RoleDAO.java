@@ -2,6 +2,8 @@ package com.data.DAOs;
 
 import com.model.Role;
 import org.hibernate.*;
+
+import java.util.Iterator;
 import java.util.List;
 import javax.persistence.criteria.*;
 
@@ -9,9 +11,10 @@ import com.data.DbUtil;
 
 public class RoleDAO {
     // SELECT ----------------------------------------------------
-    public List<Role> getRoleByName(String name) {
+    public Role getRoleByName(String name) {
         Transaction transaction = null;
         List<Role> rsList = null;
+        Role role = null;
         try (Session session = DbUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
@@ -29,8 +32,10 @@ public class RoleDAO {
             }
             e.printStackTrace();
         }
-
-        return rsList;
+        for(Iterator<Role> i = rsList.iterator(); i.hasNext();) {
+        	role = i.next();
+        }
+        return role;
     }
 
     // INSERT ----------------------------------------------------

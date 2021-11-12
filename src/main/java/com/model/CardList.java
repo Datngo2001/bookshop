@@ -12,15 +12,16 @@ public class CardList implements Serializable {
 	@Column(name = "id")
 
 	public int id;
-	public int uid;
+	public String username;
 	public int price;
 	public String name;
 	public String author;
 	public int amount;
+	public double total;
 	public CardList() {}
-	public CardList(int uid, String name, String author, int amount, int price) {
+	public CardList(String uid, String name, String author, int amount, int price) {
 		super();
-		this.uid = uid;
+		this.username = uid;
 		this.name = name;
 		this.author = author;
 		this.amount = amount;
@@ -39,11 +40,11 @@ public class CardList implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUid() {
-		return uid;
+	public String getUid() {
+		return username;
 	}
-	public void setUid(int uid) {
-		this.uid = uid;
+	public void setUid(String uname) {
+		this.username = uname;
 	}
 	public String getName() {
 		return name;
@@ -64,8 +65,9 @@ public class CardList implements Serializable {
 		this.amount = amount;
 	}
 	public double totalPrice() {
-		double total =  this.amount * getPrice();
+		total +=  this.amount * getPrice();
 		return total;
 	}
+
 	
 }

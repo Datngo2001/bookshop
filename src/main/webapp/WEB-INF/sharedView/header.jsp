@@ -71,9 +71,9 @@
           <li class="navbar-item">
             <a href="" class="navbar-item-link"><i class="navbar_list-icon fas fa-question-circle"></i> Help?</a>
           </li>
-          <li class="navbar-item">Sign up</li>
+          <li class="navbar-item"><a href="register" class="navbar-item-link">Sign up</a></li>
           <li class="navbar-item">|</li>
-          <li class="navbar-item">Log in</li>
+          <li class="navbar-item"><a href="login" class="navbar-item-link">Log in</a></li>
         </ul>
       </nav>
       <div class="navbar-search">
@@ -103,18 +103,18 @@
             <li class="search-right-item">
               <a href="#" class="wishlist-link">
                 <div class="wishlist-product"></div>
-                <span class="wishlist-title"> Wishlist</span>
+                <input type="submit" name="" class="btn-cart-list" value="Wishlist"/>
               </a>
             </li>
           </ul>
           <ul class="search-right-list">
             <li class="search-right-item">
             <form action="payment" method="get">
-              	<input type="hidden" name="uId" value="1"> 
+              	<input type="hidden" name="username" value="${username}"> 
               	<a class="cart-link">
                 <div class="cart-product"> </div>
                 </a>
-                <span class="cart-title"> Cart</span>
+                <input type="submit" class="btn-cart-list" name="" value="Go cart"/>
 
              </form>
               <div class="cart-products">

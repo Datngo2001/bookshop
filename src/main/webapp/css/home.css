@@ -172,11 +172,13 @@ img.product-item-img {
   width: 500px;
 }
 div.product-item-img {
+
   padding-top: 100%;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   overflow-y: hidden;
+
 }
 .product-item-name {
   margin: 10px 8px;

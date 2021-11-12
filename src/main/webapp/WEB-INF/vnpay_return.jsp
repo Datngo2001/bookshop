@@ -1,9 +1,7 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
 <%@page import="com.vnpay.common.Config"%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collections"%>
 <%@page import="java.util.List"%>
@@ -11,6 +9,7 @@
 <%@page import="java.util.Enumeration"%>
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,33 +22,13 @@
         <meta name="author" content="">
         <title>VNPAY RESPONSE</title>
         <!-- Bootstrap core CSS -->
-        <link href="./css/bootstrap.min.css" rel="stylesheet"/>
+
         <!-- Custom styles for this template -->
-        <link href="./css/jumbotron-narrow.css" rel="stylesheet"> 
+		<c:import url="sharedView/global.html"></c:import>
         <script src="./js/jquery-1.11.3.min.js"></script>
     </head>
     <body>
-        <%
-            //Begin process return from VNPAY
-            Map fields = new HashMap();
-            for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
-                String fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
-                String fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
-                if ((fieldValue != null) && (fieldValue.length() > 0)) {
-                    fields.put(fieldName, fieldValue);
-                }
-            }
 
-            String vnp_SecureHash = request.getParameter("vnp_SecureHash");
-            if (fields.containsKey("vnp_SecureHashType")) {
-                fields.remove("vnp_SecureHashType");
-            }
-            if (fields.containsKey("vnp_SecureHash")) {
-                fields.remove("vnp_SecureHash");
-            }
-            String signValue = Config.hashAllFields(fields);
-
-        %>
         <c:import url="sharedView/header.jsp"></c:import>
         <!--Begin display -->
         <div class="container">
@@ -87,19 +66,7 @@
                 </div> 
                 <div class="form-group">
                     <label >Payment Status:</label>
-                    <label>
-                        <%
-                            if (signValue.equals(vnp_SecureHash)) {
-                                if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
-                                    out.print("Success");
-                                } else {
-                                    out.print("Failed");
-                                }
-
-                            } else {
-                                out.print("invalid signature");
-                            }
-                        %></label>
+                    <label>${status}</label>
                 </div> 
                   <div class="form-group">
                     <label><a href="home">Return Homepage</a></label>
@@ -109,9 +76,7 @@
             <p>
                 &nbsp;
             </p>
-            <footer class="footer">
-                <p>&copy; VNPAY 2021</p>
-            </footer>
+
             
         </div>  
         	<c:import url="sharedView/footer.jsp"></c:import>

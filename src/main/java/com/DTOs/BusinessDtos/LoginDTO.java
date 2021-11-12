@@ -5,7 +5,15 @@ public class LoginDTO {
 	String password;
 	byte[] passwordHash;
 	byte[] passwordSalt;
+	public int id;
+	
+	public int getId() {
+		return id;
+	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getUsername() {
 		return username;
 	}

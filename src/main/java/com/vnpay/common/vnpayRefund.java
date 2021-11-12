@@ -31,14 +31,10 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/vnpayRefund")
 public class vnpayRefund extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-
     public vnpayRefund() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
         //vnp_Command = refund

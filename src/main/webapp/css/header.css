@@ -256,7 +256,7 @@ span.logo-header {
     display: block;
 }
 .search-right-item:hover .cart-products {
-	display: block;
+	display: none;
 }
 .cart-product-list_nocart {
     padding: 24px 0;
@@ -349,7 +349,17 @@ p.trending-item-name-1 {
 }
 
 
-
+.btn-cart-list {
+	border: none; 
+	cursor: pointer; 
+	background-color: transparent;
+	font-size: 15px;
+	font-weight: 300;
+	color: #5D6D7E;
+}
+.btn-cart-list:hover {
+	color: #273746;
+}
 
 
 
