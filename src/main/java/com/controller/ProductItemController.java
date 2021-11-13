@@ -39,8 +39,6 @@ public class ProductItemController extends HttpServlet {
 		try {
 			String action = request.getParameter("command");
 
-			System.out.println("Command: " + action);
-
 			if (action == null) {
 				action = "Go to productList.jsp";
 			}
@@ -65,7 +63,6 @@ public class ProductItemController extends HttpServlet {
 
 		try {
 			id = Integer.parseInt(request.getParameter("productID"));
-			System.out.println("Product Id: " + id);
 			product = productDAO.getProduct(id);
 
 			if (product == null) {

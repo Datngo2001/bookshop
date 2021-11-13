@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.model.Product;
 
 public class DataUtil {
+
     public static ArrayList<Product> getCrawlData() {
         ArrayList<Product> dataList = new ArrayList<Product>();
 /*
@@ -403,6 +404,7 @@ public class DataUtil {
         dataList.add(product58);
         dataList.add(product59);
 
-        return dataList;
-    }
+
+                return dataList;
+        }
 }

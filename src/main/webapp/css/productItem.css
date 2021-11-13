@@ -4,6 +4,8 @@ body {
 .product-container > section {
   background-color: #fff;
   border-radius: 3px;
+  padding: 20px;
+  margin-bottom: 20px;
 }
 .product {
   padding: 20px;
@@ -131,7 +133,84 @@ body {
 .product-content-detail {
   width: 60%;
 }
-
+.product-details-description {
+  font-size: 16px;
+  margin-top: 20px;
+}
+/* rating */
+.product-rating {
+  border-bottom: 1px solid #c1c1c1;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+.rating-view {
+  align-items: center;
+  display: flex;
+  width: 25%;
+  flex-direction: column;
+}
+.user-rating,
+.rating {
+  font-weight: bold;
+}
+.user-rating {
+  font-size: 45px;
+  text-align: center;
+}
+.rating {
+  font-size: 25px;
+}
+.rating-star {
+  color: #f6a500;
+  display: flex;
+  flex: 1;
+}
+.review-rating-container {
+  width: calc(75% - 30px);
+  margin-left: 30px;
+}
+.review-rating {
+  display: flex;
+}
+.noti-non-user {
+  margin-top: 30px;
+}
+.user-comments {
+  padding-top: 20px;
+}
+.user-comment {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 0;
+}
+.user-comment:not(:first-child) {
+  border-top: 1px solid #c1c1c1;
+}
+.user {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.username {
+  font-weight: bold;
+}
+.comment-date {
+  color: #999;
+  font-size: 14px;
+}
+.comment {
+}
+.comment-content {
+  color: #333;
+  margin-top: 20px;
+  font-size: 14px;
+}
+/* nxb - author */
+.product-supplier-author {
+  display: none;
+}
 @media only screen and (min-width: 1024px) {
   .product-container {
     width: 1200px;
@@ -207,5 +286,48 @@ body {
   }
   .product-content-detail {
     width: 70%;
+  }
+  /* rating */
+  .rating-view {
+    width: 10%;
+  }
+  .review-rating-container {
+    width: calc(30% - 40px);
+    margin-left: 40px;
+  }
+  .noti-non-user {
+    align-items: center;
+    display: flex;
+    width: 60%;
+    font-size: 12px;
+    margin-top: 0;
+    justify-content: center;
+  }
+  .user-comment {
+    flex-direction: row;
+  }
+  .user-comment:not(:first-child) {
+    border: none;
+  }
+  .user {
+    flex-direction: column;
+    width: calc(15% - 30px);
+    margin-right: 30px;
+  }
+  .comment {
+    width: 85%;
+  }
+  /* nxb - author */
+  .product-supplier-author {
+    display: block;
+  }
+  .product-author-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    line-height: 23px;
+  }
+  .product-row-content > span {
+    font-weight: bold;
   }
 }
