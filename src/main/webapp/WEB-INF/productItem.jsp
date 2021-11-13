@@ -24,7 +24,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <img
               class="product-image"
               src="${product.pictureUrl}"
-              alt="Spy x Family - Chap 3"
+              alt="${product.getProductName()}"
             />
           </figure>
           <div class="button-wrapper">
@@ -38,6 +38,22 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         </div>
         <div class="product-info">
           <h1 class="product-name">${product.getProductName()}</h1>
+          <div class="product-supplier-author">
+            <div class="product-author-row">
+              <div class="product-row-content">
+                Nhà cung cấp:
+                <span style="color: #2489f4">${product.supplier}</span>
+              </div>
+              <div class="product-row-content">
+                Tác giả: <span>${product.nameAuthor}</span>
+              </div>
+            </div>
+            <div class="product-author-row">
+              <div class="product-row-content">
+                Nhà xuất bản: <span>${product.NXB}</span>
+              </div>
+            </div>
+          </div>
           <div class="product-rate">
             <div class="product-stars">
               <i class="fas fa-star"></i>
@@ -95,8 +111,133 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="product-content-label">Genres</div>
             <div class="product-content-detail">${product.typeBook}</div>
           </div>
-          <div>${product.description}</div>
+          <div class="product-details-description">${product.description}</div>
         </div>
+      </section>
+      <section class="product-rating-container">
+        <div class="product-title">Đánh giá sản phẩm</div>
+        <section class="product-rating">
+          <div class="rating-view">
+            <div class="user-rating">5<span class="rating">/5</span></div>
+            <div class="rating-star">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+            <span class="number-rating">(3 <span>đánh giá</span>)</span>
+          </div>
+          <div class="review-rating-container">
+            <div class="review-rating">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>100%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>100%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>100%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <span>100%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+              </div>
+              <span>100%</span>
+            </div>
+          </div>
+          <div class="noti-non-user">
+            Chỉ có thành viên mới có thể viết nhận xét.Vui lòng đăng nhập hoặc
+            đăng ký.
+          </div>
+        </section>
+        <section class="user-comments">
+          <div class="user-comment">
+            <section class="user">
+              <div class="username">Duong Le</div>
+              <span class="comment-date">12/11/2021</span>
+            </section>
+            <section class="comment">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="comment-content">
+                Truyện bìa xin, nét vẽ là gu của mình nói chung art đẹp lắm.
+                Truyện kiểu đáng yêu nhẹ nhàng hài hước cũng có ý nghĩa cũng có.
+                Chưa kể fahasa bọc truyện xinh lắm đóng gói đẹp mà giao còn
+                nhanh ghê ý. Bộc này rất đáng để mua mà mình đu muộn nên không
+                có full quà tặng từ tập 1 buồn ghê ý
+              </div>
+            </section>
+          </div>
+          <div class="user-comment">
+            <section class="user">
+              <div class="username">Nguyen Minh Khang</div>
+              <span class="comment-date">12/11/2021</span>
+            </section>
+            <section class="comment">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="comment-content">
+                Dành cho các bạn lười đọc nhiều chữ thì hãy mua truyện tranh.
+                Truyện tranh bao gồm cả hình và chữ, tùy đợt mà bìa rời, kèm quà
+                như card pvc, postcard
+              </div>
+            </section>
+          </div>
+          <div class="user-comment">
+            <section class="user">
+              <div class="username">Le Ho Hai Duong</div>
+              <span class="comment-date">12/11/2021</span>
+            </section>
+            <section class="comment">
+              <div class="rating-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="comment-content">
+                Truyện rất hay và ok , có nhiều tình tiết hài hước. Xịn
+                hết......................................................
+              </div>
+            </section>
+          </div>
+        </section>
       </section>
     </main>
     <c:import url="sharedView/footer.jsp"></c:import>
