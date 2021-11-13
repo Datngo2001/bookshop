@@ -58,28 +58,34 @@ public class returnController extends HttpServlet {
             fields.remove("vnp_SecureHash");
         }
         String signValue = Config.hashAllFields(fields);
-        //String name = request.getParameter("named");
+        String name = "";
         Object uname = request.getSession().getAttribute("username");
+        if(uname == null) {
+        	name = "";
+        }
+        else {
+        	name = uname.toString();
+        }
     	CardList cart = null;
         if (signValue.equals(vnp_SecureHash)) {
             if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
             	
-            	List<CardList> carts = cartDao.getCartList(uname.toString());
+            	List<CardList> carts = cartDao.getCartList(name);
 				for(Iterator<CardList> i = carts.iterator(); i.hasNext();) {
 					cart = i.next();
-					MyProduct product = new MyProduct(uname.toString(), cart.getAuthor(), cart.getName());
+					MyProduct product = new MyProduct(name, cart.getAuthor(), cart.getName());
 					orderDao.addItemToUser(product);
 				}
-				cartDao.removeAllProduct(uname.toString());
+				cartDao.removeAllProduct(name);
 				request.setAttribute("list", carts);
-				History his = new History(uname.toString(), code, transId, info, amount, bank, day);
+				History his = new History(name, code, transId, info, amount, bank, day);
 				hisDao.addBillofUser(his);
             	vnp_TransactionStatus = "Success";
             } else {
             	vnp_TransactionStatus = "Failed";
             }
         } else {
-        	vnp_TransactionStatus = "Invalid signature" + uname.toString();
+        	vnp_TransactionStatus = "Invalid signature" + name;
         }
         request.setAttribute("status", vnp_TransactionStatus);
 		request.getRequestDispatcher(nextUrl).forward(request, response);

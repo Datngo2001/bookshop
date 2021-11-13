@@ -7,7 +7,7 @@ import com.model.Product;
 public class DataUtil {
     public static ArrayList<Product> getCrawlData() {
         ArrayList<Product> dataList = new ArrayList<Product>();
-
+/*
         Product product0 = new Product("TGDQ-KNY-T1TKB",
                 "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 1: Tàn Khốc (Tái Bản)", "Koyoharu Gotouge",
                 "<p class='rtejustify' style='text-align: justify;'>Vào thời Taisho, có một cậu bé bán than với tấm lòng nhân hậu tên Tanjiro. Những ngày yên bình đã chẳng còn khi Quỷ đến tàn sát cả gia đình cậu, chỉ duy nhất người em gái Nezuko còn sống sót nhưng lại bị biến thành Quỷ. Mang trong mình quyết tâm chữa cho em gái, Tanjiro đã cùng Nezuko bắt đầu cuộc hành trình tìm kiếm tung tích con quỷ đã ra tay với gia đình cậu!!</p><p class='rtejustify' style='text-align: justify;'>Cuộc phiêu lưu trên con đường kiếm sĩ đã bắt đầu!!</p><p class='rtejustify' style='text-align: justify;'>Sau thời gian dài chuẩn bị, cuối cùng thì 'Kimetsu no Yaiba' - Một trong những Manga Hot nhất Nhật Bản, đã bán ra 25 triệu bản in trong năm 2019 sẽ được phát hành tại Việt Nam vào mùa xuân 2020 trong tên gọi: 'Thanh gươm diệt quỷ'.</p><p class='rtejustify' style='text-align: justify;'>Với sự đầu tư về hình thức (Sử dụng dữ liệu 100%, Bìa áo cán mờ phủ UV), rất hi vọng đây sẽ tiếp tục là một bộ truyện tạo nên cơn sốt mới, bên cạnh những siêu phẩm Shonenjump khác như 'Dragon Ball', 'One Piece', 'Naruto', 'My hero academia', 'Bleach'...!!</p>    <div class='clear'></div>",
@@ -166,6 +166,7 @@ public class DataUtil {
                 "NXB Kim Đồng", "Nhà Xuất Bản Kim Đồng",
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/t/h/thanh-guom-diet-quy---tap-21_1.jpg",
                 "8935244851359", "Adventure, Action, Shounen, Fantasy, Drama, Historical, Supernatural", 22000);
+        */
         Product product27 = new Product("NC5ND-T2", "Nhà Có 5 Nàng Dâu - Tập 2", "Negi Haruba",
                 "<p style='text-align: justify;'>Nhà Có 5 Nàng Dâu - Tập 2</p><p style='text-align: justify;'>Anh chàng gia sư bất đắc dĩ Futarou đang gánh vác sứ mệnh dẫn lối cho 5 chị em gái xinh đẹp nhưng lại 'ghét học' và 'suýt soát lưu ban' tới ngưỡng cửa 'lễ tốt nghiệp'. Mục tiêu đầu tiên của cậu là cố gắng chiếm được cảm tình của từng cô một.</p><p style='text-align: justify;'>Sau trận đấu trí về các võ tướng thời Chiến Quốc, cậu giành được sự tin tưởng của cô chị ba Miku. Nhưng cuộc đời thật lắm chông gai, chưa mừng được bao lâu, cậu đã phải đối mặt với nguy cơ đánh mất niềm tin của cả 5 khi kẹt trong một tình huống tình ngay lí gian tại tư gia nhà Nakano với cô chị hai Nino!!</p><p style='text-align: justify;'>Liệu Futarou có thể rửa oan cho mình!?</p>    <div class='clear'></div>",
                 "NXB Kim Đồng", "Nhà Xuất Bản Kim Đồng",
@@ -340,7 +341,7 @@ public class DataUtil {
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_186773.jpg",
                 "8935235221345", "", 81000);
 
-        dataList.add(product0);
+        /*dataList.add(product0);
         dataList.add(product1);
         dataList.add(product2);
         dataList.add(product3);
@@ -367,6 +368,7 @@ public class DataUtil {
         dataList.add(product24);
         dataList.add(product25);
         dataList.add(product26);
+        */
         dataList.add(product27);
         dataList.add(product28);
         dataList.add(product29);

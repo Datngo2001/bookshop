@@ -24,7 +24,6 @@ public class Product implements Serializable {
 	@Type(type = "text")
 	public String description;
 	public String name;
-
 	public String NXB;
 	public String supplier;
 	public int price;
@@ -57,29 +56,18 @@ public class Product implements Serializable {
 		this.typeBook = typeBook;
 	}
 
-	public Product(List<Category> categorys, int id, String codeProduct, String nameAuthor, String description,
-			int price, String pictureUrl, String sku, String typeBook) {
-		this.categorys = categorys;
-		this.id = id;
-		this.codeProduct = codeProduct;
-		this.nameAuthor = nameAuthor;
-		this.description = description;
-		this.price = price;
-		this.pictureUrl = pictureUrl;
-		Sku = sku;
-		this.typeBook = typeBook;
-	}
+	
 
-	public Product(String codeProduct, String productName, String nameAuthor, String description, int price,
-			String pictureUrl, String sku, String typeBook) {
-		this.codeProduct = codeProduct;
-		this.name = productName;
+
+	public Product(int id, String nameAuthor, String description, String name, String nXB, String supplier, int price) {
+		super();
+		this.id = id;
 		this.nameAuthor = nameAuthor;
 		this.description = description;
+		this.name = name;
+		NXB = nXB;
+		this.supplier = supplier;
 		this.price = price;
-		this.pictureUrl = pictureUrl;
-		Sku = sku;
-		this.typeBook = typeBook;
 	}
 
 	public Product() {

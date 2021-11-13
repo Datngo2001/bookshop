@@ -98,6 +98,7 @@
                   <c:param name="command" value="LOAD" />
                   <c:param name="productID" value="${product.id}" />
                 </c:url>
+
                 <div class="grid_column-2-5">
                   <div class="card-trending">
                     <div class="product-item border-card">
