@@ -1,16 +1,22 @@
 package com.model;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "cart_list")
 public class CardList implements Serializable {
+	@OneToMany
+	private List<User> user = new ArrayList<User>();
+	public List<User> getUser() {
+		return user;
+	}
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-
 	public int id;
 	public String username;
 	public int price;
@@ -27,6 +33,18 @@ public class CardList implements Serializable {
 		this.author = author;
 		this.amount = amount;
 		this.price = price;
+	}
+	public CardList(List<User> user, int id, String username, int price, String name, String author, int amount,
+			String codeProduct) {
+		super();
+		this.user = user;
+		this.id = id;
+		this.username = username;
+		this.price = price;
+		this.name = name;
+		this.author = author;
+		this.amount = amount;
+		this.codeProduct = codeProduct;
 	}
 	public double getPrice() {
 		return price;
@@ -80,5 +98,15 @@ public class CardList implements Serializable {
 	public void setbId(String code) {
 		this.codeProduct = code;
 	}
+	public void setUser(List<User> user) {
+		this.user = user;
+	}
+	public String getCodeProduct() {
+		return codeProduct;
+	}
+	public void setCodeProduct(String codeProduct) {
+		this.codeProduct = codeProduct;
+	}
+
 	
 }

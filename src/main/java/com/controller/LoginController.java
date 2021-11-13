@@ -27,6 +27,7 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextUrl = "admin/login.jsp";
+		String url = "";
 		// get current action
 		String action = request.getParameter("action");
 
@@ -35,19 +36,27 @@ public class LoginController extends HttpServlet {
 		}
 
 		if (action.equals("LOGIN")) {
+			
 			LoginDTO loginDTO = new LoginDTO();
 			loginDTO.setUsername(request.getParameter("username"));
 			loginDTO.setPassword(request.getParameter("password"));
 			if (new User().login(loginDTO)) {
+				//get username and id
 				request.getSession().setAttribute("username", loginDTO.getUsername());
+				request.getSession().setAttribute("id", loginDTO.getId());
+				//take role id of user
+				//Object id = request.getSession().getAttribute("username");
 				Object name = request.getSession().getAttribute("username");
-				int id = userDao.getUserByUserName(name.toString());
-				request.getSession().setAttribute("role", id);
-				Cookie username = new Cookie("named", loginDTO.getUsername());
-				username.setMaxAge(60*60*24);
-				response.addCookie(username);
-
-				response.sendRedirect("home");
+				User user = userDao.getUserByUserName(name.toString());
+				int rid = user.getRoles().getId();
+				int id = user.getId();
+				request.getSession().setAttribute("role", rid);
+				request.getSession().setAttribute("id", id);
+				if (rid == 3) 
+					url = "home";
+				else if(rid == 1 || rid == 2)
+					url = "admin";
+				response.sendRedirect(url);
 				return;
 			} else {
 				request.setAttribute("loginMessage", "Password or username incorrect");

@@ -23,7 +23,7 @@ public class User implements Serializable {
 
 	@OneToOne
 	private Role roles;
-
+	private CardList cart;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

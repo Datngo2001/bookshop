@@ -1,0 +1,112 @@
+package com.paypal;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.paypal.api.payments.Amount;
+import com.paypal.api.payments.Details;
+import com.paypal.api.payments.Item;
+import com.paypal.api.payments.ItemList;
+import com.paypal.api.payments.Links;
+import com.paypal.api.payments.Payer;
+import com.paypal.api.payments.PayerInfo;
+import com.paypal.api.payments.Payment;
+import com.paypal.api.payments.PaymentExecution;
+import com.paypal.api.payments.RedirectUrls;
+import com.paypal.api.payments.Transaction;
+import com.paypal.base.rest.APIContext;
+import com.paypal.base.rest.PayPalRESTException;
+
+public class PaymentServices {
+	private static final String CLIENT_ID = "AUptfVNh1jPz2TKZIcEATiMBz_TkuBYiLnyK8lufX6nE71dXT98tGQ-CxSb0Iu1IgtCW2UbjtOxzOMSI";
+	private static final String CLIENT_SECRET = "ENN7wl8Wu_g6lFRsLIv96e8JJtwmy0w67cd2S4KOv_ZEybryMzhAm3prragYaCfGG2J-05Li72Gst-Lc";
+	private static final String MODE = "sandbox";
+	
+	public String authorizePayment(Checkout checkout) throws PayPalRESTException {
+		Payer payer = getPayerInformation();
+		getRedirectURLs();
+		List<Transaction> lisTransactions = getTransacitonInfo(checkout);
+		Payment requestPayment = new Payment();
+		requestPayment.setTransactions(lisTransactions)
+					  .setRedirectUrls(getRedirectURLs())
+					  .setPayer(payer)
+					  .setIntent("authorize");
+		APIContext apiContent = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+		Payment approvedPayment = requestPayment.create(apiContent);
+		
+		System.out.println(approvedPayment);
+		return getApprovalLink(approvedPayment);
+	}
+	
+	private String getApprovalLink(Payment approvedPayment) {
+		List<Links> links = approvedPayment.getLinks();
+		String approvalLink = null;
+		for(Links link : links) {
+			if (link.getRel().equalsIgnoreCase("approval_url")) {
+				approvalLink = link.getHref();
+			}
+		}
+		return approvalLink;
+	}
+	private List<Transaction> getTransacitonInfo(Checkout checkout) {
+		Details details = new Details();
+		details.setShipping(checkout.getShipping());
+		details.setSubtotal(checkout.getSubTotal());
+		details.setTax(checkout.getTax());
+		
+		Amount amount = new Amount();
+		amount.setCurrency("USD");
+		amount.setTotal(checkout.getTotal());
+		amount.setDetails(details);
+		
+		Transaction transaction = new Transaction();
+		transaction.setAmount(amount);
+		transaction.setDescription(checkout.getProductName());
+		
+		ItemList itemList = new ItemList();
+		List<Item> items = new ArrayList<Item>();
+		Item item = new Item();
+		item.setCurrency("USD")
+		.setName(checkout.getProductName())
+		.setPrice(checkout.getSubTotal())
+		.setTax(checkout.getTax())
+		.setQuantity("1");
+		
+		items.add(item);
+		itemList.setItems(items);
+		transaction.setItemList(itemList);
+		List<Transaction> listTransactions = new ArrayList<Transaction>();
+		listTransactions.add(transaction);
+		
+		return listTransactions;
+	}
+	private RedirectUrls getRedirectURLs() {
+		RedirectUrls redirect = new RedirectUrls();
+		redirect.setCancelUrl("http://localhost:8082/bookshop/cancel");
+		redirect.setReturnUrl("http://localhost:8082/bookshop/review_payment");
+		return redirect;
+	}
+	private Payer getPayerInformation() {
+		Payer payer = new Payer();
+		payer.setPaymentMethod("paypal");
+		PayerInfo payerInfo = new PayerInfo();
+		payerInfo.setFirstName("John").setLastName("Doe").setEmail("sb-evtpu8326832@personal.example.com");
+		
+		payer.setPayerInfo(payerInfo);
+		return payer;
+	}
+	public Payment getPaymentDetail(String pId) throws PayPalRESTException{
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+		return Payment.get(apiContext, pId);
+	}
+	public Payment executePayment(String paymentId, String payerId) throws PayPalRESTException {
+		PaymentExecution paymentExecution = new PaymentExecution();
+		paymentExecution.setPayerId(payerId);
+		
+		Payment payment = new Payment().setId(paymentId);
+		APIContext apiContext = new APIContext(CLIENT_ID, CLIENT_SECRET, MODE);
+		return payment.execute(apiContext, paymentExecution);
+		
+		
+	}
+}

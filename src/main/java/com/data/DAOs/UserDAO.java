@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.*;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
@@ -33,25 +34,22 @@ public class UserDAO {
 		}
 		return user;
 	}
-	public int getUserByUserName(String username) {
+	public User getUserByUserName(String username) {
 		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
-		EntityTransaction trans =  em.getTransaction();
-		String sql = "Select roles from User where username =:uname";
-		Query q = em.createQuery(sql);
+		String sql = "Select u from User u where u.username =:uname";
+		TypedQuery<User> q = em.createQuery(sql, User.class);
 		q.setParameter("uname", username);
 		try {
-			trans.begin();
-			int id = q.getFirstResult();
-			trans.commit();
-			return id;
+			User user = q.getSingleResult();
+			return user;
 		}
 		catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
 		finally {
 			em.close();
 		}
-		return 0;
 	}
 	
 
@@ -78,6 +76,7 @@ public class UserDAO {
 		if (rsList.size() > 0) {
 			loginDTO.setPasswordHash(rsList.get(0).passwordHash);
 			loginDTO.setPasswordSalt((rsList.get(0).passwordSalt));
+			loginDTO.setId((rsList.get(0).id));
 		}
 	}
 
