@@ -11,9 +11,7 @@ import javax.persistence.*;
 public class CardList implements Serializable {
 	@OneToMany
 	private List<User> user = new ArrayList<User>();
-	public List<User> getUser() {
-		return user;
-	}
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -100,6 +98,9 @@ public class CardList implements Serializable {
 	}
 	public void setUser(List<User> user) {
 		this.user = user;
+	}
+	public List<User> getUser() {
+		return user;
 	}
 	public String getCodeProduct() {
 		return codeProduct;

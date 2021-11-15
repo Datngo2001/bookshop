@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.data.DAOs.CartDao;
 import com.data.DAOs.ProductDAO;
+import com.data.DAOs.UserDAO;
 import com.model.*;
 
 
@@ -20,9 +21,11 @@ public class PaymentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productDao;
 	private CartDao cartDao;
+	private UserDAO userDAO;
     public PaymentController() {
     	productDao = new ProductDAO();
     	cartDao = new CartDao();
+    	userDAO = new UserDAO();
     }
     /*Text payment
      * So the: 9704198526191432198
@@ -83,6 +86,7 @@ public class PaymentController extends HttpServlet {
 		String uname = request.getParameter("username");
         String productId = request.getParameter("pId");
         String quantityString = request.getParameter("quantity");
+        //User user = userDAO.getUserByUserName(uname);
         Product product = null;
 
         product = productDao.getProduct(Integer.parseInt(productId));

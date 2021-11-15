@@ -66,7 +66,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				<div class="total-price">
 					<form action="./confirm">
 						 <input id="hide" type="hidden" name="price" value=""/>
-						<button type="submit" class="btn btn-primary" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">VN Pay</button>
+						<button type="submit" class="btn btn-primary vnpay"><img src=""></button>
 					</form>
 		
 					

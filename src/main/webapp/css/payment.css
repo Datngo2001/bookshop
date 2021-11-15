@@ -92,7 +92,9 @@
     background-size: cover;
     padding-bottom: 30px;
 }
-
+.vnpay {
+	width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;
+}
 .band-name {
     text-align: center;
     margin: 0;

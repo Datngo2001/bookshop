@@ -16,12 +16,12 @@
         <!-- Custom styles for this template -->
       
         <script src="./js/jquery-1.11.3.min.js"></script>
-		<c:import url="sharedView/global.html"></c:import>
+		<c:import url="./sharedView/global.html"></c:import>
     </head>
 
     <body>
 	
-		<c:import url="sharedView/header.jsp"></c:import>
+		<c:import url="./sharedView/header.jsp"></c:import>
          <div class="container">
            <div class="header clearfix">
             <h3 class="text-muted">VNPAY</h3>
@@ -93,7 +93,7 @@
             </p>
 
         </div>
-		<c:import url="sharedView/footer.jsp"></c:import>
+		<c:import url="./sharedView/footer.jsp"></c:import>
         <link href="https://pay.vnpay.vn/lib/vnpay/vnpay.css" rel="stylesheet" />
         <script src="https://pay.vnpay.vn/lib/vnpay/vnpay.min.js"></script>
         <script type="text/javascript">

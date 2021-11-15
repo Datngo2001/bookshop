@@ -55,7 +55,7 @@ public class LoginController extends HttpServlet {
 				if (rid == 3) 
 					url = "home";
 				else if(rid == 1 || rid == 2)
-					url = "admin";
+					url = "admin/product";
 				response.sendRedirect(url);
 				return;
 			} else {
