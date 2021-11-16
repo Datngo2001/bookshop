@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextUrl = "admin/login.jsp";
+		String nextUrl = "WEB-INF/admin/login.jsp";
 		String url = "";
 		// get current action
 		String action = request.getParameter("action");
@@ -52,13 +52,18 @@ public class LoginController extends HttpServlet {
 				int id = user.getId();
 				request.getSession().setAttribute("role", rid);
 				request.getSession().setAttribute("id", id);
-				if (rid == 3) 
+				if (rid == 3) {
 					url = "home";
-				else if(rid == 1 || rid == 2)
+				}
+					
+				else if(rid == 1 || rid == 2) {					
+					request.getSession().setAttribute("rid", rid);
 					url = "admin/product";
+				}
 				response.sendRedirect(url);
 				return;
-			} else {
+			} 
+			else {
 				request.setAttribute("loginMessage", "Password or username incorrect");
 			}
 		}

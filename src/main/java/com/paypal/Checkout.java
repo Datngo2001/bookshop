@@ -10,11 +10,13 @@ public class Checkout {
 	
 	public Checkout(String productName, String subTotal, String shipping, String tax, String total) {
 		super();
+		
 		this.productName = productName;
 		this.subTotal = Float.parseFloat(subTotal);
 		this.shipping = Float.parseFloat(shipping);
 		this.tax = Float.parseFloat(tax);
 		this.total = Float.parseFloat(total);
+		
 	}
 	public String getProductName() {
 		return productName;

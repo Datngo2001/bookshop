@@ -12,7 +12,7 @@ import com.data.DAOs.ProductDAO;
 /**
  * Servlet implementation class EmployeeControllerSevlet
  */
-@WebServlet("/admin/EmployeeControllerSevlet")
+@WebServlet("/admin/employee")
 public class EmployeeControllerSevlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProductDAO productDAO;
@@ -48,7 +48,7 @@ public class EmployeeControllerSevlet extends HttpServlet {
 	}
 
 	private void listEmployee(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
+		request.getRequestDispatcher("../WEB-INF/admin/employee.jsp").forward(request, response);
 	}
 		
 

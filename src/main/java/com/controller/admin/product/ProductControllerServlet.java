@@ -35,10 +35,18 @@ public class ProductControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String theCommand = request.getParameter("command");
-			if(theCommand == null)
-				theCommand = "LIST";
+			Object role = request.getSession().getAttribute("rid");
+			if(theCommand == null && role == null) {
+				theCommand = "No";
+			}
+			else {
+				theCommand = "List";
+			}
 			switch(theCommand) {
 				case "Product":
+					listProduct(request, response);
+					break;
+				case "List":
 					listProduct(request, response);
 					break;
 				case "ADD":
@@ -52,13 +60,18 @@ public class ProductControllerServlet extends HttpServlet {
 					break;
 				case "Delete":
 					deleteProduct(request, response);
+				case "No":
+					noAccess(request, response);
 				default:
-					listProduct(request, response);
+					noAccess(request, response);
 			}
-			
-		} catch (Exception e) {
+		}
+		catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	private void noAccess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("../WEB-INF/admin/noPermission.jsp").forward(request, response);
 	}
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -83,7 +96,7 @@ public class ProductControllerServlet extends HttpServlet {
 		String theProductId = request.getParameter("id");
 		Product theProduct = productDAO.getProduct(Integer.parseInt(theProductId));
 		request.setAttribute("item", theProduct);
-		request.getRequestDispatcher("loadForm.jsp").forward(request, response);
+		request.getRequestDispatcher("../WEB-INF/admin/loadForm.jsp").forward(request, response);
 	}
 	private void addProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String name = request.getParameter("name");
@@ -101,7 +114,7 @@ public class ProductControllerServlet extends HttpServlet {
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
-		request.getRequestDispatcher("product.jsp").forward(request, response);
+		request.getRequestDispatcher("../WEB-INF/admin/product.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);

@@ -32,7 +32,7 @@ public class returnController extends HttpServlet {
 		hisDao = new HistoryDao();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextUrl = "WEB-INF/vnpay_return.jsp";
+		String nextUrl = "WEB-INF/vnpay/vnpay_return.jsp";
 		String vnp_TransactionStatus = "";
 		//hash attribute
         Map fields = new HashMap();
@@ -44,7 +44,7 @@ public class returnController extends HttpServlet {
             }
         }
         //get attribute
-        double amount = Integer.parseInt(request.getParameter("vnp_Amount"));
+        double amount = Integer.parseInt(request.getParameter("vnp_Amount")) / 100;
         String code = request.getParameter("vnp_TransactionNo");
         String day = request.getParameter("vnp_PayDate");
         String info = request.getParameter("vnp_OrderInfo");

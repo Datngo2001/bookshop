@@ -20,7 +20,7 @@ public class confirmController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextUrl = "WEB-INF/index_vnpay.jsp";
+		String nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
 		int price = Integer.parseInt(request.getParameter("price"));
 		
 		// get current action

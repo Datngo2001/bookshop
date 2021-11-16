@@ -1,49 +1,67 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="ISO-8859-1">
-    <style type="text/css">
-        table { border: 0; }
-        table td { padding: 10px; }
-    </style>
-<title>Insert title here</title>
+  <meta charset="ISO-8859-1">
+  <c:import url="../sharedView/global.html" />
+  <!-- Custom fonts for this template-->
+  <link href="https://ngocthien2306.github.io/Admin-Site/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
+  <title>Checkout</title>
 </head>
+
 <body>
-<div align="center">
-    <h1>Check Out</h1>
-    <br/>
-    <form action="authorize_payment" method="get">
-    <input type="hidden" name="action" value="Pay">
-    <table>
-        <tr>
-            <td>Product/Service:</td>
-            <td><input type="text" name="product" value="Next iPhone" /></td>
-        </tr>
-        <tr>
-            <td>Sub Total:</td>
-            <td><input type="text" name="subtotal" value="100" /></td>
-        </tr>
-        <tr>
-            <td>Shipping:</td>
-            <td><input type="text" name="shipping" value="10" /></td>
-        </tr>    
-        <tr>
-            <td>Tax:</td>
-            <td><input type="text" name="tax" value="10" /></td>
-        </tr>    
-        <tr>
-            <td>Total Amount:</td>
-            <td><input type="text" name="total" value="120" /></td>
-        </tr>
-        <tr>
-            <td colspan="2" align="center">
-                <input type="submit" value="Checkout" />
-            </td>
-        </tr>
-    </table>
-    </form>
-</div>
+
+    <c:import url="../sharedView/header.jsp"></c:import>
+    <br>
+
+    <br />
+    <div class="grid">
+      <div class="grid_row">
+        <div class="grid_column-8" style="margin: 0 auto" >
+          <h1>Check Out</h1>
+          <form action="authorize_payment" method="get">
+            <input type="hidden" name="action" value="Pay">
+            <div class="form-group">
+              <span class="">Product/Service</span>
+              <select class="form-control" id="" aria-describedby="emailHelp" name="product"> 
+              	   <option value="Rental Book">Rental Book</option>
+                   <option value="E-Book">E-Book</option>
+                   <option value="Audio Book">Audio Book</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <span class="">Sub Total</span>
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="subtotal" value="50" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <span class="">Shipping</span>
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="shipping" value="2" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <span class="">Tax</span>
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="2" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <span class="">Total Amount</span>
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="total" value="54" readonly="readonly">
+            </div>
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary" value="Checkout">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <br>
+    <c:import url="../sharedView/footer.jsp"></c:import>
+
 </body>
+
 </html>

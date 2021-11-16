@@ -64,11 +64,14 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 			<div class="grid_column-3">
 				
 				<div class="total-price">
-					<form action="./confirm">
+					<form action="confirm">
 						 <input id="hide" type="hidden" name="price" value=""/>
-						<button type="submit" class="btn btn-primary vnpay"><img src=""></button>
+						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
 					</form>
-		
+					<form action="authorize_payment">
+						 <input id="hide" type="hidden" name="price" value=""/>
+						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
+					</form>
 					
 					<div id="smart-button-container">
 						<div style="text-align: center;">
@@ -80,7 +83,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 		</div>
 		<form action="." method="get">
 			<input type="hidden" name="action" value="shop">
-			<input type="submit" class="btn btn-primary" value="Continue Shopping" style="width: 200px; height: 36px; align-items: center; margin: 10px 0; padding-top: 10px;">
+			<input type="submit" class="btn btn-primary vnpay" value="Continue Shopping">
 		</form>
 	</div>
 	<br/>

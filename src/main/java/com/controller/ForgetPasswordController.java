@@ -26,7 +26,7 @@ public class ForgetPasswordController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String nextUrl = "admin/forgot-password.jsp";
+		String nextUrl = "WEB-INF/admin/forgot-password.jsp";
 		// get current action
 		String action = request.getParameter("action");
 
