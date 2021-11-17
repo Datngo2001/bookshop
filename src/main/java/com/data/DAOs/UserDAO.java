@@ -3,15 +3,11 @@ package com.data.DAOs;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.*;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
-import com.model.Cart;
-import com.model.Role;
 import com.model.User;
 
 import org.hibernate.*;
@@ -133,18 +129,20 @@ public class UserDAO {
 	}
 
 	// INSERT ----------------------------------------------------
-	public void addUser(User user) {
+	public User addUser(User user) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
 			session.save(user);
 			transaction.commit();
+			return user;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+			return null;
 		}
 	}
 

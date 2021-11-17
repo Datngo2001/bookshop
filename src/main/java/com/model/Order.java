@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "user_order")
 public class Order implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +30,7 @@ public class Order implements Serializable {
     private User user;
     @OneToMany(mappedBy = "order")
     private List<Item> items = new ArrayList<Item>();
-    
+
     public Order(int id, Timestamp createAt, String status, float amount, User user, List<Item> items) {
         this.id = id;
         this.createAt = createAt;
@@ -86,5 +88,4 @@ public class Order implements Serializable {
         this.items = items;
     }
 
-    
 }

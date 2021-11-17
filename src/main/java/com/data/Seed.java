@@ -1,13 +1,14 @@
 package com.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.DTOs.BusinessDtos.RegisterDTO;
+import com.data.DAOs.CartDao;
 import com.data.DAOs.CategoryDAO;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
+import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
 import com.model.Role;
@@ -17,7 +18,6 @@ import com.services.HashService;
 public class Seed {
     public void doSeed() {
         // Add role
-        User user = new User();
         RoleDAO roleDAO = new RoleDAO();
         roleDAO.addRole(new Role("Admin"));
         roleDAO.addRole(new Role("Staff"));
@@ -76,5 +76,6 @@ public class Seed {
         // Save new user to database
         UserDAO userDAO = new UserDAO();
         userDAO.addUser(user);
+        new CartDao().CreateCartForUser(new Cart(), user);
     }
 }

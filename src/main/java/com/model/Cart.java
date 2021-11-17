@@ -22,6 +22,9 @@ public class Cart implements Serializable {
 	@OneToMany(mappedBy = "cart")
 	private List<LineItem> items = new ArrayList<LineItem>();
 
+	public Cart() {
+	}
+
 	public Cart(int id, User user, List<LineItem> items) {
 		this.id = id;
 		this.user = user;

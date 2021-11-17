@@ -12,13 +12,14 @@ import javax.servlet.ServletContext;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
+import com.data.DAOs.CartDao;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
 import com.services.EmailService;
 import com.services.HashService;
 
 @Entity
-@Table(name = "user")
+@Table(name = "app_user")
 public class User implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,6 +38,8 @@ public class User implements Serializable {
 	private Role roles;
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<Order>();
+	@OneToOne(mappedBy = "user")
+	private Cart cart;
 
 	public User() {
 	}
@@ -68,6 +71,22 @@ public class User implements Serializable {
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
+		this.gender = gender;
+	}
+
+	public User(int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
+			String lname, String email, Role roles, List<Order> orders, Cart cart, String gender) {
+		this.id = id;
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.passwordSalt = passwordSalt;
+		this.bdate = bdate;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.roles = roles;
+		this.orders = orders;
+		this.cart = cart;
 		this.gender = gender;
 	}
 
@@ -154,6 +173,8 @@ public class User implements Serializable {
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
 		user.setRoles(roles);
+		Cart cart = new CartDao().CreateCart(new Cart());
+		user.setCart(cart);
 
 		// Save new user to database
 		UserDAO userDAO = new UserDAO();
@@ -237,12 +258,6 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	/*
-	 * public List<Order> getOrders() { return orders; }
-	 * 
-	 * public void setOrders(List<Order> orders) { this.orders = orders; }
-	 */
-
 	public String getEmail() {
 		return email;
 	}
@@ -250,4 +265,21 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 }
