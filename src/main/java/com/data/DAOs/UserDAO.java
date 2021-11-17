@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
-import com.model.CardList;
+import com.model.Cart;
 import com.model.Role;
 import com.model.User;
 
@@ -34,6 +34,7 @@ public class UserDAO {
 		}
 		return user;
 	}
+
 	public User getUserByUserName(String username) {
 		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
 		String sql = "Select u from User u where u.username =:uname";
@@ -42,16 +43,13 @@ public class UserDAO {
 		try {
 			User user = q.getSingleResult();
 			return user;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-		finally {
+		} finally {
 			em.close();
 		}
 	}
-	
 
 	public void getPasswordHashAndSalt(LoginDTO loginDTO) {
 		Transaction transaction = null;
@@ -74,9 +72,9 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		if (rsList.size() > 0) {
-			loginDTO.setPasswordHash(rsList.get(0).passwordHash);
-			loginDTO.setPasswordSalt((rsList.get(0).passwordSalt));
-			loginDTO.setId((rsList.get(0).id));
+			loginDTO.setPasswordHash(rsList.get(0).getPasswordHash());
+			loginDTO.setPasswordSalt((rsList.get(0).getPasswordSalt()));
+			loginDTO.setId((rsList.get(0).getId()));
 		}
 	}
 

@@ -9,12 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.data.DAOs.CartDao;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.UserDAO;
 import com.model.*;
-
 
 @WebServlet("/payment")
 public class PaymentController extends HttpServlet {
@@ -22,32 +20,34 @@ public class PaymentController extends HttpServlet {
 	private ProductDAO productDao;
 	private CartDao cartDao;
 	private UserDAO userDAO;
-    public PaymentController() {
-    	productDao = new ProductDAO();
-    	cartDao = new CartDao();
-    	userDAO = new UserDAO();
-    }
-    /*Text payment
-     * So the: 9704198526191432198
-     * Ngay phat hanh: 07/15
-     * Ten: NGUYEN VAN A
-     * OTP: 123456
-     * */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
+	public PaymentController() {
+		productDao = new ProductDAO();
+		cartDao = new CartDao();
+		userDAO = new UserDAO();
+	}
+
+	/*
+	 * Text payment So the: 9704198526191432198 Ngay phat hanh: 07/15 Ten: NGUYEN
+	 * VAN A OTP: 123456
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 
-	private void goPayment(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	private void goPayment(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String nextUrl = "WEB-INF/payment.jsp";
 		String uname = request.getParameter("username");
-		List<CardList> cart = cartDao.getCartList(uname);
+		List<Cart> cart = cartDao.getCartList(uname);
 		request.setAttribute("cart_item", cart);
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 
-		
 	}
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		try {
 			// get current action
 			String action = request.getParameter("action");
@@ -57,7 +57,7 @@ public class PaymentController extends HttpServlet {
 			}
 			switch (action) {
 			case "ADD":
-				addProductToCart(request, response);
+				// addProductToCart(request, response);
 				break;
 			case "Pay":
 				goPayment(request, response);
@@ -69,39 +69,38 @@ public class PaymentController extends HttpServlet {
 				goPayment(request, response);
 				break;
 			}
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	private void removeProductInCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int productId = Integer.parseInt(request.getParameter("cId"));
-        cartDao.removeProduct(productId);
-        goPayment(request, response);
-		
+	private void removeProductInCart(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		int productId = Integer.parseInt(request.getParameter("cId"));
+		cartDao.removeProduct(productId);
+		goPayment(request, response);
+
 	}
-	private void addProductToCart(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String uname = request.getParameter("username");
-        String productId = request.getParameter("pId");
-        String quantityString = request.getParameter("quantity");
-        //User user = userDAO.getUserByUserName(uname);
-        Product product = null;
+	// private void addProductToCart(HttpServletRequest request, HttpServletResponse
+	// response) throws ServletException, IOException {
+	// String uname = request.getParameter("username");
+	// String productId = request.getParameter("pId");
+	// String quantityString = request.getParameter("quantity");
+	// //User user = userDAO.getUserByUserName(uname);
+	// Product product = null;
 
-        product = productDao.getProduct(Integer.parseInt(productId));
-        if(!cartDao.checkNameExist(product.codeProduct, uname)) {
-            CardList cart = new CardList(product.getCodeProduct(), uname, product.getProductName(), 
-            		product.getNameAuthor(), Integer.parseInt(quantityString), product.getPrice());
+	// product = productDao.getProduct(Integer.parseInt(productId));
+	// if(!cartDao.checkNameExist(product.codeProduct, uname)) {
+	// Cart cart = new Cart(product.getCodeProduct(), uname,
+	// product.getProductName(),
+	// product.getNameAuthor(), Integer.parseInt(quantityString),
+	// product.getPrice());
 
-            cartDao.addToCart(cart);
+	// cartDao.addToCart(cart);
 
-        }
-        
-        goPayment(request, response);
-	}
+	// }
 
-
-
-	
+	// goPayment(request, response);
+	// }
 }

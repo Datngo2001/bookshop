@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.hibernate.*;
 
 import com.data.DbUtil;
-import com.model.CardList;
+import com.model.Cart;
 
 
 public class CartDao {
@@ -18,7 +18,7 @@ public class CartDao {
 		
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCartList(String uname) {
+	public List<Cart> getCartList(String uname) {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'").getResultList();
 		}
@@ -28,7 +28,7 @@ public class CartDao {
 		return null;
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCartLists() {
+	public List<Cart> getCartLists() {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From CardList").getResultList();
 		}
@@ -37,7 +37,7 @@ public class CartDao {
 		}
 		return null;
 	}
-	public void addToCart(CardList cart) {
+	public void addToCart(Cart cart) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
@@ -59,7 +59,7 @@ public class CartDao {
 		return false;
 	}
 	@SuppressWarnings("unchecked")
-	public List<CardList> getCheck(String name, String uname) {
+	public List<Cart> getCheck(String name, String uname) {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'" + " and C.name =" + "'" + name + "'").getResultList();
 			
@@ -69,14 +69,14 @@ public class CartDao {
 		}
 		return null;
 	}
-	public CardList removeProduct(int productId) {
+	public Cart removeProduct(int productId) {
 		Transaction transaction = null;
-		CardList cart = null;
+		Cart cart = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			// start a transaction
 			transaction = session.beginTransaction();
 			// get an user object
-			cart = session.get(CardList.class, productId);
+			cart = session.get(Cart.class, productId);
 			if (cart != null) {
 				session.delete(cart);
 			}

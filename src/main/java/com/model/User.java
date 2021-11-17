@@ -18,23 +18,25 @@ import com.services.EmailService;
 import com.services.HashService;
 
 @Entity
-@Table(name = "app_user")
+@Table(name = "user")
 public class User implements Serializable {
-
-	@OneToOne
-	private Role roles;
-	private CardList cart;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	public int id;
-	public String username;
-	public byte[] passwordHash;
-	public byte[] passwordSalt;
-	public Date bdate;
-	public String fname;
-	public String lname;
-	public String email;
+	private int id;
+	private String username;
+	private byte[] passwordHash;
+	private byte[] passwordSalt;
+	private Date bdate;
+	private String fname;
+	private String lname;
+	private String email;
+
+	// Relation
+	@OneToOne
+	private Role roles;
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders = new ArrayList<Order>();
 
 	public User() {
 	}
@@ -54,9 +56,9 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public User(Role roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
-			Date bdate, String fname, String lname, String email, String gender) {
-		//this.orders = orders;
+	public User(Role roles, int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
+			String lname, String email, String gender) {
+		// this.orders = orders;
 		this.roles = roles;
 		this.id = id;
 		this.username = username;
@@ -235,14 +237,11 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	/*public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-	*/
+	/*
+	 * public List<Order> getOrders() { return orders; }
+	 * 
+	 * public void setOrders(List<Order> orders) { this.orders = orders; }
+	 */
 
 	public String getEmail() {
 		return email;
