@@ -3,7 +3,7 @@ package com.data;
 import java.util.ArrayList;
 
 import com.DTOs.BusinessDtos.RegisterDTO;
-import com.data.DAOs.CartDao;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.CategoryDAO;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.RoleDAO;
@@ -76,6 +76,6 @@ public class Seed {
         // Save new user to database
         UserDAO userDAO = new UserDAO();
         userDAO.addUser(user);
-        new CartDao().CreateCartForUser(new Cart(), user);
+        new CartDAO().CreateCartForUser(new Cart(), user);
     }
 }

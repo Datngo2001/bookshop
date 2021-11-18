@@ -10,9 +10,10 @@ import javax.mail.MessagingException;
 import javax.persistence.*;
 import javax.servlet.ServletContext;
 
+import com.DTOs.BusinessDtos.CartDTO;
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
-import com.data.DAOs.CartDao;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
 import com.services.EmailService;
@@ -105,7 +106,13 @@ public class User implements Serializable {
 		byte[] hashedInputPass = hashService.doHash(loginDTO.getPassword().getBytes(), loginDTO.getPasswordSalt());
 
 		// compare hash result with the hash from database
-		return Arrays.equals(hashedInputPass, loginDTO.getPasswordHash());
+		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
+			User user = userDAO.getUserByUserName(loginDTO.getUsername());
+			loginDTO.setId(user.getId());
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Boolean register(RegisterDTO registerDTO, ServletContext context) {
@@ -138,9 +145,9 @@ public class User implements Serializable {
 			registerDTO.setCode(EmailService.getRandom());
 			String host = context.getInitParameter("host");
 			String port = context.getInitParameter("port");
-			String seeder = context.getInitParameter("c");
+			String sender = context.getInitParameter("username");
 			String pass = context.getInitParameter("pass");
-			EmailService.sendEmail(host, port, seeder, pass, registerDTO.getEmail(), "Email Verification",
+			EmailService.sendEmail(host, port, sender, pass, registerDTO.getEmail(), "Email Verification",
 					"Registered successfully.Please verify your account using this code: " + registerDTO.getCode());
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -173,12 +180,11 @@ public class User implements Serializable {
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
 		user.setRoles(roles);
-		Cart cart = new CartDao().CreateCart(new Cart());
-		user.setCart(cart);
 
 		// Save new user to database
 		UserDAO userDAO = new UserDAO();
 		userDAO.addUser(user);
+		new CartDAO().CreateCartForUser(new Cart(), user);
 
 		return true;
 	}

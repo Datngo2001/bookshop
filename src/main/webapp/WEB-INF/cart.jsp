@@ -21,43 +21,42 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 		<div class="grid_row">
 			<div class="grid_column-9">
 				<section class="container-cart content-section">
-	            <h2 class="section-header">Cart list</h2>
+	            <h2 class="section-header">Cart</h2>
 	            <div class="cart-row">
-	                <span class="cart-item cart-header cart-column">ITEM</span>
-	                <span class="cart-price cart-header cart-column">PRICE </span>
-	                <span class="cart-quantity cart-header cart-column">QUANTITY</span>
+	                <span class="cart-item cart-header cart-column">Name</span>
+	                <span class="cart-price cart-header cart-column">Price</span>
+	                <span class="cart-quantity cart-header cart-column">Quantity</span>
 
 	            </div>
-	            <c:forEach var="item" items="${cart_item}">
+	            <c:forEach var="item" items="${cart.items}">
 		            <div class="cart-items">
 				        <div class="cart-item cart-column">
 				            <img class="cart-item-image" src="https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg" width="100" height="100">
 				            <div class="cart-title">
-				        		<p class="name-book"><c:out value="${item.name}"/></p>
-		              			<p class="name-author"><c:out value="${item.author}"/></p>
+				        		<p class="name-book"><c:out value="${item.productName}"/></p>
 				        	</div>
 				        </div>
 				        <div class="cart cart-price cart-column" style="display: flex;">
-				        	<p><c:out value="${item.price}"/> </p> 
+				        	<p><c:out value="${item.price}"/></p> 
 				        </div>
-
 				        <div class="cart-quantity cart-column">
-				            <input class="cart-quantity-input" readonly="readonly" type="number" name="quantity" value="<c:out value="${item.amount}"/>">
-				            <form action="./payment" method="get">
-								<input type="hidden" name="cId" value='<c:out value="${item.id}"/>'/>
-								<input type="hidden" name="username" value="${username}"/>
+							<form action="cart" method="post">
+								<input type="hidden" name="id" value="${item.id}"/>
+				            	<input class="cart-quantity-input" type="number" name="quantity" 
+									value="${item.quantity}"/>
+								<input type="submit" class="btn btn-danger" name="action" value="UPDATE" />
+							</form>
+				            <form action="cart" method="post">
+								<input type="hidden" name="id" value="${item.id}"/>
 								<input type="submit" class="btn btn-danger" name="action" value="REMOVE" />
 							</form>
 				        </div>
-
 		            </div>
-		            
 	            </c:forEach>
 	            
 	            <div class="cart-total">
 	                <strong class="cart-total-title">Total</strong>
-	                <span class="cart-total-price"></span>
-	               
+	                <span class="cart-total-price"><c:out value="${cart.total}"/></span>	               
 	            </div>
 	        </section>
 			</div>
@@ -96,12 +95,12 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
   var price = document.getElementsByClassName("cart cart-price cart-column");
   var total = document.getElementsByClassName("cart-total-price");
 
-  var priceTotal = 0;
-  for(let i = 0; i < price.length; i++) {
-	  price[i].textContent = parseFloat(price[i].textContent);
-	  priceTotal += parseFloat(price[i].textContent);
-  }
-  total[0].textContent = priceTotal;
+//   var priceTotal = 0;
+//   for(let i = 0; i < price.length; i++) {
+// 	  price[i].textContent = parseFloat(price[i].textContent);
+// 	  priceTotal += parseFloat(price[i].textContent);
+//   }
+  //total[0].textContent = priceTotal;
   document.getElementById("hide").value = priceTotal.toString();
     function initPayPalButton() {
       paypal.Buttons({

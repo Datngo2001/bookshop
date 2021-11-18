@@ -30,6 +30,9 @@ public class LineItem implements Serializable {
         this.product = product;
     }
 
+    public LineItem() {
+    }
+
     public int getId() {
         return id;
     }

@@ -124,9 +124,8 @@
                         <span class="price-old mr-up">${product.price}</span>
                         <span class="price-current mr-up">17.790d</span>
                       </div>
-                      <form action="${pageContext.request.contextPath}/payment" method="get">
+                      <form action="${pageContext.request.contextPath}/cart" method="get">
                       		<input type="hidden" name="pId"  value="${product.id}">
-                      		<input type="hidden" name="username"  value="${username}">
                       		<input type="hidden" name="price"  value="${product.price}">
                       		<input type="hidden" name="quantity"  value="1">
                       		<input type="hidden" name="action"  value="ADD">

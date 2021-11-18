@@ -9,15 +9,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.DTOs.BusinessDtos.CartDTO;
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DAOs.UserDAO;
+import com.model.Cart;
 import com.model.User;
 
 @WebServlet("/login")
 public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	UserDAO userDao = null;
-	
+
 	public LoginController() {
 		super();
 		userDao = new UserDAO();
@@ -26,8 +28,9 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextUrl = "WEB-INF/admin/login.jsp";
+		String nextUrl = "WEB-INF/login.jsp";
 		String url = "";
+
 		// get current action
 		String action = request.getParameter("action");
 
@@ -36,16 +39,16 @@ public class LoginController extends HttpServlet {
 		}
 
 		if (action.equals("LOGIN")) {
-			
+
 			LoginDTO loginDTO = new LoginDTO();
 			loginDTO.setUsername(request.getParameter("username"));
 			loginDTO.setPassword(request.getParameter("password"));
 			if (new User().login(loginDTO)) {
-				//get username and id
+				// get username and id
 				request.getSession().setAttribute("username", loginDTO.getUsername());
-				request.getSession().setAttribute("id", loginDTO.getId());
-				//take role id of user
-				//Object id = request.getSession().getAttribute("username");
+				request.getSession().setAttribute("userId", loginDTO.getId());
+				// take role id of user
+				// Object id = request.getSession().getAttribute("username");
 				Object name = request.getSession().getAttribute("username");
 				User user = userDao.getUserByUserName(name.toString());
 				int rid = user.getRoles().getId();
@@ -55,15 +58,18 @@ public class LoginController extends HttpServlet {
 				if (rid == 3) {
 					url = "home";
 				}
-					
-				else if(rid == 1 || rid == 2) {					
+
+				else if (rid == 1 || rid == 2) {
 					request.getSession().setAttribute("rid", rid);
 					url = "admin/product";
 				}
+
+				// Load Cart for user
+				CartDTO cartDTO = new Cart().getUserCart(loginDTO.getId());
+				request.getSession().setAttribute("cart", cartDTO);
 				response.sendRedirect(url);
 				return;
-			} 
-			else {
+			} else {
 				request.setAttribute("loginMessage", "Password or username incorrect");
 			}
 		}

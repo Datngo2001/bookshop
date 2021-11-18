@@ -36,7 +36,7 @@ public class DbUtil {
 
         // settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
-        settings.put(Environment.HBM2DDL_AUTO, "update");
+        // settings.put(Environment.HBM2DDL_AUTO, "update");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);
