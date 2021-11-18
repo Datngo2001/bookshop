@@ -117,8 +117,7 @@ public class CartDAO {
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 
-			LineItem lineItem = new LineItem();
-			lineItem.setId(itemId);
+			LineItem lineItem = session.get(LineItem.class, itemId);
 			lineItem.setQuantity(quantity);
 			session.update(lineItem);
 			for (LineItem item : cart.getItems()) {
