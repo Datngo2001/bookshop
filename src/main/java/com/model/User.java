@@ -10,7 +10,6 @@ import javax.mail.MessagingException;
 import javax.persistence.*;
 import javax.servlet.ServletContext;
 
-import com.DTOs.BusinessDtos.CartDTO;
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
 import com.data.DAOs.CartDAO;
@@ -35,8 +34,8 @@ public class User implements Serializable {
 	private String email;
 
 	// Relation
-	@OneToOne
-	private Role roles;
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Role role;
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<Order>();
 	@OneToOne(mappedBy = "user")
@@ -60,10 +59,9 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public User(Role roles, int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
+	public User(Role role, int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
 			String lname, String email, String gender) {
-		// this.orders = orders;
-		this.roles = roles;
+		this.role = role;
 		this.id = id;
 		this.username = username;
 		this.passwordHash = passwordHash;
@@ -76,7 +74,7 @@ public class User implements Serializable {
 	}
 
 	public User(int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
-			String lname, String email, Role roles, List<Order> orders, Cart cart, String gender) {
+			String lname, String email, Role role, List<Order> orders, Cart cart, String gender) {
 		this.id = id;
 		this.username = username;
 		this.passwordHash = passwordHash;
@@ -85,7 +83,7 @@ public class User implements Serializable {
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
-		this.roles = roles;
+		this.role = role;
 		this.orders = orders;
 		this.cart = cart;
 		this.gender = gender;
@@ -108,6 +106,8 @@ public class User implements Serializable {
 		// compare hash result with the hash from database
 		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
 			User user = userDAO.getUserByUserName(loginDTO.getUsername());
+			loginDTO.setRoleName(user.getRole().getName());
+			loginDTO.setRoleId(user.getRole().getId());
 			loginDTO.setId(user.getId());
 			return true;
 		} else {
@@ -172,30 +172,32 @@ public class User implements Serializable {
 		hash = hashService.doHash(registerDTO.getPassword().getBytes(), salt);
 
 		// Add role
-		Role roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+		Role role = new RoleDAO().getRoleByName(registerDTO.getRole());
 
 		// Creat user entity
 		User user = new User();
 		user.setPasswordHash(hash);
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
-		user.setRoles(roles);
+		user.setRole(role);
 
 		// Save new user to database
 		UserDAO userDAO = new UserDAO();
 		userDAO.addUser(user);
 		new CartDAO().CreateCartForUser(new Cart(), user);
 
+		registerDTO.setRole(user.getRole().getName());
+		registerDTO.setRoleId(user.getRole().getId());
 		return true;
 	}
 
 	// INPUT OUTPUT LOGIC ----------------------------------------------------
-	public Role getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Role roles) {
-		this.roles = roles;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public int getId() {
