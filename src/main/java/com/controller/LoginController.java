@@ -66,7 +66,7 @@ public class LoginController extends HttpServlet {
 
 				// Load Cart for user
 				CartDTO cartDTO = new Cart().getUserCart(loginDTO.getId());
-				request.getSession().setAttribute("cart", cartDTO);
+				request.getSession().setAttribute("cartId", cartDTO.getId());
 				response.sendRedirect(url);
 				return;
 			} else {

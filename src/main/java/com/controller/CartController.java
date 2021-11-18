@@ -31,55 +31,50 @@ public class CartController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextUrl = "WEB-INF/cart.jsp";
+		Cart cart = new Cart();
 
 		// get current action
 		String action = request.getParameter("action");
-		CartDTO cartDTO = (CartDTO) request.getSession().getAttribute("cart");
 
 		if (action == null) {
 			action = "CART";
 		}
-		switch (action) {
-		case "CART":
-			// Load Cart for user
-			int userId = Integer.parseInt(request.getSession().getAttribute("userId").toString());
-			request.getSession().setAttribute("cart", new Cart().getUserCart(userId));
-			break;
-		case "ADD":
-			// add product to cart
-			int productId = Integer.parseInt(request.getParameter("pId"));
+		if (action.equals("ADD")) {
+			// Add item to cart
+			int cartId = (int) request.getSession().getAttribute("cartId");
+			int productId = Integer.parseInt(request.getParameter("productId"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
-			new Cart().addItem(cartDTO, productId, quantity);
-			break;
-		case "Pay":
-			goPayment(request, response);
-			break;
-		case "REMOVE":
-			int deleteId = Integer.parseInt(request.getParameter("id"));
-			new Cart().removeItem(cartDTO, deleteId);
-			break;
-		case "UPDATE":
+			cart.addItem(cartId, productId, quantity);
+		} else if (action.equals("UPDATE")) {
+			// Update item quantity
 			int newQuantity = Integer.parseInt(request.getParameter("quantity"));
-			int updateId = Integer.parseInt(request.getParameter("id"));
-			new Cart().updateQuantity(cartDTO, updateId, newQuantity);
-			break;
-		default:
-			// goPayment(request, response);
-			break;
+			int itemId = Integer.parseInt(request.getParameter("id"));
+			new Cart().updateQuantity(itemId, newQuantity);
+		} else if (action.equals("REMOVE")) {
+			// Remove item from cart
+			int itemId = Integer.parseInt(request.getParameter("id"));
+			new Cart().removeItem(itemId);
+		} else if (action.equals("Pay")) {
+
 		}
 
+		// update cart in cart page
+		int userId = (int) request.getSession().getAttribute("userId");
+		CartDTO cartDTO = cart.getUserCart(userId);
+		request.setAttribute("cart", cartDTO);
+
 		request.getRequestDispatcher(nextUrl).forward(request, response);
-
 	}
 
-	private void goPayment(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// String nextUrl = "WEB-INF/payment.jsp";
-		// String uname = request.getParameter("username");
-		// List<Cart> cart = cartDao.getCartList(uname);
-		// request.setAttribute("cart_item", cart);
-		// request.getRequestDispatcher(nextUrl).forward(request, response);
-	}
+	// private void goPayment(HttpServletRequest request, HttpServletResponse
+	// response)
+	// throws ServletException, IOException {
+	// String nextUrl = "WEB-INF/payment.jsp";
+	// String uname = request.getParameter("username");
+	// List<Cart> cart = cartDao.getCartList(uname);
+	// request.setAttribute("cart_item", cart);
+	// request.getRequestDispatcher(nextUrl).forward(request, response);
+	// }
 
 	// private void removeProductInCart(HttpServletRequest request,
 	// HttpServletResponse response)

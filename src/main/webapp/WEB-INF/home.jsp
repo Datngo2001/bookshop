@@ -124,12 +124,11 @@
                         <span class="price-old mr-up">${product.price}</span>
                         <span class="price-current mr-up">17.790d</span>
                       </div>
-                      <form action="${pageContext.request.contextPath}/cart" method="get">
-                      		<input type="hidden" name="pId"  value="${product.id}">
-                      		<input type="hidden" name="price"  value="${product.price}">
+                      <form action="${pageContext.request.contextPath}/cart" method="post">
+                      		<input type="hidden" name="productId"  value="${product.id}">
                       		<input type="hidden" name="quantity"  value="1">
                       		<input type="hidden" name="action"  value="ADD">
-                      	   	<input type="submit" class="btn_add-to-cart" value="Add to cart"/>
+                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
                       </form>
 
                       <div class="product-item-favourite">

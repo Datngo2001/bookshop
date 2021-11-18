@@ -41,7 +41,6 @@ public class CartDAO {
 			cart = user.getCart();
 
 			transaction.commit();
-
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -87,19 +86,19 @@ public class CartDAO {
 		}
 	}
 
-	public LineItem addToCart(Cart cart, int productId, int quantity) {
+	public LineItem addToCart(int cartId, int productId, int quantity) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 
+			Cart cart = new Cart();
+			cart.setId(cartId);
 			Product product = session.get(Product.class, productId);
 			LineItem lineItem = new LineItem();
 			lineItem.setProduct(product);
 			lineItem.setQuantity(quantity);
 			lineItem.setCart(cart);
 			session.save(lineItem);
-			cart.getItems().add(lineItem);
-			cart.UpdateTotalPrice();
 
 			transaction.commit();
 			return lineItem;
@@ -112,7 +111,9 @@ public class CartDAO {
 		}
 	}
 
-	public Cart updateQuantity(Cart cart, int itemId, int quantity) {
+	// UPDATE ----------------------------------------------------
+
+	public LineItem updateQuantity(int itemId, int quantity) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
@@ -120,25 +121,21 @@ public class CartDAO {
 			LineItem lineItem = session.get(LineItem.class, itemId);
 			lineItem.setQuantity(quantity);
 			session.update(lineItem);
-			for (LineItem item : cart.getItems()) {
-				if (item.getId() == itemId) {
-					item.setQuantity(quantity);
-				}
-			}
-			cart.UpdateTotalPrice();
 
 			transaction.commit();
-			return cart;
+			return lineItem;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
-			return cart;
+			return null;
 		}
 	}
 
-	public Cart RemoveItem(Cart cart, int itemId) {
+	// DELETE ----------------------------------------------------
+
+	public void RemoveItem(int itemId) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
@@ -146,8 +143,24 @@ public class CartDAO {
 			LineItem lineItem = new LineItem();
 			lineItem.setId(itemId);
 			session.delete(lineItem);
-			cart.getItems().remove(lineItem);
-			cart.UpdateTotalPrice();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	public Cart clearCart(int cartId) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Cart cart = session.get(Cart.class, cartId);
+			cart.getItems().clear();
+			session.update(cart);
 
 			transaction.commit();
 			return cart;
@@ -156,7 +169,7 @@ public class CartDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
-			return cart;
+			return null;
 		}
 	}
 }
