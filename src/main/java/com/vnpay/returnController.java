@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.data.DAOs.CartDao;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.HistoryDao;
 import com.data.DAOs.OrderDAO;
 import com.model.Cart;
@@ -19,12 +19,12 @@ import com.model.Cart;
 @WebServlet("/return")
 public class returnController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    private CartDao cartDao;
+    private CartDAO cartDao;
 	private OrderDAO orderDao;
 	private HistoryDao hisDao;
 
     public returnController() {
-        cartDao = new CartDao();
+        cartDao = new CartDAO();
 		orderDao = new OrderDAO();
 		hisDao = new HistoryDao();
     }

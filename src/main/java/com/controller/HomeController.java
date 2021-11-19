@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.hibernate.Session;
 
 import com.data.Seed;
-import com.data.DAOs.CartDao;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.OrderDAO;
 import com.data.DAOs.ProductDAO;
 import com.model.Cart;
