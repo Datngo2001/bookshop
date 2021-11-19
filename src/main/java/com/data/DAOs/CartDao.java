@@ -2,6 +2,8 @@ package com.data.DAOs;
 
 import org.hibernate.*;
 
+import java.util.List;
+
 import com.data.DbUtil;
 import com.model.Cart;
 import com.model.LineItem;
@@ -48,6 +50,32 @@ public class CartDAO {
 			e.printStackTrace();
 		}
 		return cart;
+	}
+
+	public LineItem existItem(int cartId, int productId) {
+		Transaction transaction = null;
+		LineItem item = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Cart cart = session.get(Cart.class, cartId);
+			List<LineItem> items = cart.getItems();
+			for (LineItem lineItem : items) {
+				Product product = lineItem.getProduct();
+				if (product.getId() == productId) {
+					item = lineItem;
+					break;
+				}
+			}
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return item;
 	}
 
 	// INSERT ----------------------------------------------------

@@ -69,12 +69,23 @@ public class Cart implements Serializable {
 	}
 
 	public LineItem addItem(int cartId, int productId, int quantity) {
+		if (quantity <= 0) {
+			quantity = 1;
+		}
 		CartDAO cartDAO = new CartDAO();
+		LineItem item = cartDAO.existItem(cartId, productId);
+		if (item != null) {
+			cartDAO.updateQuantity(item.getId(), item.getQuantity() + quantity);
+			return item;
+		}
 		LineItem newItem = cartDAO.addToCart(cartId, productId, quantity);
 		return newItem;
 	}
 
 	public LineItem updateQuantity(int itemId, int quantity) {
+		if (quantity <= 0) {
+			quantity = 1;
+		}
 		CartDAO cartDao = new CartDAO();
 		LineItem item = cartDao.updateQuantity(itemId, quantity);
 		return item;

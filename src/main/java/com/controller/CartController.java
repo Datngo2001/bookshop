@@ -45,15 +45,24 @@ public class CartController extends HttpServlet {
 			int productId = Integer.parseInt(request.getParameter("productId"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			cart.addItem(cartId, productId, quantity);
+			// PRG design pattern
+			response.sendRedirect("cart");
+			return;
 		} else if (action.equals("UPDATE")) {
 			// Update item quantity
 			int newQuantity = Integer.parseInt(request.getParameter("quantity"));
 			int itemId = Integer.parseInt(request.getParameter("id"));
-			new Cart().updateQuantity(itemId, newQuantity);
+			cart.updateQuantity(itemId, newQuantity);
+			// PRG design pattern
+			response.sendRedirect("cart");
+			return;
 		} else if (action.equals("REMOVE")) {
 			// Remove item from cart
 			int itemId = Integer.parseInt(request.getParameter("id"));
-			new Cart().removeItem(itemId);
+			cart.removeItem(itemId);
+			// PRG design pattern
+			response.sendRedirect("cart");
+			return;
 		} else if (action.equals("Pay")) {
 
 		}
