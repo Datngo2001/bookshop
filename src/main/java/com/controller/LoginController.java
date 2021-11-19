@@ -45,13 +45,9 @@ public class LoginController extends HttpServlet {
 				request.getSession().setAttribute("username", loginDTO.getUsername());
 				request.getSession().setAttribute("id", loginDTO.getId());
 				//take role id of user
-				//Object id = request.getSession().getAttribute("username");
-				Object name = request.getSession().getAttribute("username");
-				User user = userDao.getUserByUserName(name.toString());
-				int rid = user.getRoles().getId();
-				int id = user.getId();
-				request.getSession().setAttribute("role", rid);
-				request.getSession().setAttribute("id", id);
+				
+				int rid = loginDTO.getRoleId();
+				
 				if (rid == 3) {
 					url = "home";
 				}

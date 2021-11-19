@@ -22,12 +22,12 @@ public class PaymentServices {
 	private static final String CLIENT_SECRET = "ENN7wl8Wu_g6lFRsLIv96e8JJtwmy0w67cd2S4KOv_ZEybryMzhAm3prragYaCfGG2J-05Li72Gst-Lc";
 	private static final String MODE = "sandbox";
 	
-	public String authorizePayment(Checkout checkout) throws PayPalRESTException {
-		Payer payer = getPayerInformation();
+	public String authorizePayment(Checkout checkout, Payer payer) throws PayPalRESTException {
+		
 		getRedirectURLs();
-		List<Transaction> lisTransactions = getTransacitonInfo(checkout);
+		List<Transaction> listTransactions = getTransacitonInfo(checkout);
 		Payment requestPayment = new Payment();
-		requestPayment.setTransactions(lisTransactions)
+		requestPayment.setTransactions(listTransactions)
 					  .setRedirectUrls(getRedirectURLs())
 					  .setPayer(payer)
 					  .setIntent("authorize");
@@ -86,13 +86,15 @@ public class PaymentServices {
 		redirect.setReturnUrl("http://localhost:8082/bookshop/review_payment");
 		return redirect;
 	}
-	private Payer getPayerInformation() {
+	public Payer getPayerInformation(String fname, String lname, String email) {
+		
 		Payer payer = new Payer();
 		payer.setPaymentMethod("paypal");
 		PayerInfo payerInfo = new PayerInfo();
-		payerInfo.setFirstName("John").setLastName("Doe").setEmail("sb-evtpu8326832@personal.example.com");
+		payerInfo.setFirstName(fname).setLastName(lname).setEmail(email);
 		
 		payer.setPayerInfo(payerInfo);
+		
 		return payer;
 	}
 	public Payment getPaymentDetail(String pId) throws PayPalRESTException{

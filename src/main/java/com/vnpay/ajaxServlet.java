@@ -1,4 +1,4 @@
-package com.vnpay.common;
+package com.vnpay;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;

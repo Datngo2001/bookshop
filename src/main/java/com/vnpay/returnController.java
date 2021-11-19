@@ -1,4 +1,4 @@
-package com.controller.vnpay;
+package com.vnpay;
 
 import java.io.IOException;
 import java.net.URLEncoder;
@@ -14,7 +14,6 @@ import com.data.DAOs.CartDao;
 import com.data.DAOs.HistoryDao;
 import com.data.DAOs.OrderDAO;
 import com.model.Cart;
-import com.vnpay.common.Config;
 
 
 @WebServlet("/return")

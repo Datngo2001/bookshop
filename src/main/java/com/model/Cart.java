@@ -9,6 +9,7 @@ import javax.persistence.*;
 //@SuppressWarnings("serial")
 @Entity
 public class Cart implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

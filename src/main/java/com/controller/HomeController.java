@@ -49,7 +49,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				new Seed().doSeed();
+				//new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				goHomePage(request, response);
 				break;

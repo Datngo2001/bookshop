@@ -6,7 +6,14 @@ public class LoginDTO {
 	byte[] passwordHash;
 	byte[] passwordSalt;
 	public int id;
+	public int roleId;
 	
+	public int getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 	public int getId() {
 		return id;
 	}

@@ -36,12 +36,10 @@ public class ProductControllerServlet extends HttpServlet {
 		try {
 			String theCommand = request.getParameter("command");
 			Object role = request.getSession().getAttribute("rid");
-			if(theCommand == null && role == null) {
-				theCommand = "No";
-			}
-			else {
+			if(theCommand == null) {
 				theCommand = "List";
 			}
+			
 			switch(theCommand) {
 				case "Product":
 					listProduct(request, response);

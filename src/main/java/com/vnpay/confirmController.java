@@ -1,4 +1,4 @@
-package com.controller.vnpay;
+package com.vnpay;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
