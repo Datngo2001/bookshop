@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.data.DAOs.ProductDAO;
+
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -56,9 +58,6 @@ public class Product implements Serializable {
 		this.typeBook = typeBook;
 	}
 
-	
-
-
 	public Product(int id, String nameAuthor, String description, String name, String nXB, String supplier, int price) {
 		super();
 		this.id = id;
@@ -81,6 +80,13 @@ public class Product implements Serializable {
 		this.price = price;
 		this.typeBook = type;
 
+	}
+
+	static public Product find(int id) {
+		ProductDAO productDAO = new ProductDAO();
+		Product product = productDAO.getProduct(id);
+
+		return product;
 	}
 
 	public List<Category> getCategorys() {

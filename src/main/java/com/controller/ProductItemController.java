@@ -63,7 +63,7 @@ public class ProductItemController extends HttpServlet {
 
 		try {
 			id = Integer.parseInt(request.getParameter("productID"));
-			product = productDAO.getProduct(id);
+			product = Product.find(id);
 
 			if (product == null) {
 				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
