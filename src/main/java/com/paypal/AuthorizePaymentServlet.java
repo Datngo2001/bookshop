@@ -13,7 +13,8 @@ import com.paypal.base.rest.PayPalRESTException;
 public class AuthorizePaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
+	//sb-evtpu8326832@personal.example.com
+	//4LC($leR
     public AuthorizePaymentServlet() {
         super();
         

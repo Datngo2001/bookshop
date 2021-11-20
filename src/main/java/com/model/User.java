@@ -12,6 +12,7 @@ import javax.servlet.ServletContext;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
 import com.services.EmailService;
@@ -20,21 +21,25 @@ import com.services.HashService;
 @Entity
 @Table(name = "app_user")
 public class User implements Serializable {
-
-	@OneToOne
-	private Role roles;
-	private CardList cart;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	public int id;
-	public String username;
-	public byte[] passwordHash;
-	public byte[] passwordSalt;
-	public Date bdate;
-	public String fname;
-	public String lname;
-	public String email;
+	private int id;
+	private String username;
+	private byte[] passwordHash;
+	private byte[] passwordSalt;
+	private Date bdate;
+	private String fname;
+	private String lname;
+	private String email;
+
+	// Relation
+	@ManyToOne(fetch = FetchType.EAGER)
+	private Role role;
+	@OneToMany(mappedBy = "user")
+	private List<Order> orders = new ArrayList<Order>();
+	@OneToOne(mappedBy = "user")
+	private Cart cart;
 
 	public User() {
 	}
@@ -54,10 +59,9 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public User(Role roles, int id, String username, byte[] passwordHash, byte[] passwordSalt,
-			Date bdate, String fname, String lname, String email, String gender) {
-		//this.orders = orders;
-		this.roles = roles;
+	public User(Role role, int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
+			String lname, String email, String gender) {
+		this.role = role;
 		this.id = id;
 		this.username = username;
 		this.passwordHash = passwordHash;
@@ -66,6 +70,22 @@ public class User implements Serializable {
 		this.fname = fname;
 		this.lname = lname;
 		this.email = email;
+		this.gender = gender;
+	}
+
+	public User(int id, String username, byte[] passwordHash, byte[] passwordSalt, Date bdate, String fname,
+			String lname, String email, Role role, List<Order> orders, Cart cart, String gender) {
+		this.id = id;
+		this.username = username;
+		this.passwordHash = passwordHash;
+		this.passwordSalt = passwordSalt;
+		this.bdate = bdate;
+		this.fname = fname;
+		this.lname = lname;
+		this.email = email;
+		this.role = role;
+		this.orders = orders;
+		this.cart = cart;
 		this.gender = gender;
 	}
 
@@ -84,7 +104,15 @@ public class User implements Serializable {
 		byte[] hashedInputPass = hashService.doHash(loginDTO.getPassword().getBytes(), loginDTO.getPasswordSalt());
 
 		// compare hash result with the hash from database
-		return Arrays.equals(hashedInputPass, loginDTO.getPasswordHash());
+		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
+			User user = userDAO.getUserByUserName(loginDTO.getUsername());
+			loginDTO.setRoleName(user.getRole().getName());
+			loginDTO.setRoleId(user.getRole().getId());
+			loginDTO.setId(user.getId());
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Boolean register(RegisterDTO registerDTO, ServletContext context) {
@@ -117,9 +145,9 @@ public class User implements Serializable {
 			registerDTO.setCode(EmailService.getRandom());
 			String host = context.getInitParameter("host");
 			String port = context.getInitParameter("port");
-			String seeder = context.getInitParameter("c");
+			String sender = context.getInitParameter("username");
 			String pass = context.getInitParameter("pass");
-			EmailService.sendEmail(host, port, seeder, pass, registerDTO.getEmail(), "Email Verification",
+			EmailService.sendEmail(host, port, sender, pass, registerDTO.getEmail(), "Email Verification",
 					"Registered successfully.Please verify your account using this code: " + registerDTO.getCode());
 		} catch (MessagingException e) {
 			e.printStackTrace();
@@ -144,29 +172,32 @@ public class User implements Serializable {
 		hash = hashService.doHash(registerDTO.getPassword().getBytes(), salt);
 
 		// Add role
-		Role roles = new RoleDAO().getRoleByName(registerDTO.getRole());
+		Role role = new RoleDAO().getRoleByName(registerDTO.getRole());
 
 		// Creat user entity
 		User user = new User();
 		user.setPasswordHash(hash);
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
-		user.setRoles(roles);
+		user.setRole(role);
 
 		// Save new user to database
 		UserDAO userDAO = new UserDAO();
 		userDAO.addUser(user);
+		new CartDAO().CreateCartForUser(new Cart(), user);
 
+		registerDTO.setRole(user.getRole().getName());
+		registerDTO.setRoleId(user.getRole().getId());
 		return true;
 	}
 
 	// INPUT OUTPUT LOGIC ----------------------------------------------------
-	public Role getRoles() {
-		return roles;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setRoles(Role roles) {
-		this.roles = roles;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public int getId() {
@@ -235,15 +266,6 @@ public class User implements Serializable {
 		this.passwordSalt = passwordSalt;
 	}
 
-	/*public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-	*/
-
 	public String getEmail() {
 		return email;
 	}
@@ -251,4 +273,21 @@ public class User implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public List<Order> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(List<Order> orders) {
+		this.orders = orders;
+	}
+
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+
 }

@@ -1,86 +1,29 @@
 package com.data.DAOs;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
 import org.hibernate.*;
 
+import java.util.List;
+
 import com.data.DbUtil;
-import com.model.CardList;
+import com.model.Cart;
+import com.model.LineItem;
+import com.model.Product;
+import com.model.User;
 
+public class CartDAO {
 
-public class CartDao {
-	
-	public CartDao() {
-		
+	public CartDAO() {
+
 	}
-	@SuppressWarnings("unchecked")
-	public List<CardList> getCartList(String uname) {
-		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'").getResultList();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	@SuppressWarnings("unchecked")
-	public List<CardList> getCartLists() {
-		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList").getResultList();
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	public void addToCart(CardList cart) {
+
+	public Cart getCart(int cartId) {
 		Transaction transaction = null;
+		Cart cart = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			session.save(cart);
-			transaction.commit();
-		}
-		catch (Exception e) {
-			if(transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-	}
-	public boolean checkNameExist(String name, String uname) {
-		List a = getCheck(name, uname);
-		
-		if(a.size() == 1) 
-			return true;
-		return false;
-	}
-	@SuppressWarnings("unchecked")
-	public List<CardList> getCheck(String name, String uname) {
-		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From CardList C where C.username = " + "'" + uname + "'" + " and C.name =" + "'" + name + "'").getResultList();
-			
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	public CardList removeProduct(int productId) {
-		Transaction transaction = null;
-		CardList cart = null;
-		try (Session session = DbUtil.getSessionFactory().openSession()) {
-			// start a transaction
-			transaction = session.beginTransaction();
-			// get an user object
-			cart = session.get(CardList.class, productId);
-			if (cart != null) {
-				session.delete(cart);
-			}
-			// commit transaction
+
+			cart = session.get(Cart.class, cartId);
+
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
@@ -90,22 +33,171 @@ public class CartDao {
 		}
 		return cart;
 	}
-	public void removeAllProduct(String name) {
-		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
-		EntityTransaction trans = em.getTransaction();
-		String sql = "DELETE from CardList c where c.username =:uname";
-		Query q = em.createQuery(sql);
-		q.setParameter("uname", name);
-		int count = 0;
-		try {
-			trans.begin();
-			count = q.executeUpdate();
-			trans.commit();
-		}
-		catch (Exception e) {
+
+	public Cart getUserCart(int userId) {
+		Transaction transaction = null;
+		Cart cart = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+			User user = session.get(User.class, userId);
+			cart = user.getCart();
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
 			e.printStackTrace();
-		} finally {
-			em.close();
+		}
+		return cart;
+	}
+
+	public LineItem existItem(int cartId, int productId) {
+		Transaction transaction = null;
+		LineItem item = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Cart cart = session.get(Cart.class, cartId);
+			List<LineItem> items = cart.getItems();
+			for (LineItem lineItem : items) {
+				Product product = lineItem.getProduct();
+				if (product.getId() == productId) {
+					item = lineItem;
+					break;
+				}
+			}
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+		return item;
+	}
+
+	// INSERT ----------------------------------------------------
+	public Cart CreateCart(Cart cart) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			session.save(cart);
+			transaction.commit();
+			return cart;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public Cart CreateCartForUser(Cart cart, User user) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			cart.setUser(user);
+			session.save(cart);
+			transaction.commit();
+			return cart;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	public LineItem addToCart(int cartId, int productId, int quantity) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Cart cart = new Cart();
+			cart.setId(cartId);
+			Product product = session.get(Product.class, productId);
+			LineItem lineItem = new LineItem();
+			lineItem.setProduct(product);
+			lineItem.setQuantity(quantity);
+			lineItem.setCart(cart);
+			session.save(lineItem);
+
+			transaction.commit();
+			return lineItem;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// UPDATE ----------------------------------------------------
+
+	public LineItem updateQuantity(int itemId, int quantity) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			LineItem lineItem = session.get(LineItem.class, itemId);
+			lineItem.setQuantity(quantity);
+			session.update(lineItem);
+
+			transaction.commit();
+			return lineItem;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	// DELETE ----------------------------------------------------
+
+	public void RemoveItem(int itemId) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			LineItem lineItem = new LineItem();
+			lineItem.setId(itemId);
+			session.delete(lineItem);
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	public Cart clearCart(int cartId) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Cart cart = session.get(Cart.class, cartId);
+			cart.getItems().clear();
+			session.update(cart);
+
+			transaction.commit();
+			return cart;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

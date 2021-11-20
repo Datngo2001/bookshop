@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,14 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import com.data.Seed;
-import com.data.DAOs.CartDao;
-import com.data.DAOs.OrderDAO;
 import com.data.DAOs.ProductDAO;
-import com.model.CardList;
-import com.model.MyProduct;
 import com.model.Product;
 
 @WebServlet("/home")
@@ -50,7 +43,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				//new Seed().doSeed();
+				// new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				goHomePage(request, response);
 				break;

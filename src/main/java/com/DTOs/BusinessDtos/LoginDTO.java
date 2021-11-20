@@ -5,14 +5,27 @@ public class LoginDTO {
 	String password;
 	byte[] passwordHash;
 	byte[] passwordSalt;
-	public int id;
-	
+	int id;
+	int cartId;
+	int roleId;
+	String roleName;
+
+	public int getCartId() {
+		return cartId;
+	}
+
+	public void setCartId(int cartId) {
+		this.cartId = cartId;
+	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getUsername() {
 		return username;
 	}
@@ -43,5 +56,21 @@ public class LoginDTO {
 
 	public void setPasswordSalt(byte[] passwordSalt) {
 		this.passwordSalt = passwordSalt;
+	}
+
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
 	}
 }

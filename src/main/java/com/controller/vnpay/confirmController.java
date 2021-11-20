@@ -18,9 +18,9 @@ public class confirmController extends HttpServlet {
         super();
  
     }
-    private static final DecimalFormat df = new DecimalFormat("0");
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextUrl = "WEB-INF/index_vnpay.jsp";
+		String nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
 		int price = Integer.parseInt(request.getParameter("price"));
 		
 		// get current action

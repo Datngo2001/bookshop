@@ -9,23 +9,22 @@ import javax.persistence.Query;
 import org.hibernate.*;
 
 import com.data.DbUtil;
-import com.model.CardList;
-import com.model.MyProduct;
+import com.model.Cart;
 
 public class OrderDAO {
 	public OrderDAO() {}
-	public void addItemToUser(MyProduct myp) {
-		Transaction transaction = null;
-		try (Session session = DbUtil.getSessionFactory().openSession()) {
-			transaction = session.beginTransaction();
-			session.save(myp);
-			transaction.commit();
-		}
-		catch (Exception e) {
-			if(transaction != null) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-		}
-	}
+	// public void addItemToUser(MyProduct myp) {
+	// 	Transaction transaction = null;
+	// 	try (Session session = DbUtil.getSessionFactory().openSession()) {
+	// 		transaction = session.beginTransaction();
+	// 		session.save(myp);
+	// 		transaction.commit();
+	// 	}
+	// 	catch (Exception e) {
+	// 		if(transaction != null) {
+	// 			transaction.rollback();
+	// 		}
+	// 		e.printStackTrace();
+	// 	}
+	// }
 }

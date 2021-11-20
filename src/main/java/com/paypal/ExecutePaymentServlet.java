@@ -25,8 +25,7 @@ public class ExecutePaymentServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String paymentId = request.getParameter("paymentId");
 		String payerId = request.getParameter("PayerID");
-		
-		
+
 		try {
 			PaymentServices paymentServices = new PaymentServices();
 			Payment payment = paymentServices.executePayment(paymentId, payerId);

@@ -24,13 +24,13 @@ public class VerifyController extends HttpServlet {
         }
 
         if (action.equals("VERIFY")) {
-            HttpSession session = request.getSession();
-            Object ob = session.getAttribute("registerDTO");
-            RegisterDTO registerDTO = (RegisterDTO) ob;
+            RegisterDTO registerDTO = (RegisterDTO) request.getAttribute("registerDTO");
             String code = request.getParameter("code");
 
             if (new User().verify(registerDTO, code)) {
                 request.getSession().setAttribute("username", registerDTO.getUsername());
+                request.getSession().setAttribute("role", registerDTO.getRole());
+                request.getSession().setAttribute("roleId", registerDTO.getRoleId());
                 response.sendRedirect("home");
                 return;
             } else {
