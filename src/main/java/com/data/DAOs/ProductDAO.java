@@ -17,12 +17,25 @@ public class ProductDAO {
 	public List<Product> getProducts() throws Exception {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From Product").getResultList();
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 
 	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getProducts(int index) throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index).setMaxResults(15).list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+
+	}
+	
 
 	public void addProducts(Product product) {
 		Transaction transaction = null;

@@ -35,11 +35,11 @@ public class ProductControllerServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String theCommand = request.getParameter("command");
-			Object role = request.getSession().getAttribute("rid");
+
 			if(theCommand == null) {
 				theCommand = "List";
 			}
-			
+
 			switch(theCommand) {
 				case "Product":
 					listProduct(request, response);
@@ -58,8 +58,7 @@ public class ProductControllerServlet extends HttpServlet {
 					break;
 				case "Delete":
 					deleteProduct(request, response);
-				case "No":
-					noAccess(request, response);
+
 				default:
 					noAccess(request, response);
 			}
@@ -68,9 +67,7 @@ public class ProductControllerServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 	}
-	private void noAccess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("../WEB-INF/admin/noPermission.jsp").forward(request, response);
-	}
+
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
 		productDAO.deleteProduct(id);

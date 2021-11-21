@@ -1,16 +1,21 @@
 package com.DTOs.BusinessDtos;
 
 public class RegisterDTO {
-	String usersname;
+	String username;
 	String password;
 	String reEnter;
 	String code;
 	String email;
 	String errorMessage;
 	String role;
+	int roleId;
 
-	public String getUsersname() {
-		return usersname;
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getRole() {
@@ -29,13 +34,6 @@ public class RegisterDTO {
 		this.errorMessage = errorMessage;
 	}
 
-	public String getUsername() {
-		return usersname;
-	}
-
-	public void setUsername(String usersname) {
-		this.usersname = usersname;
-	}
 
 	public String getPassword() {
 		return password;
@@ -67,5 +65,13 @@ public class RegisterDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public int getRoleId() {
+		return roleId;
+	}
+
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
 	}
 }

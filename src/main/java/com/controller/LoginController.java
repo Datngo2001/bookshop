@@ -29,7 +29,6 @@ public class LoginController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nextUrl = "WEB-INF/login.jsp";
-		String url = "";
 
 		// get current action
 		String action = request.getParameter("action");
@@ -47,24 +46,21 @@ public class LoginController extends HttpServlet {
 				// get username and id
 				request.getSession().setAttribute("username", loginDTO.getUsername());
 
-				request.getSession().setAttribute("id", loginDTO.getId());
-				//take role id of user
-				
-				int rid = loginDTO.getRoleId();
-				
-				if (rid == 3) {
-					url = "home";
-				}
+				request.getSession().setAttribute("userId", loginDTO.getId());
+				request.getSession().setAttribute("role", loginDTO.getRoleName());
+				request.getSession().setAttribute("roleId", loginDTO.getRoleId());
 
-				else if (rid == 1 || rid == 2) {
-					request.getSession().setAttribute("rid", rid);
-					url = "admin/product";
+
+				if (loginDTO.getRoleId() == 3) {
+					nextUrl = "home";
+				} else if (loginDTO.getRoleId() == 1 || loginDTO.getRoleId() == 2) {
+					nextUrl = "admin/product";
 				}
 
 				// Load Cart for user
 				CartDTO cartDTO = new Cart().getUserCart(loginDTO.getId());
-				request.getSession().setAttribute("cart", cartDTO);
-				response.sendRedirect(url);
+				request.getSession().setAttribute("cartId", cartDTO.getId());
+				response.sendRedirect(nextUrl);
 				return;
 			} else {
 				request.setAttribute("loginMessage", "Password or username incorrect");

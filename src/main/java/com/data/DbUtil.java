@@ -1,8 +1,7 @@
 package com.data;
 
+import java.net.URI;
 import java.util.Properties;
-
-import javax.swing.border.LineBorder;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
@@ -20,23 +19,35 @@ public class DbUtil {
       try {
         Configuration configuration = new Configuration();
 
-        // Hibernate settings equivalent to hibernate.cfg.xml's properties
         Properties settings = new Properties();
-        settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-        settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
-        settings.put(Environment.USER, "root");
 
-        settings.put(Environment.PASS, "ngocthien2306.com"); // remember to chang to your password {password, ngocthien2306.com}
+        String DATABASE_URL = System.getenv("DATABASE_URL");
 
-        settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        if (DATABASE_URL != null) {
+          URI dbUri = new URI(DATABASE_URL);
+          String username = dbUri.getUserInfo().split(":")[0];
+          String password = dbUri.getUserInfo().split(":")[1];
+          String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+          settings.put(Environment.URL, dbUrl);
+          settings.put(Environment.USER, username);
+          settings.put(Environment.PASS, password);
+          settings.put(Environment.DRIVER, "org.postgresql.Driver");
+          settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
+        } else {
+          settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+          settings.put(Environment.URL,
+              "jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
+          settings.put(Environment.USER, "root");
+          settings.put(Environment.PASS, "group2");
+          settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+        }
 
         settings.put(Environment.SHOW_SQL, "true");
-
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
         //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
-        // settings.put(Environment.HBM2DDL_AUTO, "update");
+        settings.put(Environment.HBM2DDL_AUTO, "update");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);

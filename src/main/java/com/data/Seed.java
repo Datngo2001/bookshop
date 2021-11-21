@@ -71,7 +71,7 @@ public class Seed {
         user.setPasswordHash(hash);
         user.setPasswordSalt(salt);
         user.setUsername(registerDTO.getUsername());
-        user.setRoles(roles);
+        user.setRole(roles);
 
         // Save new user to database
         UserDAO userDAO = new UserDAO();

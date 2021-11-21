@@ -8,7 +8,7 @@ public class DataUtil {
 
     public static ArrayList<Product> getCrawlData() {
         ArrayList<Product> dataList = new ArrayList<Product>();
-/*
+
         Product product0 = new Product("TGDQ-KNY-T1TKB",
                 "Thanh Gươm Diệt Quỷ - Kimetsu No Yaiba - Tập 1: Tàn Khốc (Tái Bản)", "Koyoharu Gotouge",
                 "<p class='rtejustify' style='text-align: justify;'>Vào thời Taisho, có một cậu bé bán than với tấm lòng nhân hậu tên Tanjiro. Những ngày yên bình đã chẳng còn khi Quỷ đến tàn sát cả gia đình cậu, chỉ duy nhất người em gái Nezuko còn sống sót nhưng lại bị biến thành Quỷ. Mang trong mình quyết tâm chữa cho em gái, Tanjiro đã cùng Nezuko bắt đầu cuộc hành trình tìm kiếm tung tích con quỷ đã ra tay với gia đình cậu!!</p><p class='rtejustify' style='text-align: justify;'>Cuộc phiêu lưu trên con đường kiếm sĩ đã bắt đầu!!</p><p class='rtejustify' style='text-align: justify;'>Sau thời gian dài chuẩn bị, cuối cùng thì 'Kimetsu no Yaiba' - Một trong những Manga Hot nhất Nhật Bản, đã bán ra 25 triệu bản in trong năm 2019 sẽ được phát hành tại Việt Nam vào mùa xuân 2020 trong tên gọi: 'Thanh gươm diệt quỷ'.</p><p class='rtejustify' style='text-align: justify;'>Với sự đầu tư về hình thức (Sử dụng dữ liệu 100%, Bìa áo cán mờ phủ UV), rất hi vọng đây sẽ tiếp tục là một bộ truyện tạo nên cơn sốt mới, bên cạnh những siêu phẩm Shonenjump khác như 'Dragon Ball', 'One Piece', 'Naruto', 'My hero academia', 'Bleach'...!!</p>    <div class='clear'></div>",
@@ -167,7 +167,7 @@ public class DataUtil {
                 "NXB Kim Đồng", "Nhà Xuất Bản Kim Đồng",
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/t/h/thanh-guom-diet-quy---tap-21_1.jpg",
                 "8935244851359", "Adventure, Action, Shounen, Fantasy, Drama, Historical, Supernatural", 22000);
-        */
+        
         Product product27 = new Product("NC5ND-T2", "Nhà Có 5 Nàng Dâu - Tập 2", "Negi Haruba",
                 "<p style='text-align: justify;'>Nhà Có 5 Nàng Dâu - Tập 2</p><p style='text-align: justify;'>Anh chàng gia sư bất đắc dĩ Futarou đang gánh vác sứ mệnh dẫn lối cho 5 chị em gái xinh đẹp nhưng lại 'ghét học' và 'suýt soát lưu ban' tới ngưỡng cửa 'lễ tốt nghiệp'. Mục tiêu đầu tiên của cậu là cố gắng chiếm được cảm tình của từng cô một.</p><p style='text-align: justify;'>Sau trận đấu trí về các võ tướng thời Chiến Quốc, cậu giành được sự tin tưởng của cô chị ba Miku. Nhưng cuộc đời thật lắm chông gai, chưa mừng được bao lâu, cậu đã phải đối mặt với nguy cơ đánh mất niềm tin của cả 5 khi kẹt trong một tình huống tình ngay lí gian tại tư gia nhà Nakano với cô chị hai Nino!!</p><p style='text-align: justify;'>Liệu Futarou có thể rửa oan cho mình!?</p>    <div class='clear'></div>",
                 "NXB Kim Đồng", "Nhà Xuất Bản Kim Đồng",
@@ -217,7 +217,7 @@ public class DataUtil {
                 "NXB Hội Nhà Văn", "Nhã Nam",
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/b/u/buoc_cham_lai_giua_the_gian_voi_va.u335.d20160817.t102115.612356.jpg",
                 "8935235217737", "", 68000);
-        Product product36 = new Product("CCNCT", "Cây Cam Ngọt Của Tôi", "José Mauro de Vasconcelos",
+        Product product36 = new Product("CCNCT", "Cây Cam Ngọt Của Tôi", "Vasconcelos",
                 "<p style='text-align: justify;'>“Vị chua chát của cái nghèo hòa trộn với vị ngọt ngào khi khám phá ra những điều khiến cuộc đời này đáng sống... một tác phẩm kinh điển của Brazil.” <strong>- Booklist</strong></p><p style='text-align: justify;'>“Một cách nhìn cuộc sống gần như hoàn chỉnh từ con mắt trẻ thơ… có sức mạnh sưởi ấm và làm tan nát cõi lòng, dù người đọc ở lứa tuổi nào.”<strong> - The National</strong></p><p style='text-align: justify;'>Hãy làm quen với Zezé, cậu bé tinh nghịch siêu hạng đồng thời cũng đáng yêu bậc nhất, với ước mơ lớn lên trở thành nhà thơ cổ thắt nơ bướm. Chẳng phải ai cũng công nhận khoản “đáng yêu” kia đâu nhé. Bởi vì, ở cái xóm ngoại ô nghèo ấy, nỗi khắc khổ bủa vây đã che mờ mắt người ta trước trái tim thiện lương cùng trí tưởng tượng tuyệt vời của cậu bé con năm tuổi.</p><p style='text-align: justify;'>Có hề gì đâu bao nhiêu là hắt hủi, đánh mắng, vì Zezé đã có một người bạn đặc biệt để trút nỗi lòng: cây cam ngọt nơi vườn sau. Và cả một người bạn nữa, bằng xương bằng thịt, một ngày kia xuất hiện, cho cậu bé nhạy cảm khôn sớm biết thế nào là trìu mến, thế nào là nỗi đau, và mãi mãi thay đổi cuộc đời cậu.</p><p style='text-align: justify;'>Mở đầu bằng những thanh âm trong sáng và kết thúc lắng lại trong những nốt trầm hoài niệm, Cây cam ngọt của tôi khiến ta nhận ra vẻ đẹp thực sự của cuộc sống đến từ những điều giản dị như bông hoa trắng của cái cây sau nhà, và rằng cuộc đời thật khốn khổ nếu thiếu đi lòng yêu thương và niềm trắc ẩn. Cuốn sách kinh điển này bởi thế không ngừng khiến trái tim người đọc khắp thế giới thổn thức, kể từ khi ra mắt lần đầu năm 1968 tại Brazil.</p><p style='text-align: justify;'><strong>TÁC GIẢ:</strong></p><p style='text-align: justify;'>JOSÉ MAURO DE VASCONCELOS (1920-1984) là nhà văn người Brazil. Sinh ra trong một gia đình nghèo ở ngoại ô Rio de Janeiro, lớn lên ông phải làm đủ nghề để kiếm sống. Nhưng với tài kể chuyện thiên bẩm, trí nhớ phi thường, trí tưởng tượng tuyệt vời cùng vốn sống phong phú, José cảm thấy trong mình thôi thúc phải trở thành nhà văn nên đã bắt đầu sáng tác năm 22 tuổi. Tác phẩm nổi tiếng nhất của ông là tiểu thuyết mang màu sắc tự truyện Cây cam ngọt của tôi. Cuốn sách được đưa vào chương trình tiểu học của Brazil, được bán bản quyền cho hai mươi quốc gia và chuyển thể thành phim điện ảnh. Ngoài ra, José còn rất thành công trong vai trò diễn viên điện ảnh và biên kịch.</p>    <div class='clear'></div>",
                 "NXB Hội Nhà Văn", "Nhã Nam",
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_217480.jpg",
@@ -342,7 +342,7 @@ public class DataUtil {
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_186773.jpg",
                 "8935235221345", "", 81000);
 
-        /*dataList.add(product0);
+        dataList.add(product0);
         dataList.add(product1);
         dataList.add(product2);
         dataList.add(product3);
@@ -369,7 +369,7 @@ public class DataUtil {
         dataList.add(product24);
         dataList.add(product25);
         dataList.add(product26);
-        */
+       
         dataList.add(product27);
         dataList.add(product28);
         dataList.add(product29);

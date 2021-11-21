@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,13 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.hibernate.Session;
-
 import com.data.Seed;
-import com.data.DAOs.CartDAO;
-import com.data.DAOs.OrderDAO;
 import com.data.DAOs.ProductDAO;
-import com.model.Cart;
 import com.model.Product;
 
 @WebServlet("/home")
@@ -79,11 +73,35 @@ public class HomeController extends HttpServlet {
 
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> product = null;
+		String action = request.getParameter("action");
+		String next = request.getParameter("next");
+		int index;
 		try {
-			product = productDao.getProducts();
+			// set index
+			if(next == null) index = 0;
+			
+			else index = Integer.parseInt(next);
+
+			// get action to execute 
+			if (action == null) action = "";
+			
+			if(action.equals("PREV")) index--;
+
+			else if(action.equals("NEXT")) index++;
+			
+			// when user next or prev over page available we set default for this case
+			if (index < 0) index = 0;
+			if (index > 3) index = 3;
+
+			product = productDao.getProducts(index * 15);
+			
+			
+			request.setAttribute("next", index);
+
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
+
 		request.setAttribute("list_product", product);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}

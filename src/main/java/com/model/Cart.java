@@ -53,6 +53,7 @@ public class Cart implements Serializable {
 
 		// Map to CartDTO
 		cartDTO.setId(cart.id);
+		float total = 0;
 		for (LineItem item : cart.getItems()) {
 			LineItemDTO itemDTO = new LineItemDTO();
 			itemDTO.setId(item.getId());
@@ -62,55 +63,45 @@ public class Cart implements Serializable {
 			itemDTO.setPrice(item.getProduct().getPrice());
 
 			cartDTO.getItems().add(itemDTO);
+			total += (itemDTO.getPrice() * itemDTO.getQuantity());
 		}
-		cartDTO.setTotal(cart.getTotal());
+		cartDTO.setTotal(total);
 
 		return cartDTO;
 	}
 
-	public CartDTO addItem(CartDTO cartDTO, int productId, int quantity) {
-		CartDAO cartDao = new CartDAO();
-		Cart cart = cartDao.getCart(cartDTO.getId());
-		LineItem item = cartDao.addToCart(cart, productId, quantity);
-
-		LineItemDTO lineItemDTO = new LineItemDTO();
-		lineItemDTO.setId(item.getId());
-		lineItemDTO.setPrice(item.getProduct().getPrice());
-		lineItemDTO.setProductName(item.getProduct().getProductName());
-		lineItemDTO.setQuantity(item.getQuantity());
-		cartDTO.getItems().add(lineItemDTO);
-		cartDTO.setTotal(cart.getTotal());
-
-		return cartDTO;
+	public LineItem addItem(int cartId, int productId, int quantity) {
+		if (quantity <= 0) {
+			quantity = 1;
+		}
+		CartDAO cartDAO = new CartDAO();
+		LineItem item = cartDAO.existItem(cartId, productId);
+		if (item != null) {
+			cartDAO.updateQuantity(item.getId(), item.getQuantity() + quantity);
+			return item;
+		}
+		LineItem newItem = cartDAO.addToCart(cartId, productId, quantity);
+		return newItem;
 	}
 
-	public CartDTO removeItem(CartDTO cartDTO, int itemId) {
-		CartDAO cartDao = new CartDAO();
-		Cart cart = cartDao.getCart(cartDTO.getId());
-
-		cartDao.RemoveItem(cart, itemId);
-		for (LineItemDTO item : cartDTO.getItems()) {
-			if (item.getId() == itemId) {
-				cartDTO.getItems().remove(item);
-			}
+	public LineItem updateQuantity(int itemId, int quantity) {
+		if (quantity <= 0) {
+			quantity = 1;
 		}
-
-		return cartDTO;
+		CartDAO cartDao = new CartDAO();
+		LineItem item = cartDao.updateQuantity(itemId, quantity);
+		return item;
 	}
 
-	public CartDTO updateQuantity(CartDTO cartDTO, int itemId, int quantity) {
+	public void removeItem(int itemId) {
 		CartDAO cartDao = new CartDAO();
-		Cart cart = cartDao.getCart(cartDTO.getId());
+		cartDao.RemoveItem(itemId);
+	}
 
-		cartDao.updateQuantity(cart, itemId, quantity);
-		for (LineItemDTO item : cartDTO.getItems()) {
-			if (item.getId() == itemId) {
-				item.setQuantity(quantity);
-			}
-		}
-		cartDTO.setTotal(cart.getTotal());
-
-		return cartDTO;
+	public Cart clearCart(int cartId) {
+		CartDAO cartDao = new CartDAO();
+		Cart cart = cartDao.clearCart(cartId);
+		return cart;
 	}
 
 	public int getId() {
