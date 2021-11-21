@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%> 
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%> <%@ taglib
+prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,10 +28,10 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
             />
           </figure>
           <div class="button-wrapper">
-            <div class="add-to-cart">
+            <div class="product-btn add-to-cart">
               <span>Thêm vào giỏ hàng</span>
             </div>
-            <div class="buy-now">
+            <div class="product-btn buy-now">
               <span>Mua ngay</span>
             </div>
           </div>
@@ -171,10 +170,50 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
               <span>100%</span>
             </div>
           </div>
-          <div class="noti-non-user">
-            Chỉ có thành viên mới có thể viết nhận xét.Vui lòng đăng nhập hoặc
-            đăng ký.
-          </div>
+          <c:choose>
+            <c:when test="${sessionScope.userId == null}">
+              <div class="noti-non-user">
+                Chỉ có thành viên mới có thể viết nhận xét.Vui lòng&nbsp;
+                <a href="login">đăng nhập&nbsp;</a>hoặc
+                <a href="register">&nbsp;đăng ký</a>.
+              </div>
+            </c:when>
+            <c:otherwise>
+              <div class="review-form-container">
+                <form class="rating-form" action="review" method="POST">
+                  <span class="fas fa-times fa-2x exit-form"></span>
+                  <h2 class="form-title">Viết đánh giá sản phẩm</h2>
+                  <div class="review-rating-stars">
+                    <input type="radio" name="rating" id="star5" value="5" />
+                    <label for="star5" class="full" title="5 Stars"></label>
+                    <input type="radio" name="rating" id="star4" value="4" />
+                    <label for="star4" class="full" title="4 Stars"></label>
+                    <input type="radio" name="rating" id="star3" value="3" />
+                    <label for="star3" class="full" title="3 Stars"></label>
+                    <input type="radio" name="rating" id="star2" value="2" />
+                    <label for="star2" class="full" title="2 Stars"></label>
+                    <input type="radio" name="rating" id="star1" value="1" />
+                    <label for="star1" class="full" title="1 Stars"></label>
+                  </div>
+                  <textarea
+                    placeholder="Nhập nhận xét của bạn về sản phẩm"
+                    name="review-content"
+                    class="review-content"
+                    cols="5"
+                    rows="3"
+                  ></textarea>
+                  <div class="button-wrapper">
+                    <div class="cancel-form">Hủy</div>
+                    <input class="submit" type="submit" value="Gửi nhận xét" />
+                  </div>
+                </form>
+              </div>
+              <div class="product-btn review-btn .noti-non-user">
+                <span class="fal fa-pen"></span>
+                Viết đánh giá
+              </div>
+            </c:otherwise>
+          </c:choose>
         </section>
         <section class="user-comments">
           <div class="user-comment">
@@ -242,6 +281,16 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
       </section>
     </main>
     <c:import url="sharedView/footer.jsp"></c:import>
+    <script>
+      $(document).ready(function () {
+        $(".review-btn").click(() => {
+          $(".review-form-container").show();
+        });
+        $(".cancel-form, .exit-form").click(() => {
+          $(".review-form-container").hide();
+        });
+      });
+    </script>
     <script src="./js/productItem.js"></script>
   </body>
 </html>

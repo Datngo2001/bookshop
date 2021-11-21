@@ -61,6 +61,7 @@ public class HomeController extends HttpServlet {
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String productId = null;
 		Product product = null;
+
 		try {
 			productId = request.getParameter("productID");
 			product = productDao.getProduct(Integer.parseInt(productId));

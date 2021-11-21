@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 body {
   background-color: #f0f0f0;
 }
@@ -56,13 +58,15 @@ body {
 .product-addon > div {
   margin-left: 30px;
 }
-.add-to-cart,
-.buy-now {
+/* .add-to-cart,
+.buy-now { */
+.product-btn {
   align-items: center;
   background-color: #fff;
   border: 1px solid #c92127;
-  display: flex;
   color: #c92127;
+  cursor: pointer;
+  display: flex;
   font-weight: bold;
   font-size: 15px;
   justify-content: center;
@@ -177,6 +181,15 @@ body {
 .noti-non-user {
   margin-top: 30px;
 }
+.review-btn {
+  border-radius: 5px;
+  display: flex;
+  padding: 5px 0;
+  margin-top: 20px;
+}
+.review-btn > span {
+  margin-right: 10px;
+}
 .user-comments {
   padding-top: 20px;
 }
@@ -210,6 +223,108 @@ body {
 /* nxb - author */
 .product-supplier-author {
   display: none;
+}
+/* rating form and review */
+.review-form-container {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  padding: 20% 0 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.rating-form {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  height: 100%;
+  position: relative;
+}
+.rating-form > * {
+  margin-bottom: 20px;
+}
+.form-title {
+  align-self: center;
+}
+.rating-form > div.review-rating-stars {
+  background-color: #f7f9fa;
+  display: flex;
+  justify-content: center;
+  transform: rotate(180deg);
+  padding: 10px;
+}
+.rating-form > div.review-rating-stars > input {
+  display: none;
+}
+.rating-form > div.review-rating-stars > label::before {
+  margin: 5px;
+  font-size: 16px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+.rating-form > div.review-rating-stars > label {
+  color: #ddd;
+  cursor: pointer;
+  margin-left: -10px;
+  transform: rotate(180deg);
+}
+.rating-form > div.review-rating-stars > input:checked ~ label,
+.rating-form > div.review-rating-stars:not(:checked) > label:hover,
+.rating-form > div.review-rating-stars:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+}
+.rating-form > div.review-rating-stars > input:checked + label:hover,
+.rating-form > div.review-rating-stars > input:checked ~ label:hover,
+.rating-form > div.review-rating-stars > label:hover ~ input:checked ~ label,
+.rating-form > div.review-rating-stars > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
+.review-content {
+  border-radius: 10px;
+  border: 1px solid #cdcfd0;
+  padding: 10px;
+  flex: 0.7;
+}
+.submit {
+  align-self: flex-end;
+  border: none;
+  background-color: #c92127;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 30px;
+}
+.button-wrapper {
+  display: flex;
+}
+.rating-form > div.button-wrapper {
+  align-self: flex-end;
+  margin-top: auto;
+}
+.cancel-form {
+  color: #999;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 36px;
+  margin-right: 30px;
+}
+.exit-form {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.product-btn,
+.cancel-form {
+  user-select: none;
 }
 @media only screen and (min-width: 1024px) {
   .product-container {
@@ -249,12 +364,11 @@ body {
     padding: 10px;
   }
   .button-wrapper {
-    display: flex;
     margin-top: 30px;
   }
-  .add-to-cart,
-  .buy-now {
+  .product-btn {
     padding: 13px 30px;
+    max-width: 200px;
   }
   .add-to-cart,
   .buy-now,
@@ -303,6 +417,9 @@ body {
     margin-top: 0;
     justify-content: center;
   }
+  .review-btn {
+    margin: auto;
+  }
   .user-comment {
     flex-direction: row;
   }
@@ -329,5 +446,9 @@ body {
   }
   .product-row-content > span {
     font-weight: bold;
+  }
+  /* review form */
+  .review-form-container {
+    padding: 10% 20%;
   }
 }

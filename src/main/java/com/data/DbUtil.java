@@ -24,7 +24,8 @@ public class DbUtil {
         settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
         settings.put(Environment.USER, "root");
 
-        settings.put(Environment.PASS, "sesame"); // remember to chang to your password {password, ngocthien2306.com}
+        settings.put(Environment.PASS, "ngocthien2306.com"); // remember to chang to your password
+        // {password,ngocthien2306.com}
 
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
@@ -32,9 +33,9 @@ public class DbUtil {
 
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-        // settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+        settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
-        // settings.put(Environment.HBM2DDL_AUTO, "update");
+        settings.put(Environment.HBM2DDL_AUTO, "update");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);
