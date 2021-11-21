@@ -60,7 +60,7 @@ public class ProductControllerServlet extends HttpServlet {
 					deleteProduct(request, response);
 
 				default:
-					noAccess(request, response);
+					listProduct(request, response);
 			}
 		}
 		catch (Exception e) {

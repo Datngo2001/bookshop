@@ -68,13 +68,6 @@ public class LoginDTO {
 		this.passwordSalt = passwordSalt;
 	}
 
-	public int getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
-	}
 
 	public String getRoleName() {
 		return roleName;

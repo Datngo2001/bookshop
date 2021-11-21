@@ -97,7 +97,7 @@ public class User implements Serializable {
 		UserDAO userDAO = new UserDAO();
 
 		userDAO.getPasswordHashAndSalt(loginDTO);
-		User user = userDAO.getUserByUserName(loginDTO.getUsername());
+		
 
 		if (loginDTO.getPasswordHash() == null)
 			return false;
@@ -108,7 +108,6 @@ public class User implements Serializable {
 
 		// compare hash result with the hash from database
 		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
-
 			User user = userDAO.getUserByUserName(loginDTO.getUsername());
 			loginDTO.setRoleName(user.getRole().getName());
 			loginDTO.setRoleId(user.getRole().getId());

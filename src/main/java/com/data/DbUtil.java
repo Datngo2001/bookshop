@@ -33,19 +33,20 @@ public class DbUtil {
           settings.put(Environment.PASS, password);
           settings.put(Environment.DRIVER, "org.postgresql.Driver");
           settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
-        } else {
+        } 
+        else {
           settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
           settings.put(Environment.URL,
               "jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
           settings.put(Environment.USER, "root");
-          settings.put(Environment.PASS, "group2");
+          settings.put(Environment.PASS, "ngocthien2306.com");
           settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
         }
 
         settings.put(Environment.SHOW_SQL, "true");
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-        //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+        settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
         settings.put(Environment.HBM2DDL_AUTO, "update");
 
@@ -72,6 +73,7 @@ public class DbUtil {
     return sessionFactory;
   }
 
+  // Postgres
   public static SessionFactory getSessionFactors() {
     if (sessionFactory == null) {
       try {

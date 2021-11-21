@@ -60,10 +60,12 @@
         <div class="grid_column-10">
 
           <div class="home-filter">
+          	<div class="sort-by">
             <span class="home-label">Sorting by</span>
             <button class="btn-product home-filter-btn">Popular</button>
             <button class="btn-product btn-primary home-filter-btn">Newest</button>
             <button class="btn-product home-filter-btn">Selling</button>
+            </div>
             <div class="select-input">
               <span class="select-price-label">Price</span>
               <i class="fas fa-angle-down select-price-icon"></i>
@@ -374,8 +376,10 @@
       <div class="grid_row">
         <div class="trending_book">
           <div class="trending_book-header">
-            <span class="trending_book-title">Popular eBook Pre-orders <br> <p class="trending_book-title-after">Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p></span>
-            <ul class="trending-list">
+            <span class="trending_book-title">Popular eBook Pre-orders <br> 
+            <p class="trending_book-title-after">
+            Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p></span>
+            <ul class="trending-list mrtop">
               <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
               <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
 
@@ -597,7 +601,7 @@
       autoplayHoverPause: true,
       responsive: {
         0: {
-          items: 1,
+          items: 2,
           nav: false
         },
         600: {
