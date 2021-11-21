@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.vnpay.common;
+package com.vnpay;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;

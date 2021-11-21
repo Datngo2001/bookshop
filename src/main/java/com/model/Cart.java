@@ -12,6 +12,7 @@ import com.data.DAOs.CartDAO;
 
 @Entity
 public class Cart implements Serializable {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -35,6 +36,7 @@ public class Cart implements Serializable {
 	}
 
 	// BUSINESS LOGIC ----------------------------------------------------
+	
 	public void UpdateTotalPrice() {
 		total = 0;
 		for (LineItem lineItem : items) {

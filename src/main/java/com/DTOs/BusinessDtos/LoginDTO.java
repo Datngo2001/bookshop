@@ -5,10 +5,20 @@ public class LoginDTO {
 	String password;
 	byte[] passwordHash;
 	byte[] passwordSalt;
+
+	
+
 	int id;
 	int cartId;
 	int roleId;
 	String roleName;
+
+	public int getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(int roleId) {
+		this.roleId = roleId;
+	}
 
 	public int getCartId() {
 		return cartId;

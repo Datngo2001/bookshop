@@ -1,4 +1,4 @@
-package com.vnpay.common;
+package com.vnpay;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -26,30 +26,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.annotation.WebServlet;
 
-@WebServlet("/vnpayQuery")
-public class vnpayQuery extends HttpServlet {
+
+
+@WebServlet("/vnpayRefund")
+public class vnpayRefund extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public vnpayQuery() {
+    public vnpayRefund() {
         super();
         // TODO Auto-generated constructor stub
     }
-
-
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+        //vnp_Command = refund
         String vnp_TxnRef = req.getParameter("order_id");
         String vnp_TransDate = req.getParameter("trans_date");
+        String email = req.getParameter("email");
+        int amount = Integer.parseInt(req.getParameter("amount"))*100;
+        String trantype = req.getParameter("trantype");
         String vnp_TmnCode = Config.vnp_TmnCode;
         String vnp_IpAddr = Config.getIpAddress(req);
 
         Map<String, String> vnp_Params = new HashMap<>();
         vnp_Params.put("vnp_Version", "2.1.0");
-        vnp_Params.put("vnp_Command", "querydr");
+        vnp_Params.put("vnp_Command", "refund");
+        vnp_Params.put("vnp_Amount", String.valueOf(amount));
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
         vnp_Params.put("vnp_OrderInfo", "Kiem tra ket qua GD OrderId:" + vnp_TxnRef);
         vnp_Params.put("vnp_TransDate", vnp_TransDate);
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
+        vnp_Params.put("vnp_CreateBy", email);
+        vnp_Params.put("vnp_TransactionType", trantype);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
@@ -87,10 +94,10 @@ public class vnpayQuery extends HttpServlet {
         URL url = new URL(paymentUrl);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
-        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(connection.getInputStream()));
         String inputLine;
         StringBuilder response = new StringBuilder();
-
         while ((inputLine = in.readLine()) != null) {
             response.append(inputLine);
         }
@@ -103,6 +110,7 @@ public class vnpayQuery extends HttpServlet {
         Gson gson = new Gson();
         resp.getWriter().write(gson.toJson(job));
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub

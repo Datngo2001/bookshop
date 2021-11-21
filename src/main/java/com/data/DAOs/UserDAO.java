@@ -38,6 +38,7 @@ public class UserDAO {
 		q.setParameter("uname", username);
 		try {
 			User user = q.getSingleResult();
+			
 			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
