@@ -1,5 +1,6 @@
 package com.data;
 
+import java.net.URI;
 import java.util.Properties;
 
 import org.hibernate.SessionFactory;
@@ -18,18 +19,28 @@ public class DbUtil {
       try {
         Configuration configuration = new Configuration();
 
-        // Hibernate settings equivalent to hibernate.cfg.xml's properties
         Properties settings = new Properties();
+
+        String CLEARDB_DATABASE_URL = System.getenv("CLEARDB_DATABASE_URL");
+
+        if (CLEARDB_DATABASE_URL != null) {
+          URI dbUri = new URI(CLEARDB_DATABASE_URL);
+          String username = dbUri.getUserInfo().split(":")[0];
+          String password = dbUri.getUserInfo().split(":")[1];
+          String dbUrl = "jdbc:mysql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
+          settings.put(Environment.URL, dbUrl);
+          settings.put(Environment.USER, username);
+          settings.put(Environment.PASS, password);
+        } else {
+          settings.put(Environment.URL,
+              "jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
+          settings.put(Environment.USER, "root");
+          settings.put(Environment.PASS, "group2");
+        }
+
         settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-        settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
-        settings.put(Environment.USER, "root");
-
-        settings.put(Environment.PASS, "ngocthien2306.com"); // remember to change to your password {password, ngocthien2306.com}
-
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-
         settings.put(Environment.SHOW_SQL, "true");
-
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
         // settings.put(Environment.HBM2DDL_AUTO, "create-drop");
