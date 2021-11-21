@@ -483,4 +483,21 @@ p.trending-item-name-1 {
 .header-side .header-product-item a.product-link {
     color: var(--white-color)
 }
-
+/*Responsive*/
+@media (max-width: 1024px){
+  .grid_column-8 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 75%;
+  }	
+  .grid_column-4 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 25%;
+  }
+  span.logo-header {
+	color: var(--bs-gray-700);
+	font-size: 33px;
+	padding: 2px 0;
+  }
+}

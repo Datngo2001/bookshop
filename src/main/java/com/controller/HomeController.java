@@ -43,7 +43,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				// new Seed().doSeed();
+				//new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				goHomePage(request, response);
 				break;
@@ -73,11 +73,35 @@ public class HomeController extends HttpServlet {
 
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> product = null;
+		String action = request.getParameter("action");
+		String next = request.getParameter("next");
+		int index;
 		try {
-			product = productDao.getProducts();
+			// set index
+			if(next == null) index = 0;
+			
+			else index = Integer.parseInt(next);
+
+			// get action to execute 
+			if (action == null) action = "";
+			
+			if(action.equals("PREV")) index--;
+
+			else if(action.equals("NEXT")) index++;
+			
+			// when user next or prev over page available we set default for this case
+			if (index < 0) index = 0;
+			if (index > 3) index = 3;
+
+			product = productDao.getProducts(index * 15);
+			
+			
+			request.setAttribute("next", index);
+
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
+
 		request.setAttribute("list_product", product);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
