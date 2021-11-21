@@ -6,6 +6,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.DTOs.BusinessDtos.CartDTO;
 import com.DTOs.BusinessDtos.LineItemDTO;
 import com.data.DAOs.CartDAO;
@@ -19,7 +22,7 @@ public class Cart implements Serializable {
 	private int id;
 	@Transient
 	private float total;
-
+	@LazyCollection(LazyCollectionOption.FALSE)
 	// Relation
 	@OneToOne
 	private User user;
@@ -27,6 +30,7 @@ public class Cart implements Serializable {
 	private List<LineItem> items = new ArrayList<LineItem>();
 
 	public Cart() {
+		
 	}
 
 	public Cart(int id, User user, List<LineItem> items) {

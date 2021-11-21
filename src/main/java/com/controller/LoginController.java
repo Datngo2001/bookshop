@@ -45,11 +45,9 @@ public class LoginController extends HttpServlet {
 			if (new User().login(loginDTO)) {
 				// get username and id
 				request.getSession().setAttribute("username", loginDTO.getUsername());
-
 				request.getSession().setAttribute("userId", loginDTO.getId());
 				request.getSession().setAttribute("role", loginDTO.getRoleName());
 				request.getSession().setAttribute("roleId", loginDTO.getRoleId());
-
 
 				if (loginDTO.getRoleId() == 3) {
 					nextUrl = "home";

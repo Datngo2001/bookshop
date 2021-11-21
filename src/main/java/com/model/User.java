@@ -36,7 +36,7 @@ public class User implements Serializable {
 	private String email;
 
 	// Relation
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne()
 	private Role role;
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<Order>();
@@ -109,9 +109,10 @@ public class User implements Serializable {
 		// compare hash result with the hash from database
 		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
 			User user = userDAO.getUserByUserName(loginDTO.getUsername());
-			loginDTO.setRoleName(user.getRole().getName());
-			loginDTO.setRoleId(user.getRole().getId());
-			loginDTO.setId(user.getId());
+			int rid = user.getRole().getId();
+			int id = user.getId();
+			loginDTO.setRoleId(rid);
+			loginDTO.setId(id);
 
 			return true;
 		} else {
