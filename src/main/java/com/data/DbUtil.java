@@ -21,10 +21,10 @@ public class DbUtil {
 
         Properties settings = new Properties();
 
-        String CLEARDB_DATABASE_URL = System.getenv("CLEARDB_DATABASE_URL");
+        String DATABASE_URL = System.getenv("DATABASE_URL");
 
-        if (CLEARDB_DATABASE_URL != null) {
-          URI dbUri = new URI(CLEARDB_DATABASE_URL);
+        if (DATABASE_URL != null) {
+          URI dbUri = new URI(DATABASE_URL);
           String username = dbUri.getUserInfo().split(":")[0];
           String password = dbUri.getUserInfo().split(":")[1];
           String dbUrl = "jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath();
