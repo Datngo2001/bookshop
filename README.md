@@ -1,8 +1,6 @@
 # bookshop
 https://ebooks-shop.herokuapp.com/home 
-Account 
-testuser123
-test@123
+
 
 
 1. Use: git clone https://github.com/Datngo2001/bookshop.git
