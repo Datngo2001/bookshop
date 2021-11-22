@@ -18,10 +18,11 @@ public class confirmController extends HttpServlet {
         super();
  
     }
-
+    private static final DecimalFormat df = new DecimalFormat("0");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
-		int price = Integer.parseInt(request.getParameter("price"));
+		
+		double price = Double.parseDouble(request.getParameter("price"));
 		
 		// get current action
 		String action = request.getParameter("action");
@@ -33,7 +34,8 @@ public class confirmController extends HttpServlet {
 		if (action.equals("SOMETHING")) {
 			example();
 		}
-		request.setAttribute("priceTotal", price);
+		request.setAttribute("priceTotal",df.format(price));
+		
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 

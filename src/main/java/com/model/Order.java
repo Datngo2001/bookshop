@@ -25,23 +25,22 @@ public class Order implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
-    private Timestamp createAt;
+    private String createAt;
     private String status;
     private float amount;
 
     // Relation
     @ManyToOne
     private User user;
+    
     @OneToMany(mappedBy = "order")
     private List<Item> items = new ArrayList<Item>();
 
-    public Order(int id, Timestamp createAt, String status, float amount, User user, List<Item> items) {
-        this.id = id;
+    public Order(String createAt, String status, float amount, User user) {
         this.createAt = createAt;
         this.status = status;
         this.amount = amount;
         this.user = user;
-        this.items = items;
     }
     public Order() {}
     public int getId() {
@@ -52,11 +51,11 @@ public class Order implements Serializable {
         this.id = id;
     }
 
-    public Timestamp getCreateAt() {
+    public String getCreateAt() {
         return createAt;
     }
 
-    public void setCreateAt(Timestamp createAt) {
+    public void setCreateAt(String createAt) {
         this.createAt = createAt;
     }
 

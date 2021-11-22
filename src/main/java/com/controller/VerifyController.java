@@ -24,9 +24,10 @@ public class VerifyController extends HttpServlet {
         }
 
         if (action.equals("VERIFY")) {
-            RegisterDTO registerDTO = (RegisterDTO) request.getAttribute("registerDTO");
-            String code = request.getParameter("code");
-
+        	String code = request.getParameter("code");
+        	
+        	RegisterDTO registerDTO =  (RegisterDTO) request.getSession().getAttribute("register");
+        	registerDTO.setCode(code);
             if (new User().verify(registerDTO, code)) {
                 request.getSession().setAttribute("username", registerDTO.getUsername());
                 request.getSession().setAttribute("role", registerDTO.getRole());

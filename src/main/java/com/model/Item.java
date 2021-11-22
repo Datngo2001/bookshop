@@ -28,8 +28,7 @@ public class Item implements Serializable {
     @OneToOne
     private Product product;
     
-    public Item(int id, int quantity, float price, Order order, Product product) {
-        this.id = id;
+    public Item(int quantity, float price, Order order, Product product) {
         this.quantity = quantity;
         this.price = price;
         this.order = order;

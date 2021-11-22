@@ -66,8 +66,8 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 			<div class="grid_column-3">
 				
 				<div class="total-price">
-					<form action="confirm">
-						 <input id="hide" type="hidden" name="price" value=""/>
+					<form action="confirm" method="post">
+						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
 						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
 					</form>
 					<form action="authorize_payment">
