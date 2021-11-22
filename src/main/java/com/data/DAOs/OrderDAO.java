@@ -10,21 +10,30 @@ import org.hibernate.*;
 
 import com.data.DbUtil;
 import com.model.Cart;
+import com.model.Item;
+import com.model.LineItem;
+import com.model.Order;
+import com.model.User;
 
 public class OrderDAO {
 	public OrderDAO() {}
-	// public void addItemToUser(MyProduct myp) {
-	// 	Transaction transaction = null;
-	// 	try (Session session = DbUtil.getSessionFactory().openSession()) {
-	// 		transaction = session.beginTransaction();
-	// 		session.save(myp);
-	// 		transaction.commit();
-	// 	}
-	// 	catch (Exception e) {
-	// 		if(transaction != null) {
-	// 			transaction.rollback();
-	// 		}
-	// 		e.printStackTrace();
-	// 	}
-	// }
+	public Order CreateOrderForUser(Order order, User user) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			
+			order.setUser(user);
+			session.save(order);
+			transaction.commit();
+			return order;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }

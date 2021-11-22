@@ -1,6 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
-<%@page import="com.vnpay.common.Config"%>
+<%@page import="com.vnpay.Config"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Collections"%>

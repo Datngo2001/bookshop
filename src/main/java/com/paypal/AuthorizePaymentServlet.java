@@ -7,17 +7,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.DTOs.BusinessDtos.UserDTO;
+import com.model.User;
+import com.paypal.api.payments.Payer;
 import com.paypal.base.rest.PayPalRESTException;
 
 @WebServlet("/authorize_payment")
 public class AuthorizePaymentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private UserDTO userDto = null;
+	private User user = null;
+	private Payer payer = null;
 	//sb-evtpu8326832@personal.example.com
 	//4LC($leR
     public AuthorizePaymentServlet() {
         super();
-        
+		userDto = new UserDTO();
+		user = new User();
+		payer = new Payer();
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	String action = request.getParameter("action");
@@ -45,9 +52,14 @@ public class AuthorizePaymentServlet extends HttpServlet {
 		Checkout check = new Checkout(product, subtotal, shipping, tax, total);
 		
 		PaymentServices paymentServices = new PaymentServices();
+		
+		if(user.PayerInfor("ngocthien")) {
+			payer = paymentServices.getPayerInformation(userDto.getFirstName(), userDto.getLastName(), userDto.getEmail());
+		}
+		
 		String approvalLink = "";
 		try {
-			approvalLink = paymentServices.authorizePayment(check);
+			approvalLink = paymentServices.authorizePayment(check, payer);
 			response.sendRedirect(approvalLink);
 		} catch (PayPalRESTException e) {
 			e.printStackTrace();

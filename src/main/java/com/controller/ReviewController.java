@@ -27,6 +27,9 @@ public class ReviewController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
 
+        String productId = null, date = null, userId = null, reviewContent = null;
+        int starsRating = 0;
+
         if (action == null) {
             action = "Go to productItem.jsp";
         }
@@ -34,12 +37,12 @@ public class ReviewController extends HttpServlet {
         if (action.equals("CREATE")) {
             UserDAO userDAO = new UserDAO();
 
-            String productId = req.getParameter("productId");
-            int starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
-            String reviewContent = req.getParameter("review-content");
+            productId = req.getParameter("id");
+            starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
+            reviewContent = req.getParameter("review-content");
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            String date = formatter.format(new Date());
-            String userId = req.getSession().getAttribute("userId").toString();
+            date = formatter.format(new Date());
+            userId = req.getSession().getAttribute("userId").toString();
 
             if (productId == null || userId == null) {
                 req.getRequestDispatcher("WEB-INF/home.jsp").forward(req, res);
@@ -48,8 +51,6 @@ public class ReviewController extends HttpServlet {
 
             Review review = new Review(date, reviewContent, userDAO.getUser(userId),
                     Product.find(Integer.parseInt(productId)), starsRating);
-
-            System.out.println(review.getContent());
 
             ReviewDAO reviewDAO = new ReviewDAO();
             if (reviewDAO.addReview(review) != null) {
@@ -62,8 +63,9 @@ public class ReviewController extends HttpServlet {
             }
         }
 
-        // req.getRequestDispatcher(path)
-        req.getRequestDispatcher("WEB-INF/productItem.jsp").forward(req, res);
+        String prevPath = req.getContextPath() + "/product?command=LOAD&id=" + productId;
+
+        res.sendRedirect(prevPath);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {

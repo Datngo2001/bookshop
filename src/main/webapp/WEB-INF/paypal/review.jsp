@@ -26,7 +26,7 @@
         <form action="execute_payment" method="get">
           <table>
             <tr>
-              <td colspan="2"><b>Transaction Details:</b></td>
+              <td colspan="2"><b>Transaction Details</b></td>
               <td>
                 <input type="hidden" name="paymentId" value="${param.paymentId}" />
                 <input type="hidden" name="PayerID" value="${param.PayerID}" />
@@ -78,7 +78,7 @@
               <td colspan="2"><b>Shipping Address:</b></td>
             </tr>
             <tr>
-              <td>Recipient Name:</td>
+              <td style="width: 170px">Recipient Name:</td>
               <td>${shippingAddress.recipientName}</td>
             </tr>
             <tr>

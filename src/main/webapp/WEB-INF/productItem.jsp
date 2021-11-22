@@ -67,7 +67,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <i class="fas fa-star"></i>
               <span>5.0</span>
             </div>
-            <span>(${numReview} <span>đánh giá</span>)</span>
+            <span>(${reviews.size()} <span>đánh giá</span>)</span>
             <div class="product-addon">
               <div>
                 <i class="fal fa-heart fa-2x"></i>
@@ -130,7 +130,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
             </div>
-            <span class="number-rating">(${numReview} <span>đánh giá</span>)</span>
+            <span class="number-rating"
+              >(${reviews.size()} <span>đánh giá</span>)</span
+            >
           </div>
           <div class="review-rating-container">
             <div class="review-rating">
@@ -184,12 +186,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             </c:when>
             <c:otherwise>
               <div class="review-form-container">
-                <form class="rating-form" action="review" method="POST">
+                <form
+                  class="rating-form"
+                  action="review?action=CREATE&id=${product.getId()}"
+                  method="POST"
+                >
                   <span class="fas fa-times fa-2x exit-form"></span>
                   <h2 class="form-title">Viết đánh giá sản phẩm</h2>
                   <div class="review-rating-stars">
-                    <input type="text" name="action" value="CREATE">
-                    <input type="text" name="productId" value="${product.getId()}">
                     <input type="radio" name="rating" id="star5" value="5" />
                     <label for="star5" class="full" title="5 Stars"></label>
                     <input type="radio" name="rating" id="star4" value="4" />
@@ -223,8 +227,19 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </c:choose>
         </section>
         <section class="user-comments">
-          <c:forEach var = "review" items="${reviews}">
-            <div class="user-comment">
+          <div class="overlay">
+            <form class="comment-delete-confirm" action="">
+              <div class="fas fa-times fa-2x exit-form"></div>
+              <h2>Bạn có chắc là muốn xóa bình luận này chứ</h2>
+              <div class="button-wrapper">
+                <div class="cancel-comment-delete cancel-form">Hủy</div>
+                <input type="text" name="commentId" value="" />
+                <input class="submit" type="submit" value="Xác nhận" />
+              </div>
+            </form>
+          </div>
+          <c:forEach var="review" items="${reviews}">
+            <div class="user-comment" id="${review.getId()}">
               <section class="user">
                 <div class="username">${review.getUserName()}</div>
                 <span class="comment-date">${review.getDate()}</span>
@@ -236,19 +251,25 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
                   <i class="fas fa-star"></i>
+                  <div class="comment-menu">
+                    <i class="fas fa-ellipsis-h"></i>
+                    <ul class="comment-menu-dropdown">
+                      <li class="comment-menu-update">Chỉnh sửa</li>
+                      <li class="comment-menu-delete">Xóa</li>
+                    </ul>
+                  </div>
                 </div>
-                <div class="comment-content">
-                  ${review.getContent()}
-                </div>
+                <div class="comment-content">${review.getContent()}</div>
               </section>
             </div>
-      </c:forEach>
+          </c:forEach>
         </section>
       </section>
     </main>
     <c:import url="sharedView/footer.jsp"></c:import>
     <script>
       $(document).ready(function () {
+        //Create review
         $(".review-btn").click(() => {
           $(".review-form-container").show();
         });
@@ -263,6 +284,23 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             "review-content": "Enter your review",
           },
         });
+
+        //Update, delete review
+        $(".comment-menu").click(function () {
+          const el = $(this);
+          el.toggleClass("comment-menu-active");
+          el.children(".comment-menu-dropdown").toggle();
+        });
+
+        const toggleDeleteComment = () => {
+          $(".overlay").toggleClass("confirm-delete-active");
+        };
+
+        $("div.exit-form, .cancel-comment-delete.cancel-form").click(
+          toggleDeleteComment
+        );
+
+        $(".comment-menu-delete").click(toggleDeleteComment);
       });
     </script>
     <script src="./js/productItem.js"></script>

@@ -34,6 +34,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				            <img class="cart-item-image" src="https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg" width="100" height="100">
 				            <div class="cart-title">
 				        		<p class="name-book"><c:out value="${item.productName}"/></p>
+				        		
 				        	</div>
 				        </div>
 				        <div class="cart cart-price cart-column" style="display: flex;">
@@ -44,11 +45,13 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 								<input type="hidden" name="id" value="${item.id}"/>
 				            	<input class="cart-quantity-input" type="number" name="quantity" 
 									value="${item.quantity}"/>
-								<input type="submit" class="btn btn-danger" name="action" value="UPDATE" />
+								<input type="hidden" name="action" value="UPDATE" />
+								<button type="submit" class="btn-update"><i class="fas fa-edit"></i> </button>
 							</form>
 				            <form action="cart" method="post">
 								<input type="hidden" name="id" value="${item.id}"/>
-								<input type="submit" class="btn btn-danger" name="action" value="REMOVE" />
+								<input type="hidden" name="action" value="REMOVE" />
+								<button type="submit" class="btn-remove"><i class="fas fa-trash-alt"></i></button>
 							</form>
 				        </div>
 		            </div>
@@ -63,13 +66,13 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 			<div class="grid_column-3">
 				
 				<div class="total-price">
-					<form action="confirm">
-						 <input id="hide" type="hidden" name="price" value=""/>
+					<form action="confirm" method="post">
+						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
 						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
 					</form>
 					<form action="authorize_payment">
 						 <input id="hide" type="hidden" name="price" value=""/>
-						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
+						<button type="submit" class="btn btn-primary vnpay">Paypal</button>
 					</form>
 					
 					<div id="smart-button-container">

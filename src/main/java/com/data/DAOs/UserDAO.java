@@ -8,7 +8,9 @@ import javax.persistence.TypedQuery;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
+import com.model.Item;
 import com.model.User;
+import com.model.Order;
 
 import org.hibernate.*;
 
@@ -38,6 +40,7 @@ public class UserDAO {
 		q.setParameter("uname", username);
 		try {
 			User user = q.getSingleResult();
+			
 			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,6 +140,22 @@ public class UserDAO {
 			session.save(user);
 			transaction.commit();
 			return user;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public Item addItemToMyProduct(Item item ) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			session.save(item);
+			transaction.commit();
+			return item;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();

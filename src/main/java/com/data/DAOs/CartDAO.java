@@ -4,6 +4,9 @@ import org.hibernate.*;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import com.data.DbUtil;
 import com.model.Cart;
 import com.model.LineItem;
@@ -33,7 +36,7 @@ public class CartDAO {
 		}
 		return cart;
 	}
-
+	
 	public Cart getUserCart(int userId) {
 		Transaction transaction = null;
 		Cart cart = null;
@@ -76,6 +79,16 @@ public class CartDAO {
 			e.printStackTrace();
 		}
 		return item;
+	}
+	@SuppressWarnings("unchecked")
+	public List<LineItem> getListItemForUser(int uid) throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From LineItem L where L.cart.id = " + "'" + uid + "'").getResultList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	// INSERT ----------------------------------------------------
@@ -180,7 +193,29 @@ public class CartDAO {
 			e.printStackTrace();
 		}
 	}
-
+	
+	// DELETE all list cart when payment done --------------------
+	
+	public void RemoveListItemByUserId(int id) {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		EntityTransaction trans = em.getTransaction();
+		
+		String Sql = "DELETE from LineItem l where l.cart.id =:userId";
+		Query q = em.createQuery(Sql);
+		q.setParameter("userId", id);
+		int count = 0;
+		try {
+			trans.begin();
+			count = q.executeUpdate();
+			trans.commit();
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+	}
+	
 	public Cart clearCart(int cartId) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {

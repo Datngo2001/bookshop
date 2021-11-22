@@ -12,7 +12,9 @@ import javax.servlet.ServletContext;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.DTOs.BusinessDtos.RegisterDTO;
+import com.DTOs.BusinessDtos.UserDTO;
 import com.data.DAOs.CartDAO;
+
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
 import com.services.EmailService;
@@ -34,7 +36,7 @@ public class User implements Serializable {
 	private String email;
 
 	// Relation
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne()
 	private Role role;
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<Order>();
@@ -97,6 +99,7 @@ public class User implements Serializable {
 		UserDAO userDAO = new UserDAO();
 
 		userDAO.getPasswordHashAndSalt(loginDTO);
+		
 
 		if (loginDTO.getPasswordHash() == null)
 			return false;
@@ -108,15 +111,33 @@ public class User implements Serializable {
 		// compare hash result with the hash from database
 		if (Arrays.equals(hashedInputPass, loginDTO.getPasswordHash())) {
 			User user = userDAO.getUserByUserName(loginDTO.getUsername());
-			loginDTO.setRoleName(user.getRole().getName());
-			loginDTO.setRoleId(user.getRole().getId());
-			loginDTO.setId(user.getId());
+			int rid = user.getRole().getId();
+			int id = user.getId();
+			loginDTO.setRoleId(rid);
+			loginDTO.setId(id);
+
 			return true;
 		} else {
 			return false;
 		}
 	}
-
+	public Boolean PayerInfor(String username) {
+		try {
+			UserDAO userDao = new UserDAO();
+			UserDTO userDto = new UserDTO();
+			User user = userDao.getUserByUserName(username);
+			
+			userDto.setFirstName(user.getFname());
+			userDto.setLastName(user.getLname());
+			userDto.setEmail(user.getEmail());
+			
+			return true;
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 	public Boolean register(RegisterDTO registerDTO, ServletContext context) {
 		UserDAO userDAO = new UserDAO();
 
@@ -159,7 +180,7 @@ public class User implements Serializable {
 
 		return true;
 	}
-
+	
 	public Boolean verify(RegisterDTO registerDTO, String code) {
 
 		if (!registerDTO.getCode().equals(code)) {

@@ -66,7 +66,7 @@ public class ProductItemController extends HttpServlet {
 		Product product = null;
 
 		try {
-			id = Integer.parseInt(request.getParameter("productID"));
+			id = Integer.parseInt(request.getParameter("id"));
 			product = Product.find(id);
 
 			if (product == null) {
@@ -83,7 +83,7 @@ public class ProductItemController extends HttpServlet {
 	private void loadReviews(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		List<Review> reviews = null;
 		ReviewDAO reviewDAO = new ReviewDAO();
-		String productId = req.getParameter("productID");
+		String productId = req.getParameter("id");
 
 		try {
 			reviews = reviewDAO.getReviews(productId);

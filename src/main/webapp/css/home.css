@@ -114,7 +114,6 @@
 .home-page {
   display: flex;
   align-items: center;
-  border: 1px solid #e5e8e8;
   height: 36px;
   margin: 0 5px 0 auto;
 }
@@ -133,16 +132,23 @@
 .filter-control {
   margin: 0 5px;
   width: 30px;
-  border-left: 1px solid rgba(0, 0, 0, 0, 2);
 
   justify-content: center;
   align-items: center;
 }
 
 .filter-page-btn {
-  border: 1px solid rgba(0, 0, 0, 0, 2);
+  border: 1px solid var(--bs-gray-100);
+  color: var(--bs-blue);
   margin: 0 3px;
+  font-size: 20px;
+  background: var(--bs-white);
+
 }
+.filter-page-btn:hover {
+	color: #2E86C1;
+}
+
 a.filter-page-btn {
   color: #333;
 }
@@ -456,6 +462,11 @@ p.trending-item-name {
 p.trending-item-author {
   margin: 0 10px;
   color: var(--bs-gray-600);
+    -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  display: -webkit-box;
+  margin: 10px 10px 0 10px;
 }
 
 .btn_add-to-cart {
@@ -512,19 +523,16 @@ p.trending-item-author {
 }
 @media (max-width: 1370px) {
   .row-card {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    flex-wrap: wrap;
-    margin-top: calc(var(--bs-gutter-y) * -1);
-    margin-right: calc(var(--bs-gutter-x) * -0.5);
-    margin-left: calc(var(--bs-gutter-x) * -0.5);
-    width: 100%;
-    justify-content: center;
     align-items: center;
   }
 }
-@media (max-width: 1060px) {
+@media (max-width: 1024px) {
+  .adver-item {
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+	}
   .row-card {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
@@ -538,13 +546,41 @@ p.trending-item-author {
     justify-content: center;
     align-items: center;
   }
+  .grid_column-2-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 33%;
+  }
+  .grid_column-10 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 75%;
+  }
+  .grid_column-2 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 25%;
+  }
+  .select-input {
+  	display: none;
+  }
+  .trending_book-header {
+  	padding: 0 10px;
+  }
+  .trending-list {
+  	justify-content: space-around;
+  	
+  }
+  
   .container-card {
     width: 100%;
     padding-right: var(--bs-gutter-x, 0.75rem);
     padding-left: var(--bs-gutter-x, 1rem);
     display: block;
   }
+  
 }
+
 
 /**/
 
@@ -558,6 +594,37 @@ p.trending-item-author {
   .dataTables_wrapper .dataTables_paginate {
     margin-top: 0.5em;
   }
+  .grid_column-2-5 {
+  padding-left: 5px;
+  padding-right: 5px;
+  width: 50%;
+	}
+  .category {
+  display: none;
+  }
+  .sort-by {
+  display: none;
+  }
+  .trending_book-header {
+  display: block;
+  width: 100%;
+  border-bottom: 1px solid var(--bs-gray-200);
+  }
+  .trending-list {
+  list-style: none;
+  display: flex;
+  justify-content: flex-end;
+  
+  }
+  .mrtop {
+  margin-top: -20px;
+  }
+  .grid_column-10 {
+  padding-left: 12px;
+  padding-right: 12px;
+  width: 100%;
+}
+  
 }
 
 @media screen and (max-width: 640px) {

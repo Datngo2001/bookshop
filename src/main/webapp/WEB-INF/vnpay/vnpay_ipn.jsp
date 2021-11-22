@@ -1,6 +1,6 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="java.nio.charset.StandardCharsets"%>
-<%@page import="com.vnpay.common.Config"%>
+<%@page import="com.vnpay.Config"%>
 <%@page contentType="application/json; charset=UTF-8"%>
 <%-- 
     Document   : vnpay_ipn(Payment Notify)

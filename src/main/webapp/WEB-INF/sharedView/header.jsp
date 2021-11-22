@@ -109,12 +109,13 @@
           </ul>
           <ul class="search-right-list">
             <li class="search-right-item">
-          <form action="cart" method="get">
+          	<form action="cart" method="get">
               	<a class="cart-link">
                 <div class="cart-product"> </div>
                 </a>
                 <input type="submit" class="btn-cart-list" name="" value="Go cart"/>
              </form>
+             
               <div class="cart-products">
                 <div class="cart-product-list cart-product-list_nocart">
                   

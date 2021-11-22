@@ -8,6 +8,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import java.io.Serializable;
 
 @Entity
@@ -25,14 +28,13 @@ public class Item implements Serializable {
     @OneToOne
     private Product product;
     
-    public Item(int id, int quantity, float price, Order order, Product product) {
-        this.id = id;
+    public Item(int quantity, float price, Order order, Product product) {
         this.quantity = quantity;
         this.price = price;
         this.order = order;
         this.product = product;
     }
-
+    public Item() {}
     public int getId() {
         return id;
     }

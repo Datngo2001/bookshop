@@ -9,6 +9,20 @@ public class RegisterDTO {
 	String errorMessage;
 	String role;
 	int roleId;
+	
+	public RegisterDTO() {}
+	
+	public RegisterDTO(String code) {
+		super();
+		this.code = code;
+	}
+	public RegisterDTO(String email, String username, String password, String reEnter) {
+		super();
+		this.email = email;
+		this.username = username;
+		this.password = password;
+		this.reEnter = reEnter;
+	}
 
 	public String getUsername() {
 		return username;

@@ -39,7 +39,20 @@ public class CartController extends HttpServlet {
 		if (action == null) {
 			action = "CART";
 		}
-		if (action.equals("ADD")) {
+
+		int userId;
+		try {
+			userId = (int) request.getSession().getAttribute("userId");
+		} catch (Exception e) {
+			response.sendRedirect("login");
+			return;
+		}
+
+		if (action.equals("CART")) {
+			// update cart in cart page
+			CartDTO cartDTO = cart.getUserCart(userId);
+			request.setAttribute("cart", cartDTO);
+		} else if (action.equals("ADD")) {
 			// Add item to cart
 			int cartId = (int) request.getSession().getAttribute("cartId");
 			int productId = Integer.parseInt(request.getParameter("productId"));
@@ -66,11 +79,6 @@ public class CartController extends HttpServlet {
 		} else if (action.equals("Pay")) {
 
 		}
-
-		// update cart in cart page
-		int userId = (int) request.getSession().getAttribute("userId");
-		CartDTO cartDTO = cart.getUserCart(userId);
-		request.setAttribute("cart", cartDTO);
 
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
