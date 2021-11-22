@@ -29,13 +29,17 @@ public class DbUtil {
 
         settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
+        settings.put("hibernate.connection.CharSet", "utf-8");
+        settings.put("hibernate.connection.useUnicode", true);
+        settings.put("hibernate.connection.characterEncoding", "utf-8");
+
         settings.put(Environment.SHOW_SQL, "true");
 
         settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
         settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
-        settings.put(Environment.HBM2DDL_AUTO, "update");
+        // settings.put(Environment.HBM2DDL_AUTO, "update");
 
         configuration.setProperties(settings);
         configuration.addAnnotatedClass(User.class);
@@ -46,6 +50,7 @@ public class DbUtil {
         configuration.addAnnotatedClass(Item.class);
         configuration.addAnnotatedClass(Cart.class);
         configuration.addAnnotatedClass(LineItem.class);
+        configuration.addAnnotatedClass(Review.class);
 
         ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
             .applySettings(configuration.getProperties()).build();

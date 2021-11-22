@@ -10,7 +10,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <!-- Global -->
     <c:import url="sharedView/global.html" />
     <!-- <link rel="stylesheet" href="./css/bootstrap.css" /> -->
-
+    <!-- Jquery validate -->
+    <script
+      src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
+      type="text/javascript"
+    ></script>
     <!-- Local -->
     <link rel="stylesheet" href="./css/productItem.css" />
     <title>${product.getProductName()}</title>
@@ -63,7 +67,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <i class="fas fa-star"></i>
               <span>5.0</span>
             </div>
-            <span>(3 <span>đánh giá</span>)</span>
+            <span>(${numReview} <span>đánh giá</span>)</span>
             <div class="product-addon">
               <div>
                 <i class="fal fa-heart fa-2x"></i>
@@ -126,7 +130,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <i class="fas fa-star"></i>
               <i class="fas fa-star"></i>
             </div>
-            <span class="number-rating">(3 <span>đánh giá</span>)</span>
+            <span class="number-rating">(${numReview} <span>đánh giá</span>)</span>
           </div>
           <div class="review-rating-container">
             <div class="review-rating">
@@ -184,6 +188,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <span class="fas fa-times fa-2x exit-form"></span>
                   <h2 class="form-title">Viết đánh giá sản phẩm</h2>
                   <div class="review-rating-stars">
+                    <input type="text" name="action" value="CREATE">
+                    <input type="text" name="productId" value="${product.getId()}">
                     <input type="radio" name="rating" id="star5" value="5" />
                     <label for="star5" class="full" title="5 Stars"></label>
                     <input type="radio" name="rating" id="star4" value="4" />
@@ -201,6 +207,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     class="review-content"
                     cols="5"
                     rows="3"
+                    required
                   ></textarea>
                   <div class="button-wrapper">
                     <div class="cancel-form">Hủy</div>
@@ -216,67 +223,26 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </c:choose>
         </section>
         <section class="user-comments">
-          <div class="user-comment">
-            <section class="user">
-              <div class="username">Duong Le</div>
-              <span class="comment-date">12/11/2021</span>
-            </section>
-            <section class="comment">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="comment-content">
-                Truyện bìa xin, nét vẽ là gu của mình nói chung art đẹp lắm.
-                Truyện kiểu đáng yêu nhẹ nhàng hài hước cũng có ý nghĩa cũng có.
-                Chưa kể fahasa bọc truyện xinh lắm đóng gói đẹp mà giao còn
-                nhanh ghê ý. Bộc này rất đáng để mua mà mình đu muộn nên không
-                có full quà tặng từ tập 1 buồn ghê ý
-              </div>
-            </section>
-          </div>
-          <div class="user-comment">
-            <section class="user">
-              <div class="username">Nguyen Minh Khang</div>
-              <span class="comment-date">12/11/2021</span>
-            </section>
-            <section class="comment">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="comment-content">
-                Dành cho các bạn lười đọc nhiều chữ thì hãy mua truyện tranh.
-                Truyện tranh bao gồm cả hình và chữ, tùy đợt mà bìa rời, kèm quà
-                như card pvc, postcard
-              </div>
-            </section>
-          </div>
-          <div class="user-comment">
-            <section class="user">
-              <div class="username">Le Ho Hai Duong</div>
-              <span class="comment-date">12/11/2021</span>
-            </section>
-            <section class="comment">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <div class="comment-content">
-                Truyện rất hay và ok , có nhiều tình tiết hài hước. Xịn
-                hết......................................................
-              </div>
-            </section>
-          </div>
+          <c:forEach var = "review" items="${reviews}">
+            <div class="user-comment">
+              <section class="user">
+                <div class="username">${review.getUserName()}</div>
+                <span class="comment-date">${review.getDate()}</span>
+              </section>
+              <section class="comment">
+                <div class="rating-star">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="comment-content">
+                  ${review.getContent()}
+                </div>
+              </section>
+            </div>
+      </c:forEach>
         </section>
       </section>
     </main>
@@ -288,6 +254,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         });
         $(".cancel-form, .exit-form").click(() => {
           $(".review-form-container").hide();
+        });
+        $(".rating-form").validate({
+          rules: {
+            "review-content": "required",
+          },
+          messages: {
+            "review-content": "Enter your review",
+          },
         });
       });
     </script>

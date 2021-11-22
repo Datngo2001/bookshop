@@ -1,6 +1,7 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -32,6 +33,10 @@ public class Product implements Serializable {
 	public String pictureUrl;
 	public String Sku;
 	public String typeBook;
+
+	// Relation
+	@OneToMany(mappedBy = "product")
+	private List<Review> reviews = new ArrayList<Review>();
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price) {
