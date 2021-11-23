@@ -34,10 +34,6 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-		<c:import url="shareCode/leftHeader.jsp"></c:import>
-        <!-- End of Sidebar -->
-
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 	
@@ -45,7 +41,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
             <div id="content">
 
                 <!-- Topbar -->
-				<c:import url="shareCode/headerUser.jsp"></c:import>
+				<c:import url="shareCode/adminHeader.jsp"></c:import>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

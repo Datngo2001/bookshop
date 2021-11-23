@@ -29,8 +29,6 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-		<c:import url="shareCode/leftHeader.jsp"></c:import>
-        <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -39,7 +37,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-				<c:import url="shareCode/headerUser.jsp"></c:import>
+				<c:import url="shareCode/adminHeader.jsp"></c:import>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->

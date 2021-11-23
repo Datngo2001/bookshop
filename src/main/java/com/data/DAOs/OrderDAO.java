@@ -1,17 +1,8 @@
 package com.data.DAOs;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Query;
-
 import org.hibernate.*;
 
 import com.data.DbUtil;
-import com.model.Cart;
-import com.model.Item;
-import com.model.LineItem;
 import com.model.Order;
 import com.model.User;
 

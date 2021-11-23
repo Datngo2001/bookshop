@@ -19,13 +19,11 @@ public class returnController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private CartDAO cartDao;
 	private OrderDAO orderDao;
-	private HistoryDao hisDao;
 	private UserDAO userDao;
 	private ProductDAO productDao;
     public returnController() {
         cartDao = new CartDAO();
 		orderDao = new OrderDAO();
-		hisDao = new HistoryDao();
 		userDao = new UserDAO();
 		productDao = new ProductDAO();
     }
