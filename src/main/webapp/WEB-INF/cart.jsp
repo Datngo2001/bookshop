@@ -83,10 +83,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				</div>
 			</div>
 		</div>
-		<form action="." method="get">
-			<input type="hidden" name="action" value="shop">
-			<input type="submit" class="btn btn-primary vnpay" value="Continue Shopping">
-		</form>
+		<a href="home"><button class="btn btn-primary vnpay">Continue Shoping</button></a>
 	</div>
 	<br/>
 	<c:import url="sharedView/footer.jsp"></c:import>
