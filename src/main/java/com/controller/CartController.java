@@ -83,43 +83,4 @@ public class CartController extends HttpServlet {
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 
-	// private void goPayment(HttpServletRequest request, HttpServletResponse
-	// response)
-	// throws ServletException, IOException {
-	// String nextUrl = "WEB-INF/payment.jsp";
-	// String uname = request.getParameter("username");
-	// List<Cart> cart = cartDao.getCartList(uname);
-	// request.setAttribute("cart_item", cart);
-	// request.getRequestDispatcher(nextUrl).forward(request, response);
-	// }
-
-	// private void removeProductInCart(HttpServletRequest request,
-	// HttpServletResponse response)
-	// throws ServletException, IOException {
-	// int productId = Integer.parseInt(request.getParameter("cId"));
-	// cartDao.removeProduct(productId);
-	// goPayment(request, response);
-
-	// }
-	// private void addProductToCart(HttpServletRequest request, HttpServletResponse
-	// response) throws ServletException, IOException {
-	// String uname = request.getParameter("username");
-	// String productId = request.getParameter("pId");
-	// String quantityString = request.getParameter("quantity");
-	// //User user = userDAO.getUserByUserName(uname);
-	// Product product = null;
-
-	// product = productDao.getProduct(Integer.parseInt(productId));
-	// if(!cartDao.checkNameExist(product.codeProduct, uname)) {
-	// Cart cart = new Cart(product.getCodeProduct(), uname,
-	// product.getProductName(),
-	// product.getNameAuthor(), Integer.parseInt(quantityString),
-	// product.getPrice());
-
-	// cartDao.addToCart(cart);
-
-	// }
-
-	// goPayment(request, response);
-	// }
 }

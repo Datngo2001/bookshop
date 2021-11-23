@@ -3,6 +3,7 @@ package com.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,6 +18,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+
+import com.data.DAOs.CartDAO;
+import com.data.DAOs.ProductDAO;
+import com.data.DAOs.UserDAO;
 
 @Entity
 @Table(name = "user_order")
