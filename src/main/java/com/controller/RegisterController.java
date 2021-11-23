@@ -22,7 +22,7 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextUrl = "WEB-INF/admin/register.jsp";
+		String nextUrl = "WEB-INF/register.jsp";
 
 		// get current action
 		String action = request.getParameter("action");
@@ -36,11 +36,11 @@ public class RegisterController extends HttpServlet {
 			String username = request.getParameter("username");
 			String pass = request.getParameter("password");
 			String reEnter = request.getParameter("reEnter");
-			
+
 			RegisterDTO registerDTO = new RegisterDTO(email, username, pass, reEnter);
-			request.getSession().setAttribute("register", registerDTO);
+			request.setAttribute("register", registerDTO);
 			if (new User().register(registerDTO, getServletContext())) {
-				
+
 				nextUrl = "verify";
 			} else {
 				request.setAttribute("registerMessage", registerDTO.getErrorMessage());
