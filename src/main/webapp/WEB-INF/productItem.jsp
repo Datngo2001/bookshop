@@ -18,6 +18,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
   </head>
   <body>
     <c:import url="sharedView/header.jsp"></c:import>
+    <br>
     <main class="product-container">
       <section class="product">
         <div class="product-view">
@@ -221,8 +222,8 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
           </div>
           <div class="user-comment">
             <section class="user">
-              <div class="username">Le Ho Hai Duong</div>
-              <span class="comment-date">12/11/2021</span>
+              <div class="username">Thien Nguyen</div>
+              <span class="comment-date">26/11/2021</span>
             </section>
             <section class="comment">
               <div class="rating-star">
@@ -233,8 +234,8 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                 <i class="fas fa-star"></i>
               </div>
               <div class="comment-content">
-                Truyện rất hay và ok , có nhiều tình tiết hài hước. Xịn
-                hết......................................................
+                Truyện rất hay và ok , có nhiều tình tiết hài hước. Quá đã
+                ......................................................
               </div>
             </section>
           </div>

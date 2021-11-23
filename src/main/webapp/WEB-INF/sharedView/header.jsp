@@ -37,28 +37,28 @@
               <ul class="navbar-notify-list">
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
-                      <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-name">News</span>
+                      <span class="notify-description">Wellcome Thien Nguyen back to my website <3 </span>
                     </div>
                   </a>
                 </li>
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
                       <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-description">Thank you for buy our e-book</span>
                     </div>
                   </a>
                 </li>
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
-                      <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-name">New book</span>
+                      <span class="notify-description">My shope already update new ebook</span>
                     </div>
                   </a>
                 </li>

@@ -1,10 +1,6 @@
 @charset "ISO-8859-1";
 
-body{
-    font:10pt Verdana;
-    background: #EAEAEA;
-    color: rgb(46, 45, 45);
-  }
+
   
   .wrapper{
     width:900px;

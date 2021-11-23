@@ -25,7 +25,7 @@
     <br/>
     <table>
         <tr>
-            <td><b>Merchant:</b></td>
+            <td><b>Merchant:</b ${id}></td>
             <td>Company ABC Ltd.</td>
         </tr>
         <tr>

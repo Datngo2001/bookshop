@@ -1,9 +1,19 @@
 package com.data.DAOs;
 
+import java.util.Iterator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+
 import org.hibernate.*;
 
 import com.data.DbUtil;
+import com.model.Item;
+import com.model.LineItem;
 import com.model.Order;
+import com.model.Product;
 import com.model.User;
 
 public class OrderDAO {
@@ -26,5 +36,18 @@ public class OrderDAO {
 			return null;
 		}
 	}
-	
+    public void addAllItem(int uid, Order order) throws Exception {
+    	CartDAO carDao = new CartDAO();
+    	UserDAO userDao = new UserDAO();
+    	ProductDAO productDao = new ProductDAO();
+    	LineItem line_item = null;
+		List<LineItem> items = carDao.getListItemForUser(uid);
+		for (Iterator<LineItem> i = items.iterator(); i.hasNext();) {
+			line_item = i.next();
+			Product product = productDao.getProduct(line_item.getProduct().getId());
+			Item item = new Item(1, product.price, order, product);
+			   
+			userDao.addItemToMyProduct(item);
+		}	
+    }
 }
