@@ -1,12 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
+<%@ page pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="ISO-8859-1">
-  	<meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -16,9 +13,9 @@
 
     <!-- Custom fonts for this template-->
     <link href="https://ngocthien2306.github.io/Admin-Site/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
+    <%-- <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
+        rel="stylesheet"> --%>
 
     <!-- Custom styles for this template-->
     <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
@@ -37,7 +34,7 @@
             <div id="content">
 
                 <!-- Topbar -->
-				<c:import url="shareCode/adminHeader.jsp"></c:import>
+				<c:import url="shareCode/adminHeader.html"></c:import>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -82,7 +79,7 @@
                             </div>
                         </div>
                         <div class="col-lg-8 mb-4">
-							<form class="user" action="product" method="get">
+							<form class="user" action="product" method="post">
 							<input type="hidden" name="command" value="Update">
 					              <div class="p-2 card shadow">                                    	                     
                                     	 <div class="form-group row">
@@ -139,13 +136,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; E-book 2021</span>
-                    </div>
-                </div>
-            </footer>
         </div>
     </div>
 
@@ -154,25 +144,6 @@
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.jsp">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 	<script src="https://ngocthien2306.github.io/Admin-Site/js/file.js"></script>
     <!-- Bootstrap core JavaScript-->
     <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery/jquery.min.js"></script>

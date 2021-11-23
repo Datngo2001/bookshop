@@ -68,11 +68,15 @@ public class ProductManageController extends HttpServlet {
 		}
 	}
 
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		doGet(request, response);
+	}
+
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
 		productDAO.deleteProduct(id);
-		listProduct(request, response);
-
+		response.sendRedirect("product");
 	}
 
 	private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -85,7 +89,7 @@ public class ProductManageController extends HttpServlet {
 		String supplier = request.getParameter("supplier");
 		Product theProduct = new Product(id, nameAuthor, description, nameItem, nxb, supplier, price);
 		productDAO.updateProducts(theProduct);
-		listProduct(request, response);
+		response.sendRedirect("product");
 	}
 
 	private void loadProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -96,12 +100,12 @@ public class ProductManageController extends HttpServlet {
 	}
 
 	private void addProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String name = request.getParameter("name");
-		String description = request.getParameter("description");
-		int price = Integer.parseInt(request.getParameter("price"));
-		Product theProduct = new Product(name, description, price, "");
-		productDAO.addProducts(theProduct);
-		listProduct(request, response);
+		// String name = request.getParameter("name");
+		// String description = request.getParameter("description");
+		// int price = Integer.parseInt(request.getParameter("price"));
+		// Product theProduct = new Product(name, description, price, "");
+		// productDAO.addProducts(theProduct);
+		// listProduct(request, response);
 	}
 
 	private void listProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -113,11 +117,6 @@ public class ProductManageController extends HttpServlet {
 			log("productDao error", e);
 		}
 		request.getRequestDispatcher("../WEB-INF/admin/product.jsp").forward(request, response);
-	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		doGet(request, response);
 	}
 
 }
