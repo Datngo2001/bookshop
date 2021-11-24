@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 
 @WebServlet("/admin/admin-root")
-public class RootAdminServlet extends HttpServlet {
+public class RootAdminController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		request.getRequestDispatcher("adminRoot.jsp").forward(request, response);

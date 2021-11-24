@@ -52,7 +52,7 @@ public class ProductManageController extends HttpServlet {
 				addProduct(request, response);
 				break;
 			case "Load":
-				loadProduct(request, response);
+				loadProductForm(request, response);
 				break;
 			case "Update":
 				updateProduct(request, response);
@@ -92,20 +92,30 @@ public class ProductManageController extends HttpServlet {
 		response.sendRedirect("product");
 	}
 
-	private void loadProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	// Form for add or update product
+	private void loadProductForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String theProductId = request.getParameter("id");
-		Product theProduct = productDAO.getProduct(Integer.parseInt(theProductId));
-		request.setAttribute("item", theProduct);
+		if (theProductId != null) {
+			request.setAttribute("FormCommand", "Update");
+			Product theProduct = productDAO.getProduct(Integer.parseInt(theProductId));
+			request.setAttribute("item", theProduct);
+		} else {
+			request.setAttribute("FormCommand", "ADD");
+			request.setAttribute("item", new Product());
+		}
 		request.getRequestDispatcher("../WEB-INF/admin/productForm.jsp").forward(request, response);
 	}
 
 	private void addProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		// String name = request.getParameter("name");
-		// String description = request.getParameter("description");
-		// int price = Integer.parseInt(request.getParameter("price"));
-		// Product theProduct = new Product(name, description, price, "");
-		// productDAO.addProducts(theProduct);
-		// listProduct(request, response);
+		String nameAuthor = request.getParameter("author");
+		String nxb = request.getParameter("nxb");
+		String nameItem = request.getParameter("nameItem");
+		String description = request.getParameter("description");
+		int price = Integer.parseInt(request.getParameter("price"));
+		String supplier = request.getParameter("supplier");
+		Product theProduct = new Product(nameAuthor, description, nameItem, nxb, supplier, price);
+		productDAO.addProducts(theProduct);
+		response.sendRedirect("product");
 	}
 
 	private void listProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {

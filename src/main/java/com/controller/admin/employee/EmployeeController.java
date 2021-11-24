@@ -13,7 +13,7 @@ import com.data.DAOs.ProductDAO;
  * Servlet implementation class EmployeeControllerSevlet
  */
 @WebServlet("/admin/employee")
-public class EmployeeControllerSevlet extends HttpServlet {
+public class EmployeeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ProductDAO productDAO;
     private String status;
@@ -30,7 +30,7 @@ public class EmployeeControllerSevlet extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmployeeControllerSevlet() {
+    public EmployeeController() {
         super();
         // TODO Auto-generated constructor stub
     }

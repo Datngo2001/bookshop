@@ -40,7 +40,6 @@ public class RegisterController extends HttpServlet {
 			RegisterDTO registerDTO = new RegisterDTO(email, username, pass, reEnter);
 			request.setAttribute("register", registerDTO);
 			if (new User().register(registerDTO, getServletContext())) {
-
 				nextUrl = "verify";
 			} else {
 				request.setAttribute("registerMessage", registerDTO.getErrorMessage());

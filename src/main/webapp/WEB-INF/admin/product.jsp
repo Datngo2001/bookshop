@@ -58,6 +58,16 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">List of Product</h6>
+                            <c:url var="addProduct" value="product">
+						        <c:param name="command" value="Load"/>
+						    </c:url>
+                            <a href="${addProduct}" class="float-right">
+								<span>
+                                <button type="submit" style="btn"> 
+									<i class="fas fa-plus"></i> 
+								</button>  
+								</span>
+							</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -74,8 +84,8 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                                         </tr>
                                     </thead>
                                     <tbody>
-										<c:forEach var="item" items="${list}">
-										<c:url var="link" value="product">
+									<c:forEach var="item" items="${list}">
+										<c:url var="update" value="product">
 						                  <c:param name="command" value="Load" />
 						                  <c:param name="id" value="${item.id}" />
 						                </c:url>
@@ -99,8 +109,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 											</th>
                                             <th>${item.price}</th>
                                             <th>
-                                            	<a href="${link}">
-                                            		<input type="hidden" name="pId" value=""/>
+                                            	<a href="${update}">
 													<span><button type="submit"
 													style="border: none; color: #2196f3; background: transparent;"> 
 														<i class="fas fa-edit"></i> 
@@ -116,7 +125,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 												</a>
                                             </th>
                                         </tr>
-										</c:forEach>
+									</c:forEach>
 									</tbody>
                                     <tfoot>
                                         <tr>
