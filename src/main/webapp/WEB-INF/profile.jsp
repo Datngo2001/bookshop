@@ -250,7 +250,7 @@
 	 <div class="wrapper">
 		<div class="grid_row">
 		          <div class="trending_book-header">
-            <span class="trending_book-title"> My e-book <br> 
+            <span class="trending_book-title"> My e-book<br> 
             <p class="trending_book-title-after">
             Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p></span>
             <ul class="trending-list mrtop">
@@ -259,12 +259,15 @@
 
             </ul>
           </div>
+          <c:forEach var="item" items="${list_item}">
+         
 		<div class="grid_column-3">
 		 <div class="card-trending">
               <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <div class="product-item-img" style="background-image: url(${item.getProduct().getPictureUrl()});"></div>
+                <p class="trending-item-name">${item.getProduct().getProductName()}</p>
+                <p class="trending-item-author">${item.getProduct().getNameAuthor()}</p>
+                
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -284,39 +287,11 @@
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>
-
               </div>
             </div>
-		</div>
-				<div class="grid_column-3">
-		 <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <button class="btn btn-primary" style="width: 100%; border-radius: 1px;">Read book</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-
-              </div>
-            </div>
-		</div>
-		</div>
-		
+			</div>
+		</c:forEach>
+		</div>	
     </div>
   <c:import url="sharedView/footer.jsp"></c:import>
 </body>

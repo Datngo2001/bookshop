@@ -36,6 +36,7 @@ public class OrderDAO {
 			return null;
 		}
 	}
+
     public void addAllItem(int uid, Order order) throws Exception {
     	CartDAO carDao = new CartDAO();
     	UserDAO userDao = new UserDAO();

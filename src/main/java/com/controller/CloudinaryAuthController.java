@@ -15,6 +15,7 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 import com.google.gson.Gson;
 
+@SuppressWarnings("serial")
 @WebServlet("/service/uploadSignature")
 public class CloudinaryAuthController extends HttpServlet {
 
