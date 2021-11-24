@@ -19,7 +19,7 @@
 
     <!-- Custom styles for this template-->
     <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="./css/admin/ProductForm.css">
+	<link rel="stylesheet" href="../css/admin/ProductForm.css">
 </head>
 
 <body id="page-top">
@@ -55,30 +55,7 @@
                     <!-- Content Row -->
                     <div class="row">
                         <div class="col-lg-4 mb-4">
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Upload file</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-									  <div class="wrapper">
-									    <form action="#">
-									      <input class="file-input" type="file" name="file" hidden>
-									      <i class="fas fa-cloud-upload-alt"></i>
-									      <p>Browse File to Upload</p>
-									    </form>
-									    <section class="progress-area"></section>
-									    <section class="uploaded-area"></section>
-									  </div>
-						            </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div>
+                            <button id="upload_widget" class="submit">Upload Files</button>
                         </div>
                         <div class="col-lg-8 mb-4">
 							<form class="user" action="product" method="post">
@@ -160,6 +137,11 @@
     <!-- Custom scripts for all pages-->
     <script src="https://ngocthien2306.github.io/Admin-Site/js/sb-admin-2.min.js"></script>
 
+    <!-- cloudinary upload widget -->
+    <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+
+    <!-- local upload instantiation -->
+    <script src="../js/uploadclientwidget.js" type="text/javascript"></script>
 
 </body>
 
