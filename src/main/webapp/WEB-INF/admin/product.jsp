@@ -15,9 +15,9 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 
     <!-- Custom fonts for this template -->
     <link href="https://ngocthien2306.github.io/Admin-Site/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <%-- <link
+    <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet"> --%>
+        rel="stylesheet">
 
     <!-- Custom styles for this template-->
     <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
@@ -33,6 +33,10 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
+        <!-- Sidebar -->
+		<c:import url="shareCode/leftHeader.html"></c:import>
+        <!-- End of Sidebar -->
+
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
 	
@@ -40,7 +44,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
             <div id="content">
 
                 <!-- Topbar -->
-				<c:import url="shareCode/adminHeader.html"></c:import>
+				<c:import url="shareCode/headerUser.html"></c:import>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -140,6 +144,9 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <!-- Logout Modal-->
+	<c:import url="shareCode/logoutModal.html"></c:import>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
