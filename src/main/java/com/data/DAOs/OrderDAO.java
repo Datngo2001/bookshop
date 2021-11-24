@@ -50,4 +50,15 @@ public class OrderDAO {
 			userDao.addItemToMyProduct(item);
 		}	
     }
+	@SuppressWarnings("unchecked")
+    public List<Order> getListOrderByUserId(String id) throws Exception{
+		int uid = Integer.parseInt(id);
+    	try {
+    		return DbUtil.getSessionFactory().openSession().createQuery("From Order O where O.user.id = " + "'" + uid + "'").getResultList();
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
 }

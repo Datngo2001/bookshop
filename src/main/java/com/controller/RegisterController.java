@@ -38,7 +38,7 @@ public class RegisterController extends HttpServlet {
 			String reEnter = request.getParameter("reEnter");
 
 			RegisterDTO registerDTO = new RegisterDTO(email, username, pass, reEnter);
-			request.setAttribute("register", registerDTO);
+			request.getSession().setAttribute("register", registerDTO);;
 			if (new User().register(registerDTO, getServletContext())) {
 				nextUrl = "verify";
 			} else {

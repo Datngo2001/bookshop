@@ -131,6 +131,17 @@ public class UserDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Item> getMyBook(int orderId) {
+    	try {
+    		return DbUtil.getSessionFactory().openSession().createQuery("From Item I where I.order.id = " + "'" + orderId + "'").getResultList();
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+
+	}
 	// INSERT ----------------------------------------------------
 	public User addUser(User user) {
 		Transaction transaction = null;

@@ -33,6 +33,7 @@ public class Item implements Serializable {
         this.product = product;
     }
     public Item() {}
+    
     public int getId() {
         return id;
     }

@@ -20,12 +20,12 @@ public class returnController extends HttpServlet {
     private CartDAO cartDao;
 	private OrderDAO orderDao;
 	private UserDAO userDao;
-	private ProductDAO productDao;
+
     public returnController() {
         cartDao = new CartDAO();
 		orderDao = new OrderDAO();
 		userDao = new UserDAO();
-		productDao = new ProductDAO();
+
     }
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String nextUrl = "WEB-INF/vnpay/vnpay_return.jsp";
