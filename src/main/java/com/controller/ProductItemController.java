@@ -84,16 +84,23 @@ public class ProductItemController extends HttpServlet {
 		List<Review> reviews = null;
 		ReviewDAO reviewDAO = new ReviewDAO();
 		String productId = req.getParameter("id");
+		float averageStar = 0;
 
 		try {
 			reviews = reviewDAO.getReviews(productId);
+			int sumStar = 0;
+			for (Review review : reviews) {
+				sumStar += review.getStars();
+			}
+			averageStar = sumStar / reviews.size();
 		} catch (Exception e) {
 			System.out.println("reviewDAO error!" + e);
 			log("reviewDAO error!", e);
 		}
 
 		req.setAttribute("reviews", reviews);
-
+		req.setAttribute("averageStar", averageStar);
+		req.setAttribute("averageStarInt", Math.round(averageStar));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

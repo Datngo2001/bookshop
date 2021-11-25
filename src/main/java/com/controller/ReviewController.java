@@ -27,9 +27,10 @@ public class ReviewController extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
         String prevPath = req.getContextPath() + "/product?command=LOAD&id=";
+        String responseMessage = "Fail";
 
         String productId = req.getParameter("productId");
-        String date = null, userId = null, reviewContent = null;
+        String date = null, userId = null, reviewContent = null, reviewId = null;
         int starsRating = 0;
 
         if (action == null) {
@@ -55,10 +56,7 @@ public class ReviewController extends HttpServlet {
                     Product.find(Integer.parseInt(productId)), starsRating);
 
             if (Review.createReview(review) != null) {
-                // Product product = Product.find(Integer.parseInt(productId));
-                // req.setAttribute("product", product);
                 System.out.println("Create review success!!!");
-
             } else {
                 System.out.println("Error when trying to create new review!!!");
             }
@@ -69,8 +67,7 @@ public class ReviewController extends HttpServlet {
         case "UPDATE":
             starsRating = Integer.parseInt(req.getParameter("stars"));
             reviewContent = req.getParameter("content");
-            String reviewId = req.getParameter("reviewId");
-            String responseMessage = "Fail";
+            reviewId = req.getParameter("reviewId");
 
             Review update = Review.getReview(reviewId);
             update.setContent(reviewContent);
@@ -86,6 +83,19 @@ public class ReviewController extends HttpServlet {
             res.getWriter().write(responseMessage);
 
             break;
+
+        case "DELETE":
+            reviewId = req.getParameter("reviewId");
+
+            if (Review.getReview(reviewId) == null) {
+                responseMessage = "500";
+            } else {
+                Review delete = Review.deleteReview(reviewId);
+                responseMessage = "Delete success!";
+            }
+
+            res.setContentType("text/html;charset=UTF-8");
+            res.getWriter().write(responseMessage);
         }
     }
 

@@ -60,12 +60,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
           <div class="product-rate">
             <div class="product-stars">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <span>5.0</span>
+              <c:forEach var="i" begin="1" end="${averageStarInt}">
+                <i class="fas fa-star"></i>
+              </c:forEach>
+              <span>${averageStar}</span>
             </div>
             <span>(${reviews.size()} <span>đánh giá</span>)</span>
             <div class="product-addon">
@@ -122,13 +120,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="product-title">Đánh giá sản phẩm</div>
         <section class="product-rating">
           <div class="rating-view">
-            <div class="user-rating">5<span class="rating">/5</span></div>
+            <div class="user-rating">
+              ${averageStar}<span class="rating">/5</span>
+            </div>
             <div class="rating-star">
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
-              <i class="fas fa-star"></i>
+              <c:forEach var="i" begin="1" end="${averageStarInt}">
+                <i class="fas fa-star"></i>
+              </c:forEach>
             </div>
             <span class="number-rating"
               >(${reviews.size()} <span>đánh giá</span>)</span
@@ -228,7 +226,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         </section>
         <section class="user-comments">
           <div class="overlay">
-            <form class="comment-delete-confirm" action="">
+            <form
+              class="comment-delete-confirm"
+              action="review?action=DELETE&productId=${product.getId()}&reviewId="
+            >
               <div class="fas fa-times fa-2x exit-form"></div>
               <h2>Bạn có chắc là muốn xóa bình luận này chứ</h2>
               <div class="button-wrapper">
@@ -250,18 +251,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </section>
               <section class="comment">
                 <div class="rating-star">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <div class="comment-menu">
-                    <i class="fas fa-ellipsis-h"></i>
-                    <ul class="comment-menu-dropdown">
-                      <li class="comment-menu-update">Chỉnh sửa</li>
-                      <li class="comment-menu-delete">Xóa</li>
-                    </ul>
-                  </div>
+                  <c:forEach var="i" begin="1" end="${review.getStars()}">
+                    <i class="fas fa-star"></i>
+                  </c:forEach>
+                  <c:if test="${review.getUserName() == sessionScope.username}">
+                    <div class="comment-menu">
+                      <i class="fas fa-ellipsis-h"></i>
+                      <ul class="comment-menu-dropdown">
+                        <li class="comment-menu-update">Chỉnh sửa</li>
+                        <li class="comment-menu-delete">Xóa</li>
+                      </ul>
+                    </div>
+                  </c:if>
                 </div>
                 <div class="comment-content">${review.getContent()}</div>
               </section>
@@ -312,7 +313,27 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           toggleDeleteComment
         );
 
-        $(".comment-menu-delete").click(toggleDeleteComment);
+        $(".comment-menu-delete").click(function () {
+          toggleDeleteComment();
+
+          const deletedReview = $(this).parents(".user-comment");
+          const reviewId = deletedReview.attr("id");
+
+          const delReviewForm = $(".comment-delete-confirm");
+          delReviewForm.submit((e) => {
+            e.preventDefault();
+            const url = delReviewForm.attr("action") + reviewId;
+            $.post(url, (data, status) => {
+              if (status !== "success") {
+                console.log("Error from server");
+                return;
+              }
+
+              toggleDeleteComment();
+              deletedReview.remove();
+            });
+          });
+        });
 
         //update popup
         $(".comment-menu-update").click(function () {
