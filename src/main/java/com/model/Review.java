@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.data.DAOs.ReviewDAO;
+
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -31,6 +33,8 @@ public class Review implements Serializable {
     private Product product;
     @ManyToOne
     private User user;
+
+    private static ReviewDAO reviewDAO = new ReviewDAO();
 
     public Review() {
 
@@ -53,6 +57,48 @@ public class Review implements Serializable {
         this.content = content;
         this.user = user;
         this.product = product;
+    }
+
+    public static Review createReview(Review review) {
+        try {
+            return reviewDAO.addReview(review);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static Review deleteReview(String id) {
+        try {
+            return reviewDAO.deleteReview(Integer.parseInt(id));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
+    public static boolean updateReview(Review review) {
+        try {
+            reviewDAO.updatReview(review);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return false;
+    }
+
+    public static Review getReview(String id) {
+        try {
+            return reviewDAO.getReview(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
     public int getId() {

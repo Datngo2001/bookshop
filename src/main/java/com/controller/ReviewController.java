@@ -26,18 +26,20 @@ public class ReviewController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         String action = req.getParameter("action");
+        String prevPath = req.getContextPath() + "/product?command=LOAD&id=";
 
-        String productId = null, date = null, userId = null, reviewContent = null;
+        String productId = req.getParameter("productId");
+        String date = null, userId = null, reviewContent = null;
         int starsRating = 0;
 
         if (action == null) {
             action = "Go to productItem.jsp";
         }
 
-        if (action.equals("CREATE")) {
+        switch (action) {
+        case "CREATE":
             UserDAO userDAO = new UserDAO();
 
-            productId = req.getParameter("id");
             starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
             reviewContent = req.getParameter("review-content");
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -52,23 +54,54 @@ public class ReviewController extends HttpServlet {
             Review review = new Review(date, reviewContent, userDAO.getUser(userId),
                     Product.find(Integer.parseInt(productId)), starsRating);
 
-            ReviewDAO reviewDAO = new ReviewDAO();
-            if (reviewDAO.addReview(review) != null) {
-                Product product = Product.find(Integer.parseInt(productId));
-                req.setAttribute("product", product);
+            if (Review.createReview(review) != null) {
+                // Product product = Product.find(Integer.parseInt(productId));
+                // req.setAttribute("product", product);
                 System.out.println("Create review success!!!");
 
             } else {
                 System.out.println("Error when trying to create new review!!!");
             }
+
+            res.sendRedirect(prevPath + productId);
+            break;
+
+        case "UPDATE":
+            starsRating = Integer.parseInt(req.getParameter("stars"));
+            reviewContent = req.getParameter("content");
+            String reviewId = req.getParameter("reviewId");
+            String responseMessage = "Fail";
+
+            Review update = Review.getReview(reviewId);
+            update.setContent(reviewContent);
+            update.setStars(starsRating);
+
+            if (Review.updateReview(update)) {
+                responseMessage = update.getContent();
+            } else {
+                responseMessage = "500";
+            }
+
+            res.setContentType("text/html;charset=UTF-8");
+            res.getWriter().write(responseMessage);
+
+            break;
         }
-
-        String prevPath = req.getContextPath() + "/product?command=LOAD&id=" + productId;
-
-        res.sendRedirect(prevPath);
     }
 
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        doPost(req, res);
+        String reviewId = req.getParameter("reviewId");
+        res.setContentType("text/html;charset=UTF-8");
+        String reviewContent = "Fail";
+
+        try {
+            ReviewDAO reviewDAO = new ReviewDAO();
+            reviewContent = reviewDAO.getReview(reviewId).getContent();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        res.getWriter().write(reviewContent);
     }
 }

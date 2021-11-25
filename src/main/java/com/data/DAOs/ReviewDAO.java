@@ -44,6 +44,24 @@ public class ReviewDAO {
         }
     }
 
+    public Review getReview(String id) throws Exception {
+        Transaction transaction = null;
+        Review result = null;
+        try (Session session = DbUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            result = session.get(Review.class, Integer.parseInt(id));
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public Review addReview(Review review) {
         Transaction transaction = null;
         try (Session session = DbUtil.getSessionFactory().openSession()) {

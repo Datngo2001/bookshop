@@ -188,7 +188,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <div class="review-form-container">
                 <form
                   class="rating-form"
-                  action="review?action=CREATE&id=${product.getId()}"
+                  action="review?action=CREATE&productId=${product.getId()}"
                   method="POST"
                 >
                   <span class="fas fa-times fa-2x exit-form"></span>
@@ -239,7 +239,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             </form>
           </div>
           <c:forEach var="review" items="${reviews}">
-            <div class="user-comment" id="${review.getId()}">
+            <div
+              class="user-comment"
+              id="${review.getId()}"
+              data-productId="${product.getId()}"
+            >
               <section class="user">
                 <div class="username">${review.getUserName()}</div>
                 <span class="comment-date">${review.getDate()}</span>
@@ -270,12 +274,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <script>
       $(document).ready(function () {
         //Create review
+        const updateForm = $(".review-form-container");
+        const formTextarea = $(".review-content");
+
+        const setReviewContent = (data) => formTextarea.val(data);
+
         $(".review-btn").click(() => {
-          $(".review-form-container").show();
+          setReviewContent("");
+          updateForm.show();
         });
+
         $(".cancel-form, .exit-form").click(() => {
-          $(".review-form-container").hide();
+          updateForm.hide();
         });
+
         $(".rating-form").validate({
           rules: {
             "review-content": "required",
@@ -301,6 +313,48 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         );
 
         $(".comment-menu-delete").click(toggleDeleteComment);
+
+        //update popup
+        $(".comment-menu-update").click(function () {
+          const id = $(this).parents(".user-comment").attr("id");
+          const updating = $(this).parents(".rating-star").next();
+          const productId = $(this)
+            .parents(".user-comment")
+            .attr("data-productId");
+          const url = "/bookshop/review?reviewId=" + id;
+
+          $.get(url, (data, status) => {
+            if (status !== "success") {
+              console.log("Can't get resource");
+            }
+
+            updateForm.show();
+            setReviewContent(data);
+
+            updateForm.submit((e) => {
+              e.preventDefault();
+
+              const updateUrl =
+                "/bookshop/review?action=UPDATE&reviewId=" +
+                id +
+                "&productId=" +
+                productId;
+              const content = formTextarea.val();
+              const starsRadio = $("input[name=rating]");
+              const stars = starsRadio.filter(":checked").val() ?? 1;
+              const form = { stars, content };
+              $.post(updateUrl, form, (updateData, updateStatus) => {
+                if (updateData === "500") {
+                  console.log("Error from server");
+                  return;
+                }
+
+                updateForm.hide();
+                updating.text(updateData);
+              });
+            });
+          });
+        });
       });
     </script>
     <script src="./js/productItem.js"></script>
