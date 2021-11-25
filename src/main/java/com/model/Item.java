@@ -8,8 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import java.io.Serializable;
 
@@ -35,6 +33,7 @@ public class Item implements Serializable {
         this.product = product;
     }
     public Item() {}
+    
     public int getId() {
         return id;
     }

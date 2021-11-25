@@ -5,7 +5,10 @@ public class LineItemDTO {
     int quantity;
     int productID;
     String productName;
-    float price;
+
+	float price;
+    String authorName;
+    String pictureUrl;
 
     public int getId() {
         return id;
@@ -46,5 +49,20 @@ public class LineItemDTO {
     public void setPrice(float price) {
         this.price = price;
     }
+    public String getAuthorName() {
+		return authorName;
+	}
+
+	public void setAuthorName(String authorName) {
+		this.authorName = authorName;
+	}
+
+	public String getPictureUrl() {
+		return pictureUrl;
+	}
+
+	public void setPictureUrl(String pictureUrl) {
+		this.pictureUrl = pictureUrl;
+	}
 
 }

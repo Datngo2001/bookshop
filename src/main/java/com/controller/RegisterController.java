@@ -22,7 +22,7 @@ public class RegisterController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String nextUrl = "WEB-INF/admin/register.jsp";
+		String nextUrl = "WEB-INF/register.jsp";
 
 		// get current action
 		String action = request.getParameter("action");

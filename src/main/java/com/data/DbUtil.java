@@ -21,26 +21,19 @@ public class DbUtil {
 
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
-				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/book_store?useSSL=false");
-				settings.put(Environment.USER, "root");
-
-				settings.put(Environment.PASS, "ngocthien2306.com"); // remember to chang to your password
-				// {password,ngocthien2306.com}
-
-				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-
-				settings.put("hibernate.connection.CharSet", "utf-8");
-				settings.put("hibernate.connection.useUnicode", true);
-				settings.put("hibernate.connection.characterEncoding", "utf-8");
+				settings.put(Environment.DRIVER, "org.postgresql.Driver");
+				settings.put(Environment.URL,
+						"jdbc:postgresql://ec2-44-194-225-27.compute-1.amazonaws.com:5432/dbpncaer12ig4p");
+				settings.put(Environment.USER, "tmchqrkqisyfqw");
+				settings.put(Environment.PASS, "6cbad36d7efbdf936d6dfc94841fc17c1f518782d15ab48cfff785f24976d9c6");
+				settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
 
 				settings.put(Environment.SHOW_SQL, "true");
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
+				settings.put(Environment.HBM2DDL_AUTO, "update");
 				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
-
-				// settings.put(Environment.HBM2DDL_AUTO, "update");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);
@@ -51,7 +44,6 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
-				configuration.addAnnotatedClass(Review.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -64,9 +56,9 @@ public class DbUtil {
 			}
 		}
 		return sessionFactory;
+
 	}
 
-	// Postgres
 	public static SessionFactory getSessionFactorys() {
 		if (sessionFactory == null) {
 			try {

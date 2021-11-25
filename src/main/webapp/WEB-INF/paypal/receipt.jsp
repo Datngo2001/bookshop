@@ -25,7 +25,7 @@
     <br/>
     <table>
         <tr>
-            <td><b>Merchant:</b></td>
+            <td><b>Merchant:</b ${id}></td>
             <td>Company ABC Ltd.</td>
         </tr>
         <tr>
@@ -55,6 +55,8 @@
     </table>
 			</div>
 		</div>
+		<a href="profile">Go to my profile</a>
+		<a href="home">Return Homepage</a>
 	</div>
 	<br>
  <c:import url="../sharedView/footer.jsp"></c:import>

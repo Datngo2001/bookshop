@@ -63,6 +63,16 @@ public class Product implements Serializable {
 		this.typeBook = typeBook;
 	}
 
+	public Product(String nameAuthor, String description, String name, String nXB, String supplier, int price) {
+		super();
+		this.nameAuthor = nameAuthor;
+		this.description = description;
+		this.name = name;
+		NXB = nXB;
+		this.supplier = supplier;
+		this.price = price;
+	}
+
 	public Product(int id, String nameAuthor, String description, String name, String nXB, String supplier, int price) {
 		super();
 		this.id = id;

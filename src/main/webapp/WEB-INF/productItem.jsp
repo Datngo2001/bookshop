@@ -21,6 +21,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   </head>
   <body>
     <c:import url="sharedView/header.jsp"></c:import>
+    <br />
     <main class="product-container">
       <section class="product">
         <div class="product-view">
