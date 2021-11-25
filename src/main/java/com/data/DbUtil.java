@@ -14,7 +14,7 @@ import com.model.*;
 public class DbUtil {
 	private static SessionFactory sessionFactory;
 
-	public static SessionFactory getSessionFactorys() {
+	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -59,7 +59,7 @@ public class DbUtil {
 
 	}
 
-	public static SessionFactory getSessionFactory() {
+	public static SessionFactory getSessionFactorys() {
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();

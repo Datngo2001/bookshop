@@ -69,7 +69,9 @@
                     <label>${status}</label>
                 </div> 
                   <div class="form-group">
+                  <a href="profile">Go to my profile</a>
                     <label><a href="home">Return Homepage</a></label>
+                    
 
                 </div> 
             </div>

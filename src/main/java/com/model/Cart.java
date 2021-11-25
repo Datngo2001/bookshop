@@ -65,7 +65,9 @@ public class Cart implements Serializable {
 			itemDTO.setProductID(item.getProduct().getId());
 			itemDTO.setProductName(item.getProduct().getProductName());
 			itemDTO.setPrice(item.getProduct().getPrice());
-
+			itemDTO.setAuthorName(item.getProduct().getNameAuthor());
+			itemDTO.setPictureUrl(item.getProduct().getPictureUrl());
+			
 			cartDTO.getItems().add(itemDTO);
 			total += (itemDTO.getPrice() * itemDTO.getQuantity());
 		}

@@ -35,7 +35,8 @@ public class ProfileController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/profile.jsp";
-		//Object userId = request.getSession().getAttribute("userId");
+		try {
+		Object userId = request.getSession().getAttribute("userId");
 		List<Item> items = null;
 		// get current action
 		String action = request.getParameter("action");
@@ -49,10 +50,9 @@ public class ProfileController extends HttpServlet {
 			example();
 		}
 		
-		try {
 			Product product = null;
 
-			List<Order> list_order = orderDAO.getListOrderByUserId("2");
+			List<Order> list_order = orderDAO.getListOrderByUserId(userId.toString());
 			// list the order of user
 			for (Order order: list_order) {
 				// list item in order by another user

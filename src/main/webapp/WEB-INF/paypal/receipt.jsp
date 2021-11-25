@@ -55,6 +55,8 @@
     </table>
 			</div>
 		</div>
+		<a href="profile">Go to my profile</a>
+		<a href="home">Return Homepage</a>
 	</div>
 	<br>
  <c:import url="../sharedView/footer.jsp"></c:import>

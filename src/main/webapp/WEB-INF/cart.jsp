@@ -31,10 +31,10 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 	            <c:forEach var="item" items="${cart.items}">
 		            <div class="cart-items">
 				        <div class="cart-item cart-column">
-				            <img class="cart-item-image" src="https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg" width="100" height="100">
+				            <img class="cart-item-image" src="${item.getPictureUrl()}">
 				            <div class="cart-title">
 				        		<p class="name-book"><c:out value="${item.productName}"/></p>
-				        		
+				        		<p class="name-author"><c:out value="${item.getAuthorName()}"/></p>
 				        	</div>
 				        </div>
 				        <div class="cart cart-price cart-column" style="display: flex;">
