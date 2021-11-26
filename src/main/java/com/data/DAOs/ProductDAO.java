@@ -7,6 +7,7 @@ import javax.persistence.EntityTransaction;
 
 import org.hibernate.*;
 import com.data.DbUtil;
+import com.model.Photo;
 import com.model.Product;
 
 public class ProductDAO {
@@ -17,37 +18,40 @@ public class ProductDAO {
 	public List<Product> getProducts() throws Exception {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From Product").getResultList();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Product> getProducts(int index) throws Exception {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index).setMaxResults(15).list();
-			
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index)
+					.setMaxResults(15).list();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 
 	}
-	
 
-	public void addProducts(Product product) {
+	public Product addProducts(Product product) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
 			session.save(product);
 			transaction.commit();
+			return product;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+			return null;
 		}
 	}
 
@@ -65,11 +69,9 @@ public class ProductDAO {
 			theProduct.setSupplier(product.getSupplier());
 			em.merge(theProduct);
 			trans.commit();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		finally {
+		} finally {
 			em.close();
 		}
 	}
@@ -103,6 +105,11 @@ public class ProductDAO {
 			transaction = session.beginTransaction();
 			// get an user object
 			product = session.get(Product.class, id);
+			List<Photo> photos = product.getPhotos();
+			for (Photo photo : photos) {
+				photo.getId();
+			}
+			product.setPhotos(photos);
 			// commit transaction
 			transaction.commit();
 		} catch (Exception e) {

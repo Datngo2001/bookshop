@@ -89,7 +89,7 @@ public class ProductManageController extends HttpServlet {
 		String supplier = request.getParameter("supplier");
 		Product theProduct = new Product(id, nameAuthor, description, nameItem, nxb, supplier, price);
 		productDAO.updateProducts(theProduct);
-		response.sendRedirect("product");
+		response.sendRedirect("product?command=Load&id=" + id);
 	}
 
 	// Form for add or update product
@@ -114,8 +114,8 @@ public class ProductManageController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		String supplier = request.getParameter("supplier");
 		Product theProduct = new Product(nameAuthor, description, nameItem, nxb, supplier, price);
-		productDAO.addProducts(theProduct);
-		response.sendRedirect("product");
+		theProduct = productDAO.addProducts(theProduct);
+		response.sendRedirect("product?command=Load&id=" + theProduct.getId());
 	}
 
 	private void listProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -128,5 +128,4 @@ public class ProductManageController extends HttpServlet {
 		}
 		request.getRequestDispatcher("../WEB-INF/admin/product.jsp").forward(request, response);
 	}
-
 }

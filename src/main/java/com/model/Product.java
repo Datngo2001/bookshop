@@ -37,6 +37,8 @@ public class Product implements Serializable {
 	// Relation
 	@OneToMany(mappedBy = "product")
 	private List<Review> reviews = new ArrayList<Review>();
+	@OneToMany(mappedBy = "product")
+	private List<Photo> photos = new ArrayList<Photo>();
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price) {
@@ -199,4 +201,21 @@ public class Product implements Serializable {
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+	
 }
