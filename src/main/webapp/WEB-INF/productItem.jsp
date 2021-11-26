@@ -310,12 +310,15 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           $(".overlay").toggleClass("confirm-delete-active");
         };
 
+        const overlay = $(".overlay");
+
         $("div.exit-form, .cancel-comment-delete.cancel-form").click(
-          toggleDeleteComment
+          // toggleDeleteComment
+          () => overlay.hide()
         );
 
         $(".comment-menu-delete").click(function () {
-          toggleDeleteComment();
+          overlay.show();
 
           const deletedReview = $(this).parents(".user-comment");
           const reviewId = deletedReview.attr("id");
@@ -330,7 +333,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 return;
               }
 
-              toggleDeleteComment();
+              // toggleDeleteComment();
+              overlay.hide();
               deletedReview.remove();
             });
           });

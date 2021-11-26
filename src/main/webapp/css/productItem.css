@@ -226,7 +226,8 @@ body {
   display: none;
 }
 /* rating form and review */
-.review-form-container {
+.review-form-container,
+.overlay {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
@@ -371,7 +372,7 @@ body {
 .comment-menu-active {
   display: flex;
 }
-.overlay {
+/* .overlay {
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
   place-items: center;
@@ -381,6 +382,9 @@ body {
   bottom: 0;
   right: 0;
   padding: 20px;
+} */
+.overlay {
+  /* padding: 20px; */
 }
 .comment-delete-confirm {
   background-color: #fff;
@@ -528,5 +532,12 @@ body {
   /* review form */
   .review-form-container {
     padding: 10% 20%;
+  }
+  .overlay {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  .overlay > .comment-delete-confirm > h2 {
+    text-align: center;
   }
 }
