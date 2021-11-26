@@ -38,7 +38,7 @@
             </div>
             <div class="form-group">
               <span class="">Sub Total</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="subtotal" value="50" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="subtotal" value="${amount}" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Shipping</span>

@@ -1,6 +1,9 @@
 package com.paypal;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.Locale;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +14,8 @@ import com.DTOs.BusinessDtos.UserDTO;
 import com.model.User;
 import com.paypal.api.payments.Payer;
 import com.paypal.base.rest.PayPalRESTException;
+
+import net.bytebuddy.asm.Advice.Local;
 
 @WebServlet("/authorize_payment")
 public class AuthorizePaymentServlet extends HttpServlet {
@@ -68,6 +73,11 @@ public class AuthorizePaymentServlet extends HttpServlet {
 		}
 	}
 	private void loadCheckout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		double price = Double.parseDouble(request.getParameter("price")) / 22672;
+		Locale locate = new Locale("en", "US");
+		NumberFormat cuNumberFormat = NumberFormat.getCurrencyInstance(locate);
+		
+		request.setAttribute("amount",cuNumberFormat.format(price));
 		request.getRequestDispatcher("WEB-INF/paypal/checkout.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
