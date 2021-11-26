@@ -26,6 +26,7 @@ public class Seed {
         // Add admin account
         RegisterDTO registerDTO = new RegisterDTO();
         RegisterDTO registerDTO1 = new RegisterDTO();
+        RegisterDTO registerDTO2 = new RegisterDTO();
         registerDTO.setUsername("admin");
         registerDTO.setPassword("522001");
         registerDTO.setReEnter("522001");
@@ -34,8 +35,14 @@ public class Seed {
         registerDTO1.setPassword("230601");
         registerDTO1.setReEnter("230601");
         registerDTO1.setRole("Customer");
+        
+        registerDTO2.setUsername("duongle");
+        registerDTO2.setPassword("123456");
+        registerDTO2.setReEnter("123456");
+        registerDTO2.setRole("Customer");
         CreateAccount(registerDTO);
         CreateAccount(registerDTO1);
+        CreateAccount(registerDTO2);
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();

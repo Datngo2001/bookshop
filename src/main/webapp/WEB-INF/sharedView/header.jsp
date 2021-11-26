@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header-side">
   <header class="header" id="header">
     <div class="grid">
@@ -73,7 +74,14 @@
           </li>
           <li class="navbar-item"><a href="register" class="navbar-item-link">Sign up</a></li>
           <li class="navbar-item">|</li>
+          <c:choose>
+          <c:when test="${sessionScope.userId == null}"> 
           <li class="navbar-item"><a href="login" class="navbar-item-link">Log in</a></li>
+          </c:when>
+          <c:otherwise>
+          <li class="navbar-item"><a href="profile" class="navbar-item-link"> <i class="fas fa-user"></i>&nbsp;Profile</a></li>
+          </c:otherwise>
+          </c:choose>
         </ul>
       </nav>
       <div class="navbar-search">

@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -43,9 +44,12 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				new Seed().doSeed();
+				//new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
+				loadPopularOrder(request, response);
+				loadTrendingBook(request, response);
 				goHomePage(request, response);
+				
 				break;
 			case "LOAD":
 				detailProduct(request, response);
@@ -56,6 +60,19 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void loadTrendingBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<Product> list_product = new ArrayList<Product>();
+		list_product = productDao.getProducts(36);
+		request.setAttribute("trending_book", list_product);
+		
+	}
+
+	private void loadPopularOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<Product> list_product = new ArrayList<Product>();
+		list_product = productDao.getProducts(53);
+		request.setAttribute("po_order", list_product);
 	}
 
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -80,6 +97,7 @@ public class HomeController extends HttpServlet {
 		List<Product> product = null;
 		String action = request.getParameter("action");
 		String next = request.getParameter("next");
+		List<Product> list_product = productDao.getProducts();
 		int index;
 		try {
 			// set index
@@ -90,24 +108,21 @@ public class HomeController extends HttpServlet {
 				index = Integer.parseInt(next);
 
 			// get action to execute
-			if (action == null)
-				action = "";
+			if (action == null) action = "";
 
-			if (action.equals("PREV"))
-				index--;
+			if (action.equals("PREV")) index--;
 
-			else if (action.equals("NEXT"))
-				index++;
-
+			else if (action.equals("NEXT")) index++;
+			
+			int limit = list_product.size() / 15;
 			// when user next or prev over page available we set default for this case
-			if (index < 0)
-				index = 0;
-			if (index > 3)
-				index = 3;
+			if (index < 0) index = 0;
+			if (index > limit - 1) index = limit - 1;
 
 			product = productDao.getProducts(index * 15);
 
 			request.setAttribute("next", index);
+			request.setAttribute("max", limit);
 
 		} catch (Exception e) {
 			log("productDao error", e);

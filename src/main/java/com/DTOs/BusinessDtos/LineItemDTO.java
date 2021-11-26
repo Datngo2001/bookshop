@@ -9,8 +9,24 @@ public class LineItemDTO {
 	float price;
     String authorName;
     String pictureUrl;
+    
+    int discount;
 
-    public int getId() {
+    public float getPriceDiscount() {
+    	return (price - (discount * price) / 100);
+    }
+    public void setPriceDiscount(int discount) {
+    	this.discount = discount;
+    }
+    public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public int getId() {
         return id;
     }
 
@@ -64,5 +80,6 @@ public class LineItemDTO {
 	public void setPictureUrl(String pictureUrl) {
 		this.pictureUrl = pictureUrl;
 	}
-
+	
+	
 }

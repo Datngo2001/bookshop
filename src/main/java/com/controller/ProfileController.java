@@ -2,31 +2,22 @@ package com.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.data.DAOs.*;
+import com.model.*;
 
-import com.data.DAOs.OrderDAO;
-import com.data.DAOs.ProductDAO;
-import com.data.DAOs.UserDAO;
-import com.model.Item;
-import com.model.LineItem;
-import com.model.Order;
-import com.model.Product;
-import com.model.User;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 @WebServlet("/profile")
 public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderDAO orderDAO = null;
 	private UserDAO userDao = null;
-	private ProductDAO productDao = null;
+
     public ProfileController() {
         super();
         userDao = new UserDAO();
@@ -35,8 +26,10 @@ public class ProfileController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/profile.jsp";
+		
 		try {
 		Object userId = request.getSession().getAttribute("userId");
+		
 		List<Item> items = null;
 		// get current action
 		String action = request.getParameter("action");
@@ -49,28 +42,26 @@ public class ProfileController extends HttpServlet {
 		if (action.equals("SOMETHING")) {
 			example();
 		}
-		
-			Product product = null;
+		User user = userDao.getUser(userId.toString());
+		// get user to profile
 
-			List<Order> list_order = orderDAO.getListOrderByUserId(userId.toString());
-			// list the order of user
-			for (Order order: list_order) {
-				// list item in order by another user
-				items = userDao.getMyBook(order.getId());
+		List<Order> list_order = orderDAO.getListOrderByUserId(userId.toString());
+		// list the order of user
+		for (Order order: list_order) {
+			// list item in order by another user
+			items = userDao.getMyBook(order.getId());
 				
-				// because items is list so we iterate, then add all them in my_product 
-
-				for(Item item: items) my_product.add(item);
+			// because items is list so we iterate, then add all them in my_product 
+			for(Item item: items) my_product.add(item);
 				
-			}	
+		}	
 			
-			
+		request.setAttribute("list_item", my_product);
+		request.setAttribute("user", user);
 
 			
-			request.setAttribute("list_item", my_product);
-
-			
-		} catch (Exception e) {
+		} 
+		catch (Exception e) {
 			e.printStackTrace();
 		}
 		

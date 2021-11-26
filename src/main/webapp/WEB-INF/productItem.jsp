@@ -34,11 +34,20 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </figure>
           <div class="button-wrapper">
             <div class="product-btn add-to-cart">
-              <span>Thêm vào giỏ hàng</span>
+            <form action="cart">
+            	<input type="hidden" name="productId" value="${product.id}">
+            	<input type="hidden" name="quantity" value="1">
+            	<input type="hidden" name="action" value="ADD">
+             <button type="submit" class="btn-action"> Thêm vào giỏ hàng </button>
+             </form>
             </div>
             <div class="product-btn buy-now">
-              <span>Mua ngay</span>
-            </div>
+			<form action="confirm">
+               <button type="submit" class="btn-action"> 
+               <span style="color:white">Mua ngay</span> </button>
+               <input type="hidden" name="price" value="${product.price}">
+			</form>
+			</div>
           </div>
         </div>
         <div class="product-info">
@@ -178,9 +187,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           <c:choose>
             <c:when test="${sessionScope.userId == null}">
               <div class="noti-non-user">
+              <form action="">
                 Chỉ có thành viên mới có thể viết nhận xét.Vui lòng&nbsp;
                 <a href="login">đăng nhập&nbsp;</a>hoặc
                 <a href="register">&nbsp;đăng ký</a>.
+                
+               </form>
               </div>
             </c:when>
             <c:otherwise>
@@ -230,7 +242,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <form
               class="comment-delete-confirm"
               action="review?action=DELETE&productId=${product.getId()}&reviewId="
-            >
+>
               <div class="fas fa-times fa-2x exit-form"></div>
               <h2>Bạn có chắc là muốn xóa bình luận này chứ</h2>
               <div class="button-wrapper">

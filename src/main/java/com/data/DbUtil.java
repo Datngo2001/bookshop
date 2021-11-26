@@ -15,6 +15,7 @@ public class DbUtil {
 	private static SessionFactory sessionFactory;
 
 	public static SessionFactory getSessionFactorys() {
+
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -44,6 +45,7 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
+				configuration.addAnnotatedClass(Review.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -59,7 +61,10 @@ public class DbUtil {
 
 	}
 
+
 	public static SessionFactory getSessionFactory() {
+
+
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -90,7 +95,7 @@ public class DbUtil {
 				settings.put(Environment.SHOW_SQL, "true");
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+				//settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				settings.put(Environment.HBM2DDL_AUTO, "update");
 
@@ -103,7 +108,8 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
-
+				configuration.addAnnotatedClass(Review.class);
+				
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
 				System.out.println("Hibernate Java Config serviceRegistry created");

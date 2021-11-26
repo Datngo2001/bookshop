@@ -2,6 +2,7 @@ package com.paypal;
 
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.text.ParseException;
 import java.util.Locale;
 
 import javax.servlet.ServletException;
@@ -33,26 +34,36 @@ public class AuthorizePaymentServlet extends HttpServlet {
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
     	String action = request.getParameter("action");
-    	if(action == null) {
-    		action = "Check";
+    	try {
+        	if(action == null) {
+        		action = "Check";
+        	}
+        	switch (action) {
+    		case "Check":
+    			loadCheckout(request, response);
+    			break;
+    		case "Pay":
+    			doCheckout(request, response);
+    		default:
+    			break;
+    		}
     	}
-    	switch (action) {
-		case "Check":
-			loadCheckout(request, response);
-			break;
-		case "Pay":
-			doCheckout(request, response);
-		default:
-			break;
+    	catch (Exception e) {
+			e.printStackTrace();
 		}
+    	finally {
+			
+		}
+
 		
     }
-	private void doCheckout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+	private void doCheckout(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ParseException {
+		NumberFormat format = NumberFormat.getCurrencyInstance();
 		String product = request.getParameter("product");
-		String subtotal = request.getParameter("subtotal");
-		String shipping = request.getParameter("shipping");
-		String tax = request.getParameter("tax");
-		String total = request.getParameter("total");
+		float subtotal = format.parse(request.getParameter("subtotal")).floatValue();
+		float shipping = format.parse(request.getParameter("shipping")).floatValue();
+		float tax = format.parse(request.getParameter("tax")).floatValue();
+		float total = format.parse(request.getParameter("total")).floatValue();
 		
 		Checkout check = new Checkout(product, subtotal, shipping, tax, total);
 		
@@ -77,7 +88,11 @@ public class AuthorizePaymentServlet extends HttpServlet {
 		Locale locate = new Locale("en", "US");
 		NumberFormat cuNumberFormat = NumberFormat.getCurrencyInstance(locate);
 		
+		double total = 2 + price*0.05 + price;
 		request.setAttribute("amount",cuNumberFormat.format(price));
+		request.setAttribute("total",cuNumberFormat.format(total));
+		request.setAttribute("tax",cuNumberFormat.format(price*0.05));
+		request.setAttribute("ship",cuNumberFormat.format(2));
 		request.getRequestDispatcher("WEB-INF/paypal/checkout.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

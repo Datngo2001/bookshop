@@ -43,7 +43,7 @@
             <h3 class="category-heading"> <i class="category-heading-icon fas fa-list"></i>Content</h3>
             <ul class="category-list">
               <li class="category-item category--active">
-                <a href="" class="category-link">Romance <%= request.getParameter("named") %></a>
+                <a href="" class="category-link">Romance</a>
               </li>
               <li class="category-item">
                 <a href="" class="category-link">Science Fiction & Fantasy</a>
@@ -81,6 +81,9 @@
             <div class="home-page">
 
               <div class="filter-control" style="display: flex">
+				<div class="info-page" style="display: flex;">
+					<label> ${next + 1} </label> / <label> ${max}</label>
+				</div>
               <form action="home" method="post">
               	<input type="hidden" name="action" value="PREV">
               	<input type="hidden" name="next" value="${next}">
@@ -126,7 +129,8 @@
                       </div>
                       <div class="trending-item-price">
                         <span class="price-old mr-up">${product.price}</span>
-                        <span class="price-current mr-up">17.790d</span>
+                        
+                        <span class="price-current mr-up">${product.getPriceDiscount()}</span>
                       </div>
                       <form action="${pageContext.request.contextPath}/cart" method="post">
                       		<input type="hidden" name="productId"  value="${product.id}">
@@ -138,10 +142,17 @@
                       <div class="product-item-favourite">
                         <i class="fas fa-check"></i> Interesting
                       </div>
+                      <c:choose>
+                      <c:when test="${product.discount == 0 }">
+                      
+                      </c:when>
+                      <c:otherwise>
                       <div class="product-item-sale">
                         <span class="product-item-label">Discount</span>
-                        <span class="product-item-percent">23%</span>
+                        <span class="product-item-percent">${product.getDiscount()}%</span>
                       </div>
+                      </c:otherwise>
+                      </c:choose>
                     </div>
                   </div>
                 </div>
@@ -168,11 +179,12 @@
             </ul>
           </div>
           <div class="carousel owl-carousel">
+          <c:forEach var="item" items="${trending_book}">
             <div class="card-trending">
               <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                <p class="trending-item-name">${item.getProductName()}</p>
+                <p class="trending-item-author">${item.getNameAuthor()}</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -187,186 +199,28 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> ${item.price}</span>
+                  <span class="price-current mr-up">${item.getPriceDiscount() }</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
+                      <c:choose>
+                      <c:when test="${item.discount == 0 }">
+                      
+                      </c:when>
+                      <c:otherwise>
+                      <div class="product-item-sale">
+                        <span class="product-item-label">Discount</span>
+                        <span class="product-item-percent">${item.getDiscount()}%</span>
+                      </div>
+                      </c:otherwise>
+                      </c:choose>
               </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/adff408e-a299-4d6c-a5fa-81aa587ce849/140/215/60/False/first-girl-to-die.jpg);"></div>
-                <p class="trending-item-name">It Ends with Us: A Novel</p>
-                <p class="trending-item-author">Colleen Hoover</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 105.000d</span>
-                  <span class="price-current mr-up">95.000d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/5a8b06eb-73cc-4d3e-9414-23c788c9312d/140/215/60/False/their-eyes-were-watching-god-1.jpg);"></div>
-                <p class="trending-item-name">I Will Teach You to Rich</p>
-                <p class="trending-item-author">Ramit Sethi</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 80.000d</span>
-                  <span class="price-current mr-up">70.000d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/d2b694e5-ab0e-483b-937d-003950e93943/140/215/60/False/temptation-after-dark-1.jpg);"></div>
-                <p class="trending-item-name">The Thirty Names</p>
-                <p class="trending-item-author">Zeyn Joukhadar</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 70.190d</span>
-                  <span class="price-current mr-up">62.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/6b9a1dcd-5ab2-4c3e-9cae-a1dd3fbab89c/140/215/60/False/the-girl-on-the-platform-2.jpg);"></div>
-                <p class="trending-item-name">News of the World:</p>
-                <p class="trending-item-author">Paulette Jiles</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 120.000d</span>
-                  <span class="price-current mr-up">105.900d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg);"></div>
-                <p class="trending-item-name">Last Thing He Told Me</p>
-                <p class="trending-item-author">Laura Dave</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 88.000d</span>
-                  <span class="price-current mr-up">80.00d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
           </div>
+          </c:forEach>
         </div>
       </div>
     </div>
@@ -386,11 +240,12 @@
             </ul>
           </div>
           <div class="carousel owl-carousel">
+          <c:forEach var="item" items="${po_order}">
             <div class="card-trending">
               <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
+                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                <p class="trending-item-name">${item.getProductName() }</p>
+                <p class="trending-item-author">${item.getNameAuthor() }</p>
                 <div class="product-action">
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
@@ -405,185 +260,28 @@
                   </div>
                 </div>
                 <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
+                  <span class="price-old mr-up"> ${item.price}</span>
+                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
                 </div>
   
                 <button class="btn_add-to-cart">Add to cart</button>
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
+                      <c:choose>
+                      <c:when test="${item.discount == 0 }">
+                      
+                      </c:when>
+                      <c:otherwise>
+                      <div class="product-item-sale">
+                        <span class="product-item-label">Discount</span>
+                        <span class="product-item-percent">${item.getDiscount()}%</span>
+                      </div>
+                      </c:otherwise>
+                      </c:choose>
               </div>
             </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/adff408e-a299-4d6c-a5fa-81aa587ce849/140/215/60/False/first-girl-to-die.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/5a8b06eb-73cc-4d3e-9414-23c788c9312d/140/215/60/False/their-eyes-were-watching-god-1.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/d2b694e5-ab0e-483b-937d-003950e93943/140/215/60/False/temptation-after-dark-1.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/6b9a1dcd-5ab2-4c3e-9cae-a1dd3fbab89c/140/215/60/False/the-girl-on-the-platform-2.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <div class="product-item-img" style="background-image: url(https://kbimages1-a.akamaihd.net/a1f2ad30-328f-4e97-9b15-9c527ba1b00b/140/215/60/False/stolen-ones.jpg);"></div>
-                <p class="trending-item-name">Lying Ways</p>
-                <p class="trending-item-author">Rechel Lynch</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold far fa-star"></i>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> 18.190d</span>
-                  <span class="price-current mr-up">17.790d</span>
-                </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                <div class="product-item-sale">
-                  <span class="product-item-label">Discount</span>
-                  <span class="product-item-percent">23%</span>
-                </div>
-              </div>
-            </div>
+            </c:forEach>
           </div>
         </div>
       </div>

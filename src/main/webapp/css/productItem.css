@@ -74,6 +74,11 @@ body {
   text-align: center;
   flex-direction: row;
 }
+.btn-action  {
+	border: transparent; 
+	cursor: pointer; 
+	background: transparent; 
+}
 .buy-now {
   color: #fff;
   background-color: #c92127;
@@ -248,6 +253,7 @@ body {
   padding: 20px;
   height: 100%;
   position: relative;
+  z-index: 1;
 }
 .rating-form > * {
   margin-bottom: 20px;
@@ -371,20 +377,6 @@ body {
 }
 .comment-menu-active {
   display: flex;
-}
-/* .overlay {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: none;
-  place-items: center;
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  padding: 20px;
-} */
-.overlay {
-  /* padding: 20px; */
 }
 .comment-delete-confirm {
   background-color: #fff;
