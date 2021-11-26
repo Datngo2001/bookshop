@@ -42,6 +42,8 @@ public class User implements Serializable {
 	private List<Order> orders = new ArrayList<Order>();
 	@OneToOne(mappedBy = "user")
 	private Cart cart;
+	@OneToMany(mappedBy = "user")
+	private List<Review> reviews = new ArrayList<Review>();
 
 	public User() {
 	}

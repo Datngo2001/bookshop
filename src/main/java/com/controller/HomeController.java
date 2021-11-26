@@ -43,7 +43,7 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 			case "HOME":
-				//new Seed().doSeed();
+				new Seed().doSeed();
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				goHomePage(request, response);
 				break;
@@ -61,14 +61,19 @@ public class HomeController extends HttpServlet {
 	private void detailProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String productId = null;
 		Product product = null;
+
 		try {
 			productId = request.getParameter("productID");
 			product = productDao.getProduct(Integer.parseInt(productId));
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
+
 		request.setAttribute("product", product);
-		request.getRequestDispatcher("WEB-INF/productItem.jsp").forward(request, response);
+		String path = "/product?command=LOAD&id=" + request.getParameter("productID");
+		// request.getRequestDispatcher("WEB-INF/productItem.jsp").forward(request,
+		// response);
+		response.sendRedirect(request.getContextPath() + path);
 	}
 
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -78,24 +83,30 @@ public class HomeController extends HttpServlet {
 		int index;
 		try {
 			// set index
-			if(next == null) index = 0;
-			
-			else index = Integer.parseInt(next);
+			if (next == null)
+				index = 0;
 
-			// get action to execute 
-			if (action == null) action = "";
-			
-			if(action.equals("PREV")) index--;
+			else
+				index = Integer.parseInt(next);
 
-			else if(action.equals("NEXT")) index++;
-			
+			// get action to execute
+			if (action == null)
+				action = "";
+
+			if (action.equals("PREV"))
+				index--;
+
+			else if (action.equals("NEXT"))
+				index++;
+
 			// when user next or prev over page available we set default for this case
-			if (index < 0) index = 0;
-			if (index > 3) index = 3;
+			if (index < 0)
+				index = 0;
+			if (index > 3)
+				index = 3;
 
 			product = productDao.getProducts(index * 15);
-			
-			
+
 			request.setAttribute("next", index);
 
 		} catch (Exception e) {

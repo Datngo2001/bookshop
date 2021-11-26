@@ -1,9 +1,12 @@
 package com.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.data.DAOs.ProductDAO;
 
 import org.hibernate.annotations.Type;
 
@@ -31,6 +34,10 @@ public class Product implements Serializable {
 	public String Sku;
 	public String typeBook;
 
+	// Relation
+	@OneToMany(mappedBy = "product")
+	private List<Review> reviews = new ArrayList<Review>();
+
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price) {
 		this.codeProduct = codeProduct;
@@ -56,7 +63,6 @@ public class Product implements Serializable {
 		this.typeBook = typeBook;
 	}
 
-	
 	public Product(String nameAuthor, String description, String name, String nXB, String supplier, int price) {
 		super();
 		this.nameAuthor = nameAuthor;
@@ -89,6 +95,13 @@ public class Product implements Serializable {
 		this.price = price;
 		this.typeBook = type;
 
+	}
+
+	static public Product find(int id) {
+		ProductDAO productDAO = new ProductDAO();
+		Product product = productDAO.getProduct(id);
+
+		return product;
 	}
 
 	public List<Category> getCategorys() {

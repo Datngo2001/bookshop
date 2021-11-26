@@ -1,3 +1,5 @@
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
 body {
   background-color: #f0f0f0;
 }
@@ -56,13 +58,15 @@ body {
 .product-addon > div {
   margin-left: 30px;
 }
-.add-to-cart,
-.buy-now {
+/* .add-to-cart,
+.buy-now { */
+.product-btn {
   align-items: center;
   background-color: #fff;
   border: 1px solid #c92127;
-  display: flex;
   color: #c92127;
+  cursor: pointer;
+  display: flex;
   font-weight: bold;
   font-size: 15px;
   justify-content: center;
@@ -163,9 +167,11 @@ body {
   font-size: 25px;
 }
 .rating-star {
+  align-items: center;
   color: #f6a500;
   display: flex;
   flex: 1;
+  height: 20px;
 }
 .review-rating-container {
   width: calc(75% - 30px);
@@ -176,6 +182,15 @@ body {
 }
 .noti-non-user {
   margin-top: 30px;
+}
+.review-btn {
+  border-radius: 5px;
+  display: flex;
+  padding: 5px 0;
+  margin-top: 20px;
+}
+.review-btn > span {
+  margin-right: 10px;
 }
 .user-comments {
   padding-top: 20px;
@@ -204,12 +219,194 @@ body {
 }
 .comment-content {
   color: #333;
-  margin-top: 20px;
   font-size: 14px;
 }
 /* nxb - author */
 .product-supplier-author {
   display: none;
+}
+/* rating form and review */
+.review-form-container,
+.overlay {
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  justify-content: center;
+  padding: 20% 0 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+.rating-form {
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 20px;
+  height: 100%;
+  position: relative;
+}
+.rating-form > * {
+  margin-bottom: 20px;
+}
+.form-title {
+  align-self: center;
+}
+.rating-form > div.review-rating-stars {
+  background-color: #f7f9fa;
+  display: flex;
+  justify-content: center;
+  transform: rotate(180deg);
+  padding: 10px;
+}
+.rating-form > div.review-rating-stars > input {
+  display: none;
+}
+.rating-form > div.review-rating-stars > label::before {
+  margin: 5px;
+  font-size: 16px;
+  font-family: FontAwesome;
+  display: inline-block;
+  content: "\f005";
+}
+.rating-form > div.review-rating-stars > label {
+  color: #ddd;
+  cursor: pointer;
+  margin-left: -10px;
+  transform: rotate(180deg);
+}
+.rating-form > div.review-rating-stars > input:checked ~ label,
+.rating-form > div.review-rating-stars:not(:checked) > label:hover,
+.rating-form > div.review-rating-stars:not(:checked) > label:hover ~ label {
+  color: #ffd700;
+}
+.rating-form > div.review-rating-stars > input:checked + label:hover,
+.rating-form > div.review-rating-stars > input:checked ~ label:hover,
+.rating-form > div.review-rating-stars > label:hover ~ input:checked ~ label,
+.rating-form > div.review-rating-stars > input:checked ~ label:hover ~ label {
+  color: #ffed85;
+}
+.review-content {
+  border-radius: 10px;
+  border: 1px solid #cdcfd0;
+  padding: 10px;
+  flex: 0.7;
+}
+.submit {
+  align-self: flex-end;
+  border: none;
+  background-color: #c92127;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 30px;
+}
+.button-wrapper {
+  display: flex;
+}
+.rating-form > div.button-wrapper {
+  align-self: flex-end;
+  margin-top: auto;
+}
+.cancel-form {
+  color: #999;
+  cursor: pointer;
+  font-weight: bold;
+  line-height: 36px;
+  margin-right: 30px;
+}
+.exit-form {
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+.product-btn,
+.cancel-form {
+  user-select: none;
+}
+/* Update, delete review */
+.user-comment:hover > .comment > .rating-star > .comment-menu {
+  display: grid;
+}
+.comment-menu-dropdown {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.comment-menu {
+  border-radius: 50%;
+  color: #000;
+  display: none;
+  place-items: center;
+  margin-left: auto;
+  padding: 5px;
+  position: relative;
+}
+.comment-menu:hover,
+.comment-menu-active {
+  background-color: #aaa;
+}
+.comment-menu-dropdown {
+  background-color: #242526;
+  border-radius: 5px;
+  color: #fff;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 100px;
+  padding: 5px;
+}
+.comment-menu-dropdown > li {
+  padding: 5px;
+}
+.comment-menu-dropdown > li:hover {
+  background-color: #666;
+  border-radius: 5px;
+}
+.comment-menu-active {
+  display: flex;
+}
+/* .overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  display: none;
+  place-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 20px;
+} */
+.overlay {
+  /* padding: 20px; */
+}
+.comment-delete-confirm {
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  position: relative;
+}
+.comment-delete-confirm > .button-wrapper {
+  align-self: flex-end;
+  margin: auto 0;
+}
+.comment-delete-confirm > .button-wrapper > input[name="commentId"] {
+  display: none;
+}
+.comment-delete-confirm > .exit-form {
+  top: 10px;
+  right: 10px;
+}
+.confirm-delete-active {
+  display: grid;
 }
 @media only screen and (min-width: 1024px) {
   .product-container {
@@ -249,12 +446,11 @@ body {
     padding: 10px;
   }
   .button-wrapper {
-    display: flex;
     margin-top: 30px;
   }
-  .add-to-cart,
-  .buy-now {
+  .product-btn {
     padding: 13px 30px;
+    max-width: 200px;
   }
   .add-to-cart,
   .buy-now,
@@ -289,19 +485,22 @@ body {
   }
   /* rating */
   .rating-view {
-    width: 10%;
+    width: 20%;
   }
   .review-rating-container {
-    width: calc(30% - 40px);
+    width: calc(35% - 40px);
     margin-left: 40px;
   }
   .noti-non-user {
     align-items: center;
     display: flex;
-    width: 60%;
+    width: 45%;
     font-size: 12px;
     margin-top: 0;
     justify-content: center;
+  }
+  .review-btn {
+    margin: auto;
   }
   .user-comment {
     flex-direction: row;
@@ -329,5 +528,16 @@ body {
   }
   .product-row-content > span {
     font-weight: bold;
+  }
+  /* review form */
+  .review-form-container {
+    padding: 10% 20%;
+  }
+  .overlay {
+    padding-left: 20%;
+    padding-right: 20%;
+  }
+  .overlay > .comment-delete-confirm > h2 {
+    text-align: center;
   }
 }
