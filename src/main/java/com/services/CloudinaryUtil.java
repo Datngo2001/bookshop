@@ -1,4 +1,4 @@
-package com.Cloudinary;
+package com.services;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ public class CloudinaryUtil {
         return cloudinary;
     }
 
-    public static void destroyItem(String publicId) throws IOException{
+    public static void destroyItem(String publicId) throws IOException {
         Cloudinary cloudinary = CloudinaryUtil.getCLoudinary();
         cloudinary.uploader().destroy(publicId, null);
     }

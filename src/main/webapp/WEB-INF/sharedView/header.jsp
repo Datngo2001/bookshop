@@ -80,6 +80,7 @@
           </c:when>
           <c:otherwise>
           <li class="navbar-item"><a href="profile" class="navbar-item-link"> <i class="fas fa-user"></i>&nbsp;Profile</a></li>
+          <li class="navbar-item"><a href="logout" class="navbar-item-link">Log out</a></li>
           </c:otherwise>
           </c:choose>
         </ul>

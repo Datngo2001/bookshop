@@ -9,13 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Cloudinary.CloudinaryUtil;
 import com.data.DAOs.FileDAO;
 import com.data.DAOs.PhotoDAO;
 import com.data.DAOs.ProductDAO;
 import com.model.File;
 import com.model.Photo;
 import com.model.Product;
+import com.services.CloudinaryUtil;
 
 @WebServlet("/admin/product")
 public class ProductManageController extends HttpServlet {

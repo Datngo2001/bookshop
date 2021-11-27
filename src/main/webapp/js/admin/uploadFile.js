@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
-    const response = await fetch('../api/uploadKey?type=file');
+    const response = await fetch('../admin/uploadKey?type=file');
     const data = await response.json();
 
     const options = {

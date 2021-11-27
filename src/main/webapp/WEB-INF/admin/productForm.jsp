@@ -112,12 +112,11 @@
                                 <c:if test="${not empty item.file}">
                                 <div class="d-block m-1">
                                     <a class="" href="${item.file.url}" target="blank"><h4>Get file</h4></a>
-                                    <span class="badge badge-primary">${item.file.type}</span>
                                 </div>
                                 <form class="m-1" action="file" method="post">
                                     <input type="hidden" name="command" value="Delete">
-                                    <input type="hidden" name="productId" value=${item.id}>
-                                    <input type="hidden" name="photoId" value=${photo.id}>
+                                    <input type="hidden" name="productId" value="${item.id}">
+                                    <input type="hidden" name="fileId" value="${item.file.id}">
                                     <input name="action" type="submit" value="Delete file"
                                         class="btn btn-danger" />
                                 </form>                                

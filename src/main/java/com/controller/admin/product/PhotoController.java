@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Cloudinary.CloudinaryUtil;
 import com.data.DAOs.PhotoDAO;
 import com.model.Photo;
+import com.services.CloudinaryUtil;
 
 @SuppressWarnings("serial")
 @WebServlet("/admin/photo")

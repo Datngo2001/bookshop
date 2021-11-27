@@ -1,4 +1,4 @@
-package com.Cloudinary;
+package com.controller.admin;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,8 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.DTOs.BusinessDtos.UploadKeyDTO;
 import com.cloudinary.Cloudinary;
 import com.google.gson.Gson;
+import com.services.CloudinaryUtil;
 
-@WebServlet("/api/uploadKey")
+@WebServlet("/admin/uploadKey")
 public class UploadKeyController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
