@@ -40,6 +40,10 @@ public class Product implements Serializable {
 	// Relation
 	@OneToMany(mappedBy = "product")
 	private List<Review> reviews = new ArrayList<Review>();
+	@OneToMany(mappedBy = "product")
+	private List<Photo> photos = new ArrayList<Photo>();
+	@OneToOne(mappedBy = "product")
+	private File file;
 
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
@@ -233,4 +237,22 @@ public class Product implements Serializable {
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
 	}
+
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
 }

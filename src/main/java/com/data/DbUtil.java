@@ -12,6 +12,7 @@ import org.hibernate.service.ServiceRegistry;
 import com.model.*;
 
 public class DbUtil {
+
 	private static SessionFactory sessionFactory;
 
 	public static SessionFactory getSessionFactorys() {
@@ -47,6 +48,8 @@ public class DbUtil {
 				configuration.addAnnotatedClass(LineItem.class);
 				configuration.addAnnotatedClass(Review.class);
 				configuration.addAnnotatedClass(Promo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Photo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -111,6 +114,8 @@ public class DbUtil {
 				configuration.addAnnotatedClass(LineItem.class);
 				configuration.addAnnotatedClass(Review.class);
 				configuration.addAnnotatedClass(Promo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Photo.class);
 				
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -128,4 +133,5 @@ public class DbUtil {
 	public static void shutdown() {
 		getSessionFactory().close();
 	}
+
 }
