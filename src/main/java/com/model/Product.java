@@ -39,6 +39,8 @@ public class Product implements Serializable {
 	private List<Review> reviews = new ArrayList<Review>();
 	@OneToMany(mappedBy = "product")
 	private List<Photo> photos = new ArrayList<Photo>();
+	@OneToOne(mappedBy = "product")
+	private File file;
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price) {
@@ -217,5 +219,13 @@ public class Product implements Serializable {
 	public void setPhotos(List<Photo> photos) {
 		this.photos = photos;
 	}
-	
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
 }

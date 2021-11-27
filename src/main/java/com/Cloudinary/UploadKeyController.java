@@ -1,4 +1,4 @@
-package com.controller.Cloudinary;
+package com.cloudinary;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -10,14 +10,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.Cloudinary.CloudinaryUtil;
 import com.DTOs.BusinessDtos.UploadKeyDTO;
-import com.cloudinary.Cloudinary;
 import com.google.gson.Gson;
 
-@SuppressWarnings("serial")
 @WebServlet("/api/uploadKey")
-public class CloudinaryAuthController extends HttpServlet {
+public class UploadKeyController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

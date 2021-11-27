@@ -1,6 +1,7 @@
-package com.Cloudinary;
+package com.cloudinary;
 
-import com.cloudinary.Cloudinary;
+import java.io.IOException;
+
 import com.cloudinary.utils.ObjectUtils;
 
 public class CloudinaryUtil {
@@ -12,5 +13,10 @@ public class CloudinaryUtil {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", cloud_name, "api_key", apiKey,
                 "api_secret", api_secret, "secure", true));
         return cloudinary;
+    }
+
+    public static void destroyItem(String publicId) throws IOException{
+        Cloudinary cloudinary = CloudinaryUtil.getCLoudinary();
+        cloudinary.uploader().destroy(publicId, null);
     }
 }

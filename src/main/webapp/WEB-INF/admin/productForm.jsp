@@ -107,8 +107,29 @@
                     </div>
                     <c:if test="${FormCommand == 'Update'}">
                         <div class="row">
-                            <button class="btn btn-primary" id="uploadPhoto">Upload Photo</button>
-                            <div id="carouselExampleIndicators" class="carousel slide w-100 h-auto" data-ride="carousel">
+                            <h1 class="h3 mb-0 text-gray-800">Product File</h1><br>
+                            <div class="p-2 card shadow w-100 d-flex flex-row align-items-center">
+                                <c:if test="${not empty item.file}">
+                                <div class="d-block m-1">
+                                    <a class="" href="${item.file.url}" target="blank"><h4>Get file</h4></a>
+                                    <span class="badge badge-primary">${item.file.type}</span>
+                                </div>
+                                <form class="m-1" action="file" method="post">
+                                    <input type="hidden" name="command" value="Delete">
+                                    <input type="hidden" name="productId" value=${item.id}>
+                                    <input type="hidden" name="photoId" value=${photo.id}>
+                                    <input name="action" type="submit" value="Delete file"
+                                        class="btn btn-danger" />
+                                </form>                                
+                                </c:if>
+                                <button class="btn btn-primary m-1 d-block" id="uploadFile">Upload File</button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h1 class="h3 mb-0 text-gray-800">Product Photos</h1>
+                            <div class="p-2 card shadow w-100">
+                                <button class="btn btn-primary" id="uploadPhoto">Upload Photo</button>
+                                <div id="carouselExampleIndicators" class="carousel slide w-100 h-auto" data-ride="carousel">
                                 <div class="carousel-inner">
                                     <c:forEach var="photo" items="${item.photos}">
                                         <c:if test="${photo.main}">
@@ -153,6 +174,7 @@
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="sr-only">Next</span>
                                 </a>
+                                </div>
                             </div>
                         </div>
                     </c:if>
@@ -188,8 +210,8 @@
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
 
     <!-- local upload instantiation -->
-    <script src="../js/uploadPhoto.js" type="text/javascript"></script>
-
+    <script src="../js/admin/uploadPhoto.js" type="text/javascript"></script>
+    <script src="../js/admin/uploadFile.js" type="text/javascript"></script>
 </body>
 
 </html>

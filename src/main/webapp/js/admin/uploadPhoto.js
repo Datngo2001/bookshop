@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         redirect: 'follow',
         body: photoInfo
       });
+      location.reload()
     }
   }
 

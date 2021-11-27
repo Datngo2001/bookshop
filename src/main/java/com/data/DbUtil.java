@@ -45,7 +45,9 @@ public class DbUtil {
                 configuration.addAnnotatedClass(Cart.class);
                 configuration.addAnnotatedClass(LineItem.class);
                 configuration.addAnnotatedClass(Photo.class);
-
+                configuration.addAnnotatedClass(File.class);
+                configuration.addAnnotatedClass(Review.class);
+                
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
                 System.out.println("Hibernate Java Config serviceRegistry created");
@@ -105,6 +107,8 @@ public class DbUtil {
                 configuration.addAnnotatedClass(Cart.class);
                 configuration.addAnnotatedClass(LineItem.class);
                 configuration.addAnnotatedClass(Photo.class);
+                configuration.addAnnotatedClass(File.class);
+                configuration.addAnnotatedClass(Review.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
