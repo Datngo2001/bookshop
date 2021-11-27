@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.*;
 import com.data.DbUtil;
@@ -17,25 +18,26 @@ public class ProductDAO {
 	public List<Product> getProducts() throws Exception {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From Product").getResultList();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Product> getProducts(int index) throws Exception {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index).setMaxResults(15).list();
-			
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index)
+					.setMaxResults(15).list();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 
 	}
-	
 
 	public void addProducts(Product product) {
 		Transaction transaction = null;
@@ -65,11 +67,9 @@ public class ProductDAO {
 			theProduct.setSupplier(product.getSupplier());
 			em.merge(theProduct);
 			trans.commit();
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} 
-		finally {
+		} finally {
 			em.close();
 		}
 	}
@@ -114,4 +114,20 @@ public class ProductDAO {
 		return product;
 	}
 
+	public List<Product> getByName(String keyword) {
+		String hql = "Select p from Product p where p.name like :keyword";
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		TypedQuery<Product> query = em.createQuery(hql, Product.class);
+
+		try {
+			query.setParameter("keyword", "%" + keyword + "%");
+
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+	}
 }

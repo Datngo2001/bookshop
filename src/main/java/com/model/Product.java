@@ -35,7 +35,7 @@ public class Product implements Serializable {
 	public String typeBook;
 
 	// Relation
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
@@ -198,5 +198,9 @@ public class Product implements Serializable {
 
 	public void setSupplier(String supplier) {
 		this.supplier = supplier;
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
 	}
 }

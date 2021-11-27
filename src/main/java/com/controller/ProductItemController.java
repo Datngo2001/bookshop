@@ -92,7 +92,7 @@ public class ProductItemController extends HttpServlet {
 			for (Review review : reviews) {
 				sumStar += review.getStars();
 			}
-			averageStar = sumStar / reviews.size();
+			averageStar = sumStar == 0 ? sumStar : sumStar / reviews.size();
 		} catch (Exception e) {
 			System.out.println("reviewDAO error!" + e);
 			log("reviewDAO error!", e);
