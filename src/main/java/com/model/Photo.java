@@ -81,6 +81,4 @@ public class Photo {
         this.product = product;
     }
 
-    
 }
-

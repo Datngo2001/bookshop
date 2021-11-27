@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', async () => {
 
   const command = document.getElementById("command").value
+  console.log(command);
   if (command === "ADD") {
-    console.log(command);
     return;
   }
 
@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+        redirect: 'follow',
         body: photoInfo
       });
     }
@@ -46,6 +47,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     .getElementById('uploadPhoto')
     .addEventListener('click', () => {
       myWidget.open();
-      console.log("opened")
     }, false)
 })

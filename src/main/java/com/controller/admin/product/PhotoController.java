@@ -8,8 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.Cloudinary.CloudinaryUtil;
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
 import com.data.DAOs.PhotoDAO;
 import com.model.Photo;
+
+import org.hibernate.mapping.Map;
 
 @WebServlet("/admin/photo")
 public class PhotoController extends HttpServlet {
@@ -46,6 +51,9 @@ public class PhotoController extends HttpServlet {
         if (photoId == null) {
             return;
         }
+        Photo photo = photoDAO.getPhotoById(Integer.parseInt(photoId));
+        Cloudinary cloudinary = CloudinaryUtil.getCLoudinary();
+        cloudinary.uploader().destroy(photo.getPublicId(), null);
         photoDAO.deletePhoto(Integer.parseInt(photoId));
         response.sendRedirect("product?command=Load&id=" + productId);
     }

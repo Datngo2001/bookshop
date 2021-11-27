@@ -15,7 +15,6 @@ public class PhotoDAO {
         try (Session session = DbUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            session.save(photo);
             Product product = session.get(Product.class, productId);
             List<Photo> photos = product.getPhotos();
             if (photo.isMain() == true) {
@@ -23,8 +22,26 @@ public class PhotoDAO {
                     producPhoto.setMain(false);
                 }
             }
-            photos.add(photo);
-            session.update(product);
+            photo.setProduct(product);
+            session.save(photo);
+
+            transaction.commit();
+            return photo;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public Photo getPhotoById(int photoId) {
+        Transaction transaction = null;
+        try (Session session = DbUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Photo photo = session.get(Photo.class, photoId);
 
             transaction.commit();
             return photo;

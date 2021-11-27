@@ -1,4 +1,4 @@
-<%@ page pageEncoding="UTF-8" errorPage="error.jsp" %>
+<%@ page pageEncoding="UTF-8" errorPage="../error.jsp" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/admin/ProductForm.css">
 </head>
@@ -105,51 +107,52 @@
                     </div>
                     <c:if test="${FormCommand == 'Update'}">
                         <div class="row">
-                            <h1 class="h3 mb-0 text-gray-800">Manage Photo</h1>
-                            <div class="p-2 card shadow">
-                                <button class="btn btn-primary" id="uploadPhoto">Upload Photo</button>
-                                <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
-                                    <div class="carousel-inner">
-                                        <c:forEach var="photo" items="${item.photos}">
+                            <button class="btn btn-primary" id="uploadPhoto">Upload Photo</button>
+                            <div id="carouselExampleIndicators" class="carousel slide w-100 h-auto" data-ride="carousel">
+                                <div class="carousel-inner">
+                                    <c:forEach var="photo" items="${item.photos}">
+                                        <c:if test="${photo.main}">
                                         <div class="carousel-item active">
+                                        </c:if>
+                                        <c:if test="${not photo.main}">
+                                        <div class="carousel-item">
+                                        </c:if>                                         
                                             <img src="${photo.url}" class="d-block w-100" alt="...">
-                                            <div class="carousel-caption d-none d-md-block">
-                                                <c:choose>
-                                                <c:when test="${photo.Main}">
-                                                <h5>Main Photo</h5>
-                                                </c:when>
-                                                <c:when test="${photo.Main}">
-                                                <form action="photo" method="post">
-                                                    <input type="hidden" name="command" value="SetMain">
-                                                    <input type="hidden" name="productId" value=${item.id}>
-                                                    <input type="hidden" name="photoId" value=${photo.id}>
-                                                    <input name="action" type="submit" value="Set to main"
-                                                        class="btn btn-primary btn-block" />
-                                                </form>
-                                                <form action="photo" method="post">
-                                                    <input type="hidden" name="command" value="Delete">
-                                                    <input type="hidden" name="productId" value=${item.id}>
-                                                    <input type="hidden" name="photoId" value=${photo.id}>
-                                                    <input name="action" type="submit" value="Delete photo"
-                                                        class="btn btn-danger btn-block" />
-                                                </form>
-                                                </c:when>
-                                                </c:choose>
+                                            <div class="carousel-caption d-none d-md-block w-30">
+                                                <c:if test="${photo.main}">
+                                                    <h5><span class="badge badge-pill badge-primary">Main
+                                                            Photo</span></h5>
+                                                </c:if>
+                                                <c:if test="${not photo.main}">
+                                                    <form action="photo" method="post">
+                                                        <input type="hidden" name="command" value="SetMain">
+                                                        <input type="hidden" name="productId" value=${item.id}>
+                                                        <input type="hidden" name="photoId" value=${photo.id}>
+                                                        <input name="action" type="submit" value="Set to main"
+                                                            class="btn btn-primary btn-block" />
+                                                    </form>
+                                                    <form action="photo" method="post">
+                                                        <input type="hidden" name="command" value="Delete">
+                                                        <input type="hidden" name="productId" value=${item.id}>
+                                                        <input type="hidden" name="photoId" value=${photo.id}>
+                                                        <input name="action" type="submit" value="Delete photo"
+                                                            class="btn btn-danger btn-block" />
+                                                    </form>
+                                                </c:if>
                                             </div>
                                         </div>
-                                        </c:forEach>
-                                    </div>
-                                    <button class="carousel-control-prev" type="button"
-                                        data-target="#carouselExampleCaptions" data-slide="prev">
-                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Previous</span>
-                                    </button>
-                                    <button class="carousel-control-next" type="button"
-                                        data-target="#carouselExampleCaptions" data-slide="next">
-                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                        <span class="sr-only">Next</span>
-                                    </button>
+                                    </c:forEach>
                                 </div>
+                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                                    data-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Previous</span>
+                                </a>
+                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                                    data-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="sr-only">Next</span>
+                                </a>
                             </div>
                         </div>
                     </c:if>
@@ -166,16 +169,20 @@
     <!-- Logout Modal-->
     <c:import url="shareCode/logoutModal.html"></c:import>
 
-    <script src="https://ngocthien2306.github.io/Admin-Site/js/file.js"></script>
+    <script src="https://ngocthien2306.github.io/Admin-Site/js/file.js">
+    </script>
     <!-- Bootstrap core JavaScript-->
-    <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery/jquery.min.js"></script>
+    <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery/jquery.min.js">
+    </script>
     <script src="https://ngocthien2306.github.io/Admin-Site/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery-easing/jquery.easing.min.js">
+    </script>
 
     <!-- Custom scripts for all pages-->
-    <script src="https://ngocthien2306.github.io/Admin-Site/js/sb-admin-2.min.js"></script>
+    <script src="https://ngocthien2306.github.io/Admin-Site/js/sb-admin-2.min.js">
+    </script>
 
     <!-- cloudinary upload widget -->
     <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
