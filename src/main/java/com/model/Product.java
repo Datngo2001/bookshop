@@ -41,6 +41,7 @@ public class Product implements Serializable {
 	@OneToMany(mappedBy = "product")
 	private List<Review> reviews = new ArrayList<Review>();
 
+
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price, int discount) {
 		this.codeProduct = codeProduct;

@@ -282,8 +282,10 @@
                   </div>
                 </div>
 
-  
-                <button class="btn btn-primary" style="width: 100%; border-radius: 1px;">Read book</button>
+  				<form action="read">
+  				       <button class="btn btn-primary" style="width: 100%; border-radius: 1px;">Read book</button>
+  				</form>
+
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>

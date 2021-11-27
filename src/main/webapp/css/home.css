@@ -161,6 +161,18 @@ border: 1px solid var(--bs-gray-100);
 a.filter-page-btn {
   color: #333;
 }
+.btn-sort {
+	width: 100%;
+	border: 1px solid var(--bs-gray-300);
+	background: transparent;
+	justify-content: flex-end;
+	padding: 5px;
+	color: var(--blue-color);
+	border-radius: 3px;
+}
+.btn-sort:hover {
+	color: #2595E1;
+}
 /*Home product*/
 .card-link-product {
   color: #333;

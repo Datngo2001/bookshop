@@ -71,10 +71,17 @@
               <i class="fas fa-angle-down select-price-icon"></i>
               <ul class="select-input-list">
                 <li class="select-input-item">
-                  <a href="" class="select-input-link">Increase</a>
+                	<form action="">
+                	<input type="hidden" name="sort" value="INC">
+                		<button class="select-input-link btn-sort">Increase</button>
+                	</form>
+                  
                 </li>
                 <li class="select-input-item">
-                  <a href="" class="select-input-link">Decrease</a>
+                  <form action="">
+                  	<input type="hidden" name="sort" value="DEC">
+                  	<button class="select-input-link btn-sort">Decrease</button>
+                  </form>
                 </li>
               </ul>
             </div>
@@ -86,6 +93,7 @@
 				</div>
               <form action="home" method="post">
               	<input type="hidden" name="action" value="PREV">
+              	<input type="hidden" name="sort" value="${decrease}">
               	<input type="hidden" name="next" value="${next}">
 				<button type="submit" class="filter-page-btn"><i class="fas fa-angle-left"></i></button>
               </form>
@@ -93,6 +101,7 @@
               <form action="home" method="post">
               <input type="hidden" name="action" value="NEXT">
                 <input type="hidden" name="next" value="${next}">
+                <input type="hidden" name="sort" value="${decrease}">
               	<button type="submit" class="filter-page-btn"><i class="fas fa-angle-right"></i></button>
                </form>
               </div>
@@ -180,9 +189,15 @@
           </div>
           <div class="carousel owl-carousel">
           <c:forEach var="item" items="${trending_book}">
+                <c:url var="link" value="home">
+                  <c:param name="command" value="LOAD" />
+                  <c:param name="productID" value="${item.id}" />
+                </c:url>
             <div class="card-trending">
               <div class="product-item border-card">
+              <a href="${link}">
                 <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                </a>
                 <p class="trending-item-name">${item.getProductName()}</p>
                 <p class="trending-item-author">${item.getNameAuthor()}</p>
                 <div class="product-action">
@@ -191,10 +206,9 @@
                     <i class="liked-icon fas fa-heart"></i>
                   </span>
                   <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
+                  <c:forEach var="i" begin="1" end="4">
+                  	<i class="star-gold fas fa-star"></i>
+                  </c:forEach>
                     <i class="star-gold far fa-star"></i>
                   </div>
                 </div>
@@ -202,8 +216,12 @@
                   <span class="price-old mr-up"> ${item.price}</span>
                   <span class="price-current mr-up">${item.getPriceDiscount() }</span>
                 </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
+                      <form action="${pageContext.request.contextPath}/cart" method="post">
+                      		<input type="hidden" name="productId"  value="${item.id}">
+                      		<input type="hidden" name="quantity"  value="1">
+                      		<input type="hidden" name="action"  value="ADD">
+                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
+                      </form>
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>
@@ -241,9 +259,15 @@
           </div>
           <div class="carousel owl-carousel">
           <c:forEach var="item" items="${po_order}">
+                <c:url var="link" value="home">
+                  <c:param name="command" value="LOAD" />
+                  <c:param name="productID" value="${item.id}" />
+                </c:url>
             <div class="card-trending">
               <div class="product-item border-card">
+                <a href="${link}">
                 <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                </a>
                 <p class="trending-item-name">${item.getProductName() }</p>
                 <p class="trending-item-author">${item.getNameAuthor() }</p>
                 <div class="product-action">
@@ -252,10 +276,10 @@
                     <i class="liked-icon fas fa-heart"></i>
                   </span>
                   <div class="product-action-star">
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
-                    <i class="star-gold fas fa-star"></i>
+                  <c:forEach var="i" begin="1" end="4">
+                  	
+                  	<i class="star-gold fas fa-star"></i>
+                  </c:forEach>
                     <i class="star-gold far fa-star"></i>
                   </div>
                 </div>
@@ -263,8 +287,12 @@
                   <span class="price-old mr-up"> ${item.price}</span>
                   <span class="price-current mr-up">${item.getPriceDiscount()}</span>
                 </div>
-  
-                <button class="btn_add-to-cart">Add to cart</button>
+                      <form action="${pageContext.request.contextPath}/cart" method="post">
+                      		<input type="hidden" name="productId"  value="${item.id}">
+                      		<input type="hidden" name="quantity"  value="1">
+                      		<input type="hidden" name="action"  value="ADD">
+                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
+                      </form>
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>

@@ -122,6 +122,7 @@
                 <div class="cart-product"> </div>
                 </a>
                 <input type="submit" class="btn-cart-list" name="" value="Go cart"/>
+                <input type="hidden" name="url" value="cart">
              </form>
              
               <div class="cart-products">

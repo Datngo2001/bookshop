@@ -27,13 +27,22 @@ public class ProductDAO {
 	@SuppressWarnings("unchecked")
 	public List<Product> getProducts(int index) throws Exception {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product").setFirstResult(index).setMaxResults(15).list();
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price").setFirstResult(index).setMaxResults(15).list();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
-
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getProductsDes(int index) throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price DESC").setFirstResult(index).setMaxResults(15).list();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 

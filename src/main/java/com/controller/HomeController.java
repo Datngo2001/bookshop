@@ -82,6 +82,7 @@ public class HomeController extends HttpServlet {
 		try {
 			productId = request.getParameter("productID");
 			product = productDao.getProduct(Integer.parseInt(productId));
+			
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
@@ -98,14 +99,14 @@ public class HomeController extends HttpServlet {
 		String action = request.getParameter("action");
 		String next = request.getParameter("next");
 		List<Product> list_product = productDao.getProducts();
+		String sorting = request.getParameter("sort");
+		if (sorting == null) sorting = "INC";
 		int index;
 		try {
 			// set index
-			if (next == null)
-				index = 0;
+			if (next == null) index = 0;
 
-			else
-				index = Integer.parseInt(next);
+			else index = Integer.parseInt(next);
 
 			// get action to execute
 			if (action == null) action = "";
@@ -117,13 +118,17 @@ public class HomeController extends HttpServlet {
 			int limit = list_product.size() / 15;
 			// when user next or prev over page available we set default for this case
 			if (index < 0) index = 0;
-			if (index > limit - 1) index = limit - 1;
-
-			product = productDao.getProducts(index * 15);
-
+			else if (index > limit - 1) index = limit - 1;
+			
+			if(sorting.equals("INC")) product = productDao.getProducts(index * 15);
+			else {
+				product = productDao.getProductsDes(index * 15);
+				request.setAttribute("decrease", "DES");
+			}
+			
 			request.setAttribute("next", index);
 			request.setAttribute("max", limit);
-
+			
 		} catch (Exception e) {
 			log("productDao error", e);
 		}

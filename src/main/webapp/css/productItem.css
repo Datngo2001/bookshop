@@ -31,6 +31,10 @@ body {
   font-size: 32px;
   margin-bottom: 20px;
 }
+.price-old {
+  text-decoration: line-through;
+  color: rgba(0, 0, 0, 0.5);
+}
 .product-rate {
   align-items: center;
   display: flex;
@@ -73,15 +77,19 @@ body {
   flex: 1;
   text-align: center;
   flex-direction: row;
-}
-.btn-action  {
-	border: transparent; 
-	cursor: pointer; 
-	background: transparent; 
+ 
 }
 .buy-now {
   color: #fff;
   background-color: #c92127;
+}
+.buy-now-span {
+color:var(--bs-gray-100); 
+font-weight: 600;
+}
+.add-to-card-span {
+	color: var(--bs-red); 
+	font-weight: 600;
 }
 .product-quantity {
   align-self: center;
@@ -118,6 +126,13 @@ body {
 .buy-now {
   left: calc(100% * calc(2 / 3));
   right: 0;
+}
+.btn-action  {
+	border: transparent; 
+	cursor: pointer; 
+	background: transparent; 
+	flex: 1;
+
 }
 .product-details {
   padding: 20px;
@@ -253,7 +268,6 @@ body {
   padding: 20px;
   height: 100%;
   position: relative;
-  z-index: 1;
 }
 .rating-form > * {
   margin-bottom: 20px;
@@ -313,6 +327,7 @@ body {
 }
 .button-wrapper {
   display: flex;
+
 }
 .rating-form > div.button-wrapper {
   align-self: flex-end;
@@ -442,7 +457,7 @@ body {
   }
   .product-btn {
     padding: 13px 30px;
-    max-width: 200px;
+    max-width: 222px;
   }
   .add-to-cart,
   .buy-now,

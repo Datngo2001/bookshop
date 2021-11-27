@@ -37,7 +37,7 @@ public class LoginController extends HttpServlet {
 		}
 
 		if (action.equals("LOGIN")) {
-
+			String url = request.getParameter("url");
 			LoginDTO loginDTO = new LoginDTO();
 			loginDTO.setUsername(request.getParameter("username"));
 			loginDTO.setPassword(request.getParameter("password"));
@@ -47,10 +47,14 @@ public class LoginController extends HttpServlet {
 				request.getSession().setAttribute("userId", loginDTO.getId());
 				request.getSession().setAttribute("role", loginDTO.getRoleName());
 				request.getSession().setAttribute("roleId", loginDTO.getRoleId());
-
+				int a = 1;
 				if (loginDTO.getRoleId() == 3) {
-					nextUrl = "home";
-				} else if (loginDTO.getRoleId() == 1 || loginDTO.getRoleId() == 2) {
+	
+					if (url!= null) nextUrl = request.getContextPath() + "/" + url;	
+					
+					else nextUrl = "home";
+				} 
+				else if (loginDTO.getRoleId() == 1 || loginDTO.getRoleId() == 2) {
 					nextUrl = "admin/product";
 				}
 
@@ -63,7 +67,7 @@ public class LoginController extends HttpServlet {
 				request.setAttribute("loginMessage", "Password or username incorrect");
 			}
 		}
-
+		request.setAttribute("url", request.getParameter("url"));
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 

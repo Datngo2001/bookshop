@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -29,7 +30,7 @@ public class Review implements Serializable {
     private int stars;
 
     // Relation
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
     @ManyToOne
     private User user;
@@ -39,8 +40,16 @@ public class Review implements Serializable {
     public Review() {
 
     }
+    
+    public Product getProduct() {
+		return product;
+	}
 
-    public Review(int id, String date, String content, User user, Product product, int stars) {
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Review(int id, String date, String content, User user, Product product, int stars) {
         super();
         this.id = id;
         this.date = date;

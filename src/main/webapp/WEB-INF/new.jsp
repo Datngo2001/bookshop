@@ -47,14 +47,16 @@
                                             and we'll send you a link to sign up account!</p>
                                     </div>
                                    <form action="verify" class="" method="POST">
-										<input type="hidden" name="action" value="VERIFY"> 
-										<div class="mb-3">
-											<input id="codeInput" type="text" class="form-control" name="code">
-										</div>
-										<span style="color: red"><c:out value="${verifyMessage}" /></span>
-										<button type="submit" class="btn btn-primary">Verify</button>
-									</form>
-							                                    <hr>
+			<h2 class="">Verify your code</h2>
+			<input type="hidden" name="action" value="VERIFY"> 
+			<div class="mb-3">
+				<label for="codeInput" class="form-label">Your code from email</label> <input
+					id="codeInput" type="text" class="form-control" name="code">
+			</div>
+			<span style="color: red"><c:out value="${verifyMessage}" /></span>
+			<button type="submit" class="btn btn-primary">Verify</button>
+		</form>
+                                    <hr>
                                     <div class="text-center">
                                         <a class="small" href="home">Homepage?</a>
                                     </div>

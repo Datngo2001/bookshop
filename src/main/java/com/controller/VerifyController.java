@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import com.DTOs.BusinessDtos.RegisterDTO;
 import com.model.User;
 
+@SuppressWarnings("serial")
 @WebServlet("/verify")
 public class VerifyController extends HttpServlet {
 
@@ -32,6 +33,7 @@ public class VerifyController extends HttpServlet {
                 request.getSession().setAttribute("username", registerDTO.getUsername());
                 request.getSession().setAttribute("role", registerDTO.getRole());
                 request.getSession().setAttribute("roleId", registerDTO.getRoleId());
+
                 response.sendRedirect("home");
                 return;
             } else {
