@@ -85,7 +85,7 @@ public class PaymentServices {
 		
 		//redirect.setCancelUrl("https://ebooks-shop.herokuapp.com/cancel");
 		//redirect.setReturnUrl("https://ebooks-shop.herokuapp.com/review_payment");
-		redirect.setCancelUrl("http://localhost:8082/bookshop/return");
+		redirect.setCancelUrl("http://localhost:8082/bookshop/cancel");
 		redirect.setReturnUrl("http://localhost:8082/bookshop/review_payment");
 		return redirect;
 	}

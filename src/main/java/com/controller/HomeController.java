@@ -48,6 +48,7 @@ public class HomeController extends HttpServlet {
 				request.setAttribute("username", request.getSession().getAttribute("username"));
 				loadPopularOrder(request, response);
 				loadTrendingBook(request, response);
+				loadRomanceBook(request, response);
 				goHomePage(request, response);
 				
 				break;
@@ -60,6 +61,13 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void loadRomanceBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		List<Product> list_product = new ArrayList<Product>();
+		list_product = productDao.getRomanceBook();
+		request.setAttribute("romance_book", list_product);
+		
 	}
 
 	private void loadTrendingBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -118,9 +126,12 @@ public class HomeController extends HttpServlet {
 			int limit = list_product.size() / 15;
 			// when user next or prev over page available we set default for this case
 			if (index < 0) index = 0;
-			else if (index > limit - 1) index = limit - 1;
+			else if (index > limit - 1) index = limit;
 			
-			if(sorting.equals("INC")) product = productDao.getProducts(index * 15);
+			if(sorting.equals("INC")) {
+				product = productDao.getProducts(index * 15);
+				request.setAttribute("decrease", "INC");
+			}
 			else {
 				product = productDao.getProductsDes(index * 15);
 				request.setAttribute("decrease", "DES");

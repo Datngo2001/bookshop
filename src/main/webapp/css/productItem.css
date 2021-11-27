@@ -20,6 +20,10 @@ body {
 }
 .product-image {
   width: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    overflow-y: hidden;
 }
 .product-name {
   font-weight: 100;

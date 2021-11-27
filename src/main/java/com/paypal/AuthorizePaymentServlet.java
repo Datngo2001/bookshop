@@ -80,7 +80,7 @@ public class AuthorizePaymentServlet extends HttpServlet {
 		} catch (PayPalRESTException e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/paypal/paypalError.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/paypal/404_payment.jsp").forward(request, response);
 		}
 	}
 	private void loadCheckout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -46,6 +46,7 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
 				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Promo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -109,6 +110,7 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
 				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Promo.class);
 				
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();

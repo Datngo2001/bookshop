@@ -341,7 +341,155 @@ public class DataUtil {
                 "NXB Văn Học", "Nhã Nam",
                 "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_186773.jpg",
                 "8935235221345", "Fantasy, Drama", 81000, 20);
-
+        Product product60 = new Product("FSDFSD2", "The Fault In Our Stars", "John Green",  
+        		"<p>Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel's story is about to be completely rewritten.</p> <br> <p style=\"text-align: justify;\">Insightful, bold, irreverent, and raw, `The Fault in Our Stars` is award-winning author John Green's most ambitious and heartbreaking work yet, brilliantly exploring the funny, thrilling, and tragic business of being alive and in love. This book comes from the `New York Times` bestselling author of `Looking for Alaska`, `An Abundance of Katherines`, `Paper Towns` and - with David Levithan - Will Grayson, Will Grayson. John Green has over 1.2 million Twitter followers, and almost 700,000 subscribers to Vlogbrothers, the YouTube channel he created with his brother, Hank. `The Fault in Our Stars` will capture a crossover audience in the same vein as Zadie Smith, David Nicholls' `One Day` and `Before I Die` by Jenny Downham. `Electric ...Filled with staccato bursts of humor and tragedy.` (`Jodi Picoult`). `A novel of life and death and the people caught in between, `The Fault in Our Stars` is John Green at his best.</p> ",
+        		"Penguin Books", "Penguin Books Uk", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_23194.jpg",
+        		"9780141345659", "Romance", 175000, 10);
+        Product product61 = new Product("FSHJFG", "Call Me By Your Name", "Andre Aciman",
+        		"<p style=\"text-align: justify;\"><strong>A&nbsp;<em>New York Times</em>&nbsp;Bestseller<br>A&nbsp;<em>USA Today</em>&nbsp;Bestseller&nbsp;<br>A&nbsp;<em>Los Angeles Times</em>&nbsp;Bestseller<br>A&nbsp;<em>Vulture</em>&nbsp;Book Club Pick<br>An Instant Classic and One of the Great Love Stories of Our Time</strong></p> <br> <p style=\"text-align: justify;\"><span>Andre Aciman's&nbsp;</span><em>Call Me by Your Name</em><span>&nbsp;is the story of a sudden and powerful romance that blossoms between an adolescent boy and a summer guest at his parents' cliffside mansion on the Italian Riviera. Each is unprepared for the consequences of their attraction, when, during the restless summer weeks, unrelenting currents of obsession, fascination, and desire intensify their passion and test the charged ground between them. Recklessly, the two verge toward the one thing both fear they may never truly find again: total intimacy. It is an instant classic and one of the great love stories of our time.</span></p>",
+        		"Grantham Book Services", "Atlantic Books",
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/9/7/9781786495259_1.jpg",
+        		"9781786495259", "Romance", 372000, 15);
+        Product product62 = new Product("KBFHFT4", "EVERY DAY (MTI)", "David Levithan", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "	<p style=\"text-align: justify;\"><strong><strong>A special movie tie-in edition of David Levithan's&nbsp;<em>New York Times</em>&nbsp;bestseller, now a major motion picture starring Angourie Rice of&nbsp;<em>Spiderman: Homecoming</em>&nbsp;and&nbsp;<em>The Nice Guys</em>--in theaters February 23, 2018!</strong></strong></p>\r\n"
+        		+ "\r\n"
+        		+ "<p style=\"text-align: justify;\"><em>Every day a different body. Every day a different life. Every day in love with the same girl.</em></p>\r\n"
+        		+ "\r\n"
+        		+ "<p style=\"text-align: justify;\">There's never any warning about where it will be or who it will be. A has made peace with that, even established guidelines by which to live: Never get too attached. Avoid being noticed. Do not interfere. It's all fine until the morning that A wakes up in the body of Justin and meets Justin's girlfriend, Rhiannon. From that moment, the rules by which A has been living no longer apply. Because finally A has found someone he wants to be with--day in, day out, day after day. But can Rhiannon love someone who is destined to change every day?</p>\r\n"
+        		+ "\r\n"
+        		+ "<p style=\"text-align: justify;\">This paperback movie tie-in edition features key movie art and a special photo insert.</p>\r\n"
+        		+ "\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>\"Wise, wildly unique.\"&nbsp;<em>--Entertainment Weekly</em></strong></p>\r\n"
+        		+ "\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>\"A story that is always alluring, oftentimes humorous and much like love itself--splendorous.\" --<em>Los Angeles Times</em></strong></p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>",
+        		"Ember", "Random House", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_179593.jpg",
+        		"9780525581611", "Romance", 192000, 14);
+        Product product63 = new Product("HFSDF65", "Everything, Everything", "Nicola Yoon", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong><strong>The instant #1&nbsp;<em>New York Times</em>&nbsp;bestseller--now a major motion picture starring Amandla Stenberg as Maddy and Nick Robinson as Olly.</strong></strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong><strong>Risk everything . . . for love.</strong></strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>What if you couldn’t touch anything in the outside world? Never breathe in the fresh air, feel the sun warm your face . . . or kiss the boy next door? In&nbsp;<em>Everything, Everything</em>, Maddy is a girl who’s literally allergic to the outside world, and Olly is the boy who moves in next door . . . and becomes the greatest risk she’s ever taken.</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>My disease is as rare as it is famous. Basically, I’m allergic to the world.</span><strong>&nbsp;</strong><span>I don’t leave my house, have not left my house in seventeen years. The only people I ever see are my mom and my nurse, Carla.</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\">But then one day, a moving truck arrives next door. I look out my window, and I see him. He's tall, lean and wearing all black—black T-shirt, black jeans, black sneakers, and a black knit cap that covers his hair completely. He catches me looking and stares at me. I stare right back. His name is Olly.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Maybe we can’t predict the future, but we can predict some things. For example, I am certainly going to fall in love with Olly. It’s almost certainly going to be a disaster.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong><em>Everything, Everything</em></strong>&nbsp;will make you laugh, cry, and feel everything in between. It's an innovative, &nbsp;inspiring, and heartbreakingly romantic debut novel that unfolds via vignettes, diary entries, illustrations, and more.</p>\r\n"
+        		+ "<div style=\"position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;\"><iframe style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\" src=\"\r\n"
+        		+ "https://www.youtube.com/embed/0LyEE7eR0nM\r\n"
+        		+ "\" frameborder=\"0\" width=\"320\" height=\"240\"></iframe></div>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Corgi", "Grantham Book Services",
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/e/v/everything__everything_1_2018_05_21_15_08_52.jpg", 
+        		"9780552576482", "Romance", 173000, 6);
+        Product product64 = new Product("KEMVF4", "Adrift A True Story of Love, Loss, and Survival at Sea [Movie tie-in]", "Tami Oldham Ashcraft",
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>New York Times Bestseller&nbsp;</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>The heart-stopping memoir, soon to be a major motion picture starring Shailene Woodley and Sam Claflin, and directed by Baltasar Kormákur (Everest).</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>\"An inspirational and empowering read.\"--Shailene Woodley</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>Young and in love, their lives ahead of them, Tami Oldham and her fiancé Richard Sharp set sail from Tahiti under brilliant blue skies, with Tami's hometown of San Diego as their ultimate destination. But the two free spirits and avid sailors couldn't anticipate that less than two weeks into their voyage, they would sail directly into one of the most catastrophic hurricanes in recorded history. They found themselves battling pounding rain, waves the size of skyscrapers, and 140 knot winds. Richard tethered himself to the boat and sent Tami below to safety, and then all went eerily quiet. Hours later, Tami awakened to find the boat in ruins, and Richard nowhere in sight.</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>Adrift is the story of Tami's miraculous forty-one-day journey to safety on a ravaged boat with no motor and no masts, and with little hope for rescue. It's a tale of love and survival on the high seas-- an unforgettable story about resilience of the human spirit, and the transcendent power of love.</span></p>\r\n"
+        		+ "<div style=\"position: relative; padding-bottom: 56.25%; padding-top: 35px; height: 0; overflow: hidden;\"><iframe style=\"position: absolute; top: 0; left: 0; width: 100%; height: 100%;\" src=\"https://www.youtube.com/embed/n9ukI7khQpE\" frameborder=\"0\" width=\"320\" height=\"240\"></iframe></div>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>",
+        		"Dey Street Books", "HarperCollins Publishers", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/9/7/9780062868206.jpg", 
+        		"9780062868206", "Romance", 168000, 4);
+        Product product65 = new Product("FSDF343", "Unbroken (Movie Tie-in Edition)", "Laura Hillenbrand", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>#1&nbsp;<em>NEW YORK TIMES</em>&nbsp;BESTSELLER - The incredible true story of survival and salvation that is the basis for two major motion pictures: 2014's&nbsp;<em>Unbroken&nbsp;</em>and the upcoming&nbsp;<em>Unbroken: Path to Redemption</em>.</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\">On a May afternoon in 1943, an Army Air Forces bomber crashed into the Pacific Ocean and disappeared, leaving only a spray of debris and a slick of oil, gasoline, and blood. Then, on the ocean surface, a face appeared. It was that of a young lieutenant, the plane's bombardier, who was struggling to a life raft and pulling himself aboard. So began one of the most extraordinary odysseys of the Second World War.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">The lieutenant's name was Louis Zamperini. In boyhood, he'd been a cunning and incorrigible delinquent, breaking into houses, brawling, and fleeing his home to ride the rails. As a teenager, he had channeled his defiance into running, discovering a prodigious talent that had carried him to the Berlin Olympics and within sight of the four-minute mile. But when war had come, the athlete had become an airman, embarking on a journey that led to his doomed flight, a tiny raft, and a drift into the unknown.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Ahead of Zamperini lay thousands of miles of open ocean, leaping sharks, a foundering raft, thirst and starvation, enemy aircraft, and, beyond, a trial even greater. Driven to the limits of endurance, Zamperini would answer desperation with ingenuity; suffering with hope, resolve, and humor; brutality with rebellion. His fate, whether triumph or tragedy, would be suspended on the fraying wire of his will.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">In her long-awaited new book, Laura Hillenbrand writes with the same rich and vivid narrative voice she displayed in&nbsp;<em>Seabiscuit</em>. Telling an unforgettable story of a man's journey into extremity,&nbsp;<em>Unbroken</em>&nbsp;is a testament to the resilience of the human mind, body, and spirit.</p>		    <div class=\"clear\"></div>\r\n"
+        		+ "	</div>",
+        		"Ballantine Books", "Random House",
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_179596.jpg", 
+        		"9781984818447","Action", 174000, 10);
+        Product product66 = new Product("FNVBN953", "Brain on Fire", "Susannah Cahalan", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\">NOW A MAJOR MOTION PICTURE STARRING CHLOË GRACE MORETZ</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">An award-winning memoir and instant New York Times bestseller that goes far beyond its riveting medical mystery, Brain on Fire is the powerful account of one woman's struggle to recapture her identity. When twenty-four-year-old Susannah Cahalan woke up alone in a hospital room, strapped to her bed and unable to move or speak, she had no memory of how she'd gotten there. Days earlier, she had been on the threshold of a new, adult life: at the beginning of her first serious relationship and a promising career at a major New York newspaper. Now she was labeled violent, psychotic, a flight risk. What happened? In a swift and breathtaking narrative, Susannah tells the astonishing true story of her descent into madness, her family's inspiring faith in her, and the lifesaving diagnosis that nearly didn't happen. \"A fascinating look at the disease that...could have cost this vibrant, vital young woman her life\" (People), Brain on Fire is an unforgettable exploration of memory and identity, faith and love, and a profoundly compelling tale of survival and perseverance that is destined to become a classic.</p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"SIMON & SCHUSTER", "Simon And Schuster", "https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_179566.jpg",
+        		"9781982109486", "Drama", 258000, 25);
+        Product product67 = new Product("BKSRE323", "Promise Me, Dad", "Joe Biden", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>Promise Me, Dad</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\">The Instant #1 New York Times Bestseller</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">'Biden splices a heartbreaking story with an election story and a foreign affairs story. And in so doing, he offers something for everyone, no matter which strand draws you in' - The New York Times Book Review</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">From President-Elect Joe Biden, winner of the 2020 United States presidential election, Promise Me Dad is his deeply moving memoir about the year that would forever change both a family and a country.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">In November 2014, thirteen members of the Biden family gathered for their traditional Thanksgiving celebration. But this year felt different from previous. Joe and Jill Biden's eldest son, Beau, had been diagnosed with a malignant brain tumour fifteen months earlier, and his survival was uncertain. 'Promise me, Dad,' Beau had told his father. 'Give me your word that no matter what happens, you're going to be all right.' Joe Biden gave him his word.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Promise Me, Dad chronicles the year that followed, which would be the most momentous and challenging in Joe Biden's extraordinary life and career. Vice President Biden travelled more than a hundred thousand miles that year, across the world, dealing with crises in Ukraine, Central America and Iraq. While Beau fought for, and then lost his life, the Vice President balanced the twin imperatives of living up to his responsibilities to his country and his responsibilities to his family, while contemplating the insistent and urgent question of whether he should seek the presidency in 2016. Even in the worst times, Biden was able to lean on the strength of his long, deep bonds with his family, on his faith, and on his deepening friendship with the man in the Oval Office, Barack Obama.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Promise Me, Dad is a story of how family and friendships sustain us and how hope, purpose and action can guide us through the pain of personal loss into the light of a new future.</p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Pan MacMillan", "	Macmillan Publishers", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/9/7/9781509890088_2.jpg", 
+        		"9781509890088", "Leaders & Notable People", 177000, 0);
+        Product product68 = new Product("MCVOY545", "Good To Great : Why Some Companies Make The Leap And Others Don'T", "Jim Collins", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\">Awesome Condition!</p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>Built to Last was a phenomenal success: 'It is a fair assumption that as the seminal importance of this audiobook begins to permeate the upper echelons of business and business schools...Collins and Porras will emerge as the gurus to watch over the next decade.' The Director.Good to Great explores a whole new concept, backed by the rigorous research standards which gave Built to Last such an impact. 1. Good is the Enemy of Great -- the scope of the project 2. Level 5 Leadership -- the type of leader required, humble and ferocious 3. First Who ....</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span> Then What -- how companies set the foundation for their shift from good to great 4. Confront the Brutal Facts (Yet Never Lose Faith) -- the duality that leads to greatness 5.Hedgehog Concept -- how to find the one big thing your company must focus on 6. A Culture of Discipline -- the magical alchemy of great performance 7. Technology Accelerators -- technology is a trap, unless used right 8. The Flywheel and the Doom Loop -- how to build sustained momentum and avoid the 'new regime, new revolution' doom loop 9. From Good to Great to Built to Last -- how to take a company from great to enduring great. Appendices:Good to Great in: the New Economy; non-Profits; Government; Investors; outside the US.Plus four research appendices</span></p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Harper Collins", "	Grantham Book Services", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/9/7/9780712676090_1.jpg", 
+        		"9780712676090", "Buisiness & Management", 399000, 10);
+        Product product69 = new Product("HLTR545", "Gender Intelligence: Breakthrough Strategies For Increasing Diversity And Improving Your Bottom Line", "Barbara Annis, Keith Me", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>Gender Intelligence: Breakthrough Strategies For Increasing Diversity And Improving Your Bottom Line</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\">World-renowned experts on gender intelligence Barbara Annis and Keith Merron suggest it’s time to move beyond arguments based on politics and fairness, building an economic business case for gender diversity in the workplace.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Despite forty years of laws, quotas, diversity training, and legal expenses aimed toward equalizing pay, opportunities, and working conditions between the sexes, the glass ceiling remains firmly intact. For too long, companies have played the “numbers game”—attempting to tackle gender imbalance by forcing affirmative action policies and numeric standards on organizations to increase the representation of women in management. Yet, these efforts have rarely been sustained.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">In this groundbreaking comprehensive analysis, based on more than twenty-five years of in-depth surveys involving 100,000 men and women across dozens of Fortune 500 companies, Barbara Annis and Keith Merron provide a deeper understanding of the multiplicity of forces that have combined to create and perpetuate gender inequality.&nbsp;<em>Gender Intelligence</em>&nbsp;exposes common false assumptions that prevent men and women from successfully performing together at work—myths exacerbated by worn-out theories of gender blindness and sameness thinking. It show how a small but growing number of courageous, leading-edge companies have broken through the barriers to successfully advance women, making the remarkable transformation from compliance to choice—from pressure to preference—and show how it can be done in any business.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><em>Gender Intelligence</em>&nbsp;features 17 illustrations.</p>\r\n"
+        		+ "	<div class=\"clear\"></div> </div>", 
+        		"Harper Business", "HarperCollins Publishers", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_200416.jpg",
+        		"9780062307439", "Buisiness & Management", 392000, 0);
+        Product product70 = new Product("HGHR043", "English Grammar in Use Book w Ans", "Raymond Murphy", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>The world's best-selling grammar series for learners of English. English Grammar in Use Fourth edition is an updated version of the world's best-selling grammar title. It has a fresh, appealing new design and clear layout, with revised and updated examples, but retains all the key features of clarity and accessibility that have made the book popular with millions of learners and teachers around the world. This 'with answers' version is ideal for self-study.&nbsp;</span></p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Cambridge University", "Cambridge University Press", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/img_7523.jpg",
+        		"9781108430425", "Languages", 178000, 10);
+        Product product71 = new Product("UNMDFK43", "Oxford Discover: 5: Grammar", "Oxford University Press", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "This title presents grammar through context, guiding students as they discover meaning. It combines this guided discovery approach with extensive form-based practice, ensuring that students have all the knowledge they need to use English grammar confidently and accurately.		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Oxford University Press", "Oxford University Press",
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_53754.jpg",
+        		"9780194432719", "Languages", 227000, 10);
+        Product product72 = new Product("GDEOYR43", "Oxford Discover 2: Student's Book", "Oxford", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>Oxford Discover 2: Student's Book</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>A supportive course that helps students of all abilities build confidence through graded practice. The flexible package makes it ideal for mixed-ability classes, and varying teaching loads. Online Practice provides extra activities for the classroom or home that teachers can track.</span><span>&nbsp;</span></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><span>Reach Out develops students' communication skills through a structured and methodical approach, helping students to achieve their individual learning outcomes in every lesson.</span></p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Oxford University Press", "Oxford University Press", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_23287.jpg", 
+        		"9780194278638", "Languages", 376000, 20);
+        Product product73 = new Product("KRERE75", "What If?: Serious Scientific Answers to Absurd Hypothetical Questions", "Randall Munroe", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>What If?: Serious Scientific Answers to Absurd Hypothetical Questions</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\"><strong>THE&nbsp;<em>SUNDAY TIMES</em>&nbsp;BESTSELLER</strong></p>\r\n"
+        		+ "<p style=\"text-align: justify;\">From the creator of the wildly popular xkcd.com, hilarious and informative answers to important questions you probably never thought to ask.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Millions visit xkcd.com each week to read Randall Munroe's iconic webcomic. Fans ask him a lot of strange questions: How fast can you hit a speed bump, driving, and live? When (if ever) did the sun go down on the British Empire? When will Facebook contain more profiles of dead people than living? How many humans would a T Rex rampaging through New York need to eat a day?</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">In pursuit of answers, Munroe runs computer simulations, pores over stacks of declassified military research memos, solves differential equations and consults nuclear reactor operators. His responses are masterpieces of clarity and hilarity, complemented by comics. They often predict the complete annihilation of humankind, or at least a really big explosion.</p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"John Murray", "Hachette UK Distribution", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_18797.jpg",
+        		"9781848549562", "Biography", 234000, 0);
+        Product product74 = new Product("KTHYRTE5432", "The Magic of Reality: How We Know What's Really True", "Richard Dawkins,Dave McKean", 
+        		"<div id=\"desc_content\" class=\"std\">\r\n"
+        		+ "<p style=\"text-align: justify;\">Magic takes many forms. The ancient Egyptians explained the night by suggesting that the goddess Nut swallowed the sun. The Vikings believed a rainbow was the gods' bridge to earth. These are magical, extraordinary tales. But there is another kind of magic, and it lies in the exhilaration of discovering the real answers to these questions. It is the magic of reality - science. Packed with inspiring explanations of space, time and evolution, laced with humour and clever thought experiments, \"The Magic of Reality\" explores a stunningly wide range of natural phenomena. What is stuff made of? How old is the universe? What causes tsunamis? Who was the first man, or woman? This is a page-turning, inspirational detective story that not only mines all the sciences for its clues but primes the reader to think like a scientist too. Richard Dawkins elucidates the wonders of the natural world to all ages with his inimitable clarity and exuberance in a text that will enlighten and inform for generations to come.</p>\r\n"
+        		+ "<p style=\"text-align: justify;\">Reviews by Bill Gates:&nbsp;<a href=\"https://www.gatesnotes.com/Books/The-Magic-of-Reality\"><span style=\"color: #ff0000;\"><strong>https://www.gatesnotes.com/Books/The-Magic-of-Reality</strong></span></a></p>		    <div class=\"clear\"></div>\r\n"
+        		+ "</div>", 
+        		"Black Swan", "	Grantham Book Services", 
+        		"https://cdn0.fahasa.com/media/catalog/product/cache/1/small_image/600x600/9df78eab33525d08d6e5fb8d27136e95/i/m/image_195509_1_24996.jpg", 
+        		"9780552778909", "Biography", 164000, 10);
+        
         dataList.add(product0);
         dataList.add(product1);
         dataList.add(product2);
@@ -403,8 +551,22 @@ public class DataUtil {
         dataList.add(product57);
         dataList.add(product58);
         dataList.add(product59);
-
-
-                return dataList;
+        dataList.add(product60);
+        dataList.add(product61);
+        dataList.add(product62);
+        dataList.add(product63);
+        dataList.add(product64);
+        
+        dataList.add(product65);
+        dataList.add(product66);
+        dataList.add(product67);
+        dataList.add(product68);
+        dataList.add(product69);
+        dataList.add(product70);
+        dataList.add(product71);
+        dataList.add(product72);
+        dataList.add(product73);
+        dataList.add(product74);
+        return dataList;
         }
 }

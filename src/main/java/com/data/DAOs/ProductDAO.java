@@ -44,6 +44,16 @@ public class ProductDAO {
 		}
 		return null;
 	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getRomanceBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product P where P.typeBook = " + "'" + "Romance" + "'").getResultList();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 	
 
 	public void addProducts(Product product) {

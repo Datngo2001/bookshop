@@ -89,7 +89,7 @@
 
               <div class="filter-control" style="display: flex">
 				<div class="info-page" style="display: flex;">
-					<label> ${next + 1} </label> / <label> ${max}</label>
+					<label> ${next + 1} </label> / <label> ${max + 1}</label>
 				</div>
               <form action="home" method="post">
               	<input type="hidden" name="action" value="PREV">
@@ -313,6 +313,78 @@
           </div>
         </div>
       </div>
+    </div>
+    <br>
+       	<div class="grid">
+      <div class="grid_row">
+        <div class="trending_book">
+          <div class="trending_book-header">
+            <span class="trending_book-title">Romance Book<br> 
+            <p class="trending_book-title-after">
+           Any of the romance book titles that you score through this generator are yours to use. </p></span>
+            <ul class="trending-list mrtop">
+              <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
+              <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
+
+            </ul>
+          </div>
+          <div class="carousel owl-carousel">
+          <c:forEach var="item" items="${romance_book}">
+                <c:url var="link" value="home">
+                  <c:param name="command" value="LOAD" />
+                  <c:param name="productID" value="${item.id}" />
+                </c:url>
+            <div class="card-trending">
+              <div class="product-item border-card">
+                <a href="${link}">
+                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                </a>
+                <p class="trending-item-name">${item.getProductName() }</p>
+                <p class="trending-item-author">${item.getNameAuthor() }</p>
+                <div class="product-action">
+                  <span class="product-action-heart product-action-liked">
+                    <i class="like-icon far fa-heart"></i>
+                    <i class="liked-icon fas fa-heart"></i>
+                  </span>
+                  <div class="product-action-star">
+                  <c:forEach var="i" begin="1" end="4">
+                  	
+                  	<i class="star-gold fas fa-star"></i>
+                  </c:forEach>
+                    <i class="star-gold far fa-star"></i>
+                  </div>
+                </div>
+                <div class="trending-item-price">
+                  <span class="price-old mr-up"> ${item.price}</span>
+                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+                </div>
+                      <form action="${pageContext.request.contextPath}/cart" method="post">
+                      		<input type="hidden" name="productId"  value="${item.id}">
+                      		<input type="hidden" name="quantity"  value="1">
+                      		<input type="hidden" name="action"  value="ADD">
+                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
+                      </form>
+                <div class="product-item-favourite">
+                  <i class="fas fa-check"></i> Interesting
+                </div>
+                      <c:choose>
+                      <c:when test="${item.discount == 0 }">
+                      
+                      </c:when>
+                      <c:otherwise>
+                      <div class="product-item-sale">
+                        <span class="product-item-label">Discount</span>
+                        <span class="product-item-percent">${item.getDiscount()}%</span>
+                      </div>
+                      </c:otherwise>
+                      </c:choose>
+              </div>
+            </div>
+            </c:forEach>
+          </div>
+        </div>
+      </div>
+    </div>
     </div>
   <br> <br>
   <c:import url="sharedView/footer.jsp"></c:import>
