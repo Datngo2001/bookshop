@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header-side">
   <header class="header" id="header">
     <div class="grid">
@@ -37,28 +38,28 @@
               <ul class="navbar-notify-list">
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
-                      <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-name">News</span>
+                      <span class="notify-description">Wellcome Thien Nguyen back to my website <3 </span>
                     </div>
                   </a>
                 </li>
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
                       <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-description">Thank you for buy our e-book</span>
                     </div>
                   </a>
                 </li>
                 <li class="navbar-notify-item">
                   <a href="" class="notify-link">
-                    <img src="https://cdn.tgdd.vn/Products/Images/44/239538/acer-aspire-7-a715-41g-r150-r7-nhq8ssv004-200x200.jpg" class="notify-img">
+                    <img src="https://kbimages1-a.akamaihd.net/625a6018-6751-4812-abfa-93c19d3fe0d8/140/215/60/False/lying-ways.jpg" class="notify-img">
                     <div class="notify-body">
-                      <span class="notify-name">Product</span>
-                      <span class="notify-description">User Thien Nguyen oder bold laptop HP 11065h</span>
+                      <span class="notify-name">New book</span>
+                      <span class="notify-description">My shope already update new ebook</span>
                     </div>
                   </a>
                 </li>
@@ -73,7 +74,15 @@
           </li>
           <li class="navbar-item"><a href="register" class="navbar-item-link">Sign up</a></li>
           <li class="navbar-item">|</li>
+          <c:choose>
+          <c:when test="${sessionScope.userId == null}"> 
           <li class="navbar-item"><a href="login" class="navbar-item-link">Log in</a></li>
+          </c:when>
+          <c:otherwise>
+          <li class="navbar-item"><a href="profile" class="navbar-item-link"> <i class="fas fa-user"></i>&nbsp;Profile</a></li>
+          <li class="navbar-item"><a href="logout" class="navbar-item-link">Log out</a></li>
+          </c:otherwise>
+          </c:choose>
         </ul>
       </nav>
       <div class="navbar-search">
@@ -109,14 +118,14 @@
           </ul>
           <ul class="search-right-list">
             <li class="search-right-item">
-            <form action="payment" method="get">
-              	<input type="hidden" name="username" value="${username}"> 
+          	<form action="cart" method="get">
               	<a class="cart-link">
                 <div class="cart-product"> </div>
                 </a>
                 <input type="submit" class="btn-cart-list" name="" value="Go cart"/>
-
+                <input type="hidden" name="url" value="cart">
              </form>
+             
               <div class="cart-products">
                 <div class="cart-product-list cart-product-list_nocart">
                   

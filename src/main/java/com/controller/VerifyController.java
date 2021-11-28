@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 import com.DTOs.BusinessDtos.RegisterDTO;
 import com.model.User;
 
+@SuppressWarnings("serial")
 @WebServlet("/verify")
 public class VerifyController extends HttpServlet {
 
@@ -24,13 +25,15 @@ public class VerifyController extends HttpServlet {
         }
 
         if (action.equals("VERIFY")) {
-            HttpSession session = request.getSession();
-            Object ob = session.getAttribute("registerDTO");
-            RegisterDTO registerDTO = (RegisterDTO) ob;
-            String code = request.getParameter("code");
-
+        	String code = request.getParameter("code");
+        	
+        	RegisterDTO registerDTO =  (RegisterDTO) request.getSession().getAttribute("register");
+        	registerDTO.setCode(code);
             if (new User().verify(registerDTO, code)) {
                 request.getSession().setAttribute("username", registerDTO.getUsername());
+                request.getSession().setAttribute("role", registerDTO.getRole());
+                request.getSession().setAttribute("roleId", registerDTO.getRoleId());
+
                 response.sendRedirect("home");
                 return;
             } else {

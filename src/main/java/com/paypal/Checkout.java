@@ -1,5 +1,7 @@
 package com.paypal;
 
+import java.text.NumberFormat;
+
 public class Checkout {
 	private  String productName;
 	private float subTotal;
@@ -8,14 +10,14 @@ public class Checkout {
 	private float total;
 	
 	
-	public Checkout(String productName, String subTotal, String shipping, String tax, String total) {
+	public Checkout(String productName, float subTotal, float shipping, float tax, float total) {
 		super();
 		
 		this.productName = productName;
-		this.subTotal = Float.parseFloat(subTotal);
-		this.shipping = Float.parseFloat(shipping);
-		this.tax = Float.parseFloat(tax);
-		this.total = Float.parseFloat(total);
+		this.subTotal = (subTotal);
+		this.shipping = (shipping);
+		this.tax = (tax);
+		this.total = (total);
 		
 	}
 	public String getProductName() {

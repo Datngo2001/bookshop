@@ -5,8 +5,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 <html lang="en">
 <head>
 
-    <meta charset="ISO-8859-1">
-  	<meta charset="UTF-8">
+    <meta charset=UTF-8>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -35,7 +34,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
     <div id="wrapper">
 
         <!-- Sidebar -->
-		<c:import url="shareCode/leftHeader.jsp"></c:import>
+		<c:import url="shareCode/leftHeader.html"></c:import>
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -45,7 +44,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
             <div id="content">
 
                 <!-- Topbar -->
-				<c:import url="shareCode/headerUser.jsp"></c:import>
+				<c:import url="shareCode/headerUser.html"></c:import>
                 <!-- End of Topbar -->
 
                 <!-- Begin Page Content -->
@@ -59,6 +58,16 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
                             <h6 class="m-0 font-weight-bold text-primary">List of Product</h6>
+                            <c:url var="addProduct" value="product">
+						        <c:param name="command" value="Load"/>
+						    </c:url>
+                            <a href="${addProduct}" class="float-right">
+								<span>
+                                <button type="submit" style="btn"> 
+									<i class="fas fa-plus"></i> 
+								</button>  
+								</span>
+							</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
@@ -75,8 +84,8 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                                         </tr>
                                     </thead>
                                     <tbody>
-										<c:forEach var="item" items="${list}">
-										<c:url var="link" value="product">
+									<c:forEach var="item" items="${list}">
+										<c:url var="update" value="product">
 						                  <c:param name="command" value="Load" />
 						                  <c:param name="id" value="${item.id}" />
 						                </c:url>
@@ -100,8 +109,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 											</th>
                                             <th>${item.price}</th>
                                             <th>
-                                            	<a href="${link}">
-                                            		<input type="hidden" name="pId" value=""/>
+                                            	<a href="${update}">
 													<span><button type="submit"
 													style="border: none; color: #2196f3; background: transparent;"> 
 														<i class="fas fa-edit"></i> 
@@ -117,7 +125,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 												</a>
                                             </th>
                                         </tr>
-										</c:forEach>
+									</c:forEach>
 									</tbody>
                                     <tfoot>
                                         <tr>
@@ -140,47 +148,19 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 
             </div>
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
         </div>
         <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
 
+    <!-- Logout Modal-->
+	<c:import url="shareCode/logoutModal.html"></c:import>
+
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Bootstrap core JavaScript-->
     <script src="https://ngocthien2306.github.io/Admin-Site/vendor/jquery/jquery.min.js"></script>

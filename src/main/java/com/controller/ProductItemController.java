@@ -1,6 +1,8 @@
 package com.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.data.DAOs.ProductDAO;
+import com.data.DAOs.ReviewDAO;
 import com.model.Product;
+import com.model.Review;
 
-@WebServlet("/productItem")
+@WebServlet("/product")
 public class ProductItemController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productDAO;
@@ -29,15 +33,14 @@ public class ProductItemController extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/productItem.jsp";
-		response.setContentType("text/html;charset=UTF-8");
-		request.setCharacterEncoding("utf-8");
+		res.setContentType("text/html;charset=UTF-8");
+		req.setCharacterEncoding("utf-8");
 
 		// get current action
 		try {
-			String action = request.getParameter("command");
+			String action = req.getParameter("command");
 
 			if (action == null) {
 				action = "Go to productList.jsp";
@@ -45,13 +48,14 @@ public class ProductItemController extends HttpServlet {
 
 			switch (action) {
 			case "LOAD":
-				loadProductItem(request, response);
+				loadProductItem(req, res);
+				loadReviews(req, res);
 				break;
 			default:
-				loadProductItem(request, response);
+				loadProductItem(req, res);
 			}
 
-			request.getRequestDispatcher(nextUrl).forward(request, response);
+			req.getRequestDispatcher(nextUrl).forward(req, res);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,8 +66,8 @@ public class ProductItemController extends HttpServlet {
 		Product product = null;
 
 		try {
-			id = Integer.parseInt(request.getParameter("productID"));
-			product = productDAO.getProduct(id);
+			id = Integer.parseInt(request.getParameter("id"));
+			product = Product.find(id);
 
 			if (product == null) {
 				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
@@ -74,6 +78,34 @@ public class ProductItemController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void loadReviews(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		List<Review> reviews = null;
+		ReviewDAO reviewDAO = new ReviewDAO();
+		String productId = req.getParameter("id");
+		float averageStar = 0;
+
+		try {
+			reviews = reviewDAO.getReviews(productId);
+			int sumStar = 0;
+			for (Review review : reviews) {
+				sumStar += review.getStars();
+			}
+			if (reviews.size() != 0) {
+				averageStar = sumStar / reviews.size();
+			}
+		
+			
+			
+		} catch (Exception e) {
+			System.out.println("reviewDAO error!" + e);
+			log("reviewDAO error!", e);
+		}
+
+		req.setAttribute("reviews", reviews);
+		req.setAttribute("averageStar", averageStar);
+		req.setAttribute("averageStarInt", Math.round(averageStar));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

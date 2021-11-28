@@ -3,16 +3,14 @@ package com.data.DAOs;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityTransaction;
 import javax.persistence.criteria.*;
-import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.DTOs.BusinessDtos.LoginDTO;
 import com.data.DbUtil;
-import com.model.CardList;
-import com.model.Role;
+import com.model.Item;
 import com.model.User;
+import com.model.Order;
 
 import org.hibernate.*;
 
@@ -34,6 +32,7 @@ public class UserDAO {
 		}
 		return user;
 	}
+
 	public User getUserByUserName(String username) {
 		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
 		String sql = "Select u from User u where u.username =:uname";
@@ -41,17 +40,15 @@ public class UserDAO {
 		q.setParameter("uname", username);
 		try {
 			User user = q.getSingleResult();
+			
 			return user;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		}
-		finally {
+		} finally {
 			em.close();
 		}
 	}
-	
 
 	public void getPasswordHashAndSalt(LoginDTO loginDTO) {
 		Transaction transaction = null;
@@ -74,9 +71,9 @@ public class UserDAO {
 			e.printStackTrace();
 		}
 		if (rsList.size() > 0) {
-			loginDTO.setPasswordHash(rsList.get(0).passwordHash);
-			loginDTO.setPasswordSalt((rsList.get(0).passwordSalt));
-			loginDTO.setId((rsList.get(0).id));
+			loginDTO.setPasswordHash(rsList.get(0).getPasswordHash());
+			loginDTO.setPasswordSalt((rsList.get(0).getPasswordSalt()));
+			loginDTO.setId((rsList.get(0).getId()));
 		}
 	}
 
@@ -134,19 +131,48 @@ public class UserDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Item> getMyBook(int orderId) {
+    	try {
+    		return DbUtil.getSessionFactory().openSession().createQuery("From Item I where I.order.id = " + "'" + orderId + "'").getResultList();
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+
+	}
 	// INSERT ----------------------------------------------------
-	public void addUser(User user) {
+	public User addUser(User user) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 
 			transaction = session.beginTransaction();
 			session.save(user);
 			transaction.commit();
+			return user;
 		} catch (Exception e) {
 			if (transaction != null) {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+			return null;
+		}
+	}
+	public Item addItemToMyProduct(Item item ) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+
+			transaction = session.beginTransaction();
+			session.save(item);
+			transaction.commit();
+			return item;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
 		}
 	}
 

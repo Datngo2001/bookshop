@@ -21,10 +21,11 @@
 		<div class="grid_row">
 			<div class="grid_column-8" style="margin: 0 auto">
 				<h3>Payment Done. Thank you for purchasing our products</h3>
-    <h4>Receipt Details:</h4>
+    <h4>Receipt Details</h4>
+    <br/>
     <table>
         <tr>
-            <td><b>Merchant:</b></td>
+            <td><b>Merchant:</b ${id}></td>
             <td>Company ABC Ltd.</td>
         </tr>
         <tr>
@@ -32,7 +33,7 @@
             <td>${payer.firstName} ${payer.lastName}</td>      
         </tr>
         <tr>
-            <td><b>Description:</b></td>
+            <td style="width: 150px"><b>Description:</b></td>
             <td>${transaction.description}</td>
         </tr>
         <tr>
@@ -54,6 +55,8 @@
     </table>
 			</div>
 		</div>
+		<a href="profile">Go to my profile</a>
+		<a href="home">Return Homepage</a>
 	</div>
 	<br>
  <c:import url="../sharedView/footer.jsp"></c:import>

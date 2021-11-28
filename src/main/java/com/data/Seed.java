@@ -1,15 +1,18 @@
 package com.data;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import com.DTOs.BusinessDtos.RegisterDTO;
+import com.data.DAOs.CartDAO;
 import com.data.DAOs.CategoryDAO;
 import com.data.DAOs.ProductDAO;
+import com.data.DAOs.PromoDAO;
 import com.data.DAOs.RoleDAO;
 import com.data.DAOs.UserDAO;
+import com.model.Cart;
 import com.model.Category;
 import com.model.Product;
+import com.model.Promo;
 import com.model.Role;
 import com.model.User;
 import com.services.HashService;
@@ -17,7 +20,6 @@ import com.services.HashService;
 public class Seed {
     public void doSeed() {
         // Add role
-        User user = new User();
         RoleDAO roleDAO = new RoleDAO();
         roleDAO.addRole(new Role("Admin"));
         roleDAO.addRole(new Role("Staff"));
@@ -26,6 +28,7 @@ public class Seed {
         // Add admin account
         RegisterDTO registerDTO = new RegisterDTO();
         RegisterDTO registerDTO1 = new RegisterDTO();
+        RegisterDTO registerDTO2 = new RegisterDTO();
         registerDTO.setUsername("admin");
         registerDTO.setPassword("522001");
         registerDTO.setReEnter("522001");
@@ -34,8 +37,14 @@ public class Seed {
         registerDTO1.setPassword("230601");
         registerDTO1.setReEnter("230601");
         registerDTO1.setRole("Customer");
+        
+        registerDTO2.setUsername("duongle");
+        registerDTO2.setPassword("123456");
+        registerDTO2.setReEnter("123456");
+        registerDTO2.setRole("Customer");
         CreateAccount(registerDTO);
         CreateAccount(registerDTO1);
+        CreateAccount(registerDTO2);
 
         // Add category
         CategoryDAO categoryDAO = new CategoryDAO();
@@ -51,6 +60,20 @@ public class Seed {
         for (Product product : products) {
             productDAO.addProducts(product);
         }
+        
+        // Add mã giảm giá
+        PromoDAO promoDao = new PromoDAO();
+        Promo promo1 = new Promo("THIENDEPGIAI", 20000, "1");
+        Promo promo2 = new Promo("DATCUNHO", 10, "2");
+        Promo promo3 = new Promo("DUONGVIP", 30000, "1");
+        Promo promo4 = new Promo("GROUP2", 12, "2");
+        
+        promoDao.addPromoCode(promo1);
+        promoDao.addPromoCode(promo2);
+        promoDao.addPromoCode(promo3);
+        promoDao.addPromoCode(promo4);
+        
+        
     }
 
     private void CreateAccount(RegisterDTO registerDTO) {
@@ -71,10 +94,11 @@ public class Seed {
         user.setPasswordHash(hash);
         user.setPasswordSalt(salt);
         user.setUsername(registerDTO.getUsername());
-        user.setRoles(roles);
+        user.setRole(roles);
 
         // Save new user to database
         UserDAO userDAO = new UserDAO();
         userDAO.addUser(user);
+        new CartDAO().CreateCartForUser(new Cart(), user);
     }
 }

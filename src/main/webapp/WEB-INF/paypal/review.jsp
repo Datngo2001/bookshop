@@ -23,10 +23,10 @@
       <div class="grid_column-6" style="margin: 0 auto; border: 2px solid rgba(215, 219, 221, 0.5); padding: 10px 25px; border-radius: 5px">
         <h3>Please Review Before Paying</h3>
         <hr>
-        <form action="execute_payment" method="get">
+        <form action="execute_payment" method="post">
           <table>
             <tr>
-              <td colspan="2"><b>Transaction Details:</b></td>
+              <td colspan="2"><b>Transaction Details</b></td>
               <td>
                 <input type="hidden" name="paymentId" value="${param.paymentId}" />
                 <input type="hidden" name="PayerID" value="${param.PayerID}" />
@@ -78,7 +78,7 @@
               <td colspan="2"><b>Shipping Address:</b></td>
             </tr>
             <tr>
-              <td>Recipient Name:</td>
+              <td style="width: 170px">Recipient Name:</td>
               <td>${shippingAddress.recipientName}</td>
             </tr>
             <tr>
