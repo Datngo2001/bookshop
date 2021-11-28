@@ -37,11 +37,12 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <div class="price_rating">
                   <span>${product.price}d</span>
                   <div class="rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="far fa-star"></i>
+                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                      <i class="fas fa-star"></i>
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                      <i class="far fa-star unchecked"></i>
+                    </c:forEach>
                   </div>
                 </div>
               </div>
@@ -53,6 +54,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <c:import url="sharedView/footer.jsp"></c:import>
     <script>
       function onSearchChange(searchbar) {
+        searchbar.setCustomValidity("");
         const keyword = searchbar.value;
         const titleTemplate = "Kết quả tìm kiếm với: ";
 

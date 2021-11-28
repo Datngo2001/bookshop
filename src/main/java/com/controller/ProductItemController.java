@@ -47,12 +47,12 @@ public class ProductItemController extends HttpServlet {
 			}
 
 			switch (action) {
-			case "LOAD":
-				loadProductItem(req, res);
-				loadReviews(req, res);
-				break;
-			default:
-				loadProductItem(req, res);
+				case "LOAD":
+					loadProductItem(req, res);
+					loadReviews(req, res);
+					break;
+				default:
+					loadProductItem(req, res);
 			}
 
 			req.getRequestDispatcher(nextUrl).forward(req, res);
@@ -82,30 +82,21 @@ public class ProductItemController extends HttpServlet {
 
 	private void loadReviews(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		List<Review> reviews = null;
-		ReviewDAO reviewDAO = new ReviewDAO();
 		String productId = req.getParameter("id");
-		float averageStar = 0;
 
 		try {
-			reviews = reviewDAO.getReviews(productId);
-			int sumStar = 0;
-			for (Review review : reviews) {
-				sumStar += review.getStars();
-			}
-			averageStar = sumStar == 0 ? sumStar : sumStar / reviews.size();
+			reviews = Product.find(Integer.parseInt(productId)).getReviews();
+
 		} catch (Exception e) {
 			System.out.println("reviewDAO error!" + e);
 			log("reviewDAO error!", e);
 		}
 
 		req.setAttribute("reviews", reviews);
-		req.setAttribute("averageStar", averageStar);
-		req.setAttribute("averageStarInt", Math.round(averageStar));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

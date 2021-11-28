@@ -1,7 +1,6 @@
 package com.controller;
 
 import java.io.IOException;
-import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -64,13 +63,13 @@ public class SearchProductControler extends HttpServlet {
                 action = "LOAD";
 
             switch (action) {
-            case "LOAD":
-                loadSearchItem(req, res, keyword);
-                req.getRequestDispatcher(nextUrl).forward(req, res);
-                break;
-            case "AJAX":
-                loadSearchAjax(req, res, keyword);
-                break;
+                case "LOAD":
+                    loadSearchItem(req, res, keyword);
+                    req.getRequestDispatcher(nextUrl).forward(req, res);
+                    break;
+                case "AJAX":
+                    loadSearchAjax(req, res, keyword);
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();

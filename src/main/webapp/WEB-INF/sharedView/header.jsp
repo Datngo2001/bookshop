@@ -113,6 +113,7 @@
                 class="form-control-p"
                 type="text"
                 placeholder="Search by title, authur, series or release"
+                list="keywords"
                 required
               />
             </form>
