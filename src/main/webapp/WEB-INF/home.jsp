@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <!-- Local -->
   <link rel="stylesheet" href="./css/home.css">
-  <title>E-Book Shop</title>
+  <!-- SEO -->
+  <title>E-Book Store | World of Books, Novels & Comics</title>
+  <meta name="description" content="E-Book Store discover a wonderful selection books, novels from booksellers located around the world. We have every books you need, just come and see ">
 </head>
 
 <body>
