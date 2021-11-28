@@ -22,6 +22,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <body>
     <c:import url="sharedView/header.jsp"></c:import>
     <br />
+
     <main class="product-container">
       <section class="product">
         <div class="product-view">
@@ -32,12 +33,25 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               alt="${product.getProductName()}"
             />
           </figure>
+
           <div class="button-wrapper">
-            <div class="product-btn add-to-cart">
-              <span>Thêm vào giỏ hàng</span>
+
+			<div class="product-btn add-to-cart">
+                          <form action="cart">
+            	<input type="hidden" name="productId" value="${product.id}">
+            	<input type="hidden" name="quantity" value="1">
+            	<input type="hidden" name="action" value="ADD">
+             	<button type="submit" class="btn-action">
+             	<span class="add-to-card-span">Thêm vào giỏ hàng</span>
+             	</button>
+             </form>
             </div>
             <div class="product-btn buy-now">
-              <span>Mua ngay</span>
+              <form action="confirm">
+               <button type="submit" class="btn-action"> 
+               <span class="buy-now-span">Mua ngay</span> </button>
+               <input type="hidden" name="price" value="${product.price}">
+			</form>
             </div>
           </div>
         </div>
@@ -61,8 +75,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
           <div class="product-rate">
             <div class="product-stars">
+<<<<<<< HEAD
               <c:forEach var="i" begin="1" end="${product.getStar()}">
                 <i class="fas fa-star"></i>
+=======
+              <c:forEach var="i" begin="1" end="${averageStarInt}">
+>>>>>>> 6878f748cd6f4ece67178afad0b86f625482406b
               </c:forEach>
               <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
                 <i class="far fa-star"></i>
@@ -79,7 +97,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </div>
             </div>
           </div>
-          <div class="product-price">${product.price} d</div>
+          <div class="product-price"> <span class="price-old"> ${product.price} d </span>&nbsp; &nbsp;  ${product.getPriceDiscount()} d</div>
           <div class="product-quantity-wrapper">
             <label>Số lượng:</label>
             <div class="product-quantity">
@@ -183,8 +201,17 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <c:when test="${sessionScope.userId == null}">
               <div class="noti-non-user">
                 Chỉ có thành viên mới có thể viết nhận xét.Vui lòng&nbsp;
-                <a href="login">đăng nhập&nbsp;</a>hoặc
-                <a href="register">&nbsp;đăng ký</a>.
+                <form action="login" method="get">
+                <input type="hidden" name="url" value="product?command=LOAD&id=${product.getId()}">
+                <input type="hidden" name="redirect" value="product">
+                <button class="btn-action" style="color: var(--blue-color)">đăng nhập&nbsp;</button>
+                </form>
+                hoặc
+                <form action="register" method="get">
+                <input type="hidden" name="url" value="product?command=LOAD&id=${product.getId()}">
+                <input type="hidden" name="redirect" value="product">
+                <button class="btn-action" style="color: var(--bs-red);" >&nbsp;đăng ký</button>
+               	</form>
               </div>
             </c:when>
             <c:otherwise>
@@ -234,7 +261,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <form
               class="comment-delete-confirm"
               action="review?action=DELETE&productId=${product.getId()}&reviewId="
-            >
+>
               <div class="fas fa-times fa-2x exit-form"></div>
               <h2>Bạn có chắc là muốn xóa bình luận này chứ</h2>
               <div class="button-wrapper">

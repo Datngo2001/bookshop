@@ -76,7 +76,7 @@ public class ExecutePaymentServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 			request.setAttribute("errorMessage", e.getMessage());
-			request.getRequestDispatcher("WEB-INF/paypal/paypalError.jsp").forward(request, response);
+			request.getRequestDispatcher("WEB-INF/paypal/404_payment.jsp").forward(request, response);
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

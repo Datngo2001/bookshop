@@ -9,8 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.data.DAOs.FileDAO;
+import com.data.DAOs.PhotoDAO;
 import com.data.DAOs.ProductDAO;
+import com.model.File;
+import com.model.Photo;
 import com.model.Product;
+import com.services.CloudinaryUtil;
 
 @WebServlet("/admin/product")
 public class ProductManageController extends HttpServlet {
@@ -75,6 +80,14 @@ public class ProductManageController extends HttpServlet {
 
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
+
+		List<Photo> photos = new PhotoDAO().getProductPhotos(id);
+		for (Photo photo : photos) {
+			CloudinaryUtil.destroyItem(photo.getPublicId());
+		}
+		File file = new FileDAO().getProductFile(id);
+		CloudinaryUtil.destroyItem(file.getPublicId());
+
 		productDAO.deleteProduct(id);
 		response.sendRedirect("product");
 	}
@@ -89,7 +102,7 @@ public class ProductManageController extends HttpServlet {
 		String supplier = request.getParameter("supplier");
 		Product theProduct = new Product(id, nameAuthor, description, nameItem, nxb, supplier, price);
 		productDAO.updateProducts(theProduct);
-		response.sendRedirect("product");
+		response.sendRedirect("product?command=Load&id=" + id);
 	}
 
 	// Form for add or update product
@@ -98,6 +111,7 @@ public class ProductManageController extends HttpServlet {
 		if (theProductId != null) {
 			request.setAttribute("FormCommand", "Update");
 			Product theProduct = productDAO.getProduct(Integer.parseInt(theProductId));
+			theProduct.setFile(new FileDAO().getProductFile(Integer.parseInt(theProductId)));
 			request.setAttribute("item", theProduct);
 		} else {
 			request.setAttribute("FormCommand", "ADD");
@@ -114,8 +128,8 @@ public class ProductManageController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		String supplier = request.getParameter("supplier");
 		Product theProduct = new Product(nameAuthor, description, nameItem, nxb, supplier, price);
-		productDAO.addProducts(theProduct);
-		response.sendRedirect("product");
+		theProduct = productDAO.addProducts(theProduct);
+		response.sendRedirect("product?command=Load&id=" + theProduct.getId());
 	}
 
 	private void listProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -128,5 +142,4 @@ public class ProductManageController extends HttpServlet {
 		}
 		request.getRequestDispatcher("../WEB-INF/admin/product.jsp").forward(request, response);
 	}
-
 }

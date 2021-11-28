@@ -11,40 +11,35 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-
-@WebFilter({"/admin/admin-root", "/admin/createAdmin.jsp"})
+@WebFilter("/admin/*")
 public class RootAdminFilter implements Filter {
 
-    public RootAdminFilter() {
-        
-    }
+	public RootAdminFilter() {
 
-	public void destroy() {
-		
 	}
 
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		
-		HttpServletRequest httpRequest = (HttpServletRequest)request;
+	public void destroy() {
+
+	}
+
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+
+		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		HttpSession session = httpRequest.getSession();
-		String adminType = "";	
+		int roleId;
 		try {
-			adminType = session.getAttribute("adminType").toString();
-		}catch(NullPointerException e) {
+			roleId = (int) session.getAttribute("roleId");
+		} catch (NullPointerException e) {
 			request.getRequestDispatcher("NoPermission.jsp").forward(request, response);
 			return;
 		}
-		
-		if(!adminType.equals("ROOT")) {
-			request.getRequestDispatcher("NoPermission.jsp").forward(request, response);
-			return;
-		}
-		
+
 		chain.doFilter(request, response);
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
-		
+
 	}
 
 }

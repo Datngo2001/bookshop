@@ -1,4 +1,4 @@
-package com.paypal;
+package com.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,21 +7,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class CancelController
- */
-@WebServlet("/cancel")
-public class CancelController extends HttpServlet {
+
+@WebServlet("/read")
+public class ReadingBookController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CancelController() {
+
+    public ReadingBookController() {
         super();
         // TODO Auto-generated constructor stub
     }
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("home").forward(request, response);
+
+		request.getRequestDispatcher("WEB-INF/readbook.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

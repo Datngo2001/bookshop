@@ -83,7 +83,7 @@
                 Name
               </td>
               <td>
-                <input type="text" value="Tan Dat">
+                <input type="text" value="${user.lname} ${user.fname}">
               </td>
             </tr>
             <tr>
@@ -91,12 +91,12 @@
                 Gender
               </td>
               <td>
-                 <input type="radio" id="gender" value="Male">
+                <input type="radio" id="gender" value="Male">
                 	<label for="gender">Male</label>
-                  <input type="radio" id="gender" value="Female">
-                  <label for="gender">Female</label>
-                  <input type="radio" id="gender" value="Other">
-                  <label for="gender">Other</label>
+                <input type="radio" id="gender" value="Female">
+                <label for="gender">Female</label>
+                <input type="radio" id="gender" value="Other">
+                <label for="gender">Other</label>
               </td>
             </tr>
             <tr>
@@ -282,8 +282,10 @@
                   </div>
                 </div>
 
-  
-                <button class="btn btn-primary" style="width: 100%; border-radius: 1px;">Read book</button>
+  				<form action="read">
+  				       <button class="btn btn-primary" style="width: 100%; border-radius: 1px;">Read book</button>
+  				</form>
+
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>

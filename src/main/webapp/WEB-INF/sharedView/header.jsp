@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="header-side">
   <header class="header" id="header">
     <div class="grid">
@@ -91,9 +92,21 @@
             <a href="register" class="navbar-item-link">Sign up</a>
           </li>
           <li class="navbar-item">|</li>
+<<<<<<< HEAD
           <li class="navbar-item">
             <a href="login" class="navbar-item-link">Log in</a>
           </li>
+=======
+          <c:choose>
+          <c:when test="${sessionScope.userId == null}"> 
+          <li class="navbar-item"><a href="login" class="navbar-item-link">Log in</a></li>
+          </c:when>
+          <c:otherwise>
+          <li class="navbar-item"><a href="profile" class="navbar-item-link"> <i class="fas fa-user"></i>&nbsp;Profile</a></li>
+          <li class="navbar-item"><a href="logout" class="navbar-item-link">Log out</a></li>
+          </c:otherwise>
+          </c:choose>
+>>>>>>> 6878f748cd6f4ece67178afad0b86f625482406b
         </ul>
       </nav>
       <div class="navbar-search">
@@ -153,6 +166,7 @@
                 <a class="cart-link">
                   <div class="cart-product"></div>
                 </a>
+<<<<<<< HEAD
                 <input
                   type="submit"
                   class="btn-cart-list"
@@ -161,6 +175,12 @@
                 />
               </form>
 
+=======
+                <input type="submit" class="btn-cart-list" name="" value="Go cart"/>
+                <input type="hidden" name="url" value="cart">
+             </form>
+             
+>>>>>>> 6878f748cd6f4ece67178afad0b86f625482406b
               <div class="cart-products">
                 <div class="cart-product-list cart-product-list_nocart">
                   <img

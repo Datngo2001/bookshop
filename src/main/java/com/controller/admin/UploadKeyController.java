@@ -1,4 +1,4 @@
-package com.controller;
+package com.controller.admin;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -12,22 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.DTOs.BusinessDtos.UploadKeyDTO;
 import com.cloudinary.Cloudinary;
-import com.cloudinary.utils.ObjectUtils;
 import com.google.gson.Gson;
+import com.services.CloudinaryUtil;
 
-@SuppressWarnings("serial")
-@WebServlet("/service/uploadSignature")
-public class CloudinaryAuthController extends HttpServlet {
+@WebServlet("/admin/uploadKey")
+public class UploadKeyController extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String apiKey = "";
-        String cloud_name = "";
-        String api_secret = "";
-
-        Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", cloud_name, "api_key", apiKey,
-                "api_secret", api_secret, "secure", true));
+        Cloudinary cloudinary = CloudinaryUtil.getCLoudinary();
 
         String type = request.getParameter("type");
         String folder = "";
@@ -47,10 +41,11 @@ public class CloudinaryAuthController extends HttpServlet {
         paramsToSign.put("source", "uw");
         paramsToSign.put("folder", folder);
 
-        String signature = cloudinary.apiSignRequest(paramsToSign, api_secret);
+        String signature = cloudinary.apiSignRequest(paramsToSign, CloudinaryUtil.api_secret);
 
         // Write upload key in json format
-        UploadKeyDTO uploadKeyDTO = new UploadKeyDTO(apiKey, cloud_name, folder, signature, timestamp);
+        UploadKeyDTO uploadKeyDTO = new UploadKeyDTO(CloudinaryUtil.apiKey, CloudinaryUtil.cloud_name, folder,
+                signature, timestamp);
         Gson gson = new Gson();
         String json = gson.toJson(uploadKeyDTO);
         response.getWriter().write(json);

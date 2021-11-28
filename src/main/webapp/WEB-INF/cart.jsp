@@ -38,7 +38,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				        	</div>
 				        </div>
 				        <div class="cart cart-price cart-column" style="display: flex;">
-				        	<p><c:out value="${item.price}"/></p> 
+				        	<p><c:out value="${item.getPriceDiscount()}"/></p> 
 				        </div>
 				        <div class="cart-quantity cart-column">
 							<form action="cart" method="post">
@@ -71,7 +71,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
 					</form>
 					<form action="authorize_payment">
-						 <input id="hide" type="hidden" name="price" value=""/>
+						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
 						<button type="submit" class="btn btn-primary vnpay">Paypal</button>
 					</form>
 					

@@ -38,19 +38,19 @@
             </div>
             <div class="form-group">
               <span class="">Sub Total</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="subtotal" value="50" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="subtotal" value="${amount}" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Shipping</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="shipping" value="2" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="shipping" value="${ship}" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Tax</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="2" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="${tax}" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Total Amount</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="total" value="54" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="total" value="${total}" readonly="readonly">
             </div>
             <div class="form-group">
               <input type="submit" class="btn btn-primary" value="Checkout">

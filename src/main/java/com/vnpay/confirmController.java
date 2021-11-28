@@ -9,19 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.data.DAOs.PromoDAO;
+import com.model.Promo;
+
 
 @WebServlet("/confirm")
 public class confirmController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	PromoDAO promoDao = null;
     public confirmController() {
         super();
+        promoDao = new PromoDAO();
  
     }
     private static final DecimalFormat df = new DecimalFormat("0");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
-		
 		double price = Double.parseDouble(request.getParameter("price"));
 		
 		// get current action
@@ -29,19 +32,46 @@ public class confirmController extends HttpServlet {
 
 		if (action == null) {
 			action = "Go to payment.jsp";
+			
 		}
 
-		if (action.equals("SOMETHING")) {
-			example();
-		}
 		request.setAttribute("priceTotal",df.format(price));
+		if(action.equals("CHECK")) {
+			pricePromoCode(request, response);
+			nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
+		}
+		int userId;
+		try {
+			userId = (int) request.getSession().getAttribute("userId");
+		} catch (Exception e) {
+			response.sendRedirect("login");
+			return;
+		}
+
 		
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 
-	private void example() {
-		// TODO Auto-generated method stub
-		
+	private void pricePromoCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String code = request.getParameter("promoCode");
+		int amount = Integer.parseInt(request.getParameter("amount"));
+		Promo promo = promoDao.getPromoCode(code);
+		try {
+			if(promo != null)  {
+				int priceDiscount = 0;
+				if(Integer.parseInt(promo.getTypeCode()) == 1) {
+					priceDiscount = amount - (int) promo.getValue();
+				}
+				else {
+					priceDiscount = amount -  (amount *(int) promo.getValue());
+				}
+				request.setAttribute("priceTotal", priceDiscount);
+				request.getSession().setAttribute("check", "OK");
+				}
+		}
+		catch (Exception e) {
+			response.sendRedirect("confirm");
+		}
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -40,7 +40,6 @@ public class ReviewController extends HttpServlet {
         switch (action) {
         case "CREATE":
             UserDAO userDAO = new UserDAO();
-
             starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
             reviewContent = req.getParameter("review-content");
             SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

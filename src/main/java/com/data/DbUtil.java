@@ -11,9 +11,11 @@ import org.hibernate.service.ServiceRegistry;
 import com.model.*;
 
 public class DbUtil {
+
 	private static SessionFactory sessionFactory;
 
 	public static SessionFactory getSessionFactory() {
+
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -37,9 +39,8 @@ public class DbUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
-
-				// settings.put(Environment.HBM2DDL_AUTO, "update");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
+				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);
@@ -51,6 +52,9 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
 				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Promo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Photo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -65,7 +69,8 @@ public class DbUtil {
 		return sessionFactory;
 	}
 
-	public static SessionFactory getSessionFactors() {
+	public static SessionFactory getSessionFactorys() {
+
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -81,7 +86,7 @@ public class DbUtil {
 
 				settings.put(Environment.SHOW_SQL, "true");
 
-				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				settings.put(Environment.HBM2DDL_AUTO, "update");
 				// settings.put(Environment.HBM2DDL_AUTO, "create-drop");
@@ -95,6 +100,10 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
+				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Promo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Photo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -112,4 +121,5 @@ public class DbUtil {
 	public static void shutdown() {
 		getSessionFactory().close();
 	}
+
 }

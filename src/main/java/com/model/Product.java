@@ -10,6 +10,7 @@ import com.data.DAOs.ProductDAO;
 
 import org.hibernate.annotations.Type;
 
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "product")
 public class Product implements Serializable {
@@ -33,13 +34,18 @@ public class Product implements Serializable {
 	public String pictureUrl;
 	public String Sku;
 	public String typeBook;
+	public int discount;
 
 	// Relation
 	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
+	@OneToMany(mappedBy = "product")
+	private List<Photo> photos = new ArrayList<Photo>();
+	@OneToOne(mappedBy = "product")
+	private File file;
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
-			String pictureUrl, String sku, String typeBook, int price) {
+			String pictureUrl, String sku, String typeBook, int price, int discount) {
 		this.codeProduct = codeProduct;
 		this.nameAuthor = nameAuthor;
 		this.name = name;
@@ -50,6 +56,7 @@ public class Product implements Serializable {
 		this.Sku = sku;
 		this.typeBook = typeBook;
 		this.price = price;
+		this.discount = discount;
 	}
 
 	public Product(String codeProduct, String productName, String nameAuthor, String description, int price,
@@ -114,6 +121,30 @@ public class Product implements Serializable {
 		Product product = productDAO.getProduct(id);
 
 		return product;
+	}
+
+	public int getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(int discount) {
+		this.discount = discount;
+	}
+
+	public int getPriceDiscount() {
+		return price - (discount * price) / 100;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<Category> getCategorys() {
@@ -240,4 +271,21 @@ public class Product implements Serializable {
 	public float getAverageStar() {
 		return calAverageStar();
 	}
+
+	public List<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(List<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public File getFile() {
+		return file;
+	}
+
+	public void setFile(File file) {
+		this.file = file;
+	}
+
 }

@@ -40,7 +40,8 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	       }
 	   }
 	   //get attribute
-	   float amount = Float.parseFloat((request.getParameter("vnp_Amount"))) / 100;
+	   float amount = 10;
+	   //float amount = Float.parseFloat((request.getParameter("vnp_Amount"))) / 100;
 	   String code = request.getParameter("vnp_TransactionNo");
 	   String day = request.getParameter("vnp_PayDate");
 	   //String info = request.getParameter("vnp_OrderInfo");
