@@ -44,12 +44,12 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 							<form action="cart" method="post">
 								<input type="hidden" name="id" value="${item.id}"/>
 				            	<input class="cart-quantity-input" type="number" name="quantity" 
-									value="${item.quantity}"/>
+									value="${item.quantity}" readonly/>
 								<input type="hidden" name="action" value="UPDATE" />
 								<button type="submit" class="btn-update"><i class="fas fa-edit"></i> </button>
 							</form>
 				            <form action="cart" method="post">
-								<input type="hidden" name="id" value="${item.id}"/>
+								<input type="hidden" name="id" value="${item.id}" />
 								<input type="hidden" name="action" value="REMOVE" />
 								<button type="submit" class="btn-remove"><i class="fas fa-trash-alt"></i></button>
 							</form>

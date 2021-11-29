@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.data.DAOs.PromoDAO;
+import com.model.Cart;
 import com.model.Promo;
 
 
@@ -25,24 +26,36 @@ public class confirmController extends HttpServlet {
     private static final DecimalFormat df = new DecimalFormat("0");
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
-		double price = Double.parseDouble(request.getParameter("price"));
 		
+		double price = Double.parseDouble(request.getParameter("price"));
 		// get current action
 		String action = request.getParameter("action");
 
 		if (action == null) {
-			action = "Go to payment.jsp";
+			action = "";
 			
 		}
 
-		request.setAttribute("priceTotal",df.format(price));
+		request.setAttribute("priceTotal", df.format(price));
 		if(action.equals("CHECK")) {
 			pricePromoCode(request, response);
 			nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
 		}
-		int userId;
+		else if(action.equals("BUYNOW")) {
+			try {
+			Cart cart = new Cart();
+			int cartId = (int) request.getSession().getAttribute("cartId");
+			int productId = Integer.parseInt(request.getParameter("productId"));
+			int quantity = Integer.parseInt(request.getParameter("quantity"));
+			cart.addItem(cartId, productId, quantity);
+			}
+			catch (Exception e) {
+				response.sendRedirect("login");
+				return;
+			}
+		}
 		try {
-			userId = (int) request.getSession().getAttribute("userId");
+			int userId = (int) request.getSession().getAttribute("userId");
 		} catch (Exception e) {
 			response.sendRedirect("login");
 			return;

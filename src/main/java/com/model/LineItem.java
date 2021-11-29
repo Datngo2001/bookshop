@@ -46,7 +46,8 @@ public class LineItem implements Serializable {
     }
 
     public void setQuantity(int quantity) {
-        this.quantity = quantity;
+        // this.quantity = quantity;
+        this.quantity = 1;
     }
 
     public Product getProduct() {

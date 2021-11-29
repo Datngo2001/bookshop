@@ -47,7 +47,7 @@ public class LoginController extends HttpServlet {
 				request.getSession().setAttribute("userId", loginDTO.getId());
 				request.getSession().setAttribute("role", loginDTO.getRoleName());
 				request.getSession().setAttribute("roleId", loginDTO.getRoleId());
-				int a = 1;
+
 				if (loginDTO.getRoleId() == 3) {
 	
 					if (url!= null) nextUrl = request.getContextPath() + "/" + url;	

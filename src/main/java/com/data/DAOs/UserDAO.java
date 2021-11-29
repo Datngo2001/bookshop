@@ -159,7 +159,7 @@ public class UserDAO {
 			return null;
 		}
 	}
-	public Item addItemToMyProduct(Item item ) {
+	public Item addItemToMyProduct(Item item) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 

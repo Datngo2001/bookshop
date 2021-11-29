@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1> You can not access this page! Please login</h1>
-	<a href="login">Login</a>
+	<a href="../login">Login</a>
 </body>
 </html>
