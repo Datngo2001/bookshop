@@ -11,7 +11,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <c:import url="sharedView/global.html" />
     <!-- Jquery validate -->
     <script
-      src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
+      src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
       type="text/javascript"
     ></script>
     <!-- Local -->
