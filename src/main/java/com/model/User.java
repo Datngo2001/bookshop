@@ -36,7 +36,7 @@ public class User implements Serializable {
 	private String email;
 
 	// Relation
-	@ManyToOne()
+	@ManyToOne(fetch = FetchType.EAGER)
 	private Role role;
 	@OneToMany(mappedBy = "user")
 	private List<Order> orders = new ArrayList<Order>();
@@ -99,7 +99,6 @@ public class User implements Serializable {
 		UserDAO userDAO = new UserDAO();
 
 		userDAO.getPasswordHashAndSalt(loginDTO);
-		
 
 		if (loginDTO.getPasswordHash() == null)
 			return false;
@@ -121,23 +120,24 @@ public class User implements Serializable {
 			return false;
 		}
 	}
+
 	public Boolean PayerInfor(String username) {
 		try {
 			UserDAO userDao = new UserDAO();
 			UserDTO userDto = new UserDTO();
 			User user = userDao.getUserByUserName(username);
-			
+
 			userDto.setFirstName(user.getFname());
 			userDto.setLastName(user.getLname());
 			userDto.setEmail(user.getEmail());
-			
+
 			return true;
-		}
-		catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 	}
+
 	public Boolean register(RegisterDTO registerDTO, ServletContext context) {
 		UserDAO userDAO = new UserDAO();
 
@@ -180,7 +180,7 @@ public class User implements Serializable {
 
 		return true;
 	}
-	
+
 	public Boolean verify(RegisterDTO registerDTO, String code) {
 
 		if (!registerDTO.getCode().equals(code)) {

@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.google.protobuf.Field;
 import com.model.*;
 
 public class DbUtil {
@@ -44,6 +45,10 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
+				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Photo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Promo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
@@ -83,7 +88,7 @@ public class DbUtil {
 					settings.put(Environment.URL,
 							"jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
 					settings.put(Environment.USER, "root");
-					settings.put(Environment.PASS, "ngocthien2306.com");
+					settings.put(Environment.PASS, "group2");
 					settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				}
 
@@ -103,6 +108,10 @@ public class DbUtil {
 				configuration.addAnnotatedClass(Item.class);
 				configuration.addAnnotatedClass(Cart.class);
 				configuration.addAnnotatedClass(LineItem.class);
+				configuration.addAnnotatedClass(Review.class);
+				configuration.addAnnotatedClass(Photo.class);
+				configuration.addAnnotatedClass(File.class);
+				configuration.addAnnotatedClass(Promo.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();
