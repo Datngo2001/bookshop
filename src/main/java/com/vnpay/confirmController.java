@@ -42,11 +42,17 @@ public class confirmController extends HttpServlet {
 			nextUrl = "WEB-INF/vnpay/index_vnpay.jsp";
 		}
 		else if(action.equals("BUYNOW")) {
+			try {
 			Cart cart = new Cart();
 			int cartId = (int) request.getSession().getAttribute("cartId");
 			int productId = Integer.parseInt(request.getParameter("productId"));
 			int quantity = Integer.parseInt(request.getParameter("quantity"));
 			cart.addItem(cartId, productId, quantity);
+			}
+			catch (Exception e) {
+				response.sendRedirect("login");
+				return;
+			}
 		}
 		try {
 			int userId = (int) request.getSession().getAttribute("userId");
