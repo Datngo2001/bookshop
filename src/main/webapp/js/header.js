@@ -84,8 +84,15 @@ function addItemToCart(title, author, srcImg) {
 	console.log(items);
 }
 */
-var price = document.getElementById("abc");
-console.log(price[0].textContent);
+// var price = document.getElementById("abc");
+// console.log(price[0].textContent);
 
+// const searchBar = $(".search-product > form");
+// searchBar.submit(function (e) {});
 
+// function onKeywordSubmit(e) {
+//   e.preventDefault();
 
+//   const keyword = $(".form-control-p");
+//   console.log(keyword);
+// }

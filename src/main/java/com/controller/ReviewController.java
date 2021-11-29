@@ -38,63 +38,63 @@ public class ReviewController extends HttpServlet {
         }
 
         switch (action) {
-        case "CREATE":
-            UserDAO userDAO = new UserDAO();
-            starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
-            reviewContent = req.getParameter("review-content");
-            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-            date = formatter.format(new Date());
-            userId = req.getSession().getAttribute("userId").toString();
+            case "CREATE":
+                UserDAO userDAO = new UserDAO();
+                starsRating = req.getParameter("rating") == null ? 1 : Integer.parseInt(req.getParameter("rating"));
+                reviewContent = req.getParameter("review-content");
+                SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+                date = formatter.format(new Date());
+                userId = req.getSession().getAttribute("userId").toString();
 
-            if (productId == null || userId == null) {
-                req.getRequestDispatcher("WEB-INF/home.jsp").forward(req, res);
-                return;
-            }
+                if (productId == null || userId == null) {
+                    req.getRequestDispatcher("WEB-INF/home.jsp").forward(req, res);
+                    return;
+                }
 
-            Review review = new Review(date, reviewContent, userDAO.getUser(userId),
-                    Product.find(Integer.parseInt(productId)), starsRating);
+                Review review = new Review(date, reviewContent, userDAO.getUser(userId),
+                        Product.find(Integer.parseInt(productId)), starsRating);
 
-            if (Review.createReview(review) != null) {
-                System.out.println("Create review success!!!");
-            } else {
-                System.out.println("Error when trying to create new review!!!");
-            }
+                if (Review.createReview(review) != null) {
+                    System.out.println("Create review success!!!");
+                } else {
+                    System.out.println("Error when trying to create new review!!!");
+                }
 
-            res.sendRedirect(prevPath + productId);
-            break;
+                res.sendRedirect(prevPath + productId);
+                break;
 
-        case "UPDATE":
-            starsRating = Integer.parseInt(req.getParameter("stars"));
-            reviewContent = req.getParameter("content");
-            reviewId = req.getParameter("reviewId");
+            case "UPDATE":
+                starsRating = Integer.parseInt(req.getParameter("stars"));
+                reviewContent = req.getParameter("content");
+                reviewId = req.getParameter("reviewId");
 
-            Review update = Review.getReview(reviewId);
-            update.setContent(reviewContent);
-            update.setStars(starsRating);
+                Review update = Review.getReview(reviewId);
+                update.setContent(reviewContent);
+                update.setStars(starsRating);
 
-            if (Review.updateReview(update)) {
-                responseMessage = update.getContent();
-            } else {
-                responseMessage = "500";
-            }
+                if (Review.updateReview(update)) {
+                    responseMessage = update.getContent();
+                } else {
+                    responseMessage = "500";
+                }
 
-            res.setContentType("text/html;charset=UTF-8");
-            res.getWriter().write(responseMessage);
+                res.setContentType("text/html;charset=UTF-8");
+                res.getWriter().write(responseMessage);
 
-            break;
+                break;
 
-        case "DELETE":
-            reviewId = req.getParameter("reviewId");
+            case "DELETE":
+                reviewId = req.getParameter("reviewId");
 
-            if (Review.getReview(reviewId) == null) {
-                responseMessage = "500";
-            } else {
-                Review delete = Review.deleteReview(reviewId);
-                responseMessage = "Delete success!";
-            }
+                if (Review.getReview(reviewId) == null) {
+                    responseMessage = "500";
+                } else {
+                    Review delete = Review.deleteReview(reviewId);
+                    responseMessage = "Delete success!";
+                }
 
-            res.setContentType("text/html;charset=UTF-8");
-            res.getWriter().write(responseMessage);
+                res.setContentType("text/html;charset=UTF-8");
+                res.getWriter().write(responseMessage);
         }
     }
 
