@@ -9,7 +9,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Global -->
     <c:import url="sharedView/global.html" />
-    <!-- <link rel="stylesheet" href="./css/bootstrap.css" /> -->
     <!-- Jquery validate -->
     <script
       src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
@@ -75,12 +74,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
           <div class="product-rate">
             <div class="product-stars">
-<<<<<<< HEAD
               <c:forEach var="i" begin="1" end="${product.getStar()}">
                 <i class="fas fa-star"></i>
-=======
-              <c:forEach var="i" begin="1" end="${averageStarInt}">
->>>>>>> 6878f748cd6f4ece67178afad0b86f625482406b
               </c:forEach>
               <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
                 <i class="far fa-star"></i>
@@ -97,7 +92,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </div>
             </div>
           </div>
-          <div class="product-price"> <span class="price-old"> ${product.price} d </span>&nbsp; &nbsp;  ${product.getPriceDiscount()} d</div>
+          <div class="product-price"> <span class="price-old"> ${product.price} đ</span>&nbsp; &nbsp;  ${product.getPriceDiscount()} đ</div>
           <div class="product-quantity-wrapper">
             <label>Số lượng:</label>
             <div class="product-quantity">
@@ -110,6 +105,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </a>
             </div>
           </div>
+          <c:if test="${isUserOwnFile == true}">
+            <div class="download-wrapper">
+                <a href="${product.getFile().getUrl()}">
+                  <div class="product-btn download">Tải về</div>
+                </a>
+              </div>
+          </c:if>
         </div>
       </section>
       <section class="product-details">

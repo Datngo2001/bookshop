@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.data.DAOs.FileDAO;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.ReviewDAO;
 import com.model.Product;
@@ -63,14 +65,27 @@ public class ProductItemController extends HttpServlet {
 
 	private void loadProductItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = 0;
+		int userId = 0;
 		Product product = null;
+		HttpSession session = request.getSession();
 
 		try {
 			id = Integer.parseInt(request.getParameter("id"));
 			product = Product.find(id);
 
+			if (session.getAttribute("userId") != null) {
+				userId = Integer.parseInt(session.getAttribute("userId").toString());
+
+				System.out.println("User id: " + userId + " Product id: " + id);
+
+				System.out.println("Is user own file: " + new FileDAO().isUserOwnThisFile(userId,
+						id));
+				request.setAttribute("isUserOwnFile", new FileDAO().isUserOwnThisFile(userId,
+						id));
+			}
+
 			if (product == null) {
-				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/home");
 				return;
 			}
 

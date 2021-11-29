@@ -35,7 +35,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                   <h3>${product.getProductName()}</h3>
                 </div>
                 <div class="price_rating">
-                  <span>${product.price}d</span>
+                  <span>${product.price}đ</span>
                   <div class="rating">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="fas fa-star"></i>

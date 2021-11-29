@@ -32,6 +32,22 @@ public class SearchProductControler extends HttpServlet {
         }
     }
 
+    private String makeStar(int star) {
+        String stars = "";
+        String starCheck = "   <i class=\"fas fa-star\"></i>";
+        String starUnCheck = "   <i class=\"far fa-star\"></i>";
+
+        for (int i = 0; i < star; i++) {
+            stars += starCheck;
+        }
+
+        for (int i = 0; i < 5 - star; i++) {
+            stars += starUnCheck;
+        }
+
+        return stars;
+    }
+
     private void loadSearchAjax(HttpServletRequest req, HttpServletResponse res, String keyword) throws Exception {
         try {
             List<Product> products = new ProductDAO().getByName(keyword);
@@ -42,7 +58,8 @@ public class SearchProductControler extends HttpServlet {
                         + "<div class=\"img\">" + " <img src=\" " + product.pictureUrl + " \" />" + " </div>"
                         + "<div class=\"content\">" + "<div class=\"productName\">" + "<h3>" + product.getProductName()
                         + "</h3>" + "</div>" + "<div class=\"price_rating\">" + "    <span> " + product.price
-                        + " d</span>" + "    <div class=\"rating\">" + "   <i class=\"fas fa-star\"></i>" + " </div>"
+                        + " d</span>" + "    <div class=\"rating\">" + makeStar(product.getStar())
+                        + " </div>"
                         + "    </div>" + " </div>" + "   </a>" + "  </div>");
             }
         } catch (Exception e) {

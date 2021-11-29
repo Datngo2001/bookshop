@@ -27,8 +27,10 @@ public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
-    //public static String vnp_Returnurl = "https://ebooks-shop.herokuapp.com/return";
+    // public static String vnp_Returnurl =
+    // "https://ebooks-shop.herokuapp.com/return";
     public static String vnp_Returnurl = "http://localhost:8082/bookshop/return";
+    // public static String vnp_Returnurl = "http://localhost:8080/bookshop/return";
     public static String vnp_TmnCode = "C3XYP5I0";
     public static String vnp_HashSecret = "ACKQPUNPZCGDBEOXDHFVZSJLTMFKHRFF";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
@@ -75,20 +77,20 @@ public class Config {
             // Logger.getLogger(StringReplace.class.getName()).log(Level.SEVERE,
             // null, ex);
         } catch (NoSuchAlgorithmException ex) {
- 
+
             digest = "";
         }
         return digest;
     }
 
-    //Util for VNPAY
+    // Util for VNPAY
     public static String hashAllFields(Map fields) {
         // create a list and sort it
         List fieldNames = new ArrayList(fields.keySet());
         Collections.sort(fieldNames);
         // create a buffer for the md5 input and add the secure secret first
         StringBuilder sb = new StringBuilder();
-        //sb.append(com.vnpay.common.Config.vnp_HashSecret);
+        // sb.append(com.vnpay.common.Config.vnp_HashSecret);
         Iterator itr = fieldNames.iterator();
         while (itr.hasNext()) {
             String fieldName = (String) itr.next();
@@ -102,10 +104,10 @@ public class Config {
                 sb.append("&");
             }
         }
-        //return Sha256(sb.toString());
-        return hmacSHA512(vnp_HashSecret,sb.toString());
+        // return Sha256(sb.toString());
+        return hmacSHA512(vnp_HashSecret, sb.toString());
     }
-    
+
     public static String hmacSHA512(final String key, final String data) {
         try {
 
