@@ -15,7 +15,7 @@ import com.data.DAOs.CartDAO;
 
 @Entity
 public class Cart implements Serializable {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
@@ -26,11 +26,11 @@ public class Cart implements Serializable {
 	// Relation
 	@OneToOne
 	private User user;
-	@OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "cart")
 	private List<LineItem> items = new ArrayList<LineItem>();
 
 	public Cart() {
-		
+
 	}
 
 	public Cart(int id, User user, List<LineItem> items) {
@@ -40,7 +40,7 @@ public class Cart implements Serializable {
 	}
 
 	// BUSINESS LOGIC ----------------------------------------------------
-	
+
 	public void UpdateTotalPrice() {
 		total = 0;
 		for (LineItem lineItem : items) {
@@ -68,7 +68,7 @@ public class Cart implements Serializable {
 			itemDTO.setAuthorName(item.getProduct().getNameAuthor());
 			itemDTO.setPictureUrl(item.getProduct().getPictureUrl());
 			itemDTO.setDiscount(item.getProduct().getDiscount());
-			
+
 			cartDTO.getItems().add(itemDTO);
 			total += ((itemDTO.getPriceDiscount()) * itemDTO.getQuantity());
 		}

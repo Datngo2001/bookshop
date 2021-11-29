@@ -10,6 +10,7 @@ import org.hibernate.*;
 import com.data.DbUtil;
 import com.model.Photo;
 import com.model.Product;
+import com.model.Review;
 
 public class ProductDAO {
 	public ProductDAO() {
@@ -159,6 +160,26 @@ public class ProductDAO {
 			return null;
 		} finally {
 			em.close();
+		}
+	}
+
+	public Product getProductwithFileAndReview(int productId) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Product product = session.get(Product.class, productId);
+			List<Review> reviews = product.getReviews();
+			product.setReviews(reviews);
+
+			transaction.commit();
+			return product;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

@@ -37,7 +37,7 @@ public class Product implements Serializable {
 	public int discount;
 
 	// Relation
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product")
 	private List<Review> reviews = new ArrayList<Review>();
 	@OneToMany(mappedBy = "product")
 	private List<Photo> photos = new ArrayList<Photo>();
