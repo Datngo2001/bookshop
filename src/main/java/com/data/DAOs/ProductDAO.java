@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import org.hibernate.*;
 import com.data.DbUtil;
@@ -29,29 +30,32 @@ public class ProductDAO {
 	@SuppressWarnings("unchecked")
 	public List<Product> getProducts(int index) throws Exception {
 		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price")
+					.setFirstResult(index).setMaxResults(15).list();
 
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price").setFirstResult(index).setMaxResults(15).list();
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Product> getProductsDes(int index) throws Exception {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price DESC").setFirstResult(index).setMaxResults(15).list();
-			
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product P ORDER BY P.price DESC")
+					.setFirstResult(index).setMaxResults(15).list();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
+
 	@SuppressWarnings("unchecked")
 	public List<Product> getRomanceBook() throws Exception {
 		try {
-			return DbUtil.getSessionFactory().openSession().createQuery("From Product P where P.typeBook = " + "'" + "Romance" + "'").getResultList();
-			
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Romance" + "'").getResultList();
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -141,4 +145,20 @@ public class ProductDAO {
 		return product;
 	}
 
+	public List<Product> getByName(String keyword) {
+		String hql = "Select p from Product p where p.name like :keyword";
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		TypedQuery<Product> query = em.createQuery(hql, Product.class);
+
+		try {
+			query.setParameter("keyword", "%" + keyword + "%");
+
+			return query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+	}
 }
