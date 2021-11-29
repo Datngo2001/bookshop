@@ -20,7 +20,14 @@
         <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>VNPAY RESPONSE</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="https://ngocthien2306.github.io/Admin-Site/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="https://ngocthien2306.github.io/Admin-Site/css/sb-admin-2.min.css" rel="stylesheet">
+        <title>Payment Successfull</title>
         <!-- Bootstrap core CSS -->
 
         <!-- Custom styles for this template -->
@@ -31,7 +38,11 @@
 
         <c:import url="../sharedView/header.jsp"></c:import>
         <!--Begin display -->
-        <div class="container">
+		
+		<div class="grid">
+			<div class="grid_row">
+				<div class="grid_row-8" style="margin: 0 auto">
+					
             <div class="header clearfix">
                 <h3 class="text-muted">VNPAY RESPONSE</h3>
             </div>
@@ -70,7 +81,7 @@
                 </div> 
                   <div class="form-group">
                   <a href="profile">Go to my profile</a>
-                    <label><a href="home">Return Homepage</a></label>
+                    <p><a href="home">Return Homepage</a></p>
                     
 
                 </div> 
@@ -80,7 +91,10 @@
             </p>
 
             
-        </div>  
-        	<c:import url="../sharedView/footer.jsp"></c:import>
+        </div> 
+				</div>
+			</div>
+			 
+        <c:import url="../sharedView/footer.jsp"></c:import>
     </body>
 </html>

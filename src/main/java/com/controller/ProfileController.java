@@ -28,8 +28,8 @@ public class ProfileController extends HttpServlet {
 		String nextUrl = "WEB-INF/profile.jsp";
 		
 		try {
+			
 		Object userId = request.getSession().getAttribute("userId");
-		
 		List<Item> items = null;
 		// get current action
 		String action = request.getParameter("action");
@@ -63,6 +63,7 @@ public class ProfileController extends HttpServlet {
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("login");
 		}
 		
 		request.getRequestDispatcher(nextUrl).forward(request, response);
