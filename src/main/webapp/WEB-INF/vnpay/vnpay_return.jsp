@@ -41,7 +41,7 @@
 		
 		<div class="grid">
 			<div class="grid_row">
-				<div class="grid_row-8" style="margin: 0 auto">
+				<div class="grid_row-8">
 					
             <div class="header clearfix">
                 <h3 class="text-muted">VNPAY RESPONSE</h3>
