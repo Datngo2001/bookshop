@@ -45,7 +45,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="login" method="get">
+                                    <form class="user" action="login" method="post">
 
                                			<input type="hidden" name="url" value="${url}">
                             
