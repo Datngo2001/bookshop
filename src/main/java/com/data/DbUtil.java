@@ -87,7 +87,8 @@ public class DbUtil {
 					settings.put(Environment.PASS, password);
 					settings.put(Environment.DRIVER, "org.postgresql.Driver");
 					settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQL9Dialect");
-				} else {
+				} 
+				else {
 					settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
 					settings.put(Environment.URL,
 							"jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
