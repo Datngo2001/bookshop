@@ -36,15 +36,13 @@ public class Product implements Serializable {
 	public String typeBook;
 	public int discount;
 
-
 	// Relation
-	@OneToMany(mappedBy = "product")
+	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
 	private List<Review> reviews = new ArrayList<Review>();
 	@OneToMany(mappedBy = "product")
 	private List<Photo> photos = new ArrayList<Photo>();
 	@OneToOne(mappedBy = "product")
 	private File file;
-
 
 	public Product(String codeProduct, String name, String nameAuthor, String des, String nxb, String supplier,
 			String pictureUrl, String sku, String typeBook, int price, int discount) {
@@ -106,34 +104,41 @@ public class Product implements Serializable {
 
 	}
 
+	private float calAverageStar() {
+		int sum = 0;
+
+		for (Review review : reviews) {
+			sum += review.getStars();
+		}
+
+		int averageStar = sum == 0 ? sum : sum / reviews.size();
+
+		return averageStar;
+	}
+
 	static public Product find(int id) {
 		ProductDAO productDAO = new ProductDAO();
 		Product product = productDAO.getProduct(id);
 
 		return product;
 	}
-	
 
 	public int getDiscount() {
 		return discount;
 	}
-	
+
 	public void setDiscount(int discount) {
 		this.discount = discount;
 	}
-	
+
 	public int getPriceDiscount() {
-		return price - (discount * price)/ 100;
-	}
-	
-	public List<Review> getReviews() {
-		return reviews;
+		return price - (discount * price) / 100;
 	}
 
 	public void setReviews(List<Review> reviews) {
 		this.reviews = reviews;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -238,6 +243,34 @@ public class Product implements Serializable {
 		this.supplier = supplier;
 	}
 
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public int sumStar(int numStar) {
+		int sum = 0;
+
+		for (Review review : reviews) {
+			sum += review.getStars() == numStar ? 1 : 0;
+		}
+
+		return sum;
+	}
+
+	public double getNStar(int numStar) {
+		int sumStar = sumStar(numStar);
+
+		return sumStar == 0 ? sumStar
+				: Math.round((sumStar * 100 / reviews.size()));
+	}
+
+	public int getStar() {
+		return Math.round(calAverageStar());
+	}
+
+	public float getAverageStar() {
+		return calAverageStar();
+	}
 
 	public List<Photo> getPhotos() {
 		return photos;

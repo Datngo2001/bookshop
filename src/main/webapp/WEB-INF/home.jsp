@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
+	pageEncoding="UTF-8" errorPage="error.jsp"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <!-- Local -->
   <link rel="stylesheet" href="./css/home.css">
-  <title>E-Book Shop</title>
+  <!-- SEO -->
+  <title>E-Book Store | World of Books, Novels & Comics</title>
+  <meta name="description" content="E-Book Store discover a wonderful selection books, novels from booksellers located around the world. We have every books you need, just come and see ">
 </head>
 
 <body>
@@ -106,34 +108,50 @@
                </form>
               </div>
             </div>
-          </div>
-          <div class="home-product">
-            <div class="grid_row">
-              <c:forEach var="product" items="${list_product}">
-                <c:url var="link" value="home">
-                  <c:param name="command" value="LOAD" />
-                  <c:param name="productID" value="${product.id}" />
-                </c:url>
+        </div>
+    </div>
+    <div class="app_container">
+        <div class="grid">
+            <div class="grid_row app-content">
+                <div class="grid_column-2">
+                    <nav class="category">
+                        <h3 class="category-heading"> <i class="category-heading-icon fas fa-list"></i>Content</h3>
+                        <ul class="category-list">
+                            <li class="category-item category--active">
+                                <a href="" class="category-link">Romance <%= request.getParameter("named") %></a>
+                            </li>
+                            <li class="category-item">
+                                <a href="" class="category-link">Science Fiction & Fantasy</a>
+                            </li>
+                            <li class="category-item">
+                                <a href="" class="category-link">Comics, Graphic Novels, & Manga</a>
+                            </li>
+                            <li class="category-item">
+                                <a href="" class="category-link">Business & Finance</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <div class="grid_column-10">
 
-                <div class="grid_column-2-5">
-                  <div class="card-trending">
-                    <div class="product-item border-card">
-                      <a class="card-link-product" href="${link}">
-                       <div class="product-item-img" style="background-image: url(${product.pictureUrl});"></div>
-                      </a>
-                      <p class="trending-item-name">${product.getProductName()}</p>
-                      <p class="trending-item-author">${product.nameAuthor}</p>
-                      <div class="product-action">
-                        <span class="product-action-heart product-action-liked">
-                          <i class="like-icon far fa-heart"></i>
-                          <i class="liked-icon fas fa-heart"></i>
-                        </span>
-                        <div class="product-action-star">
-                          <i class="star-gold fas fa-star"></i>
-                          <i class="star-gold fas fa-star"></i>
-                          <i class="star-gold fas fa-star"></i>
-                          <i class="star-gold fas fa-star"></i>
-                          <i class="star-gold far fa-star"></i>
+                    <div class="home-filter">
+                        <div class="sort-by">
+                            <span class="home-label">Sorting by</span>
+                            <button class="btn-product home-filter-btn">Popular</button>
+                            <button class="btn-product btn-primary home-filter-btn">Newest</button>
+                            <button class="btn-product home-filter-btn">Selling</button>
+                        </div>
+                        <div class="select-input">
+                            <span class="select-price-label">Price</span>
+                            <i class="fas fa-angle-down select-price-icon"></i>
+                            <ul class="select-input-list">
+                                <li class="select-input-item">
+                                    <a href="" class="select-input-link">Increase</a>
+                                </li>
+                                <li class="select-input-item">
+                                    <a href="" class="select-input-link">Decrease</a>
+                                </li>
+                            </ul>
                         </div>
                       </div>
                       <div class="trending-item-price">
@@ -163,16 +181,65 @@
                       </c:otherwise>
                       </c:choose>
                     </div>
-                  </div>
-                </div>
-              </c:forEach>
+                    <div class="home-product">
+                        <div class="grid_row">
+                            <c:forEach var="product" items="${list_product}">
+                                <c:url var="link" value="home">
+                                    <c:param name="command" value="LOAD" />
+                                    <c:param name="productID" value="${product.id}" />
+                                </c:url>
 
+                                <div class="grid_column-2-5">
+                                    <div class="card-trending">
+                                        <div class="product-item border-card">
+                                            <a class="card-link-product" href="${link}">
+                                                <div class="product-item-img" style="background-image: url(${product.pictureUrl});"></div>
+                                            </a>
+                                            <p class="trending-item-name">${product.getProductName()}</p>
+                                            <p class="trending-item-author">${product.nameAuthor}</p>
+                                            <div class="product-action">
+                                                <span class="product-action-heart product-action-liked">
+                                                    <i class="like-icon far fa-heart"></i>
+                                                    <i class="liked-icon fas fa-heart"></i>
+                                                </span>
+                                                <div class="product-action-star">
+                                                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                                                        <i class="star-gold fas fa-star"></i>
+                                                    </c:forEach>
+                                                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                                                        <i class="star-gold far fa-star"></i>
+                                                    </c:forEach>
+                                                </div>
+                                            </div>
+                                            <div class="trending-item-price">
+                                                <span class="price-old mr-up">${product.price}</span>
+                                                <span class="price-current mr-up">17.790d</span>
+                                            </div>
+                                            <form action="${pageContext.request.contextPath}/cart" method="post">
+                                                <input type="hidden" name="productId" value="${product.id}">
+                                                <input type="hidden" name="quantity" value="1">
+                                                <input type="hidden" name="action" value="ADD">
+                                                <input type="submit" class="btn_add-to-cart" value="Add to cart" />
+                                            </form>
+
+                                            <div class="product-item-favourite">
+                                                <i class="fas fa-check"></i> Interesting
+                                            </div>
+                                            <div class="product-item-sale">
+                                                <span class="product-item-label">Discount</span>
+                                                <span class="product-item-percent">23%</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
   
 <br>
@@ -240,20 +307,20 @@
           </div>
           </c:forEach>
         </div>
-      </div>
     </div>
-    <br/>
-    <br/>
-   	<div class="grid">
-      <div class="grid_row">
-        <div class="trending_book">
-          <div class="trending_book-header">
-            <span class="trending_book-title">Popular eBook Pre-orders <br> 
-            <p class="trending_book-title-after">
-            Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p></span>
-            <ul class="trending-list mrtop">
-              <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
-              <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
+    <br />
+    <br />
+    <div class="grid">
+        <div class="grid_row">
+            <div class="trending_book">
+                <div class="trending_book-header">
+                    <span class="trending_book-title">Popular eBook Pre-orders <br>
+                        <p class="trending_book-title-after">
+                            Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p>
+                    </span>
+                    <ul class="trending-list mrtop">
+                        <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
+                        <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
 
             </ul>
           </div>
@@ -383,7 +450,6 @@
             </c:forEach>
           </div>
         </div>
-      </div>
     </div>
     </div>
   <br> <br>

@@ -43,20 +43,20 @@ public class HomeController extends HttpServlet {
 				theCommand = "HOME";
 			}
 			switch (theCommand) {
-			case "HOME":
-				//new Seed().doSeed();
-				request.setAttribute("username", request.getSession().getAttribute("username"));
-				loadPopularOrder(request, response);
-				loadTrendingBook(request, response);
-				loadRomanceBook(request, response);
-				goHomePage(request, response);
-				
-				break;
-			case "LOAD":
-				detailProduct(request, response);
-				break;
-			default:
-				goHomePage(request, response);
+				case "HOME":
+					new Seed().doSeed();
+					request.setAttribute("username", request.getSession().getAttribute("username"));
+					loadPopularOrder(request, response);
+					loadTrendingBook(request, response);
+					loadRomanceBook(request, response);
+					goHomePage(request, response);
+
+					break;
+				case "LOAD":
+					detailProduct(request, response);
+					break;
+				default:
+					goHomePage(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -67,14 +67,14 @@ public class HomeController extends HttpServlet {
 		List<Product> list_product = new ArrayList<Product>();
 		list_product = productDao.getRomanceBook();
 		request.setAttribute("romance_book", list_product);
-		
+
 	}
 
 	private void loadTrendingBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> list_product = new ArrayList<Product>();
 		list_product = productDao.getProducts(36);
 		request.setAttribute("trending_book", list_product);
-		
+
 	}
 
 	private void loadPopularOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -90,7 +90,7 @@ public class HomeController extends HttpServlet {
 		try {
 			productId = request.getParameter("productID");
 			product = productDao.getProduct(Integer.parseInt(productId));
-			
+
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
@@ -108,38 +108,45 @@ public class HomeController extends HttpServlet {
 		String next = request.getParameter("next");
 		List<Product> list_product = productDao.getProducts();
 		String sorting = request.getParameter("sort");
-		if (sorting == null) sorting = "INC";
+		if (sorting == null)
+			sorting = "INC";
 		int index;
 		try {
 			// set index
-			if (next == null) index = 0;
+			if (next == null)
+				index = 0;
 
-			else index = Integer.parseInt(next);
+			else
+				index = Integer.parseInt(next);
 
 			// get action to execute
-			if (action == null) action = "";
+			if (action == null)
+				action = "";
 
-			if (action.equals("PREV")) index--;
+			if (action.equals("PREV"))
+				index--;
 
-			else if (action.equals("NEXT")) index++;
-			
+			else if (action.equals("NEXT"))
+				index++;
+
 			int limit = list_product.size() / 15;
 			// when user next or prev over page available we set default for this case
-			if (index < 0) index = 0;
-			else if (index > limit - 1) index = limit;
-			
-			if(sorting.equals("INC")) {
+			if (index < 0)
+				index = 0;
+			else if (index > limit - 1)
+				index = limit;
+
+			if (sorting.equals("INC")) {
 				product = productDao.getProducts(index * 15);
 				request.setAttribute("decrease", "INC");
-			}
-			else {
+			} else {
 				product = productDao.getProductsDes(index * 15);
 				request.setAttribute("decrease", "DES");
 			}
-			
+
 			request.setAttribute("next", index);
 			request.setAttribute("max", limit);
-			
+
 		} catch (Exception e) {
 			log("productDao error", e);
 		}

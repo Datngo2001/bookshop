@@ -31,10 +31,13 @@ public class RootAdminFilter implements Filter {
 		try {
 			roleId = (int) session.getAttribute("roleId");
 		} catch (NullPointerException e) {
-			request.getRequestDispatcher("NoPermission.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/admin/noPermission.jsp").forward(request, response);
 			return;
 		}
-
+		if (roleId != 1) {
+			request.getRequestDispatcher("/WEB-INF/admin/noPermission.jsp").forward(request, response);
+			return;
+		}
 		chain.doFilter(request, response);
 	}
 

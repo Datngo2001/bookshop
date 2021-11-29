@@ -8,7 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.data.DAOs.FileDAO;
 import com.data.DAOs.ProductDAO;
 import com.data.DAOs.ReviewDAO;
 import com.model.Product;
@@ -47,12 +49,12 @@ public class ProductItemController extends HttpServlet {
 			}
 
 			switch (action) {
-			case "LOAD":
-				loadProductItem(req, res);
-				loadReviews(req, res);
-				break;
-			default:
-				loadProductItem(req, res);
+				case "LOAD":
+					loadProductItem(req, res);
+					loadReviews(req, res);
+					break;
+				default:
+					loadProductItem(req, res);
 			}
 
 			req.getRequestDispatcher(nextUrl).forward(req, res);
@@ -63,14 +65,27 @@ public class ProductItemController extends HttpServlet {
 
 	private void loadProductItem(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = 0;
+		int userId = 0;
 		Product product = null;
+		HttpSession session = request.getSession();
 
 		try {
 			id = Integer.parseInt(request.getParameter("id"));
 			product = Product.find(id);
 
+			if (session.getAttribute("userId") != null) {
+				userId = Integer.parseInt(session.getAttribute("userId").toString());
+
+				System.out.println("User id: " + userId + " Product id: " + id);
+
+				System.out.println("Is user own file: " + new FileDAO().isUserOwnThisFile(userId,
+						id));
+				request.setAttribute("isUserOwnFile", new FileDAO().isUserOwnThisFile(userId,
+						id));
+			}
+
 			if (product == null) {
-				request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
+				response.sendRedirect(request.getContextPath() + "/home");
 				return;
 			}
 
@@ -82,35 +97,21 @@ public class ProductItemController extends HttpServlet {
 
 	private void loadReviews(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		List<Review> reviews = null;
-		ReviewDAO reviewDAO = new ReviewDAO();
 		String productId = req.getParameter("id");
-		float averageStar = 0;
 
 		try {
-			reviews = reviewDAO.getReviews(productId);
-			int sumStar = 0;
-			for (Review review : reviews) {
-				sumStar += review.getStars();
-			}
-			if (reviews.size() != 0) {
-				averageStar = sumStar / reviews.size();
-			}
-		
-			
-			
+			reviews = Product.find(Integer.parseInt(productId)).getReviews();
+
 		} catch (Exception e) {
 			System.out.println("reviewDAO error!" + e);
 			log("reviewDAO error!", e);
 		}
 
 		req.setAttribute("reviews", reviews);
-		req.setAttribute("averageStar", averageStar);
-		req.setAttribute("averageStarInt", Math.round(averageStar));
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

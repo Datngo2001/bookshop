@@ -9,7 +9,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Global -->
     <c:import url="sharedView/global.html" />
-    <!-- <link rel="stylesheet" href="./css/bootstrap.css" /> -->
     <!-- Jquery validate -->
     <script
       src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
@@ -78,9 +77,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
           <div class="product-rate">
             <div class="product-stars">
-              <c:forEach var="i" begin="1" end="${averageStarInt}">
+              <c:forEach var="i" begin="1" end="${product.getStar()}">
+                <i class="fas fa-star"></i>
               </c:forEach>
-              <span>${averageStar}</span>
+              <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                <i class="far fa-star"></i>
+              </c:forEach>
+              <span>${product.getAverageStar()}</span>
             </div>
             <span>(${reviews.size()} <span>đánh giá</span>)</span>
             <div class="product-addon">
@@ -92,7 +95,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </div>
             </div>
           </div>
-          <div class="product-price"> <span class="price-old"> ${product.price} d </span>&nbsp; &nbsp;  ${product.getPriceDiscount()} d</div>
+          <div class="product-price"> <span class="price-old"> ${product.price} đ</span>&nbsp; &nbsp;  ${product.getPriceDiscount()} đ</div>
           <div class="product-quantity-wrapper">
             <label>Số lượng:</label>
             <div class="product-quantity">
@@ -105,6 +108,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </a>
             </div>
           </div>
+          <c:if test="${isUserOwnFile == true}">
+            <div class="download-wrapper">
+                <a href="${product.getFile().getUrl()}">
+                  <div class="product-btn download">Tải về</div>
+                </a>
+              </div>
+          </c:if>
         </div>
       </section>
       <section class="product-details">
@@ -138,11 +148,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         <section class="product-rating">
           <div class="rating-view">
             <div class="user-rating">
-              ${averageStar}<span class="rating">/5</span>
+              ${product.getAverageStar()}<span class="rating">/5</span>
             </div>
             <div class="rating-star">
-              <c:forEach var="i" begin="1" end="${averageStarInt}">
+              <c:forEach var="i" begin="1" end="${product.getStar()}">
                 <i class="fas fa-star"></i>
+              </c:forEach>
+              <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                <i class="far fa-star"></i>
               </c:forEach>
             </div>
             <span class="number-rating"
@@ -152,43 +165,41 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           <div class="review-rating-container">
             <div class="review-rating">
               <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+                <c:forEach var="i" begin="1" end="5">
+                  <i class="fas fa-star"></i>
+                </c:forEach>
               </div>
-              <span>100%</span>
+              <span>${product.getNStar(5)}%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <c:forEach var="i" begin="1" end="4">
+                  <i class="fas fa-star"></i>
+                </c:forEach>
+              </div>
+              <span>${product.getNStar(4)}%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <c:forEach var="i" begin="1" end="3">
+                  <i class="fas fa-star"></i>
+                </c:forEach>
+              </div>
+              <span>${product.getNStar(3)}%</span>
+            </div>
+            <div class="review-rating">
+              <div class="rating-star">
+                <c:forEach var="i" begin="1" end="2">
+                  <i class="fas fa-star"></i>
+                </c:forEach>
+              </div>
+              <span>${product.getNStar(2)}%</span>
             </div>
             <div class="review-rating">
               <div class="rating-star">
                 <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
               </div>
-              <span>100%</span>
-            </div>
-            <div class="review-rating">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <span>100%</span>
-            </div>
-            <div class="review-rating">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-              </div>
-              <span>100%</span>
-            </div>
-            <div class="review-rating">
-              <div class="rating-star">
-                <i class="fas fa-star"></i>
-              </div>
-              <span>100%</span>
+              <span>${product.getNStar(1)}%</span>
             </div>
           </div>
           <c:choose>
@@ -279,6 +290,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <div class="rating-star">
                   <c:forEach var="i" begin="1" end="${review.getStars()}">
                     <i class="fas fa-star"></i>
+                  </c:forEach>
+                  <c:forEach var="i" begin="1" end="${5 - review.getStars()}">
+                    <i class="far fa-star"></i>
                   </c:forEach>
                   <c:if test="${review.getUserName() == sessionScope.username}">
                     <div class="comment-menu">

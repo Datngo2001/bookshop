@@ -17,6 +17,9 @@ public class PhotoDAO {
 
             Product product = session.get(Product.class, productId);
             List<Photo> photos = product.getPhotos();
+            if (photos.size() <= 0) {
+                photo.setMain(true);
+            }
             if (photo.isMain() == true) {
                 for (Photo producPhoto : photos) {
                     producPhoto.setMain(false);
