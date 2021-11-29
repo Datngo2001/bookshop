@@ -30,7 +30,7 @@ public class Review implements Serializable {
     private int stars;
 
     // Relation
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     private Product product;
     @ManyToOne
     private User user;

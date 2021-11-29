@@ -26,7 +26,8 @@ public class Cart implements Serializable {
 	// Relation
 	@OneToOne
 	private User user;
-	@OneToMany(mappedBy = "cart", fetch = FetchType.EAGER)
+	
+	@OneToMany(mappedBy = "cart")
 	private List<LineItem> items = new ArrayList<LineItem>();
 
 	public Cart() {
