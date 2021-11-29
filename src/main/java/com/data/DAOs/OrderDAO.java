@@ -41,13 +41,10 @@ public class OrderDAO {
     	CartDAO carDao = new CartDAO();
     	UserDAO userDao = new UserDAO();
     	ProductDAO productDao = new ProductDAO();
-    	LineItem line_item = null;
 		List<LineItem> items = carDao.getListItemForUser(uid);
-		for (Iterator<LineItem> i = items.iterator(); i.hasNext();) {
-			line_item = i.next();
+		for (LineItem line_item: items) {
 			Product product = productDao.getProduct(line_item.getProduct().getId());
 			Item item = new Item(1, product.price, order, product);
-			   
 			userDao.addItemToMyProduct(item);
 		}	
     }

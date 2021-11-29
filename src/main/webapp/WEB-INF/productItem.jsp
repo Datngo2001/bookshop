@@ -37,7 +37,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           <div class="button-wrapper">
 
 			<div class="product-btn add-to-cart">
-                          <form action="cart">
+             <form action="cart">
             	<input type="hidden" name="productId" value="${product.id}">
             	<input type="hidden" name="quantity" value="1">
             	<input type="hidden" name="action" value="ADD">
@@ -47,10 +47,13 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
              </form>
             </div>
             <div class="product-btn buy-now">
-              <form action="confirm">
+              <form action="confirm" method="post">
+              <input type="hidden" name="action" value="BUYNOW">
+               <input type="hidden" name="productId" value="${product.id}">
+            	<input type="hidden" name="quantity" value="1">
                <button type="submit" class="btn-action"> 
                <span class="buy-now-span">Mua ngay</span> </button>
-               <input type="hidden" name="price" value="${product.price}">
+               <input type="hidden" name="price" value="${product.getPriceDiscount()}">
 			</form>
             </div>
           </div>

@@ -27,11 +27,13 @@ public class returnController extends HttpServlet {
 		userDao = new UserDAO();
 
     }
+    @SuppressWarnings("rawtypes")
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String nextUrl = "WEB-INF/vnpay/vnpay_return.jsp";
 	String vnp_TransactionStatus = "";
 	//hash attribute
-	   Map fields = new HashMap();
+	  
+	Map fields = new HashMap();
 	   for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
 	       String fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
 	       String fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
@@ -40,8 +42,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	       }
 	   }
 	   //get attribute
-	   float amount = 10;
-	   //float amount = Float.parseFloat((request.getParameter("vnp_Amount"))) / 100;
+	   float amount = Float.parseFloat((request.getParameter("vnp_Amount"))) / 100;
 	   String code = request.getParameter("vnp_TransactionNo");
 	   String day = request.getParameter("vnp_PayDate");
 	   //String info = request.getParameter("vnp_OrderInfo");
@@ -79,7 +80,6 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 				orderDao.addAllItem(uid, order);
 	    	   } 
 	    	   catch (Exception e) {
-
 				e.printStackTrace();
 	    	   }  		 
 		    	   		    	     			    	   
