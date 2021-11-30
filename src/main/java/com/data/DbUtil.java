@@ -14,7 +14,7 @@ import com.model.*;
 public class DbUtil {
 	private static SessionFactory sessionFactory;
 
-	public static SessionFactory getSessionFactory() {
+	public static SessionFactory getSessionFactorÝ() {
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();
@@ -32,8 +32,8 @@ public class DbUtil {
 
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				//settings.put(Environment.HBM2DDL_AUTO, "update");
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
+				//settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);
@@ -63,7 +63,7 @@ public class DbUtil {
 
 	}
 
-	public static SessionFactory getSessionFactorys() {
+	public static SessionFactory getSessionFactory() {
 		if (sessionFactory == null) {
 			try {
 				Configuration configuration = new Configuration();

@@ -10,6 +10,7 @@ import org.hibernate.*;
 import com.data.DbUtil;
 import com.model.Photo;
 import com.model.Product;
+import com.model.Review;
 
 public class ProductDAO {
 	public ProductDAO() {
@@ -50,7 +51,17 @@ public class ProductDAO {
 		}
 		return null;
 	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getHumanBook() {
+		try {
+			return DbUtil.getSessionFactory().openSession().createQuery("From Product")
+						.setFirstResult(56).setMaxResults(4).list();
 
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return null;
+		}
 	@SuppressWarnings("unchecked")
 	public List<Product> getRomanceBook() throws Exception {
 		try {
@@ -62,7 +73,7 @@ public class ProductDAO {
 		}
 		return null;
 	}
-
+	
 	public Product addProducts(Product product) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
@@ -159,6 +170,26 @@ public class ProductDAO {
 			return null;
 		} finally {
 			em.close();
+		}
+	}
+
+	public Product getProductwithFileAndReview(int productId) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			Product product = session.get(Product.class, productId);
+			List<Review> reviews = product.getReviews();
+			product.setReviews(reviews);
+
+			transaction.commit();
+			return product;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return null;
 		}
 	}
 }

@@ -38,10 +38,10 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				        	</div>
 				        </div>
 				        <div class="cart cart-price cart-column" style="display: flex;">
-				        	<p><c:out value="${item.getPriceDiscount()}"/></p> 
+				        	<p class="price-discount"><c:out value="${item.getPriceDiscount()}"/></p> 
 				        </div>
-				        <div class="cart-quantity cart-column">
-							<form action="cart" method="post">
+				        <div class="cart-quantity cart-column" >
+							<form action="cart" method="post" class="hide-quatity">
 								<input type="hidden" name="id" value="${item.id}"/>
 				            	<input class="cart-quantity-input" type="number" name="quantity" 
 									value="${item.quantity}" readonly/>
@@ -72,7 +72,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 					</form>
 					<form action="authorize_payment">
 						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
-						<button type="submit" class="btn btn-primary vnpay">Paypal</button>
+						<button type="submit" class="btn btn-primary vnpay"> PAYPAL</button>
 					</form>
 					
 					<div id="smart-button-container">
@@ -83,7 +83,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 				</div>
 			</div>
 		</div>
-		<a href="home"><button class="btn btn-primary vnpay">Continue Shoping</button></a>
+		<a href="home" class="gohome"><button class="btn btn-primary vnpay">Continue Shoping</button></a>
 	</div>
 	<br/>
 	<c:import url="sharedView/footer.jsp"></c:import>

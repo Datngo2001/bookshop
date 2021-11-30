@@ -509,6 +509,70 @@ p.trending-item-author {
   align-items: baseline;
   justify-content: space-between;
 }
+
+
+
+
+.relative-site {
+  position: relative;
+}
+
+.flex-site {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  margin-left: 33.33%;
+}
+
+.btn-watch {
+  border: 2px solid var(--bs-red);
+  color: var(--bs-red);
+  width: 200px;
+  height: 44px;
+  border-radius: 5px;
+  font-weight: 600;
+  background: var(--bs-white)
+}
+.side-contain {
+  border: 1px solid var(--bs-gray-200);
+border-radius: 1px;
+flex-wrap: wrap;
+}
+button.center {
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+.list-filter {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+}
+.link-filter {
+  margin: 0 8px;
+}
+.link-action {
+  border: 1px solid var(--bs-orange);
+  padding: 3px 15px;
+  border-radius: 5px;
+  color: var(--bs-orange);
+  font-weight: 600;
+}
+.header-colection {
+  border-bottom: 1px solid var(--bs-gray-300);
+  margin: 5px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+.list-left {
+  margin-left: -48px;
+}
+.footer-side {
+  margin-top: 50px;;
+}
+
 /*The most product*/
 
 @media (max-width: 574px) {
@@ -583,15 +647,16 @@ p.trending-item-author {
   padding-right: 5px;
   width: 25%;
   }
-  .select-input {
-  	display: none;
-  }
+
   .trending_book-header {
   	padding: 0 10px;
   }
   .trending-list {
   	justify-content: space-around;
   	
+  }
+  .sell {
+  display: none;
   }
   
   .container-card {
@@ -646,7 +711,13 @@ p.trending-item-author {
   padding-right: 12px;
   width: 100%;
 }
-  
+.list-left {
+	display: none;
+}
+  .list-right {
+  justify-content: flex-start;
+  }
+
 }
 
 @media screen and (max-width: 640px) {
@@ -659,4 +730,5 @@ p.trending-item-author {
   .dataTables_wrapper .dataTables_filter {
     margin-top: 0.5em;
   }
+  
 }

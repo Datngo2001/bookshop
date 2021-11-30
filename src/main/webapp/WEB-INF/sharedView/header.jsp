@@ -3,7 +3,7 @@
   <header class="header" id="header">
     <div class="grid">
       <nav class="navbar-header">
-        <ul class="navbar_list">
+        <ul class="navbar_list list-left">
           <li class="navbar-item navbar-has-qr navbar-separate">
             Wellcome to book store
             <!--Header QR-->
@@ -26,7 +26,7 @@
             <i class="navbar_list-icon fab fa-github"></i>
           </li>
         </ul>
-        <ul class="navbar_list">
+        <ul class="navbar_list list-right">
           <li class="navbar-item navbar-has-notify">
             <i class="navbar_list-icon fas fa-bell"></i>
             Notifications
@@ -88,12 +88,13 @@
               ><i class="navbar_list-icon fas fa-question-circle"></i> Help?</a
             >
           </li>
-          <li class="navbar-item">
+
+          <c:choose>
+            <c:when test="${sessionScope.userId == null}">
+                      <li class="navbar-item">
             <a href="register" class="navbar-item-link">Sign up</a>
           </li>
           <li class="navbar-item">|</li>
-          <c:choose>
-            <c:when test="${sessionScope.userId == null}">
               <li class="navbar-item">
                 <a href="login" class="navbar-item-link">Log in</a>
               </li>

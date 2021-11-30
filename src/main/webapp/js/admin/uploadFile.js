@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', async () => {
 
     const command = document.getElementById("command").value

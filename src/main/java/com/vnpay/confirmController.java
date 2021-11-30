@@ -76,7 +76,7 @@ public class confirmController extends HttpServlet {
 					priceDiscount = amount - (int) promo.getValue();
 				}
 				else {
-					priceDiscount = amount -  (amount *(int) promo.getValue());
+					priceDiscount = amount -  (amount *(int) promo.getValue()) / 100;
 				}
 				request.setAttribute("priceTotal", priceDiscount);
 				request.getSession().setAttribute("check", "OK");

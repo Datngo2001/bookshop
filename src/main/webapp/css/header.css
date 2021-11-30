@@ -518,5 +518,11 @@ p.trending-item-name-1 {
     align-items: center;
     
 }
+.list-left {
+	display: none;
+}
+  .list-right {
+  justify-content: flex-start;
+  }
 
 }

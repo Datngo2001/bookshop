@@ -8,7 +8,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- Global -->
     <c:import url="sharedView/global.html" />
-    <link rel="stylesheet" href="./css/bootstrap.css" />
+
 
     <!-- CSS-->
     <link rel="stylesheet" href="./css/swiper.min.css" />
@@ -26,7 +26,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             <c:param name="id" value="${product.id}" />
           </c:url>
           <div class="card">
-            <a href="${productLink}">
+            <a href="${productLink}" style="color: 	#77CEED;">
               <div class="img">
                 <img src="${product.pictureUrl}" />
               </div>

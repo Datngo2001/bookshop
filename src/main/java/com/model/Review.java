@@ -15,6 +15,8 @@ import javax.persistence.Table;
 
 import com.data.DAOs.ReviewDAO;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -30,7 +32,7 @@ public class Review implements Serializable {
     private int stars;
 
     // Relation
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Product product;
     @ManyToOne
     private User user;

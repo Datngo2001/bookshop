@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class HomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-
+			response.setContentType("text/html;chaset=UTF-8");
 			String theCommand = request.getParameter("command");
 			if (theCommand == null) {
 				theCommand = "HOME";
@@ -49,11 +50,15 @@ public class HomeController extends HttpServlet {
 					loadPopularOrder(request, response);
 					loadTrendingBook(request, response);
 					loadRomanceBook(request, response);
+					loadHumanBook(request, response);
 					goHomePage(request, response);
 
 					break;
 				case "LOAD":
 					detailProduct(request, response);
+					break;
+				case "More":
+					loadHumanBook(request, response);
 					break;
 				default:
 					goHomePage(request, response);
@@ -61,6 +66,35 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	private void loadHumanBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		List<Product> list_product = new ArrayList<Product>();
+		list_product = productDao.getHumanBook();
+		PrintWriter writer = response.getWriter();
+		for(Product product: list_product) {
+			writer.println("<div class=\"side-contain\" style=\"display: flex; flex-wrap: nowrap;\">\r\n"
+					+ "            <div class=\"img-sidebar\">\r\n"
+					+ "              <img style=\"width: 160px\" src=\""+product.getPictureUrl()+"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
+					+ "            </div>\r\n"
+					+ "            <div class=\"sidebar-content\">\r\n"
+					+ "              <p class=\"trending-item-name\">"+ product.getProductName() + "</p>\r\n"
+					+ "              <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
+					+ "              <div class=\"product-action\">\r\n"
+					+ "                <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                  <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                  <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                </span>\r\n"
+
+					+ "              </div>\r\n"
+					+ "                  <div class=\"trending-item-price\">\r\n"
+					+ "                    <span class=\"price-old mr-up\"> " + product.getPrice() + "</span>\r\n"
+					+ "                    <span class=\"price-current mr-up\">" + product.getPriceDiscount() + "</span>\r\n"
+					+ "                  </div>\r\n"
+					+ "            </div>\r\n"
+					+ "          </div>");
+		}
+		
 	}
 
 	private void loadRomanceBook(HttpServletRequest request, HttpServletResponse response) throws Exception {

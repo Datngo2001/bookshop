@@ -60,27 +60,27 @@
         <div class="grid_column-10">
 
           <div class="home-filter">
-          	<div class="sort-by">
-            <span class="home-label">Sorting by</span>
-            <button class="btn-product home-filter-btn">Popular</button>
-            <button class="btn-product btn-primary home-filter-btn">Newest</button>
-            <button class="btn-product home-filter-btn">Selling</button>
+            <div class="sort-by">
+              <span class="home-label">Sorting by</span>
+              <button class="btn-product home-filter-btn">Popular</button>
+              <button class="btn-product btn-primary home-filter-btn">Newest</button>
+              <button class="btn-product home-filter-btn sell">Selling</button>
             </div>
             <div class="select-input">
               <span class="select-price-label">Price</span>
               <i class="fas fa-angle-down select-price-icon"></i>
               <ul class="select-input-list">
                 <li class="select-input-item">
-                	<form action="">
-                	<input type="hidden" name="sort" value="INC">
-                		<button class="select-input-link btn-sort">Increase</button>
-                	</form>
-                  
+                  <form action="">
+                    <input type="hidden" name="sort" value="INC">
+                    <button class="select-input-link btn-sort">Increase</button>
+                  </form>
+
                 </li>
                 <li class="select-input-item">
                   <form action="">
-                  	<input type="hidden" name="sort" value="DEC">
-                  	<button class="select-input-link btn-sort">Decrease</button>
+                    <input type="hidden" name="sort" value="DEC">
+                    <button class="select-input-link btn-sort">Decrease</button>
                   </form>
                 </li>
               </ul>
@@ -88,22 +88,22 @@
             <div class="home-page">
 
               <div class="filter-control" style="display: flex">
-				<div class="info-page" style="display: flex;">
-					<label> ${next + 1} </label> / <label> ${max + 1}</label>
-				</div>
-              <form action="home" method="post">
-              	<input type="hidden" name="action" value="PREV">
-              	<input type="hidden" name="sort" value="${decrease}">
-              	<input type="hidden" name="next" value="${next}">
-				<button type="submit" class="filter-page-btn"><i class="fas fa-angle-left"></i></button>
-              </form>
-              
-              <form action="home" method="post">
-              <input type="hidden" name="action" value="NEXT">
-                <input type="hidden" name="next" value="${next}">
-                <input type="hidden" name="sort" value="${decrease}">
-              	<button type="submit" class="filter-page-btn"><i class="fas fa-angle-right"></i></button>
-               </form>
+                <div class="info-page" style="display: flex;">
+                  <label> ${next + 1} </label> / <label> ${max + 1}</label>
+                </div>
+                <form action="home" method="post">
+                  <input type="hidden" name="action" value="PREV">
+                  <input type="hidden" name="sort" value="${decrease}">
+                  <input type="hidden" name="next" value="${next}">
+                  <button type="submit" class="filter-page-btn"><i class="fas fa-angle-left"></i></button>
+                </form>
+
+                <form action="home" method="post">
+                  <input type="hidden" name="action" value="NEXT">
+                  <input type="hidden" name="next" value="${next}">
+                  <input type="hidden" name="sort" value="${decrease}">
+                  <button type="submit" class="filter-page-btn"><i class="fas fa-angle-right"></i></button>
+                </form>
               </div>
             </div>
           </div>
@@ -119,7 +119,7 @@
                   <div class="card-trending">
                     <div class="product-item border-card">
                       <a class="card-link-product" href="${link}">
-                       <div class="product-item-img" style="background-image: url(${product.pictureUrl});"></div>
+                        <div class="product-item-img" style="background-image: url(${product.pictureUrl});"></div>
                       </a>
                       <p class="trending-item-name">${product.getProductName()}</p>
                       <p class="trending-item-author">${product.nameAuthor}</p>
@@ -128,40 +128,40 @@
                           <i class="like-icon far fa-heart"></i>
                           <i class="liked-icon fas fa-heart"></i>
                         </span>
-                                                <div class="product-action-star">
-                                                    <c:forEach var="i" begin="1" end="${product.getStar()}">
-                                                        <i class="star-gold fas fa-star"></i>
-                                                    </c:forEach>
-                                                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
-                                                        <i class="star-gold far fa-star"></i>
-                                                    </c:forEach>
-                                                </div>
+                        <div class="product-action-star">
+                          <c:forEach var="i" begin="1" end="${product.getStar()}">
+                            <i class="star-gold fas fa-star"></i>
+                          </c:forEach>
+                          <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                            <i class="star-gold far fa-star"></i>
+                          </c:forEach>
+                        </div>
                       </div>
                       <div class="trending-item-price">
                         <span class="price-old mr-up">${product.price}</span>
-                        
+
                         <span class="price-current mr-up">${product.getPriceDiscount()}</span>
                       </div>
                       <form action="${pageContext.request.contextPath}/cart" method="post">
-                      		<input type="hidden" name="productId"  value="${product.id}">
-                      		<input type="hidden" name="quantity"  value="1">
-                      		<input type="hidden" name="action"  value="ADD">
-                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
+                        <input type="hidden" name="productId" value="${product.id}">
+                        <input type="hidden" name="quantity" value="1">
+                        <input type="hidden" name="action" value="ADD">
+                        <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                       </form>
 
                       <div class="product-item-favourite">
                         <i class="fas fa-check"></i> Interesting
                       </div>
                       <c:choose>
-                      <c:when test="${product.discount == 0 }">
-                      
-                      </c:when>
-                      <c:otherwise>
-                      <div class="product-item-sale">
-                        <span class="product-item-label">Discount</span>
-                        <span class="product-item-percent">${product.getDiscount()}%</span>
-                      </div>
-                      </c:otherwise>
+                        <c:when test="${product.discount == 0 }">
+
+                        </c:when>
+                        <c:otherwise>
+                          <div class="product-item-sale">
+                            <span class="product-item-label">Discount</span>
+                            <span class="product-item-percent">${product.getDiscount()}%</span>
+                          </div>
+                        </c:otherwise>
                       </c:choose>
                     </div>
                   </div>
@@ -175,29 +175,29 @@
     </div>
   </div>
 
-  
-<br>
-	<div class="grid">
-      <div class="grid_row">
-        <div class="trending_book">
-          <div class="trending_book-header">
-            <span class="trending_book-title">Trending Now in eBooks</span>
-            <ul class="trending-list">
-              <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
-              <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
-              <li class="trending_item"><a href="" class="trending_item-link">See All</a></li>
-            </ul>
-          </div>
-          <div class="carousel owl-carousel">
+
+  <br>
+  <div class="grid">
+    <div class="grid_row">
+      <div class="trending_book">
+        <div class="trending_book-header">
+          <span class="trending_book-title">Trending Now in eBooks</span>
+          <ul class="trending-list">
+            <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
+            <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
+            <li class="trending_item"><a href="" class="trending_item-link">See All</a></li>
+          </ul>
+        </div>
+        <div class="carousel owl-carousel">
           <c:forEach var="item" items="${trending_book}">
-                <c:url var="link" value="home">
-                  <c:param name="command" value="LOAD" />
-                  <c:param name="productID" value="${item.id}" />
-                </c:url>
+            <c:url var="link" value="home">
+              <c:param name="command" value="LOAD" />
+              <c:param name="productID" value="${item.id}" />
+            </c:url>
             <div class="card-trending">
               <div class="product-item border-card">
-              <a href="${link}">
-                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                <a href="${link}">
+                  <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
                 </a>
                 <p class="trending-item-name">${item.getProductName()}</p>
                 <p class="trending-item-author">${item.getNameAuthor()}</p>
@@ -206,54 +206,54 @@
                     <i class="like-icon far fa-heart"></i>
                     <i class="liked-icon fas fa-heart"></i>
                   </span>
-                                                <div class="product-action-star">
-                                                    <c:forEach var="i" begin="1" end="${product.getStar()}">
-                                                        <i class="star-gold fas fa-star"></i>
-                                                    </c:forEach>
-                                                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
-                                                        <i class="star-gold far fa-star"></i>
-                                                    </c:forEach>
-                                                </div>
+                  <div class="product-action-star">
+                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                      <i class="star-gold fas fa-star"></i>
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                      <i class="star-gold far fa-star"></i>
+                    </c:forEach>
+                  </div>
                 </div>
                 <div class="trending-item-price">
                   <span class="price-old mr-up"> ${item.price}</span>
                   <span class="price-current mr-up">${item.getPriceDiscount() }</span>
                 </div>
-                      <form action="${pageContext.request.contextPath}/cart" method="post">
-                      		<input type="hidden" name="productId"  value="${item.id}">
-                      		<input type="hidden" name="quantity"  value="1">
-                      		<input type="hidden" name="action"  value="ADD">
-                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
-                      </form>
+                <form action="${pageContext.request.contextPath}/cart" method="post">
+                  <input type="hidden" name="productId" value="${item.id}">
+                  <input type="hidden" name="quantity" value="1">
+                  <input type="hidden" name="action" value="ADD">
+                  <input type="submit" class="btn_add-to-cart" value="Add to cart" />
+                </form>
                 <div class="product-item-favourite">
                   <i class="fas fa-check"></i> Interesting
                 </div>
-                      <c:choose>
-                      <c:when test="${item.discount == 0 }">
-                      
-                      </c:when>
-                      <c:otherwise>
-                      <div class="product-item-sale">
-                        <span class="product-item-label">Discount</span>
-                        <span class="product-item-percent">${item.getDiscount()}%</span>
-                      </div>
-                      </c:otherwise>
-                      </c:choose>
+                <c:choose>
+                  <c:when test="${item.discount == 0 }">
+
+                  </c:when>
+                  <c:otherwise>
+                    <div class="product-item-sale">
+                      <span class="product-item-label">Discount</span>
+                      <span class="product-item-percent">${item.getDiscount()}%</span>
+                    </div>
+                  </c:otherwise>
+                </c:choose>
               </div>
-          </div>
+            </div>
           </c:forEach>
         </div>
       </div>
     </div>
-    <br/>
-    <br/>
-   	<div class="grid">
+    <br />
+    <br />
+    <div class="grid">
       <div class="grid_row">
         <div class="trending_book">
           <div class="trending_book-header">
-            <span class="trending_book-title">Popular eBook Pre-orders <br> 
-            <p class="trending_book-title-after">
-            Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p></span>
+            <span class="trending_book-title">Popular eBook Pre-orders <br>
+              <p class="trending_book-title-after"> Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p>
+            </span>
             <ul class="trending-list mrtop">
               <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
               <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
@@ -261,70 +261,71 @@
             </ul>
           </div>
           <div class="carousel owl-carousel">
-          <c:forEach var="item" items="${po_order}">
-                <c:url var="link" value="home">
-                  <c:param name="command" value="LOAD" />
-                  <c:param name="productID" value="${item.id}" />
-                </c:url>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <a href="${link}">
-                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
-                </a>
-                <p class="trending-item-name">${item.getProductName() }</p>
-                <p class="trending-item-author">${item.getNameAuthor() }</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                  <c:forEach var="i" begin="1" end="4">
-                  	
-                  	<i class="star-gold fas fa-star"></i>
-                  </c:forEach>
-                    <i class="star-gold far fa-star"></i>
+            <c:forEach var="item" items="${po_order}">
+              <c:url var="link" value="home">
+                <c:param name="command" value="LOAD" />
+                <c:param name="productID" value="${item.id}" />
+              </c:url>
+              <div class="card-trending">
+                <div class="product-item border-card">
+                  <a href="${link}">
+                    <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
+                  </a>
+                  <p class="trending-item-name">${item.getProductName() }</p>
+                  <p class="trending-item-author">${item.getNameAuthor() }</p>
+                  <div class="product-action">
+                    <span class="product-action-heart product-action-liked">
+                      <i class="like-icon far fa-heart"></i>
+                      <i class="liked-icon fas fa-heart"></i>
+                    </span>
+                    <div class="product-action-star">
+                      <c:forEach var="i" begin="1" end="4">
+
+                        <i class="star-gold fas fa-star"></i>
+                      </c:forEach>
+                      <i class="star-gold far fa-star"></i>
+                    </div>
                   </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> ${item.price}</span>
-                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
-                </div>
-                      <form action="${pageContext.request.contextPath}/cart" method="post">
-                      		<input type="hidden" name="productId"  value="${item.id}">
-                      		<input type="hidden" name="quantity"  value="1">
-                      		<input type="hidden" name="action"  value="ADD">
-                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
-                      </form>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                      <c:choose>
-                      <c:when test="${item.discount == 0 }">
-                      
-                      </c:when>
-                      <c:otherwise>
+                  <div class="trending-item-price">
+                    <span class="price-old mr-up"> ${item.price}</span>
+                    <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+                  </div>
+                  <form action="${pageContext.request.contextPath}/cart" method="post">
+                    <input type="hidden" name="productId" value="${item.id}">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="action" value="ADD">
+                    <input type="submit" class="btn_add-to-cart" value="Add to cart" />
+                  </form>
+                  <div class="product-item-favourite">
+                    <i class="fas fa-check"></i> Interesting
+                  </div>
+                  <c:choose>
+                    <c:when test="${item.discount == 0 }">
+
+                    </c:when>
+                    <c:otherwise>
                       <div class="product-item-sale">
                         <span class="product-item-label">Discount</span>
                         <span class="product-item-percent">${item.getDiscount()}%</span>
                       </div>
-                      </c:otherwise>
-                      </c:choose>
+                    </c:otherwise>
+                  </c:choose>
+                </div>
               </div>
-            </div>
             </c:forEach>
           </div>
         </div>
       </div>
     </div>
     <br>
-       	<div class="grid">
+    <div class="grid">
       <div class="grid_row">
         <div class="trending_book">
           <div class="trending_book-header">
-            <span class="trending_book-title">Romance Book<br> 
-            <p class="trending_book-title-after">
-           Any of the romance book titles that you score through this generator are yours to use. </p></span>
+            <span class="trending_book-title">Romance Book<br>
+              <p class="trending_book-title-after">
+                Any of the romance book titles that you score through this generator are yours to use. </p>
+            </span>
             <ul class="trending-list mrtop">
               <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
               <li class="trending_item"><a href="" class="trending_item-link">Newest</a></li>
@@ -332,102 +333,202 @@
             </ul>
           </div>
           <div class="carousel owl-carousel">
-          <c:forEach var="item" items="${romance_book}">
-                <c:url var="link" value="home">
-                  <c:param name="command" value="LOAD" />
-                  <c:param name="productID" value="${item.id}" />
-                </c:url>
-            <div class="card-trending">
-              <div class="product-item border-card">
-                <a href="${link}">
-                <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
-                </a>
-                <p class="trending-item-name">${item.getProductName() }</p>
-                <p class="trending-item-author">${item.getNameAuthor() }</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                                                <div class="product-action-star">
-                                                    <c:forEach var="i" begin="1" end="${product.getStar()}">
-                                                        <i class="star-gold fas fa-star"></i>
-                                                    </c:forEach>
-                                                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
-                                                        <i class="star-gold far fa-star"></i>
-                                                    </c:forEach>
-                                                </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> ${item.price}</span>
-                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
-                </div>
-                      <form action="${pageContext.request.contextPath}/cart" method="post">
-                      		<input type="hidden" name="productId"  value="${item.id}">
-                      		<input type="hidden" name="quantity"  value="1">
-                      		<input type="hidden" name="action"  value="ADD">
-                      	  <input type="submit" class="btn_add-to-cart" value="Add to cart"/>
-                      </form>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
-                      <c:choose>
-                      <c:when test="${item.discount == 0 }">
-                      
-                      </c:when>
-                      <c:otherwise>
+            <c:forEach var="item" items="${romance_book}">
+              <c:url var="link" value="home">
+                <c:param name="command" value="LOAD" />
+                <c:param name="productID" value="${item.id}" />
+              </c:url>
+              <div class="card-trending">
+                <div class="product-item border-card">
+                  <a href="${link}">
+                    <div class="product-item-img" style="background-image: url(${item.pictureUrl});">
+                    </div>
+                  </a>
+                  <p class="trending-item-name">${item.getProductName() }</p>
+                  <p class="trending-item-author">${item.getNameAuthor() }</p>
+                  <div class="product-action">
+                    <span class="product-action-heart product-action-liked">
+                      <i class="like-icon far fa-heart"></i>
+                      <i class="liked-icon fas fa-heart"></i>
+                    </span>
+                    <div class="product-action-star">
+                      <c:forEach var="i" begin="1" end="${product.getStar()}">
+                        <i class="star-gold fas fa-star"></i>
+                      </c:forEach>
+                      <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                        <i class="star-gold far fa-star"></i>
+                      </c:forEach>
+                    </div>
+                  </div>
+                  <div class="trending-item-price">
+                    <span class="price-old mr-up"> ${item.price}</span>
+                    <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+                  </div>
+                  <form action="${pageContext.request.contextPath}/cart" method="post">
+                    <input type="hidden" name="productId" value="${item.id}">
+                    <input type="hidden" name="quantity" value="1">
+                    <input type="hidden" name="action" value="ADD">
+                    <input type="submit" class="btn_add-to-cart" value="Add to cart" />
+                  </form>
+                  <div class="product-item-favourite">
+                    <i class="fas fa-check"></i> Interesting
+                  </div>
+                  <c:choose>
+                    <c:when test="${item.discount == 0 }">
+
+                    </c:when>
+                    <c:otherwise>
                       <div class="product-item-sale">
                         <span class="product-item-label">Discount</span>
                         <span class="product-item-percent">${item.getDiscount()}%</span>
                       </div>
-                      </c:otherwise>
-                      </c:choose>
+                    </c:otherwise>
+                  </c:choose>
+                </div>
               </div>
-            </div>
             </c:forEach>
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <br>
+  <br>
+  <div class="grid">
+    <span class="trending_book-title">Human Education - Psychology Books<br>
+    </span>
+    <div class="header-colection">
+      <ul class="list-filter list-left">
+        <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
+      </ul>
+      <ul class="list-filter">
+        <li class="link-filter">Sap phat hanh</li>
+        <li class="link-filter">Ngon tinh</li>
+      </ul>
     </div>
+    <div class="grid_row relative-site">
+      <div class="grid_column-4">
+        <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-06-2021/Tho-Bay-Mau-350x415.jpg" alt="">
+      </div>
+      <div class="grid_column-8 flex-site">
+      <c:forEach var="item" items="${human_book}">
+        <div class="grid_column-6">
+          <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
+            <div class="img-sidebar">
+              <img style="width: 160px" src="${item.pictureUrl}" alt="" class="img-card-sidebar">
+            </div>
+            <div class="sidebar-content">
+              <p class="trending-item-name">${item.getProductName()  }</p>
+              <p class="trending-item-author">${item.getNameAuthor() }</p>
+              <div class="product-action">
+                <span class="product-action-heart product-action-liked">
+                  <i class="like-icon far fa-heart"></i>
+                  <i class="liked-icon fas fa-heart"></i>
+                </span>
+                    <div class="product-action-star">
+                      <c:forEach var="i" begin="1" end="${product.getStar()}">
+                        <i class="star-gold fas fa-star"></i>
+                      </c:forEach>
+                      <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                        <i class="star-gold far fa-star"></i>
+                      </c:forEach>
+                    </div>
+              </div>
+                  <div class="trending-item-price">
+                    <span class="price-old mr-up"> ${item.price}</span>
+                    <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+                  </div>
+            </div>
+          </div>
+        </div>
+	</c:forEach>
+        <div class="footer-side" style="width: 100%;">
+          <center>
+            <button type="button" name="button" class="btn-watch">Xem them</button>
+        </div>
+        </center>
+
+      </div>
+    </div>
+  </div>
   <br> <br>
+    <div class="grid">
+    <span class="trending_book-title">Business - Investment<br>
+    </span>
+    <div class="header-colection">
+      <ul class="list-filter list-left">
+        <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
+      </ul>
+      <ul class="list-filter">
+        <li class="link-filter">Sap phat hanh</li>
+        <li class="link-filter"> <button onclick="loadMore()">Load More</button> </li>
+      </ul>
+    </div>
+    <div class="grid_row relative-site">
+      <div class="grid_column-4">
+        <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-10-2021/Tr%C3%AAn%20h%C3%A0nh%20tr%C3%ACnh%20t%E1%BB%B1%20h%E1%BB%8Dc_350x415.jpg" alt="">
+      </div>
+      <div class="grid_column-8 flex-site" id="content-load">
+      <c:forEach var="product" items="${human_book}">
+        <div class="grid_column-6">
+          <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
+            <div class="img-sidebar">
+              <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
+            </div>
+            <div class="sidebar-content">
+              <p class="trending-item-name">${product.getProductName()  }</p>
+              <p class="trending-item-author">${product.getNameAuthor() }</p>
+              <div class="product-action">
+                <span class="product-action-heart product-action-liked">
+                  <i class="like-icon far fa-heart"></i>
+                  <i class="liked-icon fas fa-heart"></i>
+                </span>
+
+              </div>
+                  <div class="trending-item-price">
+                    <span class="price-old mr-up"> ${product.price}</span>
+                    <span class="price-current mr-up">${product.getPriceDiscount()}</span>
+                  </div>
+            </div>
+          </div>
+        </div>
+	</c:forEach>
+        <div class="footer-side" style="width: 100%;">
+          <center>
+            <button type="button" name="button" class="btn-watch">Xem them</button>
+        </div>
+        </center>
+
+      </div>
+    </div>
+  </div>
+  <br>
   <c:import url="sharedView/footer.jsp"></c:import>
+    <c:import url="sharedView/javascript.html"></c:import>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-    $(".carousel").owlCarousel({
-      margin: 20,
-      loop: true,
-      nav: true,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      smartSpeed: 1000,
-      autoplayHoverPause: true,
-      responsive: {
-        0: {
-          items: 2,
-          nav: false
-        },
-        600: {
-          items: 3,
-          nav: false
-        },
-        1000: {
-          items: 6,
-          nav: false
-        }
-      }
-    });
-    var owl = $(".owl-carousel");
-    owl.owlCarousel({
-      items: 1,
-      loop: true,
-      nav: true,
-      autoplay: true,
-      autoplayTimeout: 3000,
-      smartSpeed: 1000,
-      autoplayHoverPause: true,
-    });
-    
+  function loadMore() {
+	  $.ajax({
+		  url: "/bookshop/home?action=More",
+		  type: "post", //send it through get method
+		  success: function(data) {
+			var row =  document.getElementById("content-load");
+			row.innerHTML += data;
+			console.log(row);
+			console.log(data);
+		  },
+		  error: function(xhr) {
+		    
+		  }
+		});
+    }
   </script>
+  
+  
 </body>
 
 </html>

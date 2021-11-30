@@ -49,12 +49,12 @@ public class ProductItemController extends HttpServlet {
 			}
 
 			switch (action) {
-				case "LOAD":
-					loadProductItem(req, res);
-					loadReviews(req, res);
-					break;
-				default:
-					loadProductItem(req, res);
+			case "LOAD":
+				loadProductItem(req, res);
+				loadReviews(req, res);
+				break;
+			default:
+				loadProductItem(req, res);
 			}
 
 			req.getRequestDispatcher(nextUrl).forward(req, res);
@@ -78,10 +78,8 @@ public class ProductItemController extends HttpServlet {
 
 				System.out.println("User id: " + userId + " Product id: " + id);
 
-				System.out.println("Is user own file: " + new FileDAO().isUserOwnThisFile(userId,
-						id));
-				request.setAttribute("isUserOwnFile", new FileDAO().isUserOwnThisFile(userId,
-						id));
+				System.out.println("Is user own file: " + new FileDAO().isUserOwnThisFile(userId, id));
+				request.setAttribute("isUserOwnFile", new FileDAO().isUserOwnThisFile(userId, id));
 			}
 
 			if (product == null) {
@@ -100,7 +98,8 @@ public class ProductItemController extends HttpServlet {
 		String productId = req.getParameter("id");
 
 		try {
-			reviews = Product.find(Integer.parseInt(productId)).getReviews();
+			Product product = new ProductDAO().getProductwithFileAndReview(Integer.parseInt(productId));
+			reviews = product.getReviews();
 
 		} catch (Exception e) {
 			System.out.println("reviewDAO error!" + e);

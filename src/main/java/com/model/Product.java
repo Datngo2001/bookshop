@@ -8,6 +8,8 @@ import javax.persistence.*;
 
 import com.data.DAOs.ProductDAO;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 
 @SuppressWarnings("serial")
@@ -35,9 +37,9 @@ public class Product implements Serializable {
 	public String Sku;
 	public String typeBook;
 	public int discount;
-
+	@LazyCollection(LazyCollectionOption.FALSE)
 	// Relation
-	@OneToMany(mappedBy = "product", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "product")
 	private List<Review> reviews = new ArrayList<Review>();
 	@OneToMany(mappedBy = "product")
 	private List<Photo> photos = new ArrayList<Photo>();
