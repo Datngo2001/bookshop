@@ -38,7 +38,7 @@ public class HomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			response.setContentType("text/html;chaset=UTF-8");
+			
 			String theCommand = request.getParameter("command");
 			if (theCommand == null) {
 				theCommand = "HOME";
@@ -51,6 +51,7 @@ public class HomeController extends HttpServlet {
 					loadTrendingBook(request, response);
 					loadRomanceBook(request, response);
 					loadHumanBook(request, response);
+					
 					goHomePage(request, response);
 
 					break;
@@ -58,7 +59,7 @@ public class HomeController extends HttpServlet {
 					detailProduct(request, response);
 					break;
 				case "More":
-					loadHumanBook(request, response);
+					loadHumanBookMore(request, response);
 					break;
 				default:
 					goHomePage(request, response);
@@ -68,32 +69,25 @@ public class HomeController extends HttpServlet {
 		}
 	}
 
-	private void loadHumanBook(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		List<Product> list_product = new ArrayList<Product>();
-		list_product = productDao.getHumanBook();
-		PrintWriter writer = response.getWriter();
-		for(Product product: list_product) {
-			writer.println("<div class=\"side-contain\" style=\"display: flex; flex-wrap: nowrap;\">\r\n"
-					+ "            <div class=\"img-sidebar\">\r\n"
-					+ "              <img style=\"width: 160px\" src=\""+product.getPictureUrl()+"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
-					+ "            </div>\r\n"
-					+ "            <div class=\"sidebar-content\">\r\n"
-					+ "              <p class=\"trending-item-name\">"+ product.getProductName() + "</p>\r\n"
-					+ "              <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
-					+ "              <div class=\"product-action\">\r\n"
-					+ "                <span class=\"product-action-heart product-action-liked\">\r\n"
-					+ "                  <i class=\"like-icon far fa-heart\"></i>\r\n"
-					+ "                  <i class=\"liked-icon fas fa-heart\"></i>\r\n"
-					+ "                </span>\r\n"
+	private void loadHumanBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		// TODO Auto-generated method stub
+			List<Product> list_product = new ArrayList<Product>();
+			list_product = productDao.getHumanBook(36);
+			request.setAttribute("human_book", list_product);
+	}
 
-					+ "              </div>\r\n"
-					+ "                  <div class=\"trending-item-price\">\r\n"
-					+ "                    <span class=\"price-old mr-up\"> " + product.getPrice() + "</span>\r\n"
-					+ "                    <span class=\"price-current mr-up\">" + product.getPriceDiscount() + "</span>\r\n"
-					+ "                  </div>\r\n"
-					+ "            </div>\r\n"
-					+ "          </div>");
-		}
+    
+	private void loadHumanBookMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+		List<Product> list_product = new ArrayList<Product>();
+		int index = Integer.parseInt(request.getParameter("amount"));
+		list_product = productDao.getHumanBook(index);
+		request.setAttribute("amount", index);
+		PrintWriter writer = response.getWriter();
+		writer.println(productDao.ReturnListProductByString(list_product, index));
+		
+		
 
 	}
 
@@ -186,6 +180,7 @@ public class HomeController extends HttpServlet {
 		}
 
 		request.setAttribute("list_product", product);
+		request.setAttribute("amount", 40);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
 

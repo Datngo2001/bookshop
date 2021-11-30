@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="ISO-8859-1" errorPage="error.jsp"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%> <%@ taglib
+prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>
@@ -465,7 +465,7 @@
       </ul>
       <ul class="list-filter">
         <li class="link-filter">Sap phat hanh</li>
-        <li class="link-filter"> <button onclick="loadMore()">Load More</button> </li>
+        <li class="link-filter"> Ban chay </li>
       </ul>
     </div>
     <div class="grid_row relative-site">
@@ -474,10 +474,16 @@
       </div>
       <div class="grid_column-8 flex-site" id="content-load">
         <c:forEach var="product" items="${human_book}">
-          <div class="grid_column-6">
+        <c:url var="link" value="home">
+             <c:param name="command" value="LOAD" />
+             <c:param name="productID" value="${product.id}" />
+         </c:url>
+          <div class="grid_column-6 number_product">
             <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
               <div class="img-sidebar">
+              <a href="${link}">
                 <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
+               </a>
               </div>
               <div class="sidebar-content">
                 <p class="trending-item-name">${product.getProductName() }</p>
@@ -487,7 +493,14 @@
                     <i class="like-icon far fa-heart"></i>
                     <i class="liked-icon fas fa-heart"></i>
                   </span>
-
+					<div class="product-action-star">
+                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                      <i class="star-gold fas fa-star"></i>
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                      <i class="star-gold far fa-star"></i>
+                    </c:forEach>
+                  </div>
                 </div>
                 <div class="trending-item-price">
                   <span class="price-old mr-up"> ${product.price}</span>
@@ -499,7 +512,8 @@
         </c:forEach>
         <div class="footer-side" style="width: 100%;">
           <center>
-            <button type="button" name="button" class="btn-watch">Xem them</button>
+          	<input class="index-product" type="hidden" name="amount" value="${amount}">
+            <button style="" onclick="loadMore()" type="button" name="button" class="btn-watch">Xem them</button>
         </div>
         </center>
 
@@ -512,14 +526,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
     function loadMore() {
+    	var index = document.getElementsByClassName("index-product")[0].value;
       $.ajax({
-        url: "/bookshop/home?action=More",
-        type: "post", //send it through get method
+        url: "/bookshop/home?command=More&amount=" + index,
+        type: "get", //send it through get method
         success: function(data) {
           var row = document.getElementById("content-load");
-          row.innerHTML += data;
-          console.log(row);
-          console.log(data);
+          row.innerHTML = data;
+          //console.log(data);
         },
         error: function(xhr) {
 

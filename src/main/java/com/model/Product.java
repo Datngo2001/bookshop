@@ -117,6 +117,23 @@ public class Product implements Serializable {
 
 		return averageStar;
 	}
+	
+    @SuppressWarnings("unused")
+	private String makeStar(int star) {
+        String stars = "";
+        String starCheck = "   <i class=\"star-gold fas fa-star\"></i>";
+        String starUnCheck = "   <i class=\"star-gold far fa-star\"></i>";
+
+        for (int i = 0; i < star; i++) {
+            stars += starCheck;
+        }
+
+        for (int i = 0; i < 5 - star; i++) {
+            stars += starUnCheck;
+        }
+
+        return stars;
+    }
 
 	static public Product find(int id) {
 		ProductDAO productDAO = new ProductDAO();

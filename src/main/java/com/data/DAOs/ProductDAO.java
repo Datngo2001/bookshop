@@ -52,16 +52,17 @@ public class ProductDAO {
 		return null;
 	}
 	@SuppressWarnings("unchecked")
-	public List<Product> getHumanBook() {
+	public List<Product> getHumanBook(int index) {
 		try {
 			return DbUtil.getSessionFactory().openSession().createQuery("From Product")
-						.setFirstResult(56).setMaxResults(4).list();
+						.setFirstResult(index).setMaxResults(4).list();
 
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			return null;
 		}
+
 	@SuppressWarnings("unchecked")
 	public List<Product> getRomanceBook() throws Exception {
 		try {
@@ -191,5 +192,59 @@ public class ProductDAO {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	private String makeStar(int star) {
+        String stars = "";
+        String starCheck = "   <i class=\"star-gold fas fa-star\"></i>";
+        String starUnCheck = "   <i class=\"star-gold far fa-star\"></i>";
+
+        for (int i = 0; i < star; i++) {
+            stars += starCheck;
+        }
+
+        for (int i = 0; i < 5 - star; i++) {
+            stars += starUnCheck;
+        }
+
+        return stars;
+    }
+	public String ReturnListProductByString(List<Product> list_product, int index) {
+		String productList = "";
+		for(Product product: list_product) {
+			productList += "<div class=\"number_product grid_column-6\">\r\n"
+					+ "            <div class=\"side-contain\" style=\"display: flex; flex-wrap: nowrap;\">\r\n"
+					+ "             <div class=\"img-sidebar\">\r\n"
+					+ "              <a href=\"product?command=LOAD&id="+ product.getId() +"\">\r\n"
+					+ "                <img style=\"width: 160px\" src=\"" + product.getPictureUrl() +"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
+					+ "               </a>\r\n"
+					+ "              </div>"
+					+ "              <div class=\"sidebar-content\">\r\n"
+					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
+					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
+					+ "                <div class=\"product-action\">\r\n"
+					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                  </span>\r\n"
+					+ "					<div class=\"product-action-star\">\r\n"
+					+ "                    "+ makeStar(product.getStar()) + ""
+					+ "                  </div>\r\n"
+					+ "                </div>\r\n"
+					+ "                <div class=\"trending-item-price\">\r\n"
+					+ "                  <span class=\"price-old mr-up\"> "+ product.getPrice() + "</span>\r\n"
+					+ "                  <span class=\"price-current mr-up\"> " + product.getPriceDiscount() + "</span>\r\n"
+					+ "                </div>\r\n"
+					+ "              </div>\r\n"
+					+ "            </div>\r\n"
+					+ "          </div>"
+					+ "";	
+		}
+		String footer = "<div class=\"footer-side\" style=\"width: 100%;\">\r\n"
+				+ "<center>\r\n "
+				+ "<input class=\"index-product\" type=\"hidden\" name=\"amount\" value=\""+ (index += 4) +"\">"
+				+ "<button style=\"\" onclick=\"loadMore()\" type=\"button\" name=\"button\" class=\"btn-watch\">Xem them</button>\r\n"
+				+ "</div>\r\n"
+				+ "</center>";
+		return productList + footer;
 	}
 }
