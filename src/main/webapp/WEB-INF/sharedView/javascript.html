@@ -33,3 +33,53 @@
       autoplayHoverPause: true,
     });
   </script>
+    <script>
+    function loadMoreNext() {
+    	var index = document.getElementsByClassName("index-product")[0].value;
+      $.ajax({
+        url: "/bookshop/home?command=More&action=Next&amount=" + index,
+        type: "post", //send it through get method
+        success: function(data) {
+          var row = document.getElementById("content-load");
+          row.innerHTML = data;
+          //console.log(data);
+        },
+        error: function(xhr) {
+
+        }
+      });
+    }
+    function loadMorePrev() {
+    	var index = document.getElementsByClassName("index-product")[0].value;
+      $.ajax({
+        url: "/bookshop/home?command=More&action=Prev&amount=" + index,
+        type: "post", //send it through get method
+        success: function(data) {
+          var row = document.getElementById("content-load");
+          row.innerHTML = data;
+          //console.log(data);
+        },
+        error: function(xhr) {
+
+        }
+      });
+    }
+    function loadMore() {
+    	var index = document.getElementsByClassName("index-product")[0].value;
+      $.ajax({
+        url: "/bookshop/home?command=More&action=Import&amount=" + index,
+        type: "post", //send it through get method
+        success: function(data) {
+          var row = document.getElementById("content-load");
+          row.innerHTML += data;
+          //console.log(data);
+        },
+        error: function(xhr) {
+
+        }
+      });
+    }
+    
+
+
+  </script>

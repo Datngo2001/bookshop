@@ -45,13 +45,13 @@ public class HomeController extends HttpServlet {
 			}
 			switch (theCommand) {
 				case "HOME":
-					//new Seed().doSeed();
+					new Seed().doSeed();
 					request.setAttribute("username", request.getSession().getAttribute("username"));
 					loadPopularOrder(request, response);
 					loadTrendingBook(request, response);
 					loadRomanceBook(request, response);
 					loadHumanBook(request, response);
-					
+					loadBusinessBook(request, response);
 					goHomePage(request, response);
 
 					break;
@@ -61,6 +61,9 @@ public class HomeController extends HttpServlet {
 				case "More":
 					loadHumanBookMore(request, response);
 					break;
+				case "Add":
+					loadBussinessBookMore(request, response);
+					break;
 				default:
 					goHomePage(request, response);
 			}
@@ -69,23 +72,51 @@ public class HomeController extends HttpServlet {
 		}
 	}
 
+	private void loadBussinessBookMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        int status;
+		List<Product> list_product = new ArrayList<Product>();
+		int index = Integer.parseInt(request.getParameter("amount2"));
+		list_product = productDao.getHumanBook(index);
+		request.setAttribute("amount2", index);
+		PrintWriter writer = response.getWriter();
+		if(action.equals("Prev")) status = 0;
+		else if (action.equals("Next")) status = 1;
+		else status = 2;
+		writer.println(productDao.ReturnListBussinessProductByString(list_product, index, status));
+	}
+
+	private void loadBusinessBook(HttpServletRequest request, HttpServletResponse response) {
+		List<Product> list_product = new ArrayList<Product>();
+		list_product = productDao.getHumanBook(57);
+		request.setAttribute("bussin_book", list_product);
+		
+	}
+
 	private void loadHumanBook(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
 			List<Product> list_product = new ArrayList<Product>();
 			list_product = productDao.getHumanBook(36);
 			request.setAttribute("human_book", list_product);
 	}
-
+	
     
 	private void loadHumanBookMore(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        String action = request.getParameter("action");
+        int status;
 		List<Product> list_product = new ArrayList<Product>();
 		int index = Integer.parseInt(request.getParameter("amount"));
 		list_product = productDao.getHumanBook(index);
 		request.setAttribute("amount", index);
 		PrintWriter writer = response.getWriter();
-		writer.println(productDao.ReturnListProductByString(list_product, index));
+		if(action.equals("Prev")) status = 0;
+		else if (action.equals("Next")) status = 1;
+		else status = 2;
+		writer.println(productDao.ReturnListProductByString(list_product, index, status));
 		
 		
 
@@ -136,33 +167,25 @@ public class HomeController extends HttpServlet {
 		String next = request.getParameter("next");
 		List<Product> list_product = productDao.getProducts();
 		String sorting = request.getParameter("sort");
-		if (sorting == null)
-			sorting = "INC";
+		if (sorting == null) sorting = "INC";
 		int index;
 		try {
 			// set index
-			if (next == null)
-				index = 0;
+			if (next == null) index = 0;
 
-			else
-				index = Integer.parseInt(next);
+			else index = Integer.parseInt(next);
 
 			// get action to execute
-			if (action == null)
-				action = "";
+			if (action == null) action = "";
 
-			if (action.equals("PREV"))
-				index--;
+			if (action.equals("PREV")) index--;
 
-			else if (action.equals("NEXT"))
-				index++;
+			else if (action.equals("NEXT")) index++;
 
 			int limit = list_product.size() / 15;
 			// when user next or prev over page available we set default for this case
-			if (index < 0)
-				index = 0;
-			else if (index > limit - 1)
-				index = limit;
+			if (index < 0) index = 0;
+			else if (index > limit - 1) index = limit;
 
 			if (sorting.equals("INC")) {
 				product = productDao.getProducts(index * 15);
@@ -180,7 +203,8 @@ public class HomeController extends HttpServlet {
 		}
 
 		request.setAttribute("list_product", product);
-		request.setAttribute("amount", 40);
+		request.setAttribute("amount", 36);
+		request.setAttribute("amount2", 57);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);
 	}
 

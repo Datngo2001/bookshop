@@ -520,10 +520,15 @@ p.trending-item-author {
 .flex-site {
   display: flex;
   flex-wrap: wrap;
-  position: absolute;
-  margin-left: 33.33%;
 }
-
+#content-load {
+	display: flex; 
+	flex-wrap: wrap;
+}
+#content-load-2 {
+	display: flex; 
+	flex-wrap: wrap;
+}
 .btn-watch {
   border: 2px solid var(--bs-red);
   color: var(--bs-red);
@@ -556,6 +561,9 @@ button.center {
   flex-wrap: wrap;
   list-style: none;
 }
+.hidden-s {
+	display: none;
+}
 .link-filter {
   margin: 0 8px;
 }
@@ -580,7 +588,20 @@ button.center {
 .footer-side {
   margin-top: 50px;;
 }
+.icon-i {
+	font-size: 20px;
+	color: var(--bs-gray-500);
+	
+}
 
+.btn-goproduct {
+	width: 30px;
+	border: 1px solid var(--bs-gray-300);
+	flex: 1;
+}
+.btn-goproduct i:hover {
+	color: var(--bs-gray-300);
+}
 /*The most product*/
 
 @media (max-width: 574px) {

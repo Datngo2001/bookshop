@@ -399,80 +399,21 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     </span>
     <div class="header-colection">
       <ul class="list-filter list-left-2">
-        <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Giá tốt </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sáng tạo </a></li>
       </ul>
-      <ul class="list-filter">
-        <li class="link-filter">Sap phat hanh</li>
-        <li class="link-filter">Ngon tinh</li>
-      </ul>
-    </div>
-    <div class="grid_row relative-site">
-      <div class="grid_column-4">
-        <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-06-2021/Tho-Bay-Mau-350x415.jpg" alt="">
-      </div>
-      <div class="grid_column-8 flex-site">
-        <c:forEach var="item" items="${human_book}">
-          <div class="grid_column-6">
-            <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
-              <div class="img-sidebar">
-                <img style="width: 160px" src="${item.pictureUrl}" alt="" class="img-card-sidebar">
-              </div>
-              <div class="sidebar-content">
-                <p class="trending-item-name">${item.getProductName() }</p>
-                <p class="trending-item-author">${item.getNameAuthor() }</p>
-                <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span>
-                  <div class="product-action-star">
-                    <c:forEach var="i" begin="1" end="${product.getStar()}">
-                      <i class="star-gold fas fa-star"></i>
-                    </c:forEach>
-                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
-                      <i class="star-gold far fa-star"></i>
-                    </c:forEach>
-                  </div>
-                </div>
-                <div class="trending-item-price">
-                  <span class="price-old mr-up"> ${item.price}</span>
-                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </c:forEach>
-        <div class="footer-side" style="width: 100%;">
-          <center>
-            <button type="button" name="button" class="btn-watch">Xem them</button>
-        </div>
-        </center>
-
-      </div>
-    </div>
-  </div>
-  <br> <br>
-  <div class="grid">
-    <span class="trending_book-title">Business - Investment<br>
-    </span>
-    <div class="header-colection">
-      <ul class="list-filter list-left-2">
-        <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
-      </ul>
-      <ul class="list-filter">
-        <li class="link-filter">Sap phat hanh</li>
-        <li class="link-filter"> Ban chay </li>
+      <ul class="list-filter list-right-2">
+        <li class="link-filter"> <button onclick="loadMorePrev()" class="btn-goproduct"> <i class="far fa-chevron-left icon-i"></i> </button> </li>
+        <li class="link-filter"> <button onclick="loadMoreNext()" class="btn-goproduct"> <i class="far fa-chevron-right icon-i"></i> </button></li>
       </ul>
     </div>
-    <div class="grid_row relative-site">
+    <div class="grid_row">
       <div class="grid_column-4">
         <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-10-2021/Tr%C3%AAn%20h%C3%A0nh%20tr%C3%ACnh%20t%E1%BB%B1%20h%E1%BB%8Dc_350x415.jpg" alt="">
       </div>
-      <div class="grid_column-8 flex-site" id="content-load">
+      <div class="grid_column-8 flex-site">
+      <div id="content-load">
         <c:forEach var="product" items="${human_book}">
         <c:url var="link" value="home">
              <c:param name="command" value="LOAD" />
@@ -510,13 +451,83 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             </div>
           </div>
         </c:forEach>
-        <div class="footer-side" style="width: 100%;">
+		</div>
+		<div class="footer-side" style="width: 100%;">
           <center>
           	<input class="index-product" type="hidden" name="amount" value="${amount}">
             <button style="" onclick="loadMore()" type="button" name="button" class="btn-watch">Xem them</button>
+             </center>
         </div>
-        </center>
-
+       
+      </div>
+    </div>
+  </div>
+  <br> <br>
+  <div class="grid">
+    <span class="trending_book-title">Business - Investment<br>
+    </span>
+    <div class="header-colection">
+      <ul class="list-filter list-left-2">
+        <li class="link-filter"> <a href="" class="trending_item-link"> Giá tốt </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
+        <li class="link-filter"> <a href="" class="trending_item-link"> Sáng tạo </a></li>
+      </ul>
+      <ul class="list-filter list-right-2">
+        <li class="link-filter"> <button onclick="loadMoreInPrev()" class="btn-goproduct"> <i class="far fa-chevron-left icon-i"></i> </button> </li>
+        <li class="link-filter"> <button onclick="loadMoreInNext()" class="btn-goproduct"> <i class="far fa-chevron-right icon-i"></i> </button></li>
+      </ul>
+    </div>
+    <div class="grid_row">
+      <div class="grid_column-4">
+        <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-05-2021/350%20x%20415.jpg" alt="">
+      </div>
+      <div class="grid_column-8 flex-site">
+      <div id="content-load-2">
+        <c:forEach var="product" items="${bussin_book}">
+        <c:url var="link" value="home">
+             <c:param name="command" value="LOAD" />
+             <c:param name="productID" value="${product.id}" />
+         </c:url>
+          <div class="grid_column-6 number_product_2">
+            <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
+              <div class="img-sidebar">
+              <a href="${link}">
+                <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
+               </a>
+              </div>
+              <div class="sidebar-content">
+                <p class="trending-item-name">${product.getProductName() }</p>
+                <p class="trending-item-author">${product.getNameAuthor() }</p>
+                <div class="product-action">
+                  <span class="product-action-heart product-action-liked">
+                    <i class="like-icon far fa-heart"></i>
+                    <i class="liked-icon fas fa-heart"></i>
+                  </span>
+					<div class="product-action-star">
+                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                      <i class="star-gold fas fa-star"></i>
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                      <i class="star-gold far fa-star"></i>
+                    </c:forEach>
+                  </div>
+                </div>
+                <div class="trending-item-price">
+                  <span class="price-old mr-up"> ${product.price}</span>
+                  <span class="price-current mr-up">${product.getPriceDiscount()}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </c:forEach>
+		</div>
+		<div class="footer-side" style="width: 100%;">
+          <center>
+          	<input class="index-product-2" type="hidden" name="amount2" value="${amount}">
+            <button style="" onclick="loadInMore()" type="button" name="button" class="btn-watch">Xem them</button>
+             </center>
+        </div>
+       
       </div>
     </div>
   </div>
@@ -524,23 +535,55 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <c:import url="sharedView/footer.jsp"></c:import>
   <c:import url="sharedView/javascript.html"></c:import>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-  <script>
-    function loadMore() {
-    	var index = document.getElementsByClassName("index-product")[0].value;
-      $.ajax({
-        url: "/bookshop/home?command=More&amount=" + index,
-        type: "get", //send it through get method
-        success: function(data) {
-          var row = document.getElementById("content-load");
-          row.innerHTML = data;
-          //console.log(data);
-        },
-        error: function(xhr) {
+<script>
+function loadMoreInNext() {
+	var index = document.getElementsByClassName("index-product-2")[0].value;
+  $.ajax({
+    url: "/bookshop/home?command=Add&action=Next&amount2=" + index,
+    type: "post", //send it through get method
+    success: function(data) {
+      var row = document.getElementById("content-load-2");
+      row.innerHTML = data;
+      console.log(data);
+    },
+    error: function(xhr) {
 
-        }
-      });
     }
-  </script>
+  });
+}
+function loadMoreInPrev() {
+	var index = document.getElementsByClassName("index-product-2")[0].value;
+  $.ajax({
+    url: "/bookshop/home?command=Add&action=Prev&amount2=" + index,
+    type: "post", //send it through get method
+    success: function(data) {
+      var row = document.getElementById("content-load-2");
+      row.innerHTML = data;
+      console.log(data);
+    },
+    error: function(xhr) {
+
+    }
+  });
+}
+function loadInMore() {
+	var index = document.getElementsByClassName("index-product-2")[0].value;
+  $.ajax({
+    url: "/bookshop/home?command=Add&action=Import&amount2=" + index,
+    type: "post", //send it through get method
+    success: function(data) {
+      var row = document.getElementById("content-load-2");
+      row.innerHTML += data;
+      console.log(data);
+    },
+    error: function(xhr) {
+
+    }
+  });
+}
+
+
+</script>
 </body>
 
 </html>
