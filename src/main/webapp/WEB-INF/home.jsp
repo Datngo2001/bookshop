@@ -64,7 +64,7 @@
               <span class="home-label">Sorting by</span>
               <button class="btn-product home-filter-btn">Popular</button>
               <button class="btn-product btn-primary home-filter-btn">Newest</button>
-              <button class="btn-product home-filter-btn sell">Selling</button>
+              <button class="btn-product home-filter-btn">Selling</button>
             </div>
             <div class="select-input">
               <span class="select-price-label">Price</span>
@@ -252,7 +252,8 @@
         <div class="trending_book">
           <div class="trending_book-header">
             <span class="trending_book-title">Popular eBook Pre-orders <br>
-              <p class="trending_book-title-after"> Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p>
+              <p class="trending_book-title-after">
+                Stay ahead of the curve and get the most anticipated eBooks of the year the moment they come out. </p>
             </span>
             <ul class="trending-list mrtop">
               <li class="trending_item"><a href="" class="trending_item-link">Discount</a></li>
@@ -341,8 +342,7 @@
               <div class="card-trending">
                 <div class="product-item border-card">
                   <a href="${link}">
-                    <div class="product-item-img" style="background-image: url(${item.pictureUrl});">
-                    </div>
+                    <div class="product-item-img" style="background-image: url(${item.pictureUrl});"></div>
                   </a>
                   <p class="trending-item-name">${item.getProductName() }</p>
                   <p class="trending-item-author">${item.getNameAuthor() }</p>
@@ -398,7 +398,7 @@
     <span class="trending_book-title">Human Education - Psychology Books<br>
     </span>
     <div class="header-colection">
-      <ul class="list-filter list-left">
+      <ul class="list-filter list-left-2">
         <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
@@ -413,37 +413,37 @@
         <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-06-2021/Tho-Bay-Mau-350x415.jpg" alt="">
       </div>
       <div class="grid_column-8 flex-site">
-      <c:forEach var="item" items="${human_book}">
-        <div class="grid_column-6">
-          <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
-            <div class="img-sidebar">
-              <img style="width: 160px" src="${item.pictureUrl}" alt="" class="img-card-sidebar">
-            </div>
-            <div class="sidebar-content">
-              <p class="trending-item-name">${item.getProductName()  }</p>
-              <p class="trending-item-author">${item.getNameAuthor() }</p>
-              <div class="product-action">
-                <span class="product-action-heart product-action-liked">
-                  <i class="like-icon far fa-heart"></i>
-                  <i class="liked-icon fas fa-heart"></i>
-                </span>
-                    <div class="product-action-star">
-                      <c:forEach var="i" begin="1" end="${product.getStar()}">
-                        <i class="star-gold fas fa-star"></i>
-                      </c:forEach>
-                      <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
-                        <i class="star-gold far fa-star"></i>
-                      </c:forEach>
-                    </div>
+        <c:forEach var="item" items="${human_book}">
+          <div class="grid_column-6">
+            <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
+              <div class="img-sidebar">
+                <img style="width: 160px" src="${item.pictureUrl}" alt="" class="img-card-sidebar">
               </div>
-                  <div class="trending-item-price">
-                    <span class="price-old mr-up"> ${item.price}</span>
-                    <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+              <div class="sidebar-content">
+                <p class="trending-item-name">${item.getProductName() }</p>
+                <p class="trending-item-author">${item.getNameAuthor() }</p>
+                <div class="product-action">
+                  <span class="product-action-heart product-action-liked">
+                    <i class="like-icon far fa-heart"></i>
+                    <i class="liked-icon fas fa-heart"></i>
+                  </span>
+                  <div class="product-action-star">
+                    <c:forEach var="i" begin="1" end="${product.getStar()}">
+                      <i class="star-gold fas fa-star"></i>
+                    </c:forEach>
+                    <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                      <i class="star-gold far fa-star"></i>
+                    </c:forEach>
                   </div>
+                </div>
+                <div class="trending-item-price">
+                  <span class="price-old mr-up"> ${item.price}</span>
+                  <span class="price-current mr-up">${item.getPriceDiscount()}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-	</c:forEach>
+        </c:forEach>
         <div class="footer-side" style="width: 100%;">
           <center>
             <button type="button" name="button" class="btn-watch">Xem them</button>
@@ -454,11 +454,11 @@
     </div>
   </div>
   <br> <br>
-    <div class="grid">
+  <div class="grid">
     <span class="trending_book-title">Business - Investment<br>
     </span>
     <div class="header-colection">
-      <ul class="list-filter list-left">
+      <ul class="list-filter list-left-2">
         <li class="link-filter"> <a href="" class="trending_item-link"> Gia tot </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Sap phat hanh </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Ngon tinh </a></li>
@@ -473,30 +473,30 @@
         <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-10-2021/Tr%C3%AAn%20h%C3%A0nh%20tr%C3%ACnh%20t%E1%BB%B1%20h%E1%BB%8Dc_350x415.jpg" alt="">
       </div>
       <div class="grid_column-8 flex-site" id="content-load">
-      <c:forEach var="product" items="${human_book}">
-        <div class="grid_column-6">
-          <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
-            <div class="img-sidebar">
-              <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
-            </div>
-            <div class="sidebar-content">
-              <p class="trending-item-name">${product.getProductName()  }</p>
-              <p class="trending-item-author">${product.getNameAuthor() }</p>
-              <div class="product-action">
-                <span class="product-action-heart product-action-liked">
-                  <i class="like-icon far fa-heart"></i>
-                  <i class="liked-icon fas fa-heart"></i>
-                </span>
-
+        <c:forEach var="product" items="${human_book}">
+          <div class="grid_column-6">
+            <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
+              <div class="img-sidebar">
+                <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
               </div>
-                  <div class="trending-item-price">
-                    <span class="price-old mr-up"> ${product.price}</span>
-                    <span class="price-current mr-up">${product.getPriceDiscount()}</span>
-                  </div>
+              <div class="sidebar-content">
+                <p class="trending-item-name">${product.getProductName() }</p>
+                <p class="trending-item-author">${product.getNameAuthor() }</p>
+                <div class="product-action">
+                  <span class="product-action-heart product-action-liked">
+                    <i class="like-icon far fa-heart"></i>
+                    <i class="liked-icon fas fa-heart"></i>
+                  </span>
+
+                </div>
+                <div class="trending-item-price">
+                  <span class="price-old mr-up"> ${product.price}</span>
+                  <span class="price-current mr-up">${product.getPriceDiscount()}</span>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-	</c:forEach>
+        </c:forEach>
         <div class="footer-side" style="width: 100%;">
           <center>
             <button type="button" name="button" class="btn-watch">Xem them</button>
@@ -506,29 +506,27 @@
       </div>
     </div>
   </div>
-  <br>
+  <br> <br>
   <c:import url="sharedView/footer.jsp"></c:import>
-    <c:import url="sharedView/javascript.html"></c:import>
+  <c:import url="sharedView/javascript.html"></c:import>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   <script>
-  function loadMore() {
-	  $.ajax({
-		  url: "/bookshop/home?action=More",
-		  type: "post", //send it through get method
-		  success: function(data) {
-			var row =  document.getElementById("content-load");
-			row.innerHTML += data;
-			console.log(row);
-			console.log(data);
-		  },
-		  error: function(xhr) {
-		    
-		  }
-		});
+    function loadMore() {
+      $.ajax({
+        url: "/bookshop/home?action=More",
+        type: "post", //send it through get method
+        success: function(data) {
+          var row = document.getElementById("content-load");
+          row.innerHTML += data;
+          console.log(row);
+          console.log(data);
+        },
+        error: function(xhr) {
+
+        }
+      });
     }
   </script>
-  
-  
 </body>
 
 </html>

@@ -94,7 +94,7 @@ public class HomeController extends HttpServlet {
 					+ "            </div>\r\n"
 					+ "          </div>");
 		}
-		
+
 	}
 
 	private void loadRomanceBook(HttpServletRequest request, HttpServletResponse response) throws Exception {

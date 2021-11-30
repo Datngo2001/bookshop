@@ -11,7 +11,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <c:import url="sharedView/global.html" />
     <!-- Jquery validate -->
     <script
-      src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
+      src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.9/jquery.validate.min.js"
       type="text/javascript"
     ></script>
     <!-- Local -->
@@ -34,26 +34,30 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </figure>
 
           <div class="button-wrapper">
-
-			<div class="product-btn add-to-cart">
-             <form action="cart">
-            	<input type="hidden" name="productId" value="${product.id}">
-            	<input type="hidden" name="quantity" value="1">
-            	<input type="hidden" name="action" value="ADD">
-             	<button type="submit" class="btn-action">
-             	<span class="add-to-card-span">Thêm vào giỏ hàng</span>
-             	</button>
-             </form>
+            <div class="product-btn add-to-cart">
+              <form action="cart">
+                <input type="hidden" name="productId" value="${product.id}" />
+                <input type="hidden" name="quantity" value="1" />
+                <input type="hidden" name="action" value="ADD" />
+                <button type="submit" class="btn-action">
+                  <span class="add-to-card-span">Thêm vào giỏ hàng</span>
+                </button>
+              </form>
             </div>
             <div class="product-btn buy-now">
               <form action="confirm" method="post">
-              <input type="hidden" name="action" value="BUYNOW">
-               <input type="hidden" name="productId" value="${product.id}">
-            	<input type="hidden" name="quantity" value="1">
-               <button type="submit" class="btn-action"> 
-               <span class="buy-now-span">Mua ngay</span> </button>
-               <input type="hidden" name="price" value="${product.getPriceDiscount()}">
-			</form>
+                <input type="hidden" name="action" value="BUYNOW" />
+                <input type="hidden" name="productId" value="${product.id}" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit" class="btn-action">
+                  <span class="buy-now-span">Mua ngay</span>
+                </button>
+                <input
+                  type="hidden"
+                  name="price"
+                  value="${product.getPriceDiscount()}"
+                />
+              </form>
             </div>
           </div>
         </div>
@@ -95,7 +99,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               </div>
             </div>
           </div>
-          <div class="product-price"> <span class="price-old"> ${product.price} đ</span>&nbsp; &nbsp;  ${product.getPriceDiscount()} đ</div>
+          <div class="product-price">
+            <span class="price-old"> ${product.price} đ</span>&nbsp; &nbsp;
+            ${product.getPriceDiscount()} đ
+          </div>
           <div class="product-quantity-wrapper">
             <label>Số lượng:</label>
             <div class="product-quantity">
@@ -110,10 +117,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </div>
           <c:if test="${isUserOwnFile == true}">
             <div class="download-wrapper">
-                <a href="${product.getFile().getUrl()}">
-                  <div class="product-btn download">Tải về</div>
-                </a>
-              </div>
+              <a href="${product.getFile().getUrl()}">
+                <div class="product-btn download">Tải về</div>
+              </a>
+            </div>
           </c:if>
         </div>
       </section>
@@ -207,16 +214,28 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
               <div class="noti-non-user">
                 Chỉ có thành viên mới có thể viết nhận xét.Vui lòng&nbsp;
                 <form action="login" method="get">
-                <input type="hidden" name="url" value="product?command=LOAD&id=${product.getId()}">
-                <input type="hidden" name="redirect" value="product">
-                <button class="btn-action" style="color: var(--blue-color)">đăng nhập&nbsp;</button>
+                  <input
+                    type="hidden"
+                    name="url"
+                    value="product?command=LOAD&id=${product.getId()}"
+                  />
+                  <input type="hidden" name="redirect" value="product" />
+                  <button class="btn-action" style="color: var(--blue-color)">
+                    đăng nhập&nbsp;
+                  </button>
                 </form>
                 hoặc
                 <form action="register" method="get">
-                <input type="hidden" name="url" value="product?command=LOAD&id=${product.getId()}">
-                <input type="hidden" name="redirect" value="product">
-                <button class="btn-action" style="color: var(--bs-red);" >&nbsp;đăng ký</button>
-               	</form>
+                  <input
+                    type="hidden"
+                    name="url"
+                    value="product?command=LOAD&id=${product.getId()}"
+                  />
+                  <input type="hidden" name="redirect" value="product" />
+                  <button class="btn-action" style="color: var(--bs-red)">
+                    &nbsp;đăng ký
+                  </button>
+                </form>
               </div>
             </c:when>
             <c:otherwise>
@@ -266,7 +285,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <form
               class="comment-delete-confirm"
               action="review?action=DELETE&productId=${product.getId()}&reviewId="
->
+            >
               <div class="fas fa-times fa-2x exit-form"></div>
               <h2>Bạn có chắc là muốn xóa bình luận này chứ</h2>
               <div class="button-wrapper">
@@ -326,6 +345,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
         });
 
         $(".cancel-form, .exit-form").click(() => {
+          updateForm.unbind("submit");
+          updateForm.submit();
           updateForm.hide();
         });
 
@@ -388,36 +409,42 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             .attr("data-productId");
           const url = "/bookshop/review?reviewId=" + id;
 
-          $.get(url, (data, status) => {
-            if (status !== "success") {
-              console.log("Can't get resource");
-            }
+          $.ajax({
+            url,
+            type: "get",
+            success: function (data) {
+              updateForm.show();
+              setReviewContent(data);
 
-            updateForm.show();
-            setReviewContent(data);
+              updateForm.submit((e) => {
+                e.preventDefault();
 
-            updateForm.submit((e) => {
-              e.preventDefault();
+                const updateUrl =
+                  "/bookshop/review?action=UPDATE&reviewId=" +
+                  id +
+                  "&productId=" +
+                  productId;
+                const content = formTextarea.val();
+                const starsRadio = $("input[name=rating]");
+                const stars = starsRadio.filter(":checked").val() ?? 1;
+                const form = { stars, content };
+                $.post(updateUrl, form, (updateData, updateStatus) => {
+                  if (updateData === "500") {
+                    console.log("Error from server");
+                    return;
+                  }
 
-              const updateUrl =
-                "/bookshop/review?action=UPDATE&reviewId=" +
-                id +
-                "&productId=" +
-                productId;
-              const content = formTextarea.val();
-              const starsRadio = $("input[name=rating]");
-              const stars = starsRadio.filter(":checked").val() ?? 1;
-              const form = { stars, content };
-              $.post(updateUrl, form, (updateData, updateStatus) => {
-                if (updateData === "500") {
-                  console.log("Error from server");
-                  return;
-                }
+                  updateForm.hide();
+                  updating.text(updateData);
 
-                updateForm.hide();
-                updating.text(updateData);
+                  updateForm.unbind("submit");
+                  updateForm.submit();
+                });
               });
-            });
+            },
+            error: function (xhr) {
+              console.error(xhr);
+            },
           });
         });
       });
