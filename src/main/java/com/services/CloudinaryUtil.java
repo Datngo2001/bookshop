@@ -6,9 +6,9 @@ import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
 
 public class CloudinaryUtil {
-    public static String apiKey = "714398424555959";
-    public static String cloud_name = "dxps1j39b";
-    public static String api_secret = "K3RfnJoJwiMquzpV7z-F5hH0Bc0";
+    public static String apiKey = System.getenv("CLOUDINARY_APIKEY");
+    public static String cloud_name = System.getenv("CLOUDINARY_CLOUDNAME");
+    public static String api_secret = System.getenv("CLOUDINARY_SECRET");
 
     public static Cloudinary getCLoudinary() {
         Cloudinary cloudinary = new Cloudinary(ObjectUtils.asMap("cloud_name", cloud_name, "api_key", apiKey,

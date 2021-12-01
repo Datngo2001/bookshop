@@ -15,8 +15,13 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 public class EmailService {
-    public static boolean sendEmail(String host, String port, final String email, final String password,
-            String toAddress, String subject, String message) throws AddressException, MessagingException {
+    public static boolean sendEmail(String toAddress, String subject, String message)
+            throws AddressException, MessagingException {
+
+        final String host = System.getenv("MAIL_HOST");
+        final String port = System.getenv("MAIL_PORT");
+        final String sender = System.getenv("MAIL_USERNAME");
+        final String pass = System.getenv("MAIL_PASS");
 
         // sets SMTP server properties
         Properties properties = new Properties();
@@ -28,7 +33,7 @@ public class EmailService {
         // creates a new session with an authenticator
         Authenticator auth = new Authenticator() {
             public PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication(email, password);
+                return new PasswordAuthentication(sender, pass);
             }
         };
 
@@ -37,7 +42,7 @@ public class EmailService {
         // creates a new e-mail message
         Message msg = new MimeMessage(session);
 
-        msg.setFrom(new InternetAddress(email));
+        msg.setFrom(new InternetAddress(sender));
         InternetAddress[] toAddresses = { new InternetAddress(toAddress) };
         msg.setRecipients(Message.RecipientType.TO, toAddresses);
         msg.setSubject(subject);

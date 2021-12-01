@@ -166,11 +166,7 @@ public class User implements Serializable {
 		// Seed verify mail
 		try {
 			registerDTO.setCode(EmailService.getRandom());
-			String host = context.getInitParameter("host");
-			String port = context.getInitParameter("port");
-			String sender = context.getInitParameter("username");
-			String pass = context.getInitParameter("pass");
-			EmailService.sendEmail(host, port, sender, pass, registerDTO.getEmail(), "Email Verification",
+			EmailService.sendEmail(registerDTO.getEmail(), "Email Verification",
 					"Registered successfully.Please verify your account using this code: " + registerDTO.getCode());
 		} catch (MessagingException e) {
 			e.printStackTrace();
