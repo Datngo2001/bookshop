@@ -216,7 +216,7 @@ public class ProductDAO {
 					+ "            <div class=\"side-contain\" style=\"display: flex; flex-wrap: nowrap;\">\r\n"
 					+ "             <div class=\"img-sidebar\">\r\n"
 					+ "              <a href=\"product?command=LOAD&id="+ product.getId() +"\">\r\n"
-					+ "                <img style=\"width: 160px\" src=\"" + product.getPictureUrl() +"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
+					+ "                <img src=\"" + product.getPictureUrl() +"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
 					+ "               </a>\r\n"
 					+ "              </div>"
 					+ "              <div class=\"sidebar-content\">\r\n"
@@ -245,7 +245,7 @@ public class ProductDAO {
 		footer ="<div class=\"footer-side hidden-s\" style=\"width: 100%;\">\r\n"
 				+ "<center>\r\n "
 				+ "<input class=\"index-product\" type=\"hidden\" name=\"amount\" value=\""+ index +"\">"
-				+ "<button style=\"\" onclick=\"loadMore()\" type=\"button\" name=\"button\" class=\"btn-watch\">Xem them</button>\r\n"
+				+ "<button style=\"\" onclick=\"loadMore()\" type=\"button\" name=\"button\" class=\"btn-watch\">Xem thêm</button>\r\n"
 				+ "</div>\r\n"
 				+ "</center>";
 		return productList + footer;
@@ -258,7 +258,7 @@ public class ProductDAO {
 					+ "            <div class=\"side-contain\" style=\"display: flex; flex-wrap: nowrap;\">\r\n"
 					+ "             <div class=\"img-sidebar\">\r\n"
 					+ "              <a href=\"product?command=LOAD&id="+ product.getId() +"\">\r\n"
-					+ "                <img style=\"width: 160px\" src=\"" + product.getPictureUrl() +"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
+					+ "                <img  src=\"" + product.getPictureUrl() +"\" alt=\"\" class=\"img-card-sidebar\">\r\n"
 					+ "               </a>\r\n"
 					+ "              </div>"
 					+ "              <div class=\"sidebar-content\">\r\n"
@@ -287,7 +287,7 @@ public class ProductDAO {
 		footer ="<div class=\"footer-side hidden-s\" style=\"width: 100%;\">\r\n"
 				+ "<center>\r\n "
 				+ "<input class=\"index-product-2\" type=\"hidden\" name=\"amount2\" value=\""+ index +"\">"
-				+ "<button style=\"\" onclick=\"loadInMore()\" type=\"button\" name=\"button\" class=\"btn-watch\">Xem them</button>\r\n"
+				+ "<button style=\"\" onclick=\"loadInMore()\" type=\"button\" name=\"button\" class=\"btn-watch\">Xem thêm</button>\r\n"
 				+ "</div>\r\n"
 				+ "</center>";
 		return productList + footer;

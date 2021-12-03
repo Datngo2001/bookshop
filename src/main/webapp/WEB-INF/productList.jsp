@@ -63,7 +63,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         if (keyword === "") return;
 
         $.ajax({
-          url: "/bookshop/searchProduct?action=AJAX",
+          url: "/searchProduct?action=AJAX",
           type: "get",
           data: {
             keyword,

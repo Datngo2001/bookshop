@@ -215,7 +215,6 @@ span.logo-header {
 }
 .header-side .search-product {
     flex: 1;
-    position: relative;
     align-items: baseline;
     display: flex;
     
@@ -224,17 +223,16 @@ span.logo-header {
 	display: flex;
 }
 .search-right {
-	width: 100%;
 	display: flex;
 	justify-content: flex-end;
 	height: 60px;
 	position: relative;
 }
 .search-right-list {
+	width: 50%;
 	margin-top: -18px;
 }
 .cart-products {
-	position: relative;
     margin: 5px 10px;
     text-align: center;
 	height: 300%;
@@ -287,7 +285,7 @@ span.logo-header {
     display: block;
 }
 .search-right-item{
-	width: 100%;
+	width: 80%;
 }
 .display-block {
 	display: block;
@@ -457,13 +455,12 @@ p.trending-item-name-1 {
 }
 .header-side .wishlist-product {
 	background-image: url(https://kbstatic1-a.akamaihd.net/1.0.0.2098/Images/header-footer/wishlist_grey_icon.svg),linear-gradient(transparent,transparent);
-    position: relative;
     background-repeat: no-repeat;
     background-position: center;
     background-size: 100%;
     width: 32px;
     height: 30px;
-    margin: 2px 13px;
+    margin: 2px 8px;
     display: block;
 }
 .header-side .cart-product-icon {
@@ -486,21 +483,28 @@ p.trending-item-name-1 {
 }
 /*Responsive*/
 @media (max-width: 1024px){
-  .grid_column-8 {
+  .grid .grid_column-8 {
   padding-left: 5px;
   padding-right: 5px;
-  width: 75%;
+  width: 70%;
   }	
-  .grid_column-4 {
+  .grid .grid_column-4 {
   padding-left: 5px;
   padding-right: 5px;
-  width: 25%;
+  width: 30%;
   }
   span.logo-header {
 	color: var(--bs-gray-700);
 	font-size: 33px;
 	padding: 2px 0;
   }
+  .header-side .navbar-logo {
+	width: 150px;
+    justify-content: center;
+    margin: 0 4px;
+    align-items: center;
+    
+}
 }
 @media screen and (max-width: 767px) { 
 	.search-right {
@@ -508,11 +512,11 @@ p.trending-item-name-1 {
 	}
 	  span.logo-header {
 	color: var(--bs-gray-700);
-	font-size: 25px;
+	font-size: 22px;
 	padding: 2px 0;
   }
 .header-side .navbar-logo {
-	width: 100px;
+	width: 120px;
     justify-content: center;
     margin: 0 4px;
     align-items: center;
@@ -524,5 +528,19 @@ p.trending-item-name-1 {
   .list-right {
   justify-content: flex-start;
   }
+.search-product {
+	width: 50%;
+}
+.grid .grid_column-7 {
+	width: 100%;
+}
+  
 
+}
+@media screen and (max-width: 600px)  {
+	span.logo-header {
+	color: var(--bs-gray-700);
+	font-size: 20px;
+	padding: 2px 0;
+}
 }

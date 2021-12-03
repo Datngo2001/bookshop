@@ -54,7 +54,7 @@ public class SearchProductControler extends HttpServlet {
 
             PrintWriter response = res.getWriter();
             for (Product product : products) {
-                response.println("<div class=\"card\">" + "<a href=\"product?command=LOAD&id=" + product.getId() + "\">"
+                response.println("<div class=\"card\">" + "<a href=\"product?command=LOAD&id=" + product.getId() + "\"style=\"color: 	#77CEED;\">"
                         + "<div class=\"img\">" + " <img src=\" " + product.pictureUrl + " \" />" + " </div>"
                         + "<div class=\"content\">" + "<div class=\"productName\">" + "<h3>" + product.getProductName()
                         + "</h3>" + "</div>" + "<div class=\"price_rating\">" + "    <span> " + product.price

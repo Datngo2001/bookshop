@@ -19,18 +19,14 @@ import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author xonv
- */
 public class Config {
 
     public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
 
     // public static String vnp_Returnurl =
     // "https://ebooks-shop.herokuapp.com/return";
-    public static String vnp_Returnurl = "https://ebooks-shop.herokuapp.com/return";
-    // public static String vnp_Returnurl = "http://localhost:8080/bookshop/return";
+    //public static String vnp_Returnurl = "https://ebooks-shop.herokuapp.com/return";
+    public static String vnp_Returnurl = "http://localhost:8082/bookshop/return";
     public static String vnp_TmnCode = "C3XYP5I0";
     public static String vnp_HashSecret = "ACKQPUNPZCGDBEOXDHFVZSJLTMFKHRFF";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";

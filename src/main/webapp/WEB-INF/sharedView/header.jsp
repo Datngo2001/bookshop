@@ -113,14 +113,14 @@
         </ul>
       </nav>
       <div class="navbar-search">
-        <div class="navbar-logo">
+        <div class="navbar-logo grid_column-3">
           <a href="./home">
             <h1 class="logo-title">
               <span class="logo-header">E-BOOK</span>
             </h1></a
           >
         </div>
-        <div class="grid_column-8 search-left">
+        <div class="grid_column-7 search-left">
           <div class="search-product">
             <form style="flex: 1" action="searchProduct" id="search">
               <input
@@ -149,7 +149,7 @@
             </div>
           </div>
         </div>
-        <div class="grid_column-4 search-right">
+        <div class="grid_column-3 search-right">
           <ul class="search-right-list">
             <li class="search-right-item">
               <a href="#" class="wishlist-link">

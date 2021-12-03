@@ -407,7 +407,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           const productId = $(this)
             .parents(".user-comment")
             .attr("data-productId");
-          const url = "/bookshop/review?reviewId=" + id;
+          const url = "/review?reviewId=" + id;
 
           $.ajax({
             url,
@@ -420,7 +420,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 e.preventDefault();
 
                 const updateUrl =
-                  "/bookshop/review?action=UPDATE&reviewId=" +
+                  "/review?action=UPDATE&reviewId=" +
                   id +
                   "&productId=" +
                   productId;

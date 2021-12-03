@@ -13,7 +13,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
   <!-- Local -->
   <link rel="stylesheet" href="./css/home.css">
-  <title>E-Book Shop</title>
+ <!-- SEO -->
+  <title>E-Book Store | World of Books, Novels & Comics</title>
+  <meta name="description" content="E-Book Store discover a wonderful selection books, novels from booksellers located around the world. We have every books you need, just come and see ">
 </head>
 
 <body>
@@ -63,8 +65,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="sort-by">
               <span class="home-label">Sorting by</span>
               <button class="btn-product home-filter-btn">Popular</button>
-              <button class="btn-product btn-primary home-filter-btn">Newest</button>
-              <button class="btn-product home-filter-btn">Selling</button>
+              <button class="btn-product btn-primary home-filter-btn hidden-new">Newest</button>
+              <button class="btn-product home-filter-btn hidden-new">Selling</button>
             </div>
             <div class="select-input">
               <span class="select-price-label">Price</span>
@@ -400,7 +402,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <div class="header-colection">
       <ul class="list-filter list-left-2">
         <li class="link-filter"> <a href="" class="trending_item-link"> Giá tốt </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
+        <li class="link-filter list-hidden"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Sáng tạo </a></li>
       </ul>
       <ul class="list-filter list-right-2">
@@ -409,7 +411,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
       </ul>
     </div>
     <div class="grid_row">
-      <div class="grid_column-4">
+      <div class="grid_column-4 hidden-site">
         <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-10-2021/Tr%C3%AAn%20h%C3%A0nh%20tr%C3%ACnh%20t%E1%BB%B1%20h%E1%BB%8Dc_350x415.jpg" alt="">
       </div>
       <div class="grid_column-8 flex-site">
@@ -423,7 +425,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
               <div class="img-sidebar">
               <a href="${link}">
-                <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
+                <img  src="${product.pictureUrl}" alt="" class="img-card-sidebar">
                </a>
               </div>
               <div class="sidebar-content">
@@ -455,7 +457,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<div class="footer-side" style="width: 100%;">
           <center>
           	<input class="index-product" type="hidden" name="amount" value="${amount}">
-            <button style="" onclick="loadMore()" type="button" name="button" class="btn-watch">Xem them</button>
+            <button style="" onclick="loadMore()" type="button" name="button" class="btn-watch">Xem thêm</button>
              </center>
         </div>
        
@@ -469,7 +471,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <div class="header-colection">
       <ul class="list-filter list-left-2">
         <li class="link-filter"> <a href="" class="trending_item-link"> Giá tốt </a></li>
-        <li class="link-filter"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
+        <li class="link-filter list-hidden"> <a href="" class="trending_item-link"> Sắp phát hành </a></li>
         <li class="link-filter"> <a href="" class="trending_item-link"> Sáng tạo </a></li>
       </ul>
       <ul class="list-filter list-right-2">
@@ -478,7 +480,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
       </ul>
     </div>
     <div class="grid_row">
-      <div class="grid_column-4">
+      <div class="grid_column-4 hidden-site">
         <img class="main-img" style="width: 100%;" src="https://cdn0.fahasa.com/media/wysiwyg/Thang-05-2021/350%20x%20415.jpg" alt="">
       </div>
       <div class="grid_column-8 flex-site">
@@ -492,7 +494,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <div class="side-contain" style="display: flex; flex-wrap: nowrap;">
               <div class="img-sidebar">
               <a href="${link}">
-                <img style="width: 160px" src="${product.pictureUrl}" alt="" class="img-card-sidebar">
+                <img src="${product.pictureUrl}" alt="" class="img-card-sidebar">
                </a>
               </div>
               <div class="sidebar-content">
@@ -524,7 +526,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 		<div class="footer-side" style="width: 100%;">
           <center>
           	<input class="index-product-2" type="hidden" name="amount2" value="${amount}">
-            <button style="" onclick="loadInMore()" type="button" name="button" class="btn-watch">Xem them</button>
+            <button style="" onclick="loadInMore()" type="button" name="button" class="btn-watch">Xem thêm</button>
              </center>
         </div>
        
