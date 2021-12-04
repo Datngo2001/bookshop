@@ -34,6 +34,7 @@ public class User implements Serializable {
 	private String fname;
 	private String lname;
 	private String email;
+	private String gender;
 
 	// Relation
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -262,8 +263,6 @@ public class User implements Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-
-	public String gender;
 
 	public String getUsername() {
 		return username;

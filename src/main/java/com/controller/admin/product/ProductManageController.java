@@ -86,7 +86,9 @@ public class ProductManageController extends HttpServlet {
 			CloudinaryUtil.destroyItem(photo.getPublicId());
 		}
 		File file = new FileDAO().getProductFile(id);
-		CloudinaryUtil.destroyItem(file.getPublicId());
+		if (file != null) {
+			CloudinaryUtil.destroyItem(file.getPublicId());
+		}
 
 		productDAO.deleteProduct(id);
 		response.sendRedirect("product");

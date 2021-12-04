@@ -24,9 +24,12 @@ public class PhotoDAO {
                 for (Photo producPhoto : photos) {
                     producPhoto.setMain(false);
                 }
+                product.setPictureUrl(photo.getUrl());
             }
+
             photo.setProduct(product);
             session.save(photo);
+            session.update(product);
 
             transaction.commit();
             return photo;
@@ -89,6 +92,9 @@ public class PhotoDAO {
 
             Product product = session.get(Product.class, productId);
             List<Photo> photos = product.getPhotos();
+            for (Photo photo : photos) {
+                photo.getId();
+            }
 
             transaction.commit();
             return photos;
@@ -111,6 +117,7 @@ public class PhotoDAO {
             for (Photo producPhoto : photos) {
                 if (producPhoto.getId() == photoId) {
                     producPhoto.setMain(true);
+                    product.setPictureUrl(producPhoto.getUrl());
                 } else {
                     producPhoto.setMain(false);
                 }
