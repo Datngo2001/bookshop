@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <span class="">Tax</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="${tax}" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="0" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Total Amount</span>

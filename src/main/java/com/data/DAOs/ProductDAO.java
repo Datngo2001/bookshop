@@ -223,10 +223,7 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
-					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
-					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
-					+ "                  </span>\r\n"
+
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"
@@ -265,10 +262,7 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
-					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
-					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
-					+ "                  </span>\r\n"
+
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"

@@ -103,10 +103,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                       <p class="trending-item-name">${product.getProductName()}</p>
                       <p class="trending-item-author">${product.nameAuthor}</p>
                       <div class="product-action">
-                        <span class="product-action-heart product-action-liked">
+						<!--                         <span class="product-action-heart product-action-liked">
                           <i class="like-icon far fa-heart"></i>
                           <i class="liked-icon fas fa-heart"></i>
                         </span>
+                         -->
                         <div class="product-action-star">
                           <c:forEach var="i" begin="1" end="${product.getStar()}">
                             <i class="star-gold fas fa-star"></i>
@@ -128,9 +129,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                         <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                       </form>
 
-                      <div class="product-item-favourite">
-                        <i class="fas fa-check"></i> Interesting
-                      </div>
+
                       <c:choose>
                         <c:when test="${product.discount == 0 }">
 
@@ -204,10 +203,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${item.getProductName()}</p>
                 <p class="trending-item-author">${item.getNameAuthor()}</p>
                 <div class="product-action">
+<!-- 
                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
                     <i class="liked-icon fas fa-heart"></i>
-                  </span>
+                  </span> -->
                   <div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
@@ -227,9 +227,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <input type="hidden" name="action" value="ADD">
                   <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                 </form>
-                <div class="product-item-favourite">
-                  <i class="fas fa-check"></i> Interesting
-                </div>
+
                 <c:choose>
                   <c:when test="${item.discount == 0 }">
 
@@ -277,10 +275,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <p class="trending-item-name">${item.getProductName() }</p>
                   <p class="trending-item-author">${item.getNameAuthor() }</p>
                   <div class="product-action">
-                    <span class="product-action-heart product-action-liked">
+                  
+<!--                     <span class="product-action-heart product-action-liked">
                       <i class="like-icon far fa-heart"></i>
                       <i class="liked-icon fas fa-heart"></i>
-                    </span>
+                    </span> -->
                     <div class="product-action-star">
                       <c:forEach var="i" begin="1" end="4">
 
@@ -299,9 +298,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     <input type="hidden" name="action" value="ADD">
                     <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                   </form>
-                  <div class="product-item-favourite">
-                    <i class="fas fa-check"></i> Interesting
-                  </div>
+
                   <c:choose>
                     <c:when test="${item.discount == 0 }">
 
@@ -349,10 +346,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <p class="trending-item-name">${item.getProductName() }</p>
                   <p class="trending-item-author">${item.getNameAuthor() }</p>
                   <div class="product-action">
+                  <!--  
                     <span class="product-action-heart product-action-liked">
                       <i class="like-icon far fa-heart"></i>
                       <i class="liked-icon fas fa-heart"></i>
-                    </span>
+                    </span> 
+                    -->
                     <div class="product-action-star">
                       <c:forEach var="i" begin="1" end="${product.getStar()}">
                         <i class="star-gold fas fa-star"></i>
@@ -372,9 +371,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     <input type="hidden" name="action" value="ADD">
                     <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                   </form>
-                  <div class="product-item-favourite">
-                    <i class="fas fa-check"></i> Interesting
-                  </div>
+
                   <c:choose>
                     <c:when test="${item.discount == 0 }">
 
@@ -432,10 +429,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${product.getProductName() }</p>
                 <p class="trending-item-author">${product.getNameAuthor() }</p>
                 <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
+<!--                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
                     <i class="liked-icon fas fa-heart"></i>
-                  </span>
+                  </span> -->
 					<div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
@@ -501,10 +498,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${product.getProductName() }</p>
                 <p class="trending-item-author">${product.getNameAuthor() }</p>
                 <div class="product-action">
-                  <span class="product-action-heart product-action-liked">
+<!--                   <span class="product-action-heart product-action-liked">
                     <i class="like-icon far fa-heart"></i>
                     <i class="liked-icon fas fa-heart"></i>
-                  </span>
+                  </span> -->
 					<div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
