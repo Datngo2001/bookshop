@@ -204,6 +204,7 @@ public class User implements Serializable {
 		user.setPasswordSalt(salt);
 		user.setUsername(registerDTO.getUsername());
 		user.setRole(role);
+		user.setEmail(registerDTO.getEmail());
 
 		// Save new user to database
 		UserDAO userDAO = new UserDAO();

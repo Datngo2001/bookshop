@@ -31,10 +31,11 @@ uri="http://java.sun.com/jsp/jstl/core"%>
       <h1 class="h4 text-gray-900 mb-4">Your Profile</h1>
     </div>
     <div class="d-flex justify-content-center w-100">
-        <form class="w-75" action="" method="post">
+        <form class="w-75" action="profile" method="post">
+            <input type="hidden" name="action" value="Update"/>
             <div class="form-group">
                 <label for="inputFirstName">Username</label>
-                <input readonly type="text" class="form-control" id="inputFirstName" placeholder="First name" name="fname" value="${user.username}">
+                <input readonly type="text" class="form-control" id="inputFirstName" placeholder="First name" name="username" value="${user.username}">
             </div>
             <div class="form-group">
                 <label for="inputFirstName">First name</label>
@@ -59,7 +60,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email address</label>
-                <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                <input readonly type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                     placeholder="Email" name="email" value="${user.email}">
             </div>
 

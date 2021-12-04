@@ -1,6 +1,7 @@
 package com.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -11,71 +12,88 @@ import javax.servlet.http.HttpServletResponse;
 import com.data.DAOs.*;
 import com.model.*;
 
-
 @WebServlet("/profile")
 public class ProfileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private OrderDAO orderDAO = null;
 	private UserDAO userDao = null;
 
-    public ProfileController() {
-        super();
-        userDao = new UserDAO();
-        orderDAO = new OrderDAO();
-    }
+	public ProfileController() {
+		super();
+		userDao = new UserDAO();
+		orderDAO = new OrderDAO();
+	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nextUrl = "WEB-INF/profile.jsp";
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 		try {
-			
-		Object userId = request.getSession().getAttribute("userId");
+
+			// get current action
+			String action = request.getParameter("action");
+
+			if (action == null) {
+				action = "View";
+			}
+
+			if (action.equals("View")) {
+				viewProfile(request, response);
+			} else if (action.equals("Update")) {
+				updateProfile(request, response);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			response.sendRedirect("login");
+		}
+	}
+
+	private void updateProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		int userId = (int) request.getSession().getAttribute("userId");
+		User user = new User();
+		user.setId(userId);
+		user.setEmail(request.getParameter("email"));
+		user.setFname(request.getParameter("fname"));
+		user.setLname(request.getParameter("lname"));
+		user.setGender(request.getParameter("gender"));
+		try {
+			user.setBdate(Date.valueOf(request.getParameter("bdate")));
+		} catch (Exception e) {
+			user.setBdate(null);
+		}
+		userDao.updateUser(user);
+
+		response.sendRedirect("profile");
+	}
+
+	private void viewProfile(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Item> items = null;
-		// get current action
-		String action = request.getParameter("action");
-
 		List<Item> my_product = new ArrayList<Item>();
-		if (action == null) {
-			action = "Go to profile.jsp";
-		}
-
-		if (action.equals("SOMETHING")) {
-			example();
-		}
+		Object userId = request.getSession().getAttribute("userId");
 		User user = userDao.getUser(userId.toString());
 		// get user to profile
 
 		List<Order> list_order = orderDAO.getListOrderByUserId(userId.toString());
 		// list the order of user
-		for (Order order: list_order) {
+		for (Order order : list_order) {
 			// list item in order by another user
 			items = userDao.getMyBook(order.getId());
-				
-			// because items is list so we iterate, then add all them in my_product 
-			for(Item item: items) my_product.add(item);
-				
-		}	
-			
+
+			// because items is list so we iterate, then add all them in my_product
+			for (Item item : items)
+				my_product.add(item);
+
+		}
+
 		request.setAttribute("list_item", my_product);
 		request.setAttribute("user", user);
-
-			
-		} 
-		catch (Exception e) {
-			e.printStackTrace();
-			response.sendRedirect("login");
-		}
-		
+		String nextUrl = "WEB-INF/profile.jsp";
 		request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 
-	private void example() {
-		
-		
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		doPost(request, response);
 	}
 

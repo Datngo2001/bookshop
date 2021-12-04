@@ -40,7 +40,7 @@ public class UserDAO {
 		q.setParameter("uname", username);
 		try {
 			User user = q.getSingleResult();
-			
+
 			return user;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -133,15 +133,16 @@ public class UserDAO {
 
 	@SuppressWarnings("unchecked")
 	public List<Item> getMyBook(int orderId) {
-    	try {
-    		return DbUtil.getSessionFactory().openSession().createQuery("From Item I where I.order.id = " + "'" + orderId + "'").getResultList();
-    	}
-    	catch (Exception e) {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Item I where I.order.id = " + "'" + orderId + "'").getResultList();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-    	return null;
+		return null;
 
 	}
+
 	// INSERT ----------------------------------------------------
 	public User addUser(User user) {
 		Transaction transaction = null;
@@ -159,6 +160,7 @@ public class UserDAO {
 			return null;
 		}
 	}
+
 	public Item addItemToMyProduct(Item item) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
@@ -180,9 +182,16 @@ public class UserDAO {
 	public void updateUser(User user) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
-
 			transaction = session.beginTransaction();
-			session.update(user);
+			
+			User dbUser = session.get(User.class, user.getId());
+			dbUser.setBdate(user.getBdate());
+			dbUser.setEmail(user.getEmail());
+			dbUser.setFname(user.getFname());
+			dbUser.setLname(user.getLname());
+			dbUser.setGender(user.getGender());
+			session.update(dbUser);
+
 			transaction.commit();
 		} catch (Exception e) {
 			if (transaction != null) {
