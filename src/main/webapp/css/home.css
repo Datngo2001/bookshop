@@ -576,7 +576,7 @@ p.trending-item-author {
 	width: 100%;
 }
 .img-card-sidebar {
-	width: 160px
+	width: 160px;
 }
 button.center {
   justify-content: center;
@@ -631,19 +631,6 @@ button.center {
 }
 /*The most product*/
 
-@media (max-width: 574px) {
-  .row-card {
-    --bs-gutter-x: 1.5rem;
-    --bs-gutter-y: 0;
-    display: flex;
-    margin-top: calc(var(--bs-gutter-y) * -1);
-    margin-right: calc(var(--bs-gutter-x) * -0.5);
-    margin-left: calc(var(--bs-gutter-x) * -0.5);
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-  }
-}
 
 @media (max-width: 1170px) {
   .menu-item > a {
@@ -722,7 +709,7 @@ button.center {
     display: block;
   }
   .grid .img-card-sidebar {
-	width: 100px;
+	width: 120px;
   }
   .grid .btn-watch {
   	width: 150px;

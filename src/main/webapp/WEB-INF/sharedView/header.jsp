@@ -20,14 +20,15 @@
             </div>
           </li>
           <li class="navbar-item">|</li>
-          <li class="navbar-item">
+          <li class="navbar-item" >
             Connection
             <i class="navbar_list-icon fab fa-facebook"> </i>
             <i class="navbar_list-icon fab fa-github"></i>
           </li>
         </ul>
-        <ul class="navbar_list list-right">
-          <li class="navbar-item navbar-has-notify">
+
+        <ul class="navbar_list list-right hidden-notify">
+          <li class="navbar-item navbar-has-notify ">
             <i class="navbar_list-icon fas fa-bell"></i>
             Notifications
             <div class="navbar-notify">
@@ -111,6 +112,38 @@
             </c:otherwise>
           </c:choose>
         </ul>
+        <ul class="navbar_list list-middle lmh">
+        <c:choose> 
+        	<c:when test="${sessionScope.userId == null}">
+        	<li class="navbar-item">
+            <a href="login" class="navbar-item-link">Log In</a>
+          </li>
+          <li> | </li>
+           <li class="navbar-item">
+            <a href="register" class="navbar-item-link">Sign Up</a>
+          </li>
+           </c:when>
+           <c:otherwise>
+           <li class="navbar-item">
+            <a href="profile" class="navbar-item-link"> <i class="fas fa-user"></i>&nbsp; Profile</a>
+          </li>
+          <li> | </li>
+           <li class="navbar-item">
+            <a href="logout" class="navbar-item-link">Log Out</a>
+          </li>
+           </c:otherwise>
+		</c:choose>
+        </ul>
+        <ul class="navbar_list list-middle">
+        	<li class="navbar-item">
+            <a href="cart" class="navbar-item-link"><i class="navbar_list-icon fal fa-shopping-cart"></i> Cart</a>
+          </li>
+           <li class="navbar-item">
+            <div class="menu-btn">
+            	<i class="fas fa-list" style="font-size: 24px"></i>
+            </div>
+          </li>
+        </ul>
       </nav>
 
 	<div class="grid_row">
@@ -152,6 +185,7 @@
           </div>
         </div>
         <div class="grid_column-2 search-right">
+        <!-- 
           <ul class="search-right-list">
             <li class="search-right-item">
               <a href="#" class="wishlist-link">
@@ -164,7 +198,7 @@
                 />
               </a>
             </li>
-          </ul>
+          </ul> -->
           <ul class="search-right-list">
             <li class="search-right-item">
               <form action="cart" method="get">
@@ -202,5 +236,74 @@
       </div>
 	</div>
     </div>
+    
   </header>
-</div>
+  <div class="navigation hidden" >
+  	<div class="close-btn">
+  		<i class="far fa-times-circle"></i>  
+  	</div>
+  	<div class="support-user" style="display: flex;">
+		<ul style="display: flex;">
+			<li>
+		<a href="" class="navbar-item-link help-icon">
+        <i class="navbar_list-icon fas fa-bell"></i> 
+            Notification
+         </a>
+			 </li>
+			 <li> 
+		<a href="" class="navbar-item-link help-icon">
+        <i class="navbar_list-icon fas fa-question-circle"></i> 
+            Help?
+         </a>
+		</li>
+		</ul>
+  	</div>
+	<div class="content-respon" >
+		  	 <ul class="category-list">
+              <li class="category-item category--active">
+                <a href="" class="category-link">Romance</a>
+              </li>
+              <li class="category-item">
+                <a href="" class="category-link">Science Fiction & Fantasy</a>
+              </li>
+              <li class="category-item">
+                <a href="" class="category-link">Comics, Graphic Novels, & Manga</a>
+              </li>
+              <li class="category-item">
+                <a href="" class="category-link">Business & Finance</a>
+              </li>
+           </ul>
+           <br>
+           <p style="color: var(--bs-blue); margin: 0 15px;"> Sorting by</p>
+           	<ul class="category-list">
+              <li class="category-item">
+                <a href="" class="category-link">Popular</a>
+              </li>
+              <li class="category-item">
+                <a href="" class="category-link">Newest</a>
+              </li>
+              <li class="category-item">
+                <a href="" class="category-link">Best Selling</a>
+              </li>
+           </ul>
+	</div>
+  </div>
+  
+  
+  <script>
+	  var model = document.querySelector(".navigation");
+	  var open_model = document.querySelector(".menu-btn");
+	  var close_model = document.querySelector(".close-btn");
+
+
+	  open_model.addEventListener("click", () => {
+		  model.classList.remove("hidden");
+	  });
+	  
+	  close_model.addEventListener('click', () => {
+		  model.classList.add("hidden");
+	  })
+
+  </script>
+
+
