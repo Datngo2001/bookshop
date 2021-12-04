@@ -60,15 +60,14 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           </nav>
         </div>
         <div class="grid_column-10">
-
           <div class="home-filter">
-            <div class="sort-by">
+            <div class="sort-by grid_column-6">
               <span class="home-label">Sorting by</span>
               <button class="btn-product home-filter-btn">Popular</button>
               <button class="btn-product btn-primary home-filter-btn hidden-new">Newest</button>
               <button class="btn-product home-filter-btn hidden-new">Selling</button>
             </div>
-            <div class="select-input">
+            <div class="select-input grid_column-3">
               <span class="select-price-label">Price</span>
               <i class="fas fa-angle-down select-price-icon"></i>
               <ul class="select-input-list">
@@ -87,27 +86,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 </li>
               </ul>
             </div>
-            <div class="home-page">
-
-              <div class="filter-control" style="display: flex">
-                <div class="info-page" style="display: flex;">
-                  <label> ${next + 1} </label> / <label> ${max + 1}</label>
-                </div>
-                <form action="home" method="post">
-                  <input type="hidden" name="action" value="PREV">
-                  <input type="hidden" name="sort" value="${decrease}">
-                  <input type="hidden" name="next" value="${next}">
-                  <button type="submit" class="filter-page-btn"><i class="fas fa-angle-left"></i></button>
-                </form>
-
-                <form action="home" method="post">
-                  <input type="hidden" name="action" value="NEXT">
-                  <input type="hidden" name="next" value="${next}">
-                  <input type="hidden" name="sort" value="${decrease}">
-                  <button type="submit" class="filter-page-btn"><i class="fas fa-angle-right"></i></button>
-                </form>
-              </div>
-            </div>
           </div>
           <div class="home-product">
             <div class="grid_row">
@@ -116,7 +94,6 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <c:param name="command" value="LOAD" />
                   <c:param name="productID" value="${product.id}" />
                 </c:url>
-
                 <div class="grid_column-2-5">
                   <div class="card-trending">
                     <div class="product-item border-card">
@@ -169,16 +146,39 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   </div>
                 </div>
               </c:forEach>
-
             </div>
           </div>
+           <div class="home-page">
+              <div class="filter-control">
+                <div class="info-page">
+                  <label> ${next + 1} </label> / <label> ${max + 1}</label>
+                </div>
+                <form action="home" method="post">
+                  <input type="hidden" name="action" value="PREV">
+                  <input type="hidden" name="sort" value="${sort_mode}">
+                  <input type="hidden" name="next" value="${next}">
+                  <button type="submit" class="filter-page-btn input-page"><i class="fas fa-angle-left"></i></button>
+                </form>
+
+                <form action="home" method="post">
+                  <input type="hidden" name="action" value="NEXT">
+                  <input type="hidden" name="next" value="${next}">
+                  <input type="hidden" name="sort" value="${sort_mode}">
+                  <button type="submit" class="filter-page-btn input-page"><i class="fas fa-angle-right"></i></button>
+                </form>
+                
+                <form action="home" method="post">
+                  <input type="text" class="input-page-2" name="index">
+                  <input type="hidden" name="action" value="INDEX">
+                  <button type="submit" class="input-go">Go</button>
+                </form>
+              </div>
+            </div>
         </div>
+
       </div>
     </div>
   </div>
-
-
-  <br>
   <div class="grid">
     <div class="grid_row">
       <div class="trending_book">

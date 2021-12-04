@@ -41,9 +41,8 @@ uri="http://java.sun.com/jsp/jstl/core"%>
         <div class="borderBox">
           <ul class="avatar">
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9J2wZ_CpKbryI_IXN-FJiR6kAuz-hOdU4NA&usqp=CAU"
-              width="191"
-            />
+              src="hhttps://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT9J2wZ_CpKbryI_IXN-FJiR6kAuz-hOdU4NA&usqp=CAU"
+              width="191"/>
             <li><a href="#">Choose a picture</a></li>
           </ul>
         </div>

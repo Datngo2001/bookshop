@@ -2,18 +2,18 @@
 <div class="header-side">
   <header class="header" id="header">
     <div class="grid">
-      <nav class="navbar-header">
+   	<nav class="navbar-header">
         <ul class="navbar_list list-left">
           <li class="navbar-item navbar-has-qr navbar-separate">
             Wellcome to book store
             <!--Header QR-->
             <div class="navbar-qr">
-              <img src="" alt="" class="navbar-qr-img" />
+              <img src="./assets/img/qrcode.png" alt="" class="navbar-qr-img" />
               <div class="navbar-qr-apps">
-                <a href="" class="navbar_qr-link">
+                <a href="" class="navbar_qr-link" style="display: none">
                   <img src="" alt="google play" class="download-img" />
                 </a>
-                <a href="" class="navbar_qr-link">
+                <a href="" class="navbar_qr-link" style="display: none">
                   <img src="" alt="google play" class="download-img" />
                 </a>
               </div>
@@ -112,7 +112,9 @@
           </c:choose>
         </ul>
       </nav>
-      <div class="navbar-search">
+
+	<div class="grid_row">
+	<div class="navbar-search">
         <div class="navbar-logo grid_column-3">
           <a href="./home">
             <h1 class="logo-title">
@@ -149,7 +151,7 @@
             </div>
           </div>
         </div>
-        <div class="grid_column-3 search-right">
+        <div class="grid_column-2 search-right">
           <ul class="search-right-list">
             <li class="search-right-item">
               <a href="#" class="wishlist-link">
@@ -198,6 +200,7 @@
           </ul>
         </div>
       </div>
+	</div>
     </div>
   </header>
 </div>
