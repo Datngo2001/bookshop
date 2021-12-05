@@ -23,8 +23,7 @@ public class DbUtil {
 				/*
 				 * settings.put(Environment.URL,
 				 * "jdbc:postgresql://ec2-44-194-225-27.compute-1.amazonaws.com:5432/dbpncaer12ig4p"
-				 * );
-				 * settings.put(Environment.USER, "tmchqrkqisyfqw");
+				 * ); settings.put(Environment.USER, "tmchqrkqisyfqw");
 				 * settings.put(Environment.PASS,
 				 * "6cbad36d7efbdf936d6dfc94841fc17c1f518782d15ab48cfff785f24976d9c6");
 				 */
@@ -96,15 +95,15 @@ public class DbUtil {
 					settings.put(Environment.URL,
 							"jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
 					settings.put(Environment.USER, "root");
-					settings.put(Environment.PASS, "ngocthien2306.com");
-					
+					settings.put(Environment.PASS, "group2");
+
 					// Mysql of AWS
 					/*
-					settings.put(Environment.URL,
-							"jdbc:mysql://database-1.ctmpvntqk27b.ap-southeast-1.rds.amazonaws.com:3306/book_store");
-					settings.put(Environment.USER, "admin");
-					settings.put(Environment.PASS, "chobeosuiroi:sadcow");
-					*/
+					 * settings.put(Environment.URL,
+					 * "jdbc:mysql://database-1.ctmpvntqk27b.ap-southeast-1.rds.amazonaws.com:3306/book_store"
+					 * ); settings.put(Environment.USER, "admin"); settings.put(Environment.PASS,
+					 * "chobeosuiroi:sadcow");
+					 */
 					settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				}
 
