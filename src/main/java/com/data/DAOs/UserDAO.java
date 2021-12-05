@@ -50,6 +50,23 @@ public class UserDAO {
 		}
 	}
 
+	public User getUserByEmail(String email) {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		String sql = "Select u from User u where u.email =:email";
+		TypedQuery<User> q = em.createQuery(sql, User.class);
+		q.setParameter("email", email);
+		try {
+			User user = q.getSingleResult();
+
+			return user;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
 	public void getPasswordHashAndSalt(LoginDTO loginDTO) {
 		Transaction transaction = null;
 		List<User> rsList = null;
@@ -183,7 +200,7 @@ public class UserDAO {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
 			transaction = session.beginTransaction();
-			
+
 			User dbUser = session.get(User.class, user.getId());
 			dbUser.setBdate(user.getBdate());
 			dbUser.setEmail(user.getEmail());
@@ -198,6 +215,27 @@ public class UserDAO {
 				transaction.rollback();
 			}
 			e.printStackTrace();
+		}
+	}
+
+	public Boolean updateUserPassword(int userId, byte[] passwordHash, byte[] passwordSalt) {
+		Transaction transaction = null;
+		try (Session session = DbUtil.getSessionFactory().openSession()) {
+			transaction = session.beginTransaction();
+
+			User dbUser = session.get(User.class, userId);
+			dbUser.setPasswordHash(passwordHash);
+			dbUser.setPasswordSalt(passwordSalt);
+			session.update(dbUser);
+
+			transaction.commit();
+			return true;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+			return false;
 		}
 	}
 

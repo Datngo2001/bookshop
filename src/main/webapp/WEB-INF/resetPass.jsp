@@ -14,7 +14,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <title>Verify</title>
+    <title>Reset password</title>
 
     <!-- Custom fonts for this template-->
     <link
@@ -49,45 +49,34 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <div class="col-lg-6">
                   <div class="p-5">
                     <div class="text-center">
-                      <h1 class="h4 text-gray-900 mb-2">Verify Email</h1>
-                      <p class="mb-4">
-                        We get it, stuff happens. Just enter your email address
-                        below and we'll send you a link to sign up account!
-                      </p>
+                      <h1 class="h4 text-gray-900 mb-2">Reset password</h1>
                     </div>
-                    <form action="verify" class="" method="POST">
-                      <c:choose>
-                        <c:when test = "${type == 'passReset'}">
-                        <input type="hidden" name="action" value="VERIFY_resetPass" />
-                        </c:when>
-                        <c:when test = "${type == 'register'}">
-                        <input type="hidden" name="action" value="VERIFY_register" />
-                        </c:when>
-                      </c:choose>
+                    <form action="forgot-password" class="" method="POST">
+                      <input type="hidden" name="action" value="resetPass" />
                       <div class="mb-3">
                         <input
-                          id="codeInput"
-                          type="text"
+                          id="passInput"
+                          type="password"
                           class="form-control"
-                          name="code"
-                        />
+                          name="password"
+                        />                     
+                      </div>
+                      <div class="mb-3">
+                        <input
+                          id="reEnterInput"
+                          type="password"
+                          class="form-control"
+                          name="reEnter"
+                        /> 
                       </div>
                       <span style="color: red"
-                        ><c:out value="${verifyMessage}"
-                      /></span><br>
+                        ><c:out value="${resetMessage}"
+                      /></span>
+                      <br>
                       <button type="submit" class="btn btn-primary">
-                        Verify
+                        Reset password
                       </button>
                     </form>
-                    <hr />
-                    <div class="text-center">
-                      <a class="small" href="home">Homepage?</a>
-                    </div>
-                    <div class="text-center">
-                      <a class="small" href="login"
-                        >Already have an account? Login!</a
-                      >
-                    </div>
                   </div>
                 </div>
               </div>

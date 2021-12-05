@@ -56,14 +56,18 @@ uri="http://java.sun.com/jsp/jstl/core"%>
             </div>
             <div class="form-group">
                 <label for="inputBirthDay">Birth Date</label>
-                <input type="text" class="form-control" id="inputBirthDay" placeholder="Birth Date" name="bdate" value="${user.bdate}">
+                <input type="text" class="form-control" id="inputBirthDay" placeholder="yyyy-mm-dd" name="bdate" value="${user.bdate}">
             </div>
             <div class="form-group">
                 <label for="inputEmail">Email address</label>
                 <input readonly type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                     placeholder="Email" name="email" value="${user.email}">
             </div>
-
+            <div class="text-center">
+              <a class="small" href="forgot-password"
+                >Change password</a
+              >
+            </div>
             <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
         <div></div>

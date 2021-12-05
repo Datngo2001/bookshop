@@ -24,11 +24,11 @@ public class VerifyController extends HttpServlet {
             action = "Go to verify.jsp";
         }
 
-        if (action.equals("VERIFY")) {
-        	String code = request.getParameter("code");
-        	
-        	RegisterDTO registerDTO =  (RegisterDTO) request.getSession().getAttribute("register");
-        	registerDTO.setCode(code);
+        if (action.equals("VERIFY_register")) {
+            String code = request.getParameter("code");
+
+            RegisterDTO registerDTO = (RegisterDTO) request.getSession().getAttribute("register");
+            registerDTO.setCode(code);
             if (new User().verify(registerDTO, code)) {
                 request.getSession().setAttribute("username", registerDTO.getUsername());
                 request.getSession().setAttribute("role", registerDTO.getRole());
@@ -38,6 +38,16 @@ public class VerifyController extends HttpServlet {
                 return;
             } else {
                 request.setAttribute("verifyMessage", registerDTO.getErrorMessage());
+            }
+        } else if (action.equals("VERIFY_resetPass")) {
+            HttpSession session = request.getSession();
+            String codeSended = (String) session.getAttribute("code");
+            String code = request.getParameter("code");
+            if (code.equals(codeSended)) {
+                session.removeAttribute("code");
+                nextUrl = "WEB-INF/resetPass.jsp";
+            } else {
+                request.setAttribute("verifyMessage", "Incorrect code");
             }
         }
 

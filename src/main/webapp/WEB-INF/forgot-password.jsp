@@ -46,17 +46,21 @@
                                         <p class="mb-4">We get it, stuff happens. Just enter your email address below
                                             and we'll send you a link to reset your password!</p>
                                     </div>
-                                    <form class="user">
+                                    <form class="user" action="forgot-password" method="post">
                                         <div class="form-group">
                                             <input type="email" class="form-control form-control-user"
-                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                name="email" aria-describedby="emailHelp"
                                                 placeholder="Enter Email Address...">
                                         </div>
-                                        <a href="login.jsp" class="btn btn-primary btn-user btn-block">
-                                            Reset Password
-                                        </a>
+                                        <input type="hidden" name="action" value="CheckEmail"/>
+                                        <button type="submit" class="btn btn-primary">
+                                          Check Email
+                                        </button>
                                     </form>
                                     <hr>
+                                    <span style="color: red"
+                                      ><c:out value="${resetMessage}"
+                                    /></span><br>                             
                                     <div class="text-center">
                                         <a class="small" href="register">Create an Account!</a>
                                     </div>
