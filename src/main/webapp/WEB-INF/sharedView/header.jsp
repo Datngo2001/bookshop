@@ -185,7 +185,7 @@
           </div>
         </div>
         <div class="grid_column-2 search-right">
-        <!-- 
+         
           <ul class="search-right-list">
             <li class="search-right-item">
               <a href="#" class="wishlist-link">
@@ -198,7 +198,7 @@
                 />
               </a>
             </li>
-          </ul> -->
+          </ul> 
           <ul class="search-right-list">
             <li class="search-right-item">
               <form action="cart" method="get">
@@ -259,31 +259,31 @@
 		</ul>
   	</div>
 	<div class="content-respon" >
-		  	 <ul class="category-list">
+            <ul class="category-list">
               <li class="category-item category--active">
-                <a href="" class="category-link">Romance</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Roman&command=HOME" class="category-link">Romance</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Science Fiction & Fantasy</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Adventure&command=HOME" class="category-link">Adventure & Fantasy</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Comics, Graphic Novels, & Manga</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Action&command=HOME" class="category-link">Action, Graphic Novels, & Manga</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Business & Finance</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Business&command=HOME" class="category-link">Business & Finance</a>
               </li>
-           </ul>
+            </ul>
            <br>
            <p style="color: var(--bs-blue); margin: 0 15px;"> Sorting by</p>
            	<ul class="category-list">
               <li class="category-item">
-                <a href="" class="category-link">Popular</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Popular&command=HOME" class="category-link">Popular</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Newest</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=New&command=HOME" class="category-link">Newest</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Best Selling</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Sell&command=HOME" class="category-link">Best Selling</a>
               </li>
            </ul>
 	</div>

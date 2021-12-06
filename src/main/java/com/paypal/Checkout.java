@@ -1,6 +1,5 @@
 package com.paypal;
 
-import java.text.NumberFormat;
 
 public class Checkout {
 	private  String productName;

@@ -102,7 +102,11 @@ public class ProductManageController extends HttpServlet {
 		int price = Integer.parseInt(request.getParameter("price"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		String supplier = request.getParameter("supplier");
+		int discount = Integer.parseInt(request.getParameter("discount"));
+		String code = request.getParameter("code");
 		Product theProduct = new Product(id, nameAuthor, description, nameItem, nxb, supplier, price);
+		theProduct.setCodeProduct(code);
+		theProduct.setDiscount(discount);
 		productDAO.updateProducts(theProduct);
 		response.sendRedirect("product?command=Load&id=" + id);
 	}

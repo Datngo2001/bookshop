@@ -55,7 +55,8 @@
     </table>
 			</div>
 		</div>
-		<a href="profile">Go to my profile</a>
+		<br>
+		<a style="margin: 0 8px;" href="profile">Go to my profile</a>
 		<a href="home">Return Homepage</a>
 	</div>
 	<br>

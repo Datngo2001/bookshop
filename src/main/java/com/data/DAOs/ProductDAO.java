@@ -75,6 +75,43 @@ public class ProductDAO {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Product> getAdventureBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Adventure" + "'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getBusinessBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Buisiness & Management"+ "'" +" or P.typeBook ="+ "'" + "Historical" +"'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getActionBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Action"+ "'" +" or P.typeBook ="+ "'" + "Action, Comedy" +"'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getPopularOrder() throws Exception {
+		
+	}
 	public Product addProducts(Product product) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
@@ -103,6 +140,8 @@ public class ProductDAO {
 			theProduct.setDescription(product.getDescription());
 			theProduct.setPrice(product.getPrice());
 			theProduct.setSupplier(product.getSupplier());
+			theProduct.setCodeProduct(product.getCodeProduct());
+			theProduct.setDiscount(product.getDiscount());
 			em.merge(theProduct);
 			trans.commit();
 		} catch (Exception e) {
@@ -223,7 +262,10 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-
+					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                  </span>\r\n"
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"
@@ -262,7 +304,10 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-
+					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                  </span>\r\n"
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"

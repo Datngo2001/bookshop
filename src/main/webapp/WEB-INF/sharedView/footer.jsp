@@ -15,8 +15,10 @@
           <li><a href="#">Mr Dat: Email: 1911xxx</a></li>
           <li><a href="#">Mr Duong: Email:1911xxxx</a></li>
           <li><a href="#">Mr Thien: Email 1911xxxx</a></li>
+          <!--
           <li><a href="#">Mrs Thuy: Email 1911xxxx</a></li>
           <li><a href="#">Mr T.Dat: Email 1911xxxx</a></li>
+          -->
           <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>

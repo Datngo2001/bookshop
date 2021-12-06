@@ -745,6 +745,9 @@ button.center {
 }
 }
 
+.sort-by {
+	display: flex;
+}
 
 /**/
 

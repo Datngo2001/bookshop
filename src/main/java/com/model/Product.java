@@ -35,7 +35,7 @@ public class Product implements Serializable {
 	public int price;
 	public String pictureUrl;
 	public String Sku;
-	public String typeBook;
+	public String typeBook;	
 	public int discount;
 	@LazyCollection(LazyCollectionOption.FALSE)
 	// Relation

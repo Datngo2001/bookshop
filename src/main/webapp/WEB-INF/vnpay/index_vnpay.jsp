@@ -36,11 +36,13 @@
 	            	 <input type="hidden" name="action" value="CHECK">
 	            	 <input type="hidden" name="price" value="${priceTotal}">
 	            	 <input type="hidden" name="amount" value="${priceTotal}">
+	            	 <!--  
 	            	 <c:choose>
-	            	<c:when test="${sessionScope.check != null}">
+	            	<c:when test="${sessionScope.check == 1}">
 	            	  <div class="form-group">
 	                        <label class="label-control" for="language">Mã khuyến mãi</label>
 							<input type="text" class="form-control" name="promoCode" >
+							<label>${error}</label>
 							<input type="submit" class=" btn btn-primary" 
 							style="margin: 8px 0; width: 100px;" 
 							name="" value="Kiểm tra" 
@@ -51,6 +53,7 @@
 	                         <div class="form-group">
 	                        <label class="label-control" for="language">Mã khuyến mãi</label>
 							<input type="text" class="form-control" name="promoCode" >
+							<label>${error}</label>
 							<input type="submit" class=" btn btn-primary" 
 							style="margin: 8px 0; width: 100px;" 
 							name="" value="Kiểm tra" 
@@ -58,6 +61,7 @@
 	                    </div>
 	                    </c:otherwise>
 	                     </c:choose>
+	                     -->
 	            </form>
 	                <form action="ajaxServlet" id="frmCreateOrder" method="post">        
 	                    <div class="form-group">

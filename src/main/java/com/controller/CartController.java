@@ -44,6 +44,8 @@ public class CartController extends HttpServlet {
 		try {
 			userId = (int) request.getSession().getAttribute("userId");
 		} catch (Exception e) {
+			String url = request.getParameter("url");
+			request.setAttribute("url", url);
 			response.sendRedirect("login");
 			return;
 		}

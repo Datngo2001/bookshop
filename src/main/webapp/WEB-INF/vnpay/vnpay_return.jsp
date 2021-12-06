@@ -43,9 +43,7 @@
 			<div class="grid_row">
 				<div class="grid_row-8" style="margin: 0 auto;">
 					
-            <div class="header clearfix">
                 <h3 class="text-muted">VNPAY RESPONSE</h3>
-            </div>
             <div class="table-responsive">
                 <div class="form-group">
                     <label >TransId:</label>
@@ -60,7 +58,7 @@
                     <label><%=request.getParameter("vnp_OrderInfo")%></label>
                 </div> 
                 <div class="form-group">
-                    <label >Response Code (vnp_ResponseCode):</label>
+                    <label >Response Code:</label>
                     <label><%=request.getParameter("vnp_ResponseCode")%></label>
                 </div> 
                 <div class="form-group">

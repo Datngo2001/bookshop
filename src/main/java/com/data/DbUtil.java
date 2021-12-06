@@ -28,19 +28,26 @@ public class DbUtil {
 				 * "6cbad36d7efbdf936d6dfc94841fc17c1f518782d15ab48cfff785f24976d9c6");
 				 */
 				Properties settings = new Properties();
+				
 				settings.put(Environment.DRIVER, "org.postgresql.Driver");
 				settings.put(Environment.URL,
 						"jdbc:postgresql://ec2-18-204-170-75.compute-1.amazonaws.com:5432/dcti81nb4p0eg8");
 				settings.put(Environment.USER, "hskuhhcqrrezwy");
 				settings.put(Environment.PASS, "6be2eb1fbef51ea763728e8a59b28b89af919f112573db96a23fe218109265b2");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.PostgreSQLDialect");
-
+				
+				/*
+				settings.put(Environment.URL, "jdbc:mysql://database-1.ctmpvntqk27b.ap-southeast-1.rds.amazonaws.com:3306/book_store"); 
+				settings.put(Environment.USER, "admin"); 
+				settings.put(Environment.PASS, "chobeosuiroi:sadcow");
+				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
+				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 				settings.put(Environment.SHOW_SQL, "true");
-
+				*/
 				settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
 
-				// settings.put(Environment.HBM2DDL_AUTO, "update");
-				settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+				settings.put(Environment.HBM2DDL_AUTO, "update");
+				//settings.put(Environment.HBM2DDL_AUTO, "create-drop");
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(User.class);
@@ -95,16 +102,11 @@ public class DbUtil {
 					settings.put(Environment.URL,
 							"jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
 					settings.put(Environment.USER, "root");
-					settings.put(Environment.PASS, "group2");
+					settings.put(Environment.PASS, "ngocthien2306.com");
 
 					// Mysql of AWS
-					/*
-					 * settings.put(Environment.URL,
-					 * "jdbc:mysql://database-1.ctmpvntqk27b.ap-southeast-1.rds.amazonaws.com:3306/book_store"
-					 * ); settings.put(Environment.USER, "admin"); settings.put(Environment.PASS,
-					 * "chobeosuiroi:sadcow");
-					 */
-					settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
+	
+
 				}
 
 				settings.put(Environment.SHOW_SQL, "true");

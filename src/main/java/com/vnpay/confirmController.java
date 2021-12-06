@@ -66,11 +66,13 @@ public class confirmController extends HttpServlet {
 	}
 
 	private void pricePromoCode(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String code = request.getParameter("promoCode");
-		int amount = Integer.parseInt(request.getParameter("amount"));
-		Promo promo = promoDao.getPromoCode(code);
+
 		try {
+			String code = request.getParameter("promoCode");
+			int amount = Integer.parseInt(request.getParameter("amount"));
+			Promo promo = promoDao.getPromoCode(code);
 			if(promo != null)  {
+				
 				int priceDiscount = 0;
 				if(Integer.parseInt(promo.getTypeCode()) == 1) {
 					priceDiscount = amount - (int) promo.getValue();
@@ -79,10 +81,12 @@ public class confirmController extends HttpServlet {
 					priceDiscount = amount -  (amount *(int) promo.getValue()) / 100;
 				}
 				request.setAttribute("priceTotal", priceDiscount);
-				request.getSession().setAttribute("check", "OK");
+				request.getSession().setAttribute("check", 1);
 				}
+			//promoDao.deletePromoCode(promo.getId());
 		}
 		catch (Exception e) {
+			
 			response.sendRedirect("confirm");
 		}
 	}
