@@ -47,26 +47,26 @@ public class ProductManageController extends HttpServlet {
 			}
 
 			switch (theCommand) {
-			case "Product":
-				listProduct(request, response);
-				break;
-			case "List":
-				listProduct(request, response);
-				break;
-			case "ADD":
-				addProduct(request, response);
-				break;
-			case "Load":
-				loadProductForm(request, response);
-				break;
-			case "Update":
-				updateProduct(request, response);
-				break;
-			case "Delete":
-				deleteProduct(request, response);
+				case "Product":
+					listProduct(request, response);
+					break;
+				case "List":
+					listProduct(request, response);
+					break;
+				case "ADD":
+					addProduct(request, response);
+					break;
+				case "Load":
+					loadProductForm(request, response);
+					break;
+				case "Update":
+					updateProduct(request, response);
+					break;
+				case "Delete":
+					deleteProduct(request, response);
 
-			default:
-				listProduct(request, response);
+				default:
+					listProduct(request, response);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -81,12 +81,16 @@ public class ProductManageController extends HttpServlet {
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		List<Photo> photos = new PhotoDAO().getProductPhotos(id);
-		for (Photo photo : photos) {
-			CloudinaryUtil.destroyItem(photo.getPublicId());
+		try {
+			List<Photo> photos = new PhotoDAO().getProductPhotos(id);
+			for (Photo photo : photos) {
+				CloudinaryUtil.destroyItem(photo.getPublicId());
+			}
+			File file = new FileDAO().getProductFile(id);
+			CloudinaryUtil.destroyItem(file.getPublicId());
+		} catch (Exception e) {
+			System.out.println("File delte or photo delete failse");
 		}
-		File file = new FileDAO().getProductFile(id);
-		CloudinaryUtil.destroyItem(file.getPublicId());
 
 		productDAO.deleteProduct(id);
 		response.sendRedirect("product");
