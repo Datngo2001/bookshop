@@ -6,8 +6,9 @@ https://ebooks-shop.herokuapp.com/home
 	 * VAN A OTP: 123456
 	 */
     
-    //tk: sb-evtpu8326832@personal.example.com
+   	//tk: sb-evtpu8326832@personal.example.com
 	//mk: 4LC($leR
+	// Promo code: COTHO, GROUP2
 
 1. Use: git clone https://github.com/Datngo2001/bookshop.git
    to clone this cod to your computer
