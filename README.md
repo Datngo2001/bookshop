@@ -1,7 +1,13 @@
 # bookshop
 https://ebooks-shop.herokuapp.com/home 
 
-
+	/*
+	 * Text payment So the: 9704198526191432198 Ngay phat hanh: 07/15 Ten: NGUYEN
+	 * VAN A OTP: 123456
+	 */
+    
+    //tk: sb-evtpu8326832@personal.example.com
+	//mk: 4LC($leR
 
 1. Use: git clone https://github.com/Datngo2001/bookshop.git
    to clone this cod to your computer
