@@ -83,8 +83,8 @@ public class PaymentServices {
 	private RedirectUrls getRedirectURLs() {
 		RedirectUrls redirect = new RedirectUrls();
 		
-		redirect.setCancelUrl("https://ebook-shops.herokuapp.com/cancel");
-		redirect.setReturnUrl("https://ebook-shops.herokuapp.com/review_payment");
+		redirect.setCancelUrl("https://ebooks-shop.herokuapp.com/cancel");
+		redirect.setReturnUrl("https://ebooks-shop.herokuapp.com/review_payment");
 		//redirect.setCancelUrl("http://localhost:8082/bookshop/cancel");
 		//redirect.setReturnUrl("http://localhost:8082/bookshop/review_payment");
 		return redirect;

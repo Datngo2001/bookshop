@@ -90,7 +90,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     class="btn btn-primary btn-user btn-block"
                   />
                                     <hr />
-                                    <!--
+                                   
                   <a href="index.jsp" class="btn btn-google btn-user btn-block">
                     <i class="fab fa-google fa-fw"></i> Register with Google
                   </a>
@@ -101,7 +101,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                     <i class="fab fa-facebook-f fa-fw"></i> Register with
                     Facebook
                   </a>
-                  -->
+                  
                 </form>
                 <hr />
                 <span style="color: red"
