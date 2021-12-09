@@ -10,9 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.data.DAOs.FileDAO;
+import com.data.DAOs.OrderDAO;
 import com.data.DAOs.PhotoDAO;
 import com.data.DAOs.ProductDAO;
 import com.model.File;
+import com.model.Order;
 import com.model.Photo;
 import com.model.Product;
 import com.services.CloudinaryUtil;
@@ -21,12 +23,14 @@ import com.services.CloudinaryUtil;
 public class ProductManageController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private ProductDAO productDAO;
+	private OrderDAO orderDao;
 
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		try {
 			productDAO = new ProductDAO();
+			orderDao = new OrderDAO();
 		} catch (Exception ex) {
 			throw new ServletException(ex);
 		}
@@ -43,15 +47,18 @@ public class ProductManageController extends HttpServlet {
 			String theCommand = request.getParameter("command");
 
 			if (theCommand == null) {
-				theCommand = "List";
+				theCommand = "Product";
 			}
 
 			switch (theCommand) {
 			case "Product":
 				listProduct(request, response);
 				break;
-			case "List":
-				listProduct(request, response);
+			case "History Order":
+				orderDetail(request, response);
+				break;
+			case "DetailOrder":
+				orderUserDetail(request, response);
 				break;
 			case "ADD":
 				addProduct(request, response);
@@ -73,6 +80,32 @@ public class ProductManageController extends HttpServlet {
 		}
 	}
 
+	private void orderUserDetail(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String userId = request.getParameter("userId");
+		List<Order> order = null;
+		try {
+			order = orderDao.getListOrderByUserId(userId);
+			request.setAttribute("detail_order", order);
+			request.getRequestDispatcher("../WEB-INF/admin/userOrder.jsp").forward(request, response);
+		}
+		catch (Exception e) {
+			//listProduct(request, response);
+		}
+		
+	}
+
+	private void orderDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Order> order = null;
+		try {
+			order = orderDao.getListOrder();
+			request.setAttribute("list_order", order);
+		} catch (Exception e) {
+			log("productDao error", e);
+		}
+		request.getRequestDispatcher("../WEB-INF/admin/orderDetail.jsp").forward(request, response);
+		
+	}
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doGet(request, response);
@@ -81,13 +114,15 @@ public class ProductManageController extends HttpServlet {
 	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		int id = Integer.parseInt(request.getParameter("id"));
 
-		List<Photo> photos = new PhotoDAO().getProductPhotos(id);
-		for (Photo photo : photos) {
-			CloudinaryUtil.destroyItem(photo.getPublicId());
-		}
-		File file = new FileDAO().getProductFile(id);
-		if (file != null) {
+		try {
+			List<Photo> photos = new PhotoDAO().getProductPhotos(id);
+			for (Photo photo : photos) {
+				CloudinaryUtil.destroyItem(photo.getPublicId());
+			}
+			File file = new FileDAO().getProductFile(id);
 			CloudinaryUtil.destroyItem(file.getPublicId());
+		} catch (Exception e) {
+			System.out.println("File delte or photo delete failse");
 		}
 
 		productDAO.deleteProduct(id);

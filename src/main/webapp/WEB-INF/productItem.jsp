@@ -91,12 +91,8 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             </div>
             <span>(${reviews.size()} <span>đánh giá</span>)</span>
             <div class="product-addon">
-              <div>
-                <i class="fal fa-heart fa-2x"></i>
-              </div>
-              <div>
-                <i class="fal fa-share-alt fa-2x"></i>
-              </div>
+
+
             </div>
           </div>
           <div class="product-price">
@@ -106,13 +102,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
           <div class="product-quantity-wrapper">
             <label>Số lượng:</label>
             <div class="product-quantity">
-              <a href="">
-                <i class="far fa-minus"></i>
-              </a>
               1
-              <a href="">
-                <i class="far fa-plus"></i>
-              </a>
             </div>
           </div>
           <c:if test="${isUserOwnFile == true}">

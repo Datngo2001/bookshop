@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.util.*;
 import java.nio.charset.StandardCharsets;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,6 +20,7 @@ import com.model.*;
 @WebServlet("/return")
 public class returnController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private CartDAO cartDao;
 	private OrderDAO orderDao;
 	private UserDAO userDao;
@@ -31,8 +35,10 @@ public class returnController extends HttpServlet {
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String nextUrl = "WEB-INF/vnpay/vnpay_return.jsp";
 	String vnp_TransactionStatus = "";
+	Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+	Date date = new Date();
 	//hash attribute
-	  
+	try {
 	Map fields = new HashMap();
 	   for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
 	       String fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
@@ -42,12 +48,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	       }
 	   }
 	   //get attribute
+
 	   float amount = Float.parseFloat((request.getParameter("vnp_Amount"))) / 100;
 	   String code = request.getParameter("vnp_TransactionNo");
-	   String day = request.getParameter("vnp_PayDate");
-	   //String info = request.getParameter("vnp_OrderInfo");
-	   //String bank = request.getParameter("vnp_BankCode");
-	   //String transId = request.getParameter("vnp_TxnRef");
+	   String day = sdf3.format(timestamp);
+	   
 	   String vnp_SecureHash = request.getParameter("vnp_SecureHash");
 	   if (fields.containsKey("vnp_SecureHashType")) {
 	       fields.remove("vnp_SecureHashType");
@@ -73,7 +78,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	       if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
 	    	   //get user
 	    	   User user = userDao.getUser(userId.toString());
-	    	   Order order = new Order(day, code, amount, user);
+	    	   Order order = new Order(day, code, amount, "VNPAY", user);
 	    	   orderDao.CreateOrderForUser(order, user);  
 	    	   	    	   
 	    	   try {
@@ -94,7 +99,11 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 	   } else {
 	   		vnp_TransactionStatus = "Invalid signature";
 	   }
-	   request.setAttribute("status", vnp_TransactionStatus);
+	}
+	catch (Exception e) {
+		nextUrl = "WEB-INF/paypal/404_payment.jsp";
+	}
+	request.setAttribute("status", vnp_TransactionStatus);
 	request.getRequestDispatcher(nextUrl).forward(request, response);
 	}
 

@@ -35,34 +35,18 @@
 	           	<form action="confirm" method="post">
 	            	 <input type="hidden" name="action" value="CHECK">
 	            	 <input type="hidden" name="price" value="${priceTotal}">
-	            	 <input type="hidden" name="amount" value="${priceTotal}">
-	            	 <!--  
-	            	 <c:choose>
-	            	<c:when test="${sessionScope.check == 1}">
-	            	  <div class="form-group">
-	                        <label class="label-control" for="language">Mã khuyến mãi</label>
-							<input type="text" class="form-control" name="promoCode" >
-							<label>${error}</label>
-							<input type="submit" class=" btn btn-primary" 
-							style="margin: 8px 0; width: 100px;" 
-							name="" value="Kiểm tra" 
-							placeholder="Sử dụng mã giảm giá để nhận được ưu đãi" readonly="readonly">
-	                    </div>
-	                    </c:when>
-	                    <c:otherwise>
-	                         <div class="form-group">
-	                        <label class="label-control" for="language">Mã khuyến mãi</label>
-							<input type="text" class="form-control" name="promoCode" >
-							<label>${error}</label>
-							<input type="submit" class=" btn btn-primary" 
-							style="margin: 8px 0; width: 100px;" 
-							name="" value="Kiểm tra" 
-							placeholder="Sử dụng mã giảm giá để nhận được ưu đãi" >
-	                    </div>
-	                    </c:otherwise>
-	                     </c:choose>
-	                     -->
+	            	 <input type="hidden" name="amount" value="${priceTotal}">                  
 	            </form>
+	            	     <div class="form-group">
+	                        <label class="label-control" for="language">Mã khuyến mãi</label>
+							<input type="text" class="form-control promoCode" name="promoCode" name="" 
+							placeholder="Sử dụng mã giảm giá để nhận được ưu đãi">
+							<p id="status"></p>
+							
+							<button onclick="loadPromocode()" class=" btn btn-primary" 
+							style="margin: 8px 0; width: 100px;" > Check </button>
+							
+	                    </div>
 	                <form action="ajaxServlet" id="frmCreateOrder" method="post">        
 	                    <div class="form-group">
 	                        <label class="label-control" for="language">Loại hàng hóa </label>
@@ -75,7 +59,7 @@
 	                    </div>
 	                    <div class="form-group">
 	                        <label for="amount">Số tiền (VND)</label>
-	                        <input class="form-control" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." 
+	                        <input class="form-control amount" data-val="true" data-val-number="The field Amount must be a number." data-val-required="The Amount field is required." 
 	                        id="amount" max="100000000" min="1" name="amount" type="number" value="${priceTotal}" readonly="readonly"/>
 	                    </div>
 	
@@ -133,7 +117,8 @@
                 &nbsp;
             </p>
 		<c:import url="../sharedView/footer.jsp"></c:import>
-        <link href="https://pay.vnpay.vn/lib/vnpay/vnpay.css" rel="stylesheet" />
+        <link href="https://pay.vnpay.vn/lib/vnpay/vnpay.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://pay.vnpay.vn/lib/vnpay/vnpay.min.js"></script>
         <script type="text/javascript">
             $("#frmCreateOrder").submit(function () {
@@ -159,6 +144,44 @@
                 });
                 return false;
             });
+            function loadPromocode() {
+            	var datas = document.getElementsByClassName("promoCode")[0];
+            	var amount = document.getElementsByClassName("amount")[0];
+            	var status = document.getElementById("status"); 
+            	var priceDiscount = document.getElementById("amount");
+            	if (datas == "") {
+            		status.textContent = "Vui lòng nhập thông tin";
+            	}
+            	  $.ajax({
+            		    url: "/confirm?action=CHECK&promoCode=" + datas.value + "&price=" + amount.value,
+            		    type: "post", //send it through get method
+            		    success: function(data) {
+            		    if(data == 0) {
+            		    	status.textContent = "Mã khuyến mãi chưa hợp lệ!";
+            		    	status.classList.add("color");
+            		    	status.classList.remove("color1");
+            		    }
+            		    else if (data == -1) {
+            		    	status.textContent = "Mã khuyến mãi đã được sử dụng, vui lòng nhập mã khác!";
+            		    	status.classList.add("color");
+            		    	status.classList.remove("color1");
+            		    }
+            		    else {
+            		    	status.textContent = "Mã khuyến mãi được áp dụng thành công";
+            		    	priceDiscount.value = parseInt(data);
+            		    	console.log(priceDiscount);
+            		    	console.log(data);
+            		    	status.classList.add("color1");
+            		    	status.classList.remove("color");
+            		    }
+            		     
+            		    },
+            		    error: function(xhr) {
+            		    	status.textContent = "Mã khuyến mãi sai hoặc đã sử dụng!";
+            		    }
+            		  });
+            	
+            }
         </script>       
     </body>
 </html>

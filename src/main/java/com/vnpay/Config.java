@@ -25,7 +25,7 @@ public class Config {
 
     // public static String vnp_Returnurl =
     // "https://ebooks-shop.herokuapp.com/return";
-    public static String vnp_Returnurl = "https://ebooks-shop.herokuapp.com/return";
+    public static String vnp_Returnurl = "https://ebook-shops.herokuapp.com/return";
     //public static String vnp_Returnurl = "http://localhost:8082/bookshop/return";
     public static String vnp_TmnCode = "C3XYP5I0";
     public static String vnp_HashSecret = "ACKQPUNPZCGDBEOXDHFVZSJLTMFKHRFF";

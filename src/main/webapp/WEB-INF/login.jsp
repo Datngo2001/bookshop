@@ -97,6 +97,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                         class="btn btn-primary btn-user btn-block"
                       />
                        <hr />
+                       <!--
                       <a
                         href="index.jsp"
                         class="btn btn-google btn-user btn-block"
@@ -109,7 +110,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                       >
                         <i class="fab fa-facebook-f fa-fw"></i> Login with
                         Facebook
-                      </a>
+                      </a> -->
                     </form>
                     <hr />
                     <span style="color: red"

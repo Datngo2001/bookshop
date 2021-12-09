@@ -59,4 +59,14 @@ public class OrderDAO {
 		}
     	return null;
     }
+	@SuppressWarnings("unchecked")
+    public List<Order> getListOrder() throws Exception{
+    	try {
+    		return DbUtil.getSessionFactory().openSession().createQuery("From Order").getResultList();
+    	}
+    	catch (Exception e) {
+			e.printStackTrace();
+		}
+    	return null;
+    }
 }

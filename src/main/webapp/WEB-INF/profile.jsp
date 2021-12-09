@@ -66,13 +66,15 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                 <input readonly type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
                     placeholder="Email" name="email" value="${user.email}">
             </div>
-            <div class="text-center">
+                         <div class="text-center">
               <a class="small" href="forgot-password"
-                >Change password</a
+                >Change Password</a
               >
+              
             </div>
             <button type="submit" class="btn btn-primary">Save changes</button>
         </form>
+
 			</div>
 		</div>
 	</div>
@@ -107,10 +109,7 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                                 ${item.getProduct().getNameAuthor()}
                             </p>
                             <div class="product-action">  
-						<span class="product-action-heart product-action-liked">
-		                    <i class="like-icon far fa-heart"></i>
-		                    <i class="liked-icon fas fa-heart"></i>
-		                  </span> 
+
 		                  <div class="product-action-star">
 		                    <c:forEach var="i" begin="1" end="${item.getProduct().getStar()}">
 		                      <i class="star-gold fas fa-star"></i>
@@ -126,10 +125,6 @@ uri="http://java.sun.com/jsp/jstl/core"%>
                                     Read book
                                 </button>
                             </form>
-
-                            <div class="product-item-favourite">
-                                <i class="fas fa-check"></i> Interesting
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -138,6 +133,59 @@ uri="http://java.sun.com/jsp/jstl/core"%>
 			</div>
 		</div>
 	</div>
+	<br>
+	<br>
+	<div class="grid">
+	
+		<div class="grid_row">
+			<div class="grid_column-10" style="margin: 0 auto;">
+			<h4>History Buy Item</h4>
+				<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+   										<tr>
+   										<th> Create At</th>
+   										<th> Amount</th>
+   										<th> Status</th>
+   										<th> Method Payment</th>
+   										</tr>
+                                    </thead>
+									<tbody>
+									<c:forEach var="item" items="${list_order}">											                                            
+
+                                        <tr>
+                                            <td> <span>
+												${item.createAt}
+												</span>
+                                             </td>
+                                            <td>${item.amount}</td>
+                                           <td>${item.status}</td>
+                                            <td>${item.methodPayment}</td>                                                                               
+                                        </tr>
+                                        <tr> 
+											<th> 
+											<c:forEach var="list" items="${item.getItems()}">
+											<a href="https://ebook-shops.herokuapp.com/product?command=LOAD&id=${list.getProduct().id}">
+											<img alt="" src="${list.getProduct().pictureUrl}" style="width: 40px">
+											</a>
+											</c:forEach>					
+											</th>
+											
+											<th> 
+											<c:forEach var="list" items="${item.getItems()}">
+												${list.getProduct().price};
+											</c:forEach>					
+											</th>
+											
+										</tr>
+
+          
+									</c:forEach>
+									</tbody>
+                                </table>
+			</div>
+		</div>
+	</div>
+
 	<br>
     <c:import url="sharedView/footer.jsp"></c:import>
 </body>
