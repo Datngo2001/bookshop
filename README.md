@@ -8,7 +8,10 @@ https://ebooks-shop.herokuapp.com/home
     
    	//tk: sb-evtpu8326832@personal.example.com
 	//mk: 4LC($leR
-	// Promo code: COTHO, GROUP2
+	
+	// Promo Code
+	![image](https://user-images.githubusercontent.com/75513398/145500370-a2563af1-11c9-4d21-bb36-3537359d468a.png)
+
 
 1. Use: git clone https://github.com/Datngo2001/bookshop.git
    to clone this cod to your computer
