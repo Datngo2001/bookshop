@@ -46,3 +46,44 @@
     </div>
   </div>
 </footer>
+<script src="https://d2j7grvgvx4mfm.cloudfront.net/lex-web-ui-loader.min.js"></script>
+<script>
+  const loaderOpts = {
+    baseUrl: "https://d2j7grvgvx4mfm.cloudfront.net/",
+    shouldLoadMinDeps: true,
+  };
+  const loader = new ChatBotUiLoader.IframeLoader(loaderOpts);
+  const chatbotUiConfig = {
+    ui: {
+      parentOrigin: "http://localhost:8080/bookshop",
+      toolbarTitle: "Order Flowers",
+      toolbarLogo: "",
+      positiveFeedbackIntent: "Thumbs up",
+      negativeFeedbackIntent: "Thumbs down",
+      helpIntent: "Help",
+      enableLogin: true,
+      enableLiveChat: false,
+      forceLogin: false,
+      AllowSuperDangerousHTMLInMessage: true,
+      shouldDisplayResponseCardTitle: false,
+      saveHistory: false,
+      enableSFX: false,
+      minButtonContent: "",
+      hideInputFieldsForButtonResponse: false,
+      pushInitialTextOnRestart: false,
+      directFocusToBotInput: false,
+      showDialogStateIcon: false,
+      backButton: false,
+      messageMenu: true,
+      hideButtonMessageBubble: false,
+    },
+    iframe: {
+      iframeOrigin: "https://d2j7grvgvx4mfm.cloudfront.net",
+      shouldLoadIframeMinimized: false,
+      iframeSrcPath: "/index.html#/?lexWebUiEmbed=true",
+    },
+  };
+  loader.load(chatbotUiConfig).catch(function (error) {
+    console.error(error);
+  });
+</script>

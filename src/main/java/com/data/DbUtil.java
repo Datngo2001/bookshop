@@ -95,7 +95,7 @@ public class DbUtil {
 					settings.put(Environment.URL,
 							"jdbc:mysql://localhost:3306/book_store?allowPublicKeyRetrieval=true&useSSL=false");
 					settings.put(Environment.USER, "root");
-					settings.put(Environment.PASS, "group2");
+					settings.put(Environment.PASS, "ngocthien2306.com");
 
 					// Mysql of AWS
 					/*
