@@ -88,15 +88,15 @@ public class AuthorizePaymentServlet extends HttpServlet {
 		Locale locate = new Locale("en", "US");
 		NumberFormat cuNumberFormat = NumberFormat.getCurrencyInstance(locate);
 		
-		double total = 2 + price*0.05 + price;
+		double total = price*0.08 + price;
 		request.setAttribute("amount",cuNumberFormat.format(price));
 		request.setAttribute("total",cuNumberFormat.format(total));
-		request.setAttribute("tax",cuNumberFormat.format(price*0.05));
-		request.setAttribute("ship",cuNumberFormat.format(2));
+		request.setAttribute("tax",cuNumberFormat.format(price*0.08));
+		request.setAttribute("ship",cuNumberFormat.format(0));
 		request.getRequestDispatcher("WEB-INF/paypal/checkout.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		doGet(request, response);
 	}
 
 }

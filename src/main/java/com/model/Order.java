@@ -24,7 +24,7 @@ public class Order implements Serializable {
     private String createAt;
     private String status;
     private float amount;
-
+    private String methodPayment;
     // Relation
     @ManyToOne
     private User user;
@@ -32,14 +32,22 @@ public class Order implements Serializable {
     @OneToMany(mappedBy = "order")
     private List<Item> items = new ArrayList<Item>();
 
-    public Order(String createAt, String status, float amount, User user) {
+    public Order(String createAt, String status, float amount, String method, User user) {
         this.createAt = createAt;
         this.status = status;
         this.amount = amount;
         this.user = user;
+        this.methodPayment = method;
     }
     public Order() {}
-    public int getId() {
+    
+    public String getMethodPayment() {
+		return methodPayment;
+	}
+	public void setMethodPayment(String methodPayment) {
+		this.methodPayment = methodPayment;
+	}
+	public int getId() {
         return id;
     }
 

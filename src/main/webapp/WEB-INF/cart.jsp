@@ -70,7 +70,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
 						<button type="submit" class="btn btn-primary vnpay">VN PAY</button>
 					</form>
-					<form action="authorize_payment">
+					<form action="authorize_payment" method="post">
 						 <input id="hide" type="hidden" name="price" value="${cart.total}"/>
 						<button type="submit" class="btn btn-primary vnpay"> PAYPAL</button>
 					</form>

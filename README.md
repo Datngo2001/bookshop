@@ -1,6 +1,18 @@
 # bookshop
 https://ebooks-shop.herokuapp.com/home 
 
+	/*
+	 * Text payment So the: 9704198526191432198 Ngay phat hanh: 07/15 Ten: NGUYEN
+	 * VAN A OTP: 123456
+	 */
+    
+   	//tk: sb-evtpu8326832@personal.example.com
+	//mk: 4LC($leR
+	
+	// Promo Code: COTHO, THAYBAO, GROUP2, GROUP7
+	https://user-images.githubusercontent.com/75513398/145500370-a2563af1-11c9-4d21-bb36-3537359d468a.png
+	
+
 
 
 1. Use: git clone https://github.com/Datngo2001/bookshop.git

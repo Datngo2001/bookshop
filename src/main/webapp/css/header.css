@@ -9,6 +9,12 @@
 	padding: 0;
 	
 }
+.color {
+	color: var(--bs-red);
+}
+.color1 {
+	color: var(--blue-color);
+}
 
 .header-side .header {
     width: 100%;

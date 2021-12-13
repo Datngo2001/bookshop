@@ -98,14 +98,26 @@
                                                 placeholder="Organzation..." name="supplier" value="${item.supplier}">
                                         </div>
                                     </div>
+                                     <div class="form-group row">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label class="">Discount</label>
+                                            <input type="text" class="form-control" id="exampleInputPassword"
+                                                placeholder="% Discount" name="discount" value="${item.discount}">
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <label class="">Code</label>
+                                            <input type="text" class="form-control" id="exampleRepeatPassword"
+                                                placeholder="(A - Z)" name="code" value="${item.codeProduct}">
+                                        </div>
+                                    </div>
                                     <hr>
                                     <input name="action" type="submit" value="Save Change"
                                         class="btn btn-primary btn-user btn-block" />
                                 </div>
                             </form>
                         </div>
-                    </div>
-                    <c:if test="${FormCommand == 'Update'}">
+                        <div class="col-lg-4 mb-4">
+                      		         <c:if test="${FormCommand == 'Update'}">
                         <div class="row">
                             <h1 class="h3 mb-0 text-gray-800">Product File</h1><br>
                             <div class="p-2 card shadow w-100 d-flex flex-row align-items-center">
@@ -176,7 +188,10 @@
                                 </div>
                             </div>
                         </div>
-                    </c:if>
+                    </c:if>  
+                        </div>
+                    </div>
+           
                 </div>
             </div>
         </div>

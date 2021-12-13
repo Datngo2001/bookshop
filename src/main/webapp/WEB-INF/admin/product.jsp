@@ -76,10 +76,11 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                                         <tr>
                                             <th>NXB</th>
                                             <th>SKU</th>
-                                            <th>Code</th>
+                                            
                                             <th>Author Name</th>
                                             <th>Title</th>
                                             <th>Price</th>
+                                            <th>Discount</th>
 											<th>Active</th>
                                         </tr>
                                     </thead>
@@ -96,7 +97,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 										<tr>
                                             <th>${item.NXB}</th>
                                             <th>${item.getSku()}</th>
-                                            <th>${item.codeProduct}</th>
+                                            
                                             <th>${item.nameAuthor}</th>
                                             <th> <span
 												style="display: block;
@@ -108,6 +109,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 												</span>
 											</th>
                                             <th>${item.price}</th>
+                                            <th>${item.discount}%</th>
                                             <th>
                                             	<a href="${update}">
 													<span><button type="submit"
@@ -131,10 +133,11 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
                                         <tr>
                                             <th>NXB</th>
                                             <th>SKU</th>
-                                            <th>Code</th>
+                                           
                                             <th>Author Name</th>
 											<th>Title</th>
                                             <th>Price</th>
+                                             <th>Discount</th>
 											<th>Active</th>
                                         </tr>
                                     </tfoot>

@@ -1,5 +1,6 @@
 package com.data.DAOs;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import com.data.DbUtil;
 import com.model.Photo;
 import com.model.Product;
 import com.model.Review;
+import com.model.User;
 
 public class ProductDAO {
 	public ProductDAO() {
@@ -75,6 +77,55 @@ public class ProductDAO {
 		return null;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Product> getAdventureBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Adventure" + "'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getBusinessBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Buisiness & Management"+ "'" +" or P.typeBook ="+ "'" + "Historical" +"'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	@SuppressWarnings("unchecked")
+	public List<Product> getActionBook() throws Exception {
+		try {
+			return DbUtil.getSessionFactory().openSession()
+					.createQuery("From Product P where P.typeBook = " + "'" + "Action"+ "'" +" or P.typeBook ="+ "'" + "Action, Comedy" +"'").getResultList();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public List<Product> getPopularOrder() throws Exception {
+		EntityManager em = DbUtil.getSessionFactory().createEntityManager();
+		String sql = "Select p from Product p inner join Item i on p.id = i.product.id";
+		TypedQuery<Product> q = em.createQuery(sql, Product.class);
+		try {
+			List<Product> list = q.getResultList();
+
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+	}
 	public Product addProducts(Product product) {
 		Transaction transaction = null;
 		try (Session session = DbUtil.getSessionFactory().openSession()) {
@@ -103,6 +154,8 @@ public class ProductDAO {
 			theProduct.setDescription(product.getDescription());
 			theProduct.setPrice(product.getPrice());
 			theProduct.setSupplier(product.getSupplier());
+			theProduct.setCodeProduct(product.getCodeProduct());
+			theProduct.setDiscount(product.getDiscount());
 			em.merge(theProduct);
 			trans.commit();
 		} catch (Exception e) {
@@ -223,7 +276,10 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-
+					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                  </span>\r\n"
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"
@@ -262,7 +318,10 @@ public class ProductDAO {
 					+ "                <p class=\"trending-item-name\"> " + product.getProductName() + "</p>\r\n"
 					+ "                <p class=\"trending-item-author\">" + product.getNameAuthor() + "</p>\r\n"
 					+ "                <div class=\"product-action\">\r\n"
-
+					+ "                  <span class=\"product-action-heart product-action-liked\">\r\n"
+					+ "                    <i class=\"like-icon far fa-heart\"></i>\r\n"
+					+ "                    <i class=\"liked-icon fas fa-heart\"></i>\r\n"
+					+ "                  </span>\r\n"
 					+ "					<div class=\"product-action-star\">\r\n"
 					+ "                    "+ makeStar(product.getStar()) + ""
 					+ "                  </div>\r\n"
@@ -286,4 +345,34 @@ public class ProductDAO {
 				+ "</center>";
 		return productList + footer;
 	}
+	/*
+	public List<Product> loadProductBySection(String action) throws Exception {
+		// Section Side
+		List<Product> list_product = new ArrayList<Product>();
+		if(action.equals("Popular")) {
+			list_product = getProducts(60);
+		}
+		else if(action.equals("New")) {
+			list_product = getProducts(18);
+		}
+		else if(action.equals("Sell")) {
+			list_product = getProducts(18);
+
+		}
+		else if(action.equals("Roman")) {
+			list_product = getRomanceBook();
+		}
+		else if(action.equals("Adventure")) {
+			list_product = getAdventureBook();
+
+		}
+		else if(action.equals("Action")) {
+			list_product = getActionBook();
+		}
+		else if(action.equals("Business")) {
+			list_product = getBusinessBook();
+		}
+		return list_product;
+	}
+	*/
 }

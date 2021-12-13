@@ -52,6 +52,7 @@ public class HomeController extends HttpServlet {
 					loadRomanceBook(request, response);
 					loadHumanBook(request, response);
 					loadBusinessBook(request, response);
+					
 					goHomePage(request, response);
 
 					break;
@@ -138,7 +139,7 @@ public class HomeController extends HttpServlet {
 
 	private void loadPopularOrder(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		List<Product> list_product = new ArrayList<Product>();
-		list_product = productDao.getProducts(53);
+		list_product = productDao.getPopularOrder();
 		request.setAttribute("po_order", list_product);
 	}
 
@@ -146,6 +147,7 @@ public class HomeController extends HttpServlet {
 		String productId = null;
 		Product product = null;
 
+		
 		try {
 			productId = request.getParameter("productID");
 			product = productDao.getProduct(Integer.parseInt(productId));
@@ -153,7 +155,6 @@ public class HomeController extends HttpServlet {
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
-
 		request.setAttribute("product", product);
 		String path = "/product?command=LOAD&id=" + request.getParameter("productID");
 		// request.getRequestDispatcher("WEB-INF/productItem.jsp").forward(request,
@@ -162,13 +163,21 @@ public class HomeController extends HttpServlet {
 	}
 
 	private void goHomePage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		List<Product> product = null;
+		
+		// set popular
+		List<Product> list_product = new ArrayList<Product>();
+		
+		list_product = productDao.getProducts();
+		
 		String action = request.getParameter("action");
 		String next = request.getParameter("next");
-		List<Product> list_product = productDao.getProducts();
 		String sorting = request.getParameter("sort");
+		
+		
 		String index_at = request.getParameter("index");
+		
 		if (sorting == null) sorting = "INC";
+		
 		int index;
 		try {
 			// set index
@@ -191,22 +200,57 @@ public class HomeController extends HttpServlet {
 			else if (index > limit - 1) index = limit;
 
 			if (sorting.equals("INC")) {
-				product = productDao.getProducts(index * 15);
-				request.setAttribute("decrease", "INC");
+				list_product = productDao.getProducts(index * 15);
+				request.setAttribute("sorting", "INC");
 			} 
 			else {
-				product = productDao.getProductsDes(index * 15);
-				request.setAttribute("decrease", "DES");
+				list_product = productDao.getProductsDes(index * 15);
+				request.setAttribute("sorting", "DES");
 			}
-
+			
+			
+			
+			// Section Side
+			if(action.equals("Popular")) {
+				list_product = productDao.getProducts(60);
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("New")) {
+				list_product = productDao.getProducts(18);
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("Sell")) {
+				list_product = productDao.getPopularOrder();
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("Roman")) {
+				list_product = productDao.getRomanceBook();
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("Adventure")) {
+				list_product = productDao.getAdventureBook();
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("Action")) {
+				list_product = productDao.getActionBook();
+				limit = list_product.size() / 15;
+			}
+			else if(action.equals("Business")) {
+				list_product = productDao.getBusinessBook();
+				limit = list_product.size() / 15;
+			}
+			
+			request.setAttribute("list_product", list_product);
+			
 			request.setAttribute("next", index);
 			request.setAttribute("max", limit);
 
 		} catch (Exception e) {
 			log("productDao error", e);
 		}
+		
 
-		request.setAttribute("list_product", product);
+		
 		request.setAttribute("amount", 36);
 		request.setAttribute("amount2", 57);
 		request.getRequestDispatcher("WEB-INF/home.jsp").forward(request, response);

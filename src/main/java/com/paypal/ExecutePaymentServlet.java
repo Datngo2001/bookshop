@@ -61,7 +61,7 @@ public class ExecutePaymentServlet extends HttpServlet {
 			float amount = Float.parseFloat(transaction.getAmount().getTotal());
 			
 	    	User user = userDao.getUser(userId.toString());
-	    	Order order = new Order(ts.toString(), payerId, amount, user);
+	    	Order order = new Order(ts.toString(), payerId, amount, "PAYPAL", user);
 	    	orderDao.CreateOrderForUser(order, user);  
 
 			orderDao.addAllItem(uid, order);

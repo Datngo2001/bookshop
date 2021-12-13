@@ -45,27 +45,39 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
             <h3 class="category-heading"> <i class="category-heading-icon fas fa-list"></i>Content</h3>
             <ul class="category-list">
               <li class="category-item category--active">
-                <a href="" class="category-link">Romance</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Roman&command=HOME" class="category-link">Romance</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Science Fiction & Fantasy</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Adventure&command=HOME" class="category-link">Adventure & Fantasy</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Comics, Graphic Novels, & Manga</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Action&command=HOME" class="category-link">Action, Graphic Novels, & Manga</a>
               </li>
               <li class="category-item">
-                <a href="" class="category-link">Business & Finance</a>
+                <a href="https://ebooks-shop.herokuapp.com/home?action=Business&command=HOME" class="category-link">Business & Finance</a>
               </li>
             </ul>
           </nav>
         </div>
         <div class="grid_column-10">
           <div class="home-filter">
-            <div class="sort-by grid_column-6">
-              <span class="home-label">Sorting by</span>
+            <div class="sort-by grid_column-6" >
+              <span class="home-label" style="width: 100px;">Sorting by</span>
+              <form action="home" method="post">
               <button class="btn-product home-filter-btn">Popular</button>
-              <button class="btn-product btn-primary home-filter-btn hidden-new">Newest</button>
+              <input type="hidden" name="command" value="HOME">
+              <input type="hidden" name="action" value="Popular">
+              </form>
+              <form action="home" method="post" >
+              <button class="btn-product btn-primary home-filter-btn">Newest</button>
+              <input type="hidden" name="command" value="HOME">
+              <input type="hidden" name="action" value="New">
+              </form>
+              <form action="home" method="post">
               <button class="btn-product home-filter-btn hidden-new">Selling</button>
+              <input type="hidden" name="command" value="HOME">
+              <input type="hidden" name="action" value="Sell">
+              </form>
             </div>
             <div class="select-input grid_column-3">
               <span class="select-price-label">Price</span>
@@ -80,7 +92,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 </li>
                 <li class="select-input-item">
                   <form action="">
-                    <input type="hidden" name="sort" value="DEC">
+                    <input type="hidden" name="sort" value="DES">
                     <button class="select-input-link btn-sort">Decrease</button>
                   </form>
                 </li>
@@ -103,11 +115,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                       <p class="trending-item-name">${product.getProductName()}</p>
                       <p class="trending-item-author">${product.nameAuthor}</p>
                       <div class="product-action">
-						<!--                         <span class="product-action-heart product-action-liked">
+                                                 <span class="product-action-heart product-action-liked">
                           <i class="like-icon far fa-heart"></i>
                           <i class="liked-icon fas fa-heart"></i>
                         </span>
-                         -->
                         <div class="product-action-star">
                           <c:forEach var="i" begin="1" end="${product.getStar()}">
                             <i class="star-gold fas fa-star"></i>
@@ -126,9 +137,12 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                         <input type="hidden" name="productId" value="${product.id}">
                         <input type="hidden" name="quantity" value="1">
                         <input type="hidden" name="action" value="ADD">
+                        <input type="hidden" name="url" value="product?command=LOAD&id=${product.id}"> 
                         <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                       </form>
-
+		                      <div class="product-item-favourite">
+                        <i class="fas fa-check"></i> Interesting
+                      </div>
 
                       <c:choose>
                         <c:when test="${product.discount == 0 }">
@@ -154,7 +168,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 </div>
                 <form action="home" method="post">
                   <input type="hidden" name="action" value="PREV">
-                  <input type="hidden" name="sort" value="${sort_mode}">
+                  <input type="hidden" name="sort" value="${sorting}">
                   <input type="hidden" name="next" value="${next}">
                   <button type="submit" class="filter-page-btn input-page"><i class="fas fa-angle-left"></i></button>
                 </form>
@@ -162,7 +176,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <form action="home" method="post">
                   <input type="hidden" name="action" value="NEXT">
                   <input type="hidden" name="next" value="${next}">
-                  <input type="hidden" name="sort" value="${sort_mode}">
+                  <input type="hidden" name="sort" value="${sorting}">
                   <button type="submit" class="filter-page-btn input-page"><i class="fas fa-angle-right"></i></button>
                 </form>
                 
@@ -203,11 +217,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${item.getProductName()}</p>
                 <p class="trending-item-author">${item.getNameAuthor()}</p>
                 <div class="product-action">
-<!-- 
-                  <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span> -->
+                        <span class="product-action-heart product-action-liked">
+                          <i class="like-icon far fa-heart"></i>
+                          <i class="liked-icon fas fa-heart"></i>
+                        </span>
                   <div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
@@ -227,6 +240,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <input type="hidden" name="action" value="ADD">
                   <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                 </form>
+                		                      <div class="product-item-favourite">
+                        <i class="fas fa-check"></i> Interesting
+                      </div>
 
                 <c:choose>
                   <c:when test="${item.discount == 0 }">
@@ -275,18 +291,18 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <p class="trending-item-name">${item.getProductName() }</p>
                   <p class="trending-item-author">${item.getNameAuthor() }</p>
                   <div class="product-action">
-                  
-<!--                     <span class="product-action-heart product-action-liked">
-                      <i class="like-icon far fa-heart"></i>
-                      <i class="liked-icon fas fa-heart"></i>
-                    </span> -->
-                    <div class="product-action-star">
-                      <c:forEach var="i" begin="1" end="4">
-
-                        <i class="star-gold fas fa-star"></i>
-                      </c:forEach>
-                      <i class="star-gold far fa-star"></i>
-                    </div>
+                                        <span class="product-action-heart product-action-liked">
+                          <i class="like-icon far fa-heart"></i>
+                          <i class="liked-icon fas fa-heart"></i>
+                        </span>
+                        <div class="product-action-star">
+                          <c:forEach var="i" begin="1" end="${product.getStar()}">
+                            <i class="star-gold fas fa-star"></i>
+                          </c:forEach>
+                          <c:forEach var="i" begin="1" end="${5 - product.getStar()}">
+                            <i class="star-gold far fa-star"></i>
+                          </c:forEach>
+                        </div>
                   </div>
                   <div class="trending-item-price">
                     <span class="price-old mr-up"> ${item.price}</span>
@@ -298,7 +314,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     <input type="hidden" name="action" value="ADD">
                     <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                   </form>
-
+		                      <div class="product-item-favourite">
+                        <i class="fas fa-check"></i> Interesting
+                      </div>
                   <c:choose>
                     <c:when test="${item.discount == 0 }">
 
@@ -346,12 +364,11 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                   <p class="trending-item-name">${item.getProductName() }</p>
                   <p class="trending-item-author">${item.getNameAuthor() }</p>
                   <div class="product-action">
-                  <!--  
-                    <span class="product-action-heart product-action-liked">
-                      <i class="like-icon far fa-heart"></i>
-                      <i class="liked-icon fas fa-heart"></i>
-                    </span> 
-                    -->
+                                            <span class="product-action-heart product-action-liked">
+                          <i class="like-icon far fa-heart"></i>
+                          <i class="liked-icon fas fa-heart"></i>
+                        </span>
+                    
                     <div class="product-action-star">
                       <c:forEach var="i" begin="1" end="${product.getStar()}">
                         <i class="star-gold fas fa-star"></i>
@@ -371,7 +388,9 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                     <input type="hidden" name="action" value="ADD">
                     <input type="submit" class="btn_add-to-cart" value="Add to cart" />
                   </form>
-
+		                      <div class="product-item-favourite">
+                        <i class="fas fa-check"></i> Interesting
+                      </div>
                   <c:choose>
                     <c:when test="${item.discount == 0 }">
 
@@ -429,10 +448,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${product.getProductName() }</p>
                 <p class="trending-item-author">${product.getNameAuthor() }</p>
                 <div class="product-action">
-<!--                   <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span> -->
+                        <span class="product-action-heart product-action-liked">
+                          <i class="like-icon far fa-heart"></i>
+                          <i class="liked-icon fas fa-heart"></i>
+                        </span>
 					<div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
@@ -498,10 +517,10 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
                 <p class="trending-item-name">${product.getProductName() }</p>
                 <p class="trending-item-author">${product.getNameAuthor() }</p>
                 <div class="product-action">
-<!--                   <span class="product-action-heart product-action-liked">
-                    <i class="like-icon far fa-heart"></i>
-                    <i class="liked-icon fas fa-heart"></i>
-                  </span> -->
+                        <span class="product-action-heart product-action-liked">
+                          <i class="like-icon far fa-heart"></i>
+                          <i class="liked-icon fas fa-heart"></i>
+                        </span>
 					<div class="product-action-star">
                     <c:forEach var="i" begin="1" end="${product.getStar()}">
                       <i class="star-gold fas fa-star"></i>
@@ -538,7 +557,7 @@ prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 function loadMoreInNext() {
 	var index = document.getElementsByClassName("index-product-2")[0].value;
   $.ajax({
-    url: "/bookshop/home?command=Add&action=Next&amount2=" + index,
+    url: "/home?command=Add&action=Next&amount2=" + index,
     type: "post", //send it through get method
     success: function(data) {
       var row = document.getElementById("content-load-2");
@@ -553,7 +572,7 @@ function loadMoreInNext() {
 function loadMoreInPrev() {
 	var index = document.getElementsByClassName("index-product-2")[0].value;
   $.ajax({
-    url: "/bookshop/home?command=Add&action=Prev&amount2=" + index,
+    url: "/home?command=Add&action=Prev&amount2=" + index,
     type: "post", //send it through get method
     success: function(data) {
       var row = document.getElementById("content-load-2");
@@ -568,7 +587,7 @@ function loadMoreInPrev() {
 function loadInMore() {
 	var index = document.getElementsByClassName("index-product-2")[0].value;
   $.ajax({
-    url: "/bookshop/home?command=Add&action=Import&amount2=" + index,
+    url: "/home?command=Add&action=Import&amount2=" + index,
     type: "post", //send it through get method
     success: function(data) {
       var row = document.getElementById("content-load-2");

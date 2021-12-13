@@ -26,7 +26,7 @@
       <div class="grid_row">
         <div class="grid_column-8" style="margin: 0 auto" >
           <h1>Check Out</h1>
-          <form action="authorize_payment" method="get">
+          <form action="authorize_payment" method="post">
             <input type="hidden" name="action" value="Pay">
             <div class="form-group">
               <span class="">Product/Service</span>
@@ -46,7 +46,7 @@
             </div>
             <div class="form-group">
               <span class="">Tax</span>
-              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="0" readonly="readonly">
+              <input type="text" class="form-control" id="" aria-describedby="emailHelp" name="tax" value="${tax}" readonly="readonly">
             </div>
             <div class="form-group">
               <span class="">Total Amount</span>

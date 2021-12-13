@@ -38,7 +38,8 @@ public class ProfileController extends HttpServlet {
 
 			if (action.equals("View")) {
 				viewProfile(request, response);
-			} else if (action.equals("Update")) {
+			} 
+			else if (action.equals("Update")) {
 				updateProfile(request, response);
 			}
 
@@ -46,6 +47,20 @@ public class ProfileController extends HttpServlet {
 			e.printStackTrace();
 			response.sendRedirect("login");
 		}
+	}
+
+	@SuppressWarnings("unused")
+	private void viewHistory(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			List<Order> list_order = null;
+			Object userId = request.getSession().getAttribute("userId");
+			orderDAO.getListOrder();
+			request.setAttribute("list_order", list_order);
+		}
+		catch (Exception e) {
+		
+		}
+		
 	}
 
 	private void updateProfile(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -86,6 +101,7 @@ public class ProfileController extends HttpServlet {
 		}
 
 		request.setAttribute("list_item", my_product);
+		request.setAttribute("list_order", list_order);
 		request.setAttribute("user", user);
 		String nextUrl = "WEB-INF/profile.jsp";
 		request.getRequestDispatcher(nextUrl).forward(request, response);

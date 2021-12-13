@@ -4,7 +4,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
-<    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <!-- Global -->
     <c:import url="sharedView/global.html" />
@@ -22,7 +22,7 @@ pageEncoding="UTF-8" errorPage="error.jsp" isELIgnored="false"%>
 	<br>
 	<div class="grid">
 		<div class="grid_row">
-			<div class="grid_column_8">
+			<div class="grid_column_8" style="margin: 0 auto;">
 				<iframe src="https://drive.google.com/file/d/1z7RCIuoi8pFhA7mGQakqG8tCLyRNel4d/preview" width="640" height="480" allow="autoplay"></iframe>
 			</div>
 		</div>
